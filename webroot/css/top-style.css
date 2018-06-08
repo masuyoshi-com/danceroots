@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+select.form-control:not([size]):not([multiple]) {
+    height: calc(2.25rem + 7px);
+}
+
+
+/* original */
+.font-blue {
+    color: #4285f4;
+}
+
+.signup-checkbox {
+    margin: 5px;
+    -ms-transform: scale(1.5, 1.5);
+    -webkit-transform: scale(1.5, 1.5);
+    transform: scale(1.5, 1.5);
+}
+
+.error-message {
+    color: #ff3547;
+}
+
+@media screen and (max-width: 768px) {
+    .none {
+        display: none;
+    }
+}
