@@ -1,9 +1,12 @@
+<?php $this->assign('title', 'パスワードを忘れた場合'); ?>
 <div class="container mt-5">
     <div class="row">
         <div class="col-lg-12 mt-5 mb-3">
+            <?= $this->Flash->render() ?>
             <h3 class="text-center">パスワードを忘れた場合</h3>
         </div>
     </div>
+
     <?= $this->Form->create() ?>
     <div class="row">
         <div class="col-lg-3 col-xs-12">

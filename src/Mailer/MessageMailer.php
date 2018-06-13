@@ -16,7 +16,7 @@ class MessageMailer extends Mailer
     public function message($to_user, $from_user, $message)
     {
         $this
-            ->from([ADMIN_EMAIL => SITE_NAME])
+            ->from([INFO_EMAIL => SITE_NAME])
             ->to($to_user->email)
             ->subject('【' . SITE_NAME . '】' . $from_user->username . 'さんからのメッセージがあります。')
             ->viewVars(['user' => $from_user, 'message' => $message]);

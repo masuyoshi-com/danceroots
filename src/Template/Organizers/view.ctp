@@ -27,7 +27,7 @@
 
 <div class="row">
     <div class="col-lg-8 col-md-12 mb-5">
-        <div class="card card-cascade narrower">
+        <div class="card card-cascade narrower mb-3">
             <div class="card-body mb-3">
                 <div class="row">
                     <div class="col-lg-12">
@@ -135,24 +135,29 @@
                     </div>
                 </div>
                 <?php endif; ?>
-
-                <?php
-                    if ($organizer->user_id === $logins['id']) {
-                        print $this->Html->link('プロフィールを編集する', ['action' => 'edit', h($organizer->user_id)], ['class' => 'btn btn-primary btn-block']);
-                    } else {
-                        print $this->Html->link('<i class="fa fa-envelope"></i> メッセージを送る',
-                        [
-                                'controller' => 'Messages',
-                                'action'     => 'add',
-                                $logins['id'],
-                                h($organizer->user_id)
-                        ],
-                        ['class' => 'btn purple-gradient btn-block', 'escape' => false]);
-                    }
-                ?>
-
             </div><!-- /.card-body -->
         </div><!-- /.card -->
+
+        <div class="card card-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    <?php
+                        if ($organizer->user_id === $logins['id']) {
+                            print $this->Html->link('プロフィールを編集する', ['action' => 'edit', h($organizer->user_id)], ['class' => 'btn btn-primary btn-block']);
+                        } else {
+                            print $this->Html->link('<i class="fa fa-envelope"></i> メッセージを送る',
+                            [
+                                    'controller' => 'Messages',
+                                    'action'     => 'add',
+                                    $logins['id'],
+                                    h($organizer->user_id)
+                            ],
+                            ['class' => 'btn purple-gradient btn-block', 'escape' => false]);
+                        }
+                    ?>
+                </div>
+            </div>
+        </div>
     </div><!-- /.col-lg-8 -->
 
 
@@ -272,5 +277,39 @@
                 <?php endif; ?>
             </div><!-- /.card-body -->
         </section>
+
+        <?php if ($organizer->facebook) : ?>
+            <div class=" card card-body mb-3">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h6><i class="fa fa-facebook fb-ic"></i> Facebook</h6>
+                        <hr>
+                        <div class="md-form text-center mt-0">
+                            <div class="fb-page" data-href="<?= h($organizer->facebook) ?>" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                                <blockquote cite="<?= h($organizer->facebook) ?>" class="fb-xfbml-parse-ignore">
+                                    <a href="https://www.facebook.com/facebook">Facebook</a>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php if ($organizer->twitter) : ?>
+            <div class=" card card-body mb-3">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h6><i class="fa fa-twitter tw-ic"></i> Twitter</h6>
+                        <hr>
+                        <div class="md-form mt-0">
+                            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                            <?= $this->Html->link('', h($organizer->twitter) . '?ref_src=twsrc%5Etfw&height=550', ['class' => 'twitter-timeline']) ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
     </div><!-- /.col-lg-4 -->
 </div><!-- /. row -->

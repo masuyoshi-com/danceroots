@@ -4,7 +4,7 @@
     <div class="col-lg-12 mb-3">
         <div class="view gradient-card-header blue-gradient">
             <h2 class="h2-responsive mb-0">
-                マイ ダンス関連求人
+                <i class="fa fa-briefcase"></i> マイ ダンス関連求人
             </h2>
             <p class="mb-0">
                 <small class="none">

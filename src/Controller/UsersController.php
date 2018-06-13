@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Mailer\MailerAwareTrait;
 
 /**
  * Users Controller
@@ -12,6 +13,7 @@ use App\Controller\AppController;
  */
 class UsersController extends AppController
 {
+    use MailerAwareTrait;
 
     /**
      * 初期化メソッド
@@ -21,16 +23,15 @@ class UsersController extends AppController
     {
         parent::initialize();
         $this->Auth->allow([
-            'logout', 'signup', 'complete', 'forgot',
-            'midstream', 'reissue', 'passComp'
+            'logout',     'signup',  'complete', 'forgot',
+            'midstream',  'reissue', 'passComp', 'error',
+            'registered', 'forgotMail',
         ]);
     }
 
 
     /**
      * ログイン - 区分でリダイレクト先を変更
-     *
-     * @todo ログイン条件に本登録済みに限る処理追加
      */
      public function login()
      {
@@ -41,27 +42,32 @@ class UsersController extends AppController
             $user = $this->Auth->identify();
 
             if ($user) {
-                $this->Auth->setUser($user);
+                // 本登録が完了しているか
+                if ($user['register_flag'] === 1) {
+                    $this->Auth->setUser($user);
 
-                switch ($user['classification']) {
-                    case 0:
-                        return $this->redirect(['controller' => 'dancers', 'action' => 'home', $user['id']]);
-                        break;
-                    case 1:
-                        return $this->redirect(['controller' => 'studios', 'action' => 'home', $user['id']]);
-                        break;
-                    case 2:
-                        return $this->redirect(['controller' => 'organizers', 'action' => 'home', $user['id']]);
-                        break;
-                    case 3:
-                        return $this->redirect(['controller' => 'generals', 'action' => 'home', $user['id']]);
-                        break;
-                    default:
-                        return false;
-                        break;
-                };
+                    switch ($user['classification']) {
+                        case 0:
+                            return $this->redirect(['controller' => 'dancers', 'action' => 'home', $user['id']]);
+                            break;
+                        case 1:
+                            return $this->redirect(['controller' => 'studios', 'action' => 'home', $user['id']]);
+                            break;
+                        case 2:
+                            return $this->redirect(['controller' => 'organizers', 'action' => 'home', $user['id']]);
+                            break;
+                        case 3:
+                            return $this->redirect(['controller' => 'generals', 'action' => 'home', $user['id']]);
+                            break;
+                        default:
+                            return false;
+                            break;
+                    };
+                }
+                $this->Flash->error('本登録が完了していません。有効期限が過ぎている場合はお問い合わせください。');
+            } else {
+                $this->Flash->error('ユーザー名またはパスワードが不正です。');
             }
-            $this->Flash->error('ユーザー名またはパスワードが不正です。');
         }
      }
 
@@ -79,8 +85,7 @@ class UsersController extends AppController
 
 
     /**
-     * サインアップ - 仮実装はそのまま本登録する。
-     * 本実装 - 仮登録としてハッシュ作成。DB登録、リンク付きURL送付処理必要
+     * サインアップ
      *
      * @return \Cake\Http\Response|null
      */
@@ -92,10 +97,15 @@ class UsersController extends AppController
          if ($this->request->is('post')) {
              if ($this->request->data['agree'] === '1') {
 
+                 // tmp_hash 仮登録ハッシュ生成
+                 $this->request->data['tmp_hash'] = md5(uniqid(rand(), 1));
+
                  $user = $this->Users->patchEntity($user, $this->request->getData());
 
                  if ($this->Users->save($user)) {
-                     return $this->redirect(['action' => 'complete']);
+                     // 仮登録メール配信
+                     $this->getMailer('User')->send('user_regist', [$user]);
+                     return $this->redirect(['action' => 'midstream']);
                  }
              } else {
                  $this->Flash->error(__('利用規約にチェックが入っていません。'));
@@ -107,13 +117,42 @@ class UsersController extends AppController
 
     /**
      * サインアップ完了
+     *
+     * @return redirect URL手入力はトップページ、クエリが存在する場合はエラーページ
+     * すでに本登録されている場合はregistered。48時間以上もエラー
      */
     public function complete()
     {
-        // リフェラー処理必要
         $this->viewBuilder()->setLayout('simple');
+
+        if ($this->request->query) {
+            // 送られてきたハッシュが存在するか
+            $user = $this->Users->findByTmpHash($this->request->query['u'])->first();
+
+            if ($user) {
+                // すでに本登録済みの場合
+                if ($user->register_flag === 1) {
+                    return $this->redirect(['action' => 'registered']);
+                }
+
+                // ユーザ仮登録(created)は48時間以内に登録されたものか
+                if (!$user->created->wasWithinLast(2)) {
+                    return $this->redirect(['action' => 'error']);
+                }
+
+                // register_flagを1にアップデート
+                $user->register_flag = 1;
+                $this->Users->save($user);
+
+            } else {
+                return $this->redirect(['action' => 'error']);
+            }
+        } else {
+            return $this->redirect(['controller' => 'pages', 'action' => 'index']);
+        }
+
     }
-    
+
 
     /**
      * マイアカウント
@@ -130,13 +169,20 @@ class UsersController extends AppController
         $user = $this->Users->get($id);
 
         if ($this->request->is(['patch', 'post', 'put'])) {
+
+            if ($this->request->data['e_password']) {
+                $this->request->data['password'] = $this->request->data['e_password'];
+                unset($this->request->data['e_password']);
+            }
+
             $user = $this->Users->patchEntity($user, $this->request->getData());
 
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('アカウント編集しました。'));
 
-                // 各ホーム画面へ
-                return $this->redirect(['action' => '']);
+                // ホームへ
+                $homes = $this->Common->linkSwitch($user->classification, 'home', $user->id);
+                return $this->redirect($homes);
             }
             $this->Flash->error(__('エラーがあります。再度確認してください。'));
         }
@@ -152,7 +198,8 @@ class UsersController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      *
-     * @todo delete_flagでユーザを退会させる。現状データは残しておくこと。
+     * @todo delete_flagでユーザを退会させる。現状データは残しておくこと。実装は運用後
+     * @todo 実際のユーザーデータ削除は運用側で実行する
      */
     public function delete($id = null)
     {
@@ -169,45 +216,143 @@ class UsersController extends AppController
 
 
     /**
-     * パスワード忘れた場合
-     *
+     * 本登録リンク切れ、不正エラー
      */
-     public function forgot()
+     public function error()
      {
          $this->viewBuilder()->setLayout('simple');
      }
 
 
      /**
-      * メール送信しました。(リンク有効期限24時間)
+      * 本登録案内メールお知らせ
       *
+      * @todo referer
       */
       public function midstream()
       {
-          // リフェラー処理必要
+          $this->viewBuilder()->setLayout('simple');
+      }
+
+
+     /**
+      * 本登録済み
+      *
+      * @todo referer
+      */
+      public function registered()
+      {
           $this->viewBuilder()->setLayout('simple');
       }
 
 
     /**
+     * パスワード忘れた場合
+     */
+     public function forgot()
+     {
+         $this->viewBuilder()->setLayout('simple');
+
+         if ($this->request->is('post')) {
+
+             $user = $this->Users->findByEmail($this->request->data['email'])->first();
+             unset($this->request->data['email']);
+
+             if ($user) {
+                 // 本登録を済ませているユーザーのみ受付
+                 if ($user->register_flag === 1) {
+
+                     $this->request->data['tmp_hash'] = md5(uniqid(rand(), 1));
+                     $user = $this->Users->patchEntity($user, $this->request->getData());
+
+                     // ハッシュのみ保存
+                     if ($this->Users->save($user)) {
+                        // メール送信
+                        $this->getMailer('User')->send('user_pass_forgot', [$user]);
+                        return $this->redirect(['action' => 'forgotMail']);
+                     }
+
+                 } else {
+                     $this->Flash->error(__('本登録を済ませているユーザーではありません。先に本登録をしてください。'));
+                 }
+             } else {
+                 $this->Flash->error(__('存在しないユーザーです。'));
+             }
+         }
+     }
+
+
+     /**
+      * パスワードを忘れたメール送信完了画面
+      */
+     public function forgotMail()
+     {
+         $this->viewBuilder()->setLayout('simple');
+     }
+
+
+    /**
      * パスワード再発行・編集
+     *
+     * @return redirect 一時ハッシュが存在しない場合、4848時間以上のアクセスはエラー画面へ
+     *  URL手入力はトップページへ 
      */
     public function reissue()
     {
-        // URL付きメールの一時ハッシュ値がDBでのハッシュと同じかどうか
-        // ユーザがパスワードを再発行終了時点でハッシュ削除
-        // または24時間以上だった場合、DBハッシュ強制削除
         $this->viewBuilder()->setLayout('simple');
-    }
 
+        if ($this->request->query) {
+            // 送られてきたハッシュが存在するか
+            $user = $this->Users->findByTmpHash($this->request->query['p'])->first();
+
+            if ($user) {
+
+                // パスワード再発行の際、Eメール入力日時(modified)は48時間以内に登録されたものか
+                if (!$user->modified->wasWithinLast(2)) {
+                    // 48時間以上なら一時ハッシュはnullにしておく
+                    $user->tmp_hash = null;
+                    $this->Users->save($user);
+                    return $this->redirect(['action' => 'error']);
+                }
+
+            } else {
+                return $this->redirect(['action' => 'error']);
+            }
+        } else {
+            return $this->redirect(['controller' => 'pages', 'action' => 'index']);
+        }
+
+        // パスワード再発行リクエスト
+        if ($this->request->is('post')) {
+            // パスワード確認が同じか
+            if ($this->request->data['password'] === $this->request->data['confirm']) {
+
+                // 同じ場合はconfirmは不要
+                unset($this->request->data['confirm']);
+                // 繰り返し登録はさせないため、ハッシュ削除
+                $this->request->data['tmp_hash'] = null;
+
+                $user = $this->Users->patchEntity($user, $this->request->getData());
+
+                if ($this->Users->save($user)) {
+                    return $this->redirect(['action' => 'passComp']);
+                }
+                $this->Flash->error(__('パスワード再発行できません。解決しない場合はお問い合わせください。'));
+            } else {
+                $this->Flash->error(__('パスワード確認が一致しません。もう一度入力してください。'));
+            }
+        }
+    }
 
 
     /**
      * パスワード再発行完了
+     *
+     * @todo referer
      */
      public function passComp()
      {
-         // リフェラー処理必要
          $this->viewBuilder()->setLayout('simple');
      }
+
 }

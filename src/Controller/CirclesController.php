@@ -260,8 +260,7 @@ class CirclesController extends AppController
 
     /**
      * 削除はフラグのみ更新
-     *
-     * @param string|null $id サークルID
+     * 
      * @return \Cake\Http\Response|null
      */
     public function delete()

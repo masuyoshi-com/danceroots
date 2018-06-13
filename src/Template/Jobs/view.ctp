@@ -1,5 +1,7 @@
 <?php $this->assign('title', $job->title . '求人詳細'); ?>
 
+<?= $this->element('Modal/job_delete') ?>
+
 <div class="row">
     <?php if (AD === 0) : ?>
         <div class="col-lg-12 text-center">
@@ -224,13 +226,13 @@
                         ) ?>
                     </div>
                     <div class="col-lg-6">
-                        <?= $this->Form->postLink('<i class="fa fa-trash fa-lg" aria-hidden="true"></i> この求人を削除する',
-                                ['action' => 'delete', h($job->id)],
-                                [
-                                    'class'   => 'btn btn-danger btn-block',
-                                    'escape'  => false,
-                                    'confirm' => '求人を削除すると応募者に迷惑になる場合があります。本当によろしいですか？'
-                                ]
+                        <?= $this->Html->link('<i class="fa fa-trash fa-lg" aria-hidden="true"></i> この求人を削除する', 'javascript:void(0)',
+                            [
+                                'class'       => 'btn btn-danger btn-block',
+                                'escape'      => false,
+                                'data-toggle' => 'modal',
+                                'data-target' => '#modalJobDeleteForm'
+                            ]
                         ) ?>
                     </div>
                 </div>

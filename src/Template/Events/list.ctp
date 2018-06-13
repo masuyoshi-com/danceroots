@@ -4,7 +4,7 @@
     <div class="col-lg-12 mb-3">
         <div class="view gradient-card-header purple-gradient">
             <h2 class="h2-responsive mb-0">
-                マイ イベント
+                <i class="fa fa-calendar"></i> マイ イベント
             </h2>
             <p class="mb-0">
                 <small class="none">
@@ -59,7 +59,13 @@
             <tr>
                 <td>
                     <span class="badge badge-pill <?= getBadgeColor(h($event->category)) ?>"><?= h($event->category) ?></span><br>
-                    <?= $this->Html->link(h($event->event_name), ['action' => 'view', h($event->id)]) ?>
+                    <?= $this->Html->link(h($event->event_name), ['action' => 'view', h($event->id)],
+                        [
+                            'data-toggle'    => 'tooltip',
+                            'data-placement' => 'bottom',
+                            'title'          => '内容を見る',
+                        ]
+                    ) ?>
                 </td>
                 <td>
                     <strong><?= h($event->event_date) ?></strong>
@@ -71,7 +77,7 @@
                         [
                             'data-toggle'    => 'tooltip',
                             'data-placement' => 'bottom',
-                            'title'          => '詳細を見る',
+                            'title'          => '詳細',
                             'escape'         => false
                         ]
                     ) ?>

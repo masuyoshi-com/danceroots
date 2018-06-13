@@ -16,7 +16,7 @@ class CircleMailer extends Mailer
     public function circle_delete_message($to_user, $from_user, $circle)
     {
         $this
-            ->from([ADMIN_EMAIL => SITE_NAME])
+            ->from([INFO_EMAIL => SITE_NAME])
             ->to($to_user->email)
             ->subject('【' . SITE_NAME . '】' . h($from_user->username) . 'さんが' . h($circle->name) . 'を解散しました。')
             ->viewVars(['user' => $from_user, 'circle' => $circle]);

@@ -17,7 +17,7 @@ class CircleMessageMailer extends Mailer
     public function circle_message($to_user, $from_user, $message, $circle)
     {
         $this
-            ->from([ADMIN_EMAIL => SITE_NAME])
+            ->from([INFO_EMAIL => SITE_NAME])
             ->to($to_user->email)
             ->subject('【' . SITE_NAME . '】' . h($from_user->username) . 'さんから' . h($circle->name) . 'メンバーへメッセージがありました。')
             ->viewVars(['user' => $from_user, 'message' => $message, 'circle' => $circle]);
@@ -36,7 +36,7 @@ class CircleMessageMailer extends Mailer
     public function circle_edit_message($to_user, $from_user, $message, $circle)
     {
         $this
-            ->from([ADMIN_EMAIL => SITE_NAME])
+            ->from([INFO_EMAIL => SITE_NAME])
             ->to($to_user->email)
             ->subject('【' . SITE_NAME . '】' . h($from_user->username) . 'さんから' . h($circle->name) . 'メンバーへメッセージの変更がありました。')
             ->viewVars(['user' => $from_user, 'message' => $message, 'circle' => $circle]);

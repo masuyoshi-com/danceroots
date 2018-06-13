@@ -233,6 +233,7 @@ Type::build('date')
 
 // プラグインロード
 Plugin::load('Xety/Cake3Upload');
+Plugin::load('Acl', ['bootstrap' => true]);
 
 // 定数読み込み
 Configure::load('const');
@@ -258,7 +259,7 @@ function em($data)
 */
 function tw($char, $length)
 {
-    return mb_strimwidth($char, 0, $length, "...", 'utf8');
+    return mb_strimwidth($char, 0, $length, "...", 'utf8mb4');
 }
 
 

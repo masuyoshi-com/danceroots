@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use ArrayObject;
+use Cake\Event\Event;
 
 /**
  * Events Controller
@@ -25,6 +25,25 @@ class EventsController extends AppController
 
 
     /**
+     * 各アクション前に発動
+     *
+     * @param object Event $event
+     * @return void
+     */
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+
+        $this->Security->config('unlockedActions', ['delete']);
+
+        // 特定のアクションのみCSRF無効化
+        if (in_array($this->request->action, ['delete'])) {
+            $this->eventManager()->off($this->Csrf);
+        }
+    }
+
+
+    /**
      * マイリスト - 登録済みイベント一覧
      *
      * @param int $id ユーザーID
@@ -32,7 +51,7 @@ class EventsController extends AppController
      */
     public function list($id)
     {
-        $events = $this->paginate($this->Events->findByUserId($id));
+        $events = $this->paginate($this->Events->findByUserIdAndDeleteFlag($id, 0));
 
         $this->set(compact('events'));
         $this->set('id', $id);
@@ -63,7 +82,8 @@ class EventsController extends AppController
             $this->Session->write('event_search_request', $this->request->query);
 
         } else {
-            $events = $this->paginate($this->Events);
+            $query = $this->Events->findByDeleteFlag(0);
+            $events = $this->paginate($query);
         }
 
         // 検索項目状態があればリード
@@ -161,23 +181,28 @@ class EventsController extends AppController
 
 
     /**
-     * Delete method - イベント削除は原則できないことにする。管理者のみ可
+     * 削除はフラグのみ更新
      *
-     * @param string|null $id イベントID
      * @return \Cake\Http\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException
+     *
+     * @todo 【運用後】イベント管理実装で参加者にメール通知予定
      */
-    public function delete($id = null)
+    public function delete()
     {
-        $this->request->allowMethod(['post', 'delete']);
-        $event = $this->Events->get($id);
+        $this->autoRender = false;
 
-        if ($this->Events->delete($event)) {
-            $this->Flash->success(__('イベント削除しました。'));
-        } else {
-            $this->Flash->error(__('イベント削除できません。解決しない場合はフィードバックより報告ください。'));
+        if ($this->request->is('ajax')) {
+
+            $event = $this->Events->get($this->request->data['event_id']);
+            $event = $this->Events->patchEntity($event, $this->request->data, ['validate' => false]);
+
+            if ($this->Events->save($event)) {
+                $this->response->body(json_encode($this->request->data));
+                return $this->response;
+            }
+
+            return false;
         }
-
-        return $this->redirect(['action' => 'list', $event->user_id]);
     }
+
 }

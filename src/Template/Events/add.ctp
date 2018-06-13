@@ -4,7 +4,7 @@
     <div class="col-lg-12">
         <div class="view gradient-card-header purple-gradient">
             <h2 class="h2-responsive mb-0">
-                <i class="fa fa-plus"></i> イベント
+                <i class="fa fa-calendar-plus-o"></i> イベント
             </h2>
             <p class="mb-0">
                 <small class="none">
@@ -195,7 +195,7 @@
         <div class="row">
             <div class="col-lg-6 col-md-12">
                 <div class="md-form">
-                    <?= $this->Form->control('recruit_flg',
+                    <?= $this->Form->control('recruit_flag',
                         [
                             'id'      => 'f--r_flg',
                             'type'    => 'select',
@@ -210,7 +210,7 @@
 
         <div class="row mt-3 mb-3">
             <div class="col-lg-12">
-                <?= $this->Form->button('登録', ['class' => 'btn btn-success btn-block']) ?>
+                <?= $this->Form->button('<i class="fa fa-plus"></i> 登録', ['class' => 'btn btn-success btn-block', 'escape' => false]) ?>
             </div>
         </div>
         <?= $this->Form->end() ?>

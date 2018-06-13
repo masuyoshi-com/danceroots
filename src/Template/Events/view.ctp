@@ -1,5 +1,7 @@
 <?php $this->assign('title', h($event->event_name) . '詳細'); ?>
 
+<?= $this->element('Modal/event_delete') ?>
+
 <div class="row">
     <?php if (AD === 0) : ?>
         <div class="col-lg-12 text-center">
@@ -37,7 +39,7 @@
                             <span class="badge indigo"><?= h($event->pref) ?> </span>
                             <span class="badge purple"><?= h($event->category) ?> </span>
                             <?php
-                                if ($event->recruit_flg === 0) {
+                                if ($event->recruit_flag === 0) {
                                     print '<span class="badge badge-success">告知</span>';
                                 } else {
                                     print '<span class="badge badge-success">参加者募集中!!</span>';
@@ -191,12 +193,12 @@
                         ) ?>
                     </div>
                     <div class="col-lg-6">
-                        <?= $this->Form->postLink('<i class="fa fa-trash fa-lg" aria-hidden="true"></i> このイベントを削除する',
-                                ['action' => 'delete', h($event->id)],
+                        <?= $this->Html->link('<i class="fa fa-trash fa-lg" aria-hidden="true"></i> イベント削除', 'javascript:void(0)',
                             [
-                                'class'   => 'btn btn-danger btn-block',
-                                'escape'  => false,
-                                'confirm' => 'サークルを削除すると参加者に迷惑になる場合があります。本当によろしいですか？'
+                                'class'       => 'btn btn-danger btn-block',
+                                'escape'      => false,
+                                'data-toggle' => 'modal',
+                                'data-target' => '#modalEventDeleteForm'
                             ]
                         ) ?>
                     </div>
@@ -230,7 +232,7 @@
 
                 <h4 class="h4-responsive card-title">
                     <strong>
-                        <?= $this->Html->link(h($event->owner->name), $profile_links, ['class' => 'dark-grey-text']) ?>
+                        <?= $this->Html->link(h($event->user->username), $profile_links, ['class' => 'dark-grey-text']) ?>
                     </strong>
                 </h4>
 

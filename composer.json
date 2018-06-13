@@ -13,7 +13,8 @@
         "mobiledetect/mobiledetectlib": "2.*",
         "phpmailer/phpmailer": "^6.0",
         "phpunit/phpunit": "^7.0",
-        "xety/cake3-upload": "1.*"
+        "xety/cake3-upload": "1.*",
+        "cakephp/acl": "dev-master"
     },
     "require-dev": {
         "cakephp/bake": "^1.1",

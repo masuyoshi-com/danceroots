@@ -8,7 +8,6 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $user_id
- * @property string $name
  * @property string $team_name
  * @property int $age
  * @property string $icon
@@ -47,7 +46,6 @@ class Dancer extends Entity
      */
     protected $_accessible = [
         'user_id'         => true,
-        'name'            => true,
         'team_name'       => true,
         'age'             => true,
         'icon'            => true,

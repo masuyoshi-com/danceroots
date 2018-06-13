@@ -183,8 +183,8 @@ class EventsTable extends Table
             ->allowEmpty('entry');
 
         $validator
-            ->requirePresence('recruit_flg', 'create')
-            ->notEmpty('recruit_flg');
+            ->requirePresence('recruit_flag', 'create')
+            ->notEmpty('recruit_flag');
 
         $validator
             ->scalar('entry_fee')
@@ -234,6 +234,7 @@ class EventsTable extends Table
                 ['Events.place LIKE'        => '%' . $requests['word'] . '%'],
                 ['Events.guest LIKE'        => '%' . $requests['word'] . '%'],
                 ['Events.event_detail LIKE' => '%' . $requests['word'] . '%']]])
+            ->andWhere(['Events.delete_flag' => 0])
             ;
     }
 

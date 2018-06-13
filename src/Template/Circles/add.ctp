@@ -5,7 +5,7 @@
     <div class="col-lg-12">
         <div class="view gradient-card-header aqua-gradient">
             <h2 class="h2-responsive mb-0">
-                <i class="fa fa-plus"></i> ダンスサークル登録
+                <i class="fa fa-user-plus"></i> ダンスサークル登録
             </h2>
             <p class="mb-0 none">
                 <small>
@@ -187,7 +187,7 @@
 
         <div class="row mt-3 mb-3">
             <div class="col-lg-12">
-                <?= $this->Form->button('登録', ['class' => 'btn btn-success btn-block']) ?>
+                <?= $this->Form->button('<i class="fa fa-plus"></i> 登録', ['class' => 'btn btn-success btn-block', 'escape' => false]) ?>
             </div>
         </div>
         <?= $this->Form->end() ?>

@@ -6,8 +6,8 @@ use Cake\ORM\Entity;
 /**
  * Event Entity
  *
- * @property int $id
- * @property int $user_id
+ * @property int    $id
+ * @property int    $user_id
  * @property string $event_name
  * @property string $intro
  * @property string $category
@@ -20,10 +20,12 @@ use Cake\ORM\Entity;
  * @property string $address
  * @property string $place
  * @property string $entry
- * @property int $recruit_flg
+ * @property int    $recruit_flag
  * @property string $entry_fee
  * @property string $guest
  * @property string $event_detail
+ * @property int    $delete_flag
+ * @property string $delete_reason
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
@@ -52,10 +54,12 @@ class Event extends Entity
         'address'       => true,
         'place'         => true,
         'entry'         => true,
-        'recruit_flg'   => true,
+        'recruit_flag'  => true,
         'entry_fee'     => true,
         'guest'         => true,
         'event_detail'  => true,
+        'delete_flag'   => true,
+        'delete_reason' => true,
         'created'       => true,
         'modified'      => true,
         'user'          => true,

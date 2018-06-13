@@ -3,7 +3,7 @@
 <div class="row">
     <?php if (AD === 0) : ?>
         <div class="col-lg-12 text-center">
-            <section id="dynamicContentWrapper-docsPanel" class="mb-5">
+            <section id="dynamicContentWrapper-docsPanel" class="mb-4">
                 <div class="card border border-danger z-depth-0" style="height: 200px;">
                     <div class="card-body text-center">
                         <p>
@@ -26,7 +26,7 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-4 col-md-12 mt-4">
+    <div class="col-lg-4 col-md-12 mt-5">
         <section class="card card-cascade card-avatar mb-3 mt-5">
 
             <?php
@@ -43,7 +43,7 @@
                     <span class="badge indigo"><?= h($dancer->genre) ?></span>
                     <spna class="badge purple"><?= h($dancer->user->classification) ?></span>
                 </p>
-                <h4 class="card-title"><strong><?= h($dancer->name) ?></strong></h4>
+                <h4 class="card-title"><strong><?= h($dancer->user->username) ?></strong></h4>
 
                 <?php if ($dancer->team_name) : ?>
                 <h5 class="dark-grey-text">Team: <strong><?= h($dancer->team_name) ?></strong></h5>

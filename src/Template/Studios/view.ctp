@@ -1,8 +1,4 @@
 <?php $this->assign('title', h($studio->name)); ?>
-<!-- GoogleMap初回読み込み footerだと表示されない -->
-<script>
-    initGoogle.initMap('<?= $studio->address ?>');
-</script>
 
 <div class="row">
     <?php if (AD === 0) : ?>
@@ -323,21 +319,61 @@
             <div id="map" class="rounded z-depth-1 map-container" style="height: 375px"></div>
         </div>
     </div>
-
-    <hr>
-
-    <?php
-        if ($studio->user_id === $logins['id']) {
-            print $this->Html->link('プロフィールを編集する', ['action' => 'edit', h($studio->user_id)], ['class' => 'btn btn-primary btn-block']);
-        } else {
-            print $this->Html->link('<i class="fa fa-envelope"></i> このスタジオに問い合わせる',
-            [
-                    'controller' => 'Messages',
-                    'action'     => 'add',
-                    $logins['id'],
-                    h($studio->user_id)
-            ],
-            ['class' => 'btn purple-gradient btn-block', 'escape' => false]);
-        }
-    ?>
 </div><!-- /.card -->
+
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-xs-12">
+        <?php if ($studio->facebook) : ?>
+            <div class="card card-body mb-3">
+                <h6><i class="fa fa-facebook fb-ic"></i> Facebook</h6>
+                <hr class="mt-0">
+                <div class="text-center">
+                    <div class="fb-page" data-href="<?= h($studio->facebook) ?>" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                        <blockquote cite="<?= h($studio->facebook) ?>" class="fb-xfbml-parse-ignore">
+                            <a href="https://www.facebook.com/facebook">Facebook</a>
+                        </blockquote>
+                    </div>
+                </div>
+                <hr>
+            </div>
+        <?php endif; ?>
+    </div>
+    <div class="col-lg-6 col-md-6 col-xs-12">
+        <?php if ($studio->twitter) : ?>
+            <div class="card card-body mb-3">
+                <h6><i class="fa fa-twitter tw-ic"></i> Twitter</h6>
+                <hr class="m-0">
+                <div>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    <?= $this->Html->link('', h($studio->twitter) . '?ref_src=twsrc%5Etfw&height=500', ['class' => 'twitter-timeline']) ?>
+                </div>
+                <hr>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+
+<div class="card card-body mb-3">
+    <div class="row">
+        <div class="col-lg-12">
+            <?php
+                if ($studio->user_id === $logins['id']) {
+                    print $this->Html->link('プロフィールを編集する', ['action' => 'edit', h($studio->user_id)], ['class' => 'btn btn-primary btn-block']);
+                } else {
+                    print $this->Html->link('<i class="fa fa-envelope"></i> このスタジオに問い合わせる',
+                    [
+                            'controller' => 'Messages',
+                            'action'     => 'add',
+                            $logins['id'],
+                            h($studio->user_id)
+                    ],
+                    ['class' => 'btn purple-gradient btn-block', 'escape' => false]);
+                }
+            ?>
+        </div>
+    </div>
+</div>
+
+<script>
+    initGoogle.initMap('<?= $studio->address ?>');
+</script>

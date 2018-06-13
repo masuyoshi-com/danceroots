@@ -12,7 +12,8 @@ use Cake\Auth\DefaultPasswordHasher;
  * @property string $email
  * @property string $password
  * @property int $classification
- * @property int $register_flg
+ * @property int $register_flag
+ * @property string $tmp_hash
  * @property int $injustice_count
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
@@ -46,7 +47,8 @@ class User extends Entity
         'email'           => true,
         'password'        => true,
         'classification'  => true,
-        'register_flg'    => true,
+        'register_flag'   => true,
+        'tmp_hash'        => true,
         'injustice_count' => true,
         'created'         => true,
         'modified'        => true,

@@ -24,6 +24,7 @@
 </head>
 
 <body class="fixed-sn black-skin">
+
     <header>
         <?= $this->element('Menu/sidebar') ?>
         <?= $this->element('Menu/navbar') ?>
@@ -36,20 +37,40 @@
         </div>
     </main>
 
-
     <?= $this->Html->script('popper.min') ?>
     <?= $this->Html->script('bootstrap.min') ?>
     <?= $this->Html->script('mdb.min') ?>
     <?= $this->Html->script('script') ?>
+
+    <?php if (strstr($url, 'view')) : ?>
+        <?= $this->Html->script('facebook') ?>
+    <?php endif; ?>
+    
     <script>
     $(function () {
 
-        initRun.feedbackSubmit('<?= $this->Url->build(['controller' => 'Feedbacks', 'action' => 'add']) ?>');
-        initRun.circleDeleteSubmit(
+        $("#mdb-lightbox-ui").load('<?= $this->Url->build('/mdb-addons/mdb-lightbox-ui.html') ?>');
+
+        initRun.feedback('<?= $this->Url->build(['controller' => 'Feedbacks', 'action' => 'add']) ?>');
+
+        initRun.circleDelete(
             '<?= $this->Url->build(['controller' => 'Circles', 'action' => 'delete']) ?>',
             '<?= $this->Url->build(['controller' => 'Circles', 'action' => 'list', $logins['id']]) ?>'
         );
 
+        <?php if (strstr($url, 'events/view')) : ?>
+            initRun.eventDelete(
+                '<?= $this->Url->build(['controller' => 'Events', 'action' => 'delete']) ?>',
+                '<?= $this->Url->build(['controller' => 'Events', 'action' => 'list', $logins['id']]) ?>'
+            );
+        <?php endif;?>
+
+        <?php if (strstr($url, 'jobs/view')) : ?>
+            initRun.jobDelete(
+                '<?= $this->Url->build(['controller' => 'Jobs', 'action' => 'delete']) ?>',
+                '<?= $this->Url->build(['controller' => 'Jobs', 'action' => 'list', $logins['id']]) ?>'
+            );
+        <?php endif;?>
     });
     </script>
 </body>

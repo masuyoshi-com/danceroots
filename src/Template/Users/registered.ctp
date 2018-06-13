@@ -1,10 +1,9 @@
-<?php $this->assign('title', 'パスワード再発行完了'); ?>
 <div class="container mt-5">
     <div class="row">
         <div class="col-lg-12 mt-5">
-            <h3 class="text-center">パスワード再発行しました。</h3>
+            <h3 class="text-center"><i class="fa fa-check green-text"></i> 本登録済み</h3>
             <p class="dark-grey-text text-center">
-                <small>無事にパスワード再発行しました。トップページよりログインへ進んでください。</small>
+                <small>お客様のアカウントは既に本登録済みです。ログインしてください。</small>
             </p>
         </div>
     </div>
@@ -12,7 +11,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="md-form">
-                <?= $this->Html->link('トップページ', ['controller' => 'pages', 'action' => 'index'], ['class' => 'btn btn-primary btn-block']) ?>
+                <?= $this->Html->link('ログイン', ['action' => 'login'], ['class' => 'btn btn-success btn-block']) ?>
             </div>
         </div>
     </div>

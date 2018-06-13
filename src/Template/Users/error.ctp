@@ -1,10 +1,10 @@
-<?php $this->assign('title', 'パスワード再発行完了'); ?>
+<?php $this->assign('title', 'エラー'); ?>
 <div class="container mt-5">
     <div class="row">
         <div class="col-lg-12 mt-5">
-            <h3 class="text-center">パスワード再発行しました。</h3>
+            <h3 class="text-center"><i class="fa fa-warning orange-text"></i> エラーがありました。</h3>
             <p class="dark-grey-text text-center">
-                <small>無事にパスワード再発行しました。トップページよりログインへ進んでください。</small>
+                <small>リンク有効期限切れ、または不正なアクセスの可能性があります。解決しない場合はお問い合わせください。</small>
             </p>
         </div>
     </div>
@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="md-form">
-                <?= $this->Html->link('トップページ', ['controller' => 'pages', 'action' => 'index'], ['class' => 'btn btn-primary btn-block']) ?>
+                <?= $this->Html->link('トップページ', ['controller' => 'pages', 'action' => 'index'], ['class' => 'btn btn-warning btn-block']) ?>
             </div>
         </div>
     </div>

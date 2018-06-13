@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Http\Exception\NotFoundException;
+use Cake\Event\Event;
 
 /**
  * ダンス関連求人コントローラー
@@ -22,6 +23,25 @@ class JobsController extends AppController
 
 
     /**
+     * 各アクション前に発動
+     *
+     * @param object Event $event
+     * @return void
+     */
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+
+        $this->Security->config('unlockedActions', ['delete']);
+
+        // 特定のアクションのみCSRF無効化
+        if (in_array($this->request->action, ['delete'])) {
+            $this->eventManager()->off($this->Csrf);
+        }
+    }
+
+
+    /**
      * マイリスト - 登録済み求人一覧
      *
      * @param int $id ユーザーID
@@ -29,7 +49,7 @@ class JobsController extends AppController
      */
     public function list($id)
     {
-        $jobs = $this->paginate($this->Jobs->findByUserId($id));
+        $jobs = $this->paginate($this->Jobs->findByUserIdAndDeleteFlag($id, 0));
 
         $this->set(compact('jobs'));
         $this->set('id', $id);
@@ -59,7 +79,7 @@ class JobsController extends AppController
             $this->Session->write('job_search_request', $this->request->query);
 
         } else {
-            $query = $this->Jobs->findByPublicFlag(0);
+            $query = $this->Jobs->findByPublicFlagAndDeleteFlag(0, 0);
             $jobs = $this->paginate($query);
         }
 
@@ -153,23 +173,29 @@ class JobsController extends AppController
 
 
     /**
-     * 求人削除
+     * 削除はフラグのみ更新
      *
-     * @param string|null $id 求人ID
-     * @return \Cake\Http\Response|null マイジョブリストへ
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException
+     * @return \Cake\Http\Response|null
+     *
+     * @todo 【運用後】ダンス求人管理実装で参加者にメール通知予定
      */
-    public function delete($id = null)
+    public function delete()
     {
-        $this->request->allowMethod(['post', 'delete']);
-        $job = $this->Jobs->get($id);
+        $this->autoRender = false;
 
-        if ($this->Jobs->delete($job)) {
-            $this->Flash->success(__('求人を削除しました。'));
-        } else {
-            $this->Flash->error(__('求人削除できません。解決しない場合はフィードバックより報告してください。'));
+        if ($this->request->is('ajax')) {
+
+            $job = $this->Jobs->get($this->request->data['job_id']);
+            $job = $this->Jobs->patchEntity($job, $this->request->data, ['validate' => false]);
+
+            if ($this->Jobs->save($job)) {
+                $this->response->body(json_encode($this->request->data));
+                return $this->response;
+            }
+
+            return false;
         }
-
-        return $this->redirect(['action' => 'list', $job->user_id]);
     }
+
+
 }

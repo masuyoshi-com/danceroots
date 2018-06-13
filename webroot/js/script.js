@@ -10,7 +10,6 @@ var initRun = (function( $ ) {
     'use strict';
 
     // 各init
-    $("#mdb-lightbox-ui").load('<?= $this->Url->build("/mdb-addons/mdb-lightbox-ui.html") ?>');
     $('[data-toggle="tooltip"]').tooltip();
     $(".button-collapse").sideNav();
     $('.mdb-select').material_select();
@@ -31,14 +30,14 @@ var initRun = (function( $ ) {
 
     $('.time').pickatime({donetext: '完了'});
     new WOW().init();
-    
+
     /**
     * feedback 登録
     *
     * @param  {string} url PHP側urlBuilderヘルパーのURL文字列
     * @return {json} response
     */
-    var feedbackSubmit = function ( url ) {
+    var feedback = function ( url ) {
 
         $('#feedback-submit').click(function() {
 
@@ -79,7 +78,7 @@ var initRun = (function( $ ) {
      * @param {string} redirect リダイレクト先
      * @return {json} response
      */
-    var circleDeleteSubmit = function ( url, redirect ) {
+    var circleDelete = function ( url, redirect ) {
 
         $('#circle-delete-submit').click(function() {
 
@@ -111,19 +110,119 @@ var initRun = (function( $ ) {
                     }, 1700);
 
                 }).fail(function () {
-                    toastr.error('再度確認してください。', '送信できません');
+                    toastr.error('再度確認してください。', '送信できません。');
                 });
 
             } else {
-                toastr.error('再度確認してください。', 'データ未入力です');
+                toastr.error('再度確認してください。', 'データ未入力です。');
+            }
+        });
+    };
+
+
+    /**
+     * イベント削除
+     *
+     * @param {string} url PHP側urlBuilderヘルパーのURL文字列
+     * @param {string} redirect リダイレクト先
+     * @return {json} response
+     */
+    var eventDelete = function ( url, redirect ) {
+
+        $('#event-delete-submit').click(function() {
+
+            var event_id      = $('#event-id').val();
+            var user_id       = $('#user-id').val();
+            var delete_reason = $('#f--delete_reason').val();
+            var delete_flag   = 1;
+
+            if (delete_reason !== '') {
+
+                $.ajax({
+                    url: url,
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        event_id:      event_id,
+                        user_id:       user_id,
+                        delete_flag:   delete_flag,
+                        delete_reason: delete_reason
+                    }
+                }).done(function ( response ) {
+
+                    $('#f--delete_reason').val('');
+
+                    toastr.success('ページを移動します。', 'イベント削除しました。');
+
+                    setTimeout (function() {
+                        window.location.href = redirect;
+                    }, 1700);
+
+                }).fail(function () {
+                    toastr.error('再度確認してください。', '削除できません。');
+                });
+
+            } else {
+                toastr.error('再度確認してください。', 'データ未入力です。');
+            }
+        });
+    };
+
+
+    /**
+     * ダンス求人削除
+     *
+     * @param {string} url PHP側urlBuilderヘルパーのURL文字列
+     * @param {string} redirect リダイレクト先
+     * @return {json} response
+     */
+    var jobDelete = function ( url, redirect ) {
+
+        $('#job-delete-submit').click(function() {
+
+            var job_id        = $('#job-id').val();
+            var user_id       = $('#user-id').val();
+            var delete_reason = $('#f--delete_reason').val();
+            var delete_flag   = 1;
+
+            if (delete_reason !== '') {
+
+                $.ajax({
+                    url: url,
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        job_id:        job_id,
+                        user_id:       user_id,
+                        delete_flag:   delete_flag,
+                        delete_reason: delete_reason
+                    }
+                }).done(function ( response ) {
+
+                    $('#f--delete_reason').val('');
+
+                    toastr.success('ページを移動します。', 'ダンス求人削除しました。');
+
+                    setTimeout (function() {
+                        window.location.href = redirect;
+                    }, 1700);
+
+                }).fail(function () {
+                    toastr.error('再度確認してください。', '削除できません。');
+                });
+
+            } else {
+                toastr.error('再度確認してください。', 'データ未入力です。');
             }
         });
     };
 
 
     return {
-        feedbackSubmit     : feedbackSubmit,
-        circleDeleteSubmit : circleDeleteSubmit
+        feedback     : feedback,
+        circleDelete : circleDelete,
+        eventDelete  : eventDelete,
+        jobDelete    : jobDelete
     }
 
 }( jQuery ));

@@ -1,6 +1,7 @@
 <?php $this->assign('title', h($circle->name) . '詳細'); ?>
 
 <?= $this->element('Modal/circle_delete') ?>
+
 <div class="row">
     <?php if (AD === 0) : ?>
         <div class="col-lg-12 text-center">
@@ -203,8 +204,8 @@
                             <div class="col-lg-6">
                                 <?= $this->Html->link('<i class="fa fa-trash fa-lg" aria-hidden="true"></i> サークル削除', 'javascript:void(0)',
                                     [
-                                        'class' => 'btn btn-danger btn-block',
-                                        'escape'  => false,
+                                        'class'       => 'btn btn-danger btn-block',
+                                        'escape'      => false,
                                         'data-toggle' => 'modal',
                                         'data-target' => '#modalCircleDeleteForm'
                                     ]
@@ -255,7 +256,7 @@
                 <p class="mb-2 dark-grey-text"><small><i class="fa fa-users"></i> サークル代表者</small></p>
                 <h4 class="card-title">
                     <strong>
-                        <?= $this->Html->link($circle->owner->name, $profile_links, ['class' => 'dark-grey-text']) ?>
+                        <?= $this->Html->link($circle->user->username, $profile_links, ['class' => 'dark-grey-text']) ?>
                     </strong>
                 </h4>
 

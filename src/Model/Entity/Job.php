@@ -24,6 +24,8 @@ use Cake\ORM\Entity;
  * @property int $people
  * @property string $etc
  * @property int $public_flag
+ * @property int $delete_flag
+ * @property string $delete_reason
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
@@ -37,27 +39,29 @@ class Job extends Entity
      * @var array
      */
     protected $_accessible = [
-        'user_id'      => true,
-        'title'        => true,
-        'intro'        => true,
-        'work_detail'  => true,
-        'image'        => true,
-        'image_file'   => true,
-        'category'     => true,
-        'genre'        => true,
-        'pref'         => true,
-        'city'         => true,
-        'station'      => true,
-        'q_required'   => true,
-        'question'     => true,
-        'compensation' => true,
-        'working_time' => true,
-        'people'       => true,
-        'etc'          => true,
-        'public_flag'  => true,
-        'created'      => true,
-        'modified'     => true,
-        'user'         => true,
-        'job_replies'  => true
+        'user_id'       => true,
+        'title'         => true,
+        'intro'         => true,
+        'work_detail'   => true,
+        'image'         => true,
+        'image_file'    => true,
+        'category'      => true,
+        'genre'         => true,
+        'pref'          => true,
+        'city'          => true,
+        'station'       => true,
+        'q_required'    => true,
+        'question'      => true,
+        'compensation'  => true,
+        'working_time'  => true,
+        'people'        => true,
+        'etc'           => true,
+        'public_flag'   => true,
+        'delete_flag'   => true,
+        'delete_reason' => true,
+        'created'       => true,
+        'modified'      => true,
+        'user'          => true,
+        'job_replies'   => true
     ];
 }

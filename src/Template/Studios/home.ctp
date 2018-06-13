@@ -171,7 +171,7 @@
                     <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
                         <div>
                             <h6 class="green-text">
-                                <i class="fa fa-drivers-license-o"></i>
+                                <i class="fa fa-briefcase"></i>
                                 <strong> Recruitment</strong>
                             </h6>
                             <h3 class="py-3 font-weight-bold">

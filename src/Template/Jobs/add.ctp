@@ -6,7 +6,7 @@
     <div class="col-lg-12">
         <div class="view gradient-card-header blue-gradient">
             <h2 class="h2-responsive mb-0">
-                <i class="fa fa-plus"></i> ダンス関連求人登録
+                <i class="fa fa-briefcase"></i> ダンス関連求人登録
             </h2>
             <p class="mb-0 none">
                 <small>
@@ -197,7 +197,9 @@
 
         <div class="row mt-3 mb-3">
             <div class="col-lg-12">
-                <?= $this->Form->button('登録', ['class' => 'btn btn-success btn-block']) ?>
+                <?= $this->Form->button('<i class="fa fa-plus" aria-hidden="true"></i> 登録',
+                        ['class' => 'btn btn-success btn-block', 'escape' => false]
+                ) ?>
             </div>
         </div>
 

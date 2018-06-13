@@ -1,12 +1,12 @@
-<?php $this->assign('title', '仮登録完了'); ?>
+<?php $this->assign('title', 'パスワード忘れたメール送信完了'); ?>
 <div class="container mt-5">
     <div class="row">
         <div class="col-lg-12 mt-5">
             <h3 class="text-center">
-                <i class="fa fa-success"></i> 仮登録完了 | メール送信しました。
+                <i class="fa fa-send"></i> メール送信しました。
             </h3>
             <p class="dark-grey-text text-center">
-                <small>本登録用メールを送信しました。送付URLをクリックして本登録してください。リンク有効期限は48時間です。</small>
+                <small>メールを送信しました。送付URLをクリックしてパスワードを再発行してください。リンク有効期限は48時間です。</small>
             </p>
         </div>
     </div>

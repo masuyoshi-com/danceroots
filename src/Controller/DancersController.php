@@ -14,8 +14,9 @@ class DancersController extends AppController
     public $search_keys = ['pref', 'genre', 'word'];
 
     public $paginate = [
-           'limit' => 16,
-           'order' => ['Dancers.created' => 'desc']
+           'limit'   => 16,
+           'order'   => ['Dancers.created' => 'desc'],
+           'contain' => ['Users']
      ];
 
 

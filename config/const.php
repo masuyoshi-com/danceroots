@@ -10,8 +10,11 @@ if (isset($_SERVER['PHP_ENV']) && $_SERVER['PHP_ENV'] === 'production') {
         // メール送信機能 0 => 各処理後送信 1 => 送信しない
         define('SEND_MAIL_FUNCTION', 0),
 
-        // メールFrom(管理メール)
-        define('ADMIN_EMAIL', 'info@danceroots.net'),
+        // お知らせメールFrom
+        define('INFO_EMAIL', 'info@danceroots.net'),
+
+        // お問い合わせ用メール
+        define('CONTACT_EMAIL', 'contact@danceroots.net'),
 
         // サイト名
         define('SITE_NAME', 'Danceroots'),
@@ -30,8 +33,11 @@ if (isset($_SERVER['PHP_ENV']) && $_SERVER['PHP_ENV'] === 'production') {
         // メール送信機能 0 => 各処理後送信 1 => 送信しない
         define('SEND_MAIL_FUNCTION', 0),
 
-        // メールFrom(管理メール)
-        define('ADMIN_EMAIL', 'shoichi@masuyoshi.com'),
+        // お知らせメールFrom
+        define('INFO_EMAIL', 'info@danceroots.net'),
+
+        // お問い合わせ用メール
+        define('CONTACT_EMAIL', 'contact@danceroots.net'),
 
         // サイト名
         define('SITE_NAME', 'Danceroots'),

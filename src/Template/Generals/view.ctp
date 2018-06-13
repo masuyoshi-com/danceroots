@@ -139,6 +139,11 @@
 
     <div class="col-lg-8 col-md-12 mb-5 mt-3">
         <div class="card card-cascade narrower">
+
+            <div class="view gradient-card-header mdb-color lighten-2">
+                <h5 class="mb-0 font-bold"><?= h($general->name) ?> Profile</h5>
+            </div>
+
             <div class="card-body mb-3">
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-xs-12">
@@ -181,25 +186,60 @@
                 </div>
                 <?php endif; ?>
 
-                <div class="row">
-                    <div class="col-lg-12">
-                        <?php
-                            if ($general->user_id === $logins['id']) {
-                                print $this->Html->link('プロフィールを編集する', ['action' => 'edit', h($general->user_id)], ['class' => 'btn btn-primary btn-block']);
-                            } else {
-                                print $this->Html->link('<i class="fa fa-envelope"></i> メッセージを送る',
-                                [
-                                        'controller' => 'Messages',
-                                        'action'     => 'add',
-                                        $logins['id'],
-                                        h($general->user_id)
-                                ],
-                                ['class' => 'btn purple-gradient btn-block', 'escape' => false]);
-                            }
-                        ?>
-                    </div>
-                </div>
             </div><!-- /.card-body -->
         </div><!-- /.card -->
     </div><!-- /.col-lg-8 -->
 </div><!-- /. row -->
+
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-xs-12">
+        <?php if ($general->facebook) : ?>
+            <div class="card card-body mb-3">
+                <h6><i class="fa fa-facebook fb-ic"></i> Facebook</h6>
+                <hr class="mt-0">
+                <div class="text-center">
+                    <div class="fb-page" data-href="<?= h($general->facebook) ?>" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                        <blockquote cite="<?= h($general->facebook) ?>" class="fb-xfbml-parse-ignore">
+                            <a href="https://www.facebook.com/facebook">Facebook</a>
+                        </blockquote>
+                    </div>
+                </div>
+                <hr>
+            </div>
+        <?php endif; ?>
+    </div>
+    <div class="col-lg-6 col-md-6 col-xs-12">
+        <?php if ($general->twitter) : ?>
+            <div class="card card-body mb-3">
+                <h6><i class="fa fa-twitter tw-ic"></i> Twitter</h6>
+                <hr class="m-0">
+                <div>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    <?= $this->Html->link('', h($general->twitter) . '?ref_src=twsrc%5Etfw&height=500', ['class' => 'twitter-timeline']) ?>
+                </div>
+                <hr>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card card-body mb-3">
+            <?php
+                if ($general->user_id === $logins['id']) {
+                    print $this->Html->link('プロフィールを編集する', ['action' => 'edit', h($general->user_id)], ['class' => 'btn btn-primary']);
+                } else {
+                    print $this->Html->link('<i class="fa fa-envelope"></i> メッセージを送る',
+                    [
+                        'controller' => 'Messages',
+                        'action'     => 'add',
+                        $logins['id'],
+                        h($general->user_id)
+                    ],
+                    ['class' => 'btn purple-gradient', 'escape' => false]);
+                }
+            ?>
+        </div>
+    </div>
+</div>

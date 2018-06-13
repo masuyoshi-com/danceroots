@@ -76,7 +76,7 @@
 
             <h5 class="font-weight-bold">
                 <strong>
-                        <?= $this->Html->link($dancer->name, ['action' => 'view', $dancer->user_id], ['class' => 'dark-grey-text']) ?>
+                        <?= $this->Html->link($dancer->user->username, ['action' => 'view', $dancer->user_id], ['class' => 'dark-grey-text']) ?>
                 </strong>
             </h5>
 

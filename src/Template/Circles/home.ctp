@@ -311,7 +311,7 @@
 
                 <h4>
                     <strong>
-                        <?= $this->Html->link($circle->owner->name, $profile_links, ['class' => 'dark-grey-text', 'target' => '_blank']) ?>
+                        <?= $this->Html->link($circle->user->username, $profile_links, ['class' => 'dark-grey-text', 'target' => '_blank']) ?>
                     </strong>
                 </h4>
 

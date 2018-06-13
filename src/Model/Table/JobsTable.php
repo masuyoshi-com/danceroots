@@ -236,6 +236,7 @@ class JobsTable extends Table
                 ['Jobs.city LIKE'    => '%' . $requests['word'] . '%'],
                 ['Jobs.station LIKE' => '%' . $requests['word'] . '%']]])
             ->andWhere(['Jobs.public_flag' => 0])
+            ->andWhere(['Jobs.delete_flag' => 0])
             ;
     }
 

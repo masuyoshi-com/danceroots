@@ -199,7 +199,7 @@
                     <span class="badge badge-info">募集終了の場合は告知のみに変更</span>
                 </label>
                 <div class="md-form mt-0">
-                    <?= $this->Form->control('recruit_flg',
+                    <?= $this->Form->control('recruit_flag',
                         [
                             'type'    => 'select',
                             'class'   => 'mdb-select colorful-select dropdown-primary',

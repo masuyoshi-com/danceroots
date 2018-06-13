@@ -38,7 +38,6 @@ class DancersTable extends Table
         parent::initialize($config);
 
         $this->setTable('dancers');
-        $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
@@ -83,16 +82,6 @@ class DancersTable extends Table
 
         $validator
             ->allowEmpty('id', 'create');
-
-        $validator
-            ->scalar('name')
-            ->maxLength('name', 100)
-            ->notEmpty('name')
-            ->add('name', 'custom', [
-                'rule'     => 'isSpace',
-                'provider' => 'custom',
-                'message'  => '空白のみは受け付けません。'
-            ]);
 
         $validator
             ->scalar('team_name')
@@ -329,10 +318,10 @@ class DancersTable extends Table
     public function findBySearch($requests)
     {
         return $this->find('all')
-            ->where(['Dancers.pref LIKE' => '%' . $requests['pref'] . '%'])
+            ->where(['Dancers.pref LIKE'  => '%' . $requests['pref'] . '%'])
             ->where(['Dancers.genre LIKE' => '%' . $requests['genre'] . '%'])
             ->where(['OR' => [
-                ['Dancers.name LIKE'      => '%' . $requests['word'] . '%'],
+                ['Users.username LIKE'    => '%' . $requests['word'] . '%'],
                 ['Dancers.team_name LIKE' => '%' . $requests['word'] . '%']]])
             ;
     }

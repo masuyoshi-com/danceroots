@@ -4,7 +4,7 @@
     <div class="col-lg-12 mb-3">
         <div class="view gradient-card-header aqua-gradient">
             <h2 class="h2-responsive mb-0">
-                マイ ダンスサークル
+                <i class="fa fa-users" aria-hidden="true"></i> マイ ダンスサークル
             </h2>
             <p class="mb-0">
                 <small>
