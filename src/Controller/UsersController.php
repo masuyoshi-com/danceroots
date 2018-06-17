@@ -29,6 +29,94 @@ class UsersController extends AppController
         ]);
     }
 
+    /**
+     * ACLコマンド - どのグループをアクセス制限しているのか残すためにおいておく。
+     * コマンドライン上で実行する
+     */
+    private function initDB()
+    {
+        [
+            // Dancers
+            'bin/cake acl deny Groups.1 controllers',
+            'bin/cake acl grant Groups.1 controllers/Dancers',
+            'bin/cake acl grant Groups.1 controllers/Circles',
+            'bin/cake acl grant Groups.1 controllers/CircleGroups',
+            'bin/cake acl grant Groups.1 controllers/CircleMessages',
+            'bin/cake acl grant Groups.1 controllers/DanceVideos',
+            'bin/cake acl grant Groups.1 controllers/Events',
+            'bin/cake acl grant Groups.1 controllers/Feedbacks',
+            'bin/cake acl grant Groups.1 controllers/Generals/view',
+            'bin/cake acl grant Groups.1 controllers/Informations',
+            'bin/cake acl grant Groups.1 controllers/Jobs/index',
+            'bin/cake acl grant Groups.1 controllers/Jobs/view',
+            'bin/cake acl grant Groups.1 controllers/Messages',
+            'bin/cake acl grant Groups.1 controllers/Organizers/view',
+            'bin/cake acl grant Groups.1 controllers/Studios/index',
+            'bin/cake acl grant Groups.1 controllers/Studios/view',
+            'bin/cake acl grant Groups.1 controllers/Users/edit',
+
+            // Studios
+            'bin/cake acl deny Groups.2 controllers',
+            'bin/cake acl grant Groups.2 controllers/Studios',
+            'bin/cake acl grant Groups.2 controllers/Circles/index',
+            'bin/cake acl grant Groups.2 controllers/Circles/view',
+            'bin/cake acl grant Groups.2 controllers/Dancers/index',
+            'bin/cake acl grant Groups.2 controllers/Dancers/view',
+            'bin/cake acl grant Groups.2 controllers/DanceVideos',
+            'bin/cake acl grant Groups.2 controllers/Events',
+            'bin/cake acl grant Groups.2 controllers/Feedbacks',
+            'bin/cake acl grant Groups.2 controllers/Generals/view',
+            'bin/cake acl grant Groups.2 controllers/Informations',
+            'bin/cake acl grant Groups.2 controllers/Jobs',
+            'bin/cake acl grant Groups.2 controllers/Messages',
+            'bin/cake acl grant Groups.2 controllers/Organizers/view',
+            'bin/cake acl grant Groups.2 controllers/Users/edit',
+
+            // Organizers
+            'bin/cake acl deny Groups.3 controllers',
+            'bin/cake acl grant Groups.3 controllers/Organizers',
+            'bin/cake acl grant Groups.3 controllers/Circles/index',
+            'bin/cake acl grant Groups.3 controllers/Circles/view',
+            'bin/cake acl grant Groups.3 controllers/Dancers/index',
+            'bin/cake acl grant Groups.3 controllers/Dancers/view',
+            'bin/cake acl grant Groups.3 controllers/DanceVideos',
+            'bin/cake acl grant Groups.3 controllers/Events',
+            'bin/cake acl grant Groups.3 controllers/Feedbacks',
+            'bin/cake acl grant Groups.3 controllers/Generals/view',
+            'bin/cake acl grant Groups.3 controllers/Informations',
+            'bin/cake acl grant Groups.3 controllers/Jobs',
+            'bin/cake acl grant Groups.3 controllers/Messages',
+            'bin/cake acl grant Groups.3 controllers/Studios/index',
+            'bin/cake acl grant Groups.3 controllers/Studios/view',
+            'bin/cake acl grant Groups.3 controllers/Users/edit',
+
+            // Generals
+            'bin/cake acl deny Groups.4 controllers',
+            'bin/cake acl grant Groups.4 controllers/Generals',
+            'bin/cake acl grant Groups.4 controllers/Circles/index',
+            'bin/cake acl grant Groups.4 controllers/Circles/view',
+            'bin/cake acl grant Groups.4 controllers/Dancers/index',
+            'bin/cake acl grant Groups.4 controllers/Dancers/view',
+            'bin/cake acl grant Groups.4 controllers/DanceVideos',
+            'bin/cake acl grant Groups.4 controllers/Events',
+            'bin/cake acl grant Groups.4 controllers/Feedbacks',
+            'bin/cake acl grant Groups.4 controllers/Informations',
+            'bin/cake acl grant Groups.4 controllers/Jobs/index',
+            'bin/cake acl grant Groups.4 controllers/Jobs/view',
+            'bin/cake acl grant Groups.4 controllers/Messages',
+            'bin/cake acl grant Groups.4 controllers/Organizers/view',
+            'bin/cake acl grant Groups.4 controllers/Studios/index',
+            'bin/cake acl grant Groups.4 controllers/Studios/view',
+            'bin/cake acl grant Groups.4 controllers/Users/edit',
+
+            // Controller追加，Groupの変更などで更新する場合
+            'bin/cake acl_extras aco_update',
+
+            // その後に各区分に上記コマンドで設定
+        ];
+    }
+
+
 
     /**
      * ログイン - 区分でリダイレクト先を変更
@@ -86,6 +174,7 @@ class UsersController extends AppController
 
     /**
      * サインアップ
+     * ACLのGroupIdでは1から区分カウントとする。注意
      *
      * @return \Cake\Http\Response|null
      */
@@ -99,6 +188,9 @@ class UsersController extends AppController
 
                  // tmp_hash 仮登録ハッシュ生成
                  $this->request->data['tmp_hash'] = md5(uniqid(rand(), 1));
+
+                 // ACLグループIDは原則classification + 1 のIDとする GroupsテーブルデータIDを参照
+                 $this->request->data['group_id'] = $this->request->data['classification'] + 1;
 
                  $user = $this->Users->patchEntity($user, $this->request->getData());
 
@@ -295,7 +387,7 @@ class UsersController extends AppController
      * パスワード再発行・編集
      *
      * @return redirect 一時ハッシュが存在しない場合、4848時間以上のアクセスはエラー画面へ
-     *  URL手入力はトップページへ 
+     *  URL手入力はトップページへ
      */
     public function reissue()
     {

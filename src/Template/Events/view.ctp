@@ -34,7 +34,7 @@
             <div class="card-body mb-3">
 
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-6 col-md-6 col-xs-12">
                         <h5>
                             <span class="badge indigo"><?= h($event->pref) ?> </span>
                             <span class="badge purple"><?= h($event->category) ?> </span>
@@ -46,8 +46,10 @@
                                 }
                             ?>
                         </h5>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xs-12">
                         <?php if ($logins['id'] === $event->user_id) : ?>
-                        <h5 class="text-right mt-2 mb-0">
+                        <h5 class="text-right">
                             <span class="badge badge-warning">イベント所有者</span>
                         </h5>
                         <?php endif; ?>
@@ -232,7 +234,7 @@
 
                 <h4 class="h4-responsive card-title">
                     <strong>
-                        <?= $this->Html->link(h($event->user->username), $profile_links, ['class' => 'dark-grey-text']) ?>
+                        <?= $this->Html->link(h($event->user->username), $profile_links, ['class' => 'dark-grey-text', 'target' => '_blank']) ?>
                     </strong>
                 </h4>
 

@@ -47,7 +47,7 @@ class OrganizersController extends AppController
             return $this->redirect($this->Auth->logout());
         }
     }
-    
+
 
     /**
      * プロフィール詳細 - findはユーザIDで検索
@@ -72,7 +72,7 @@ class OrganizersController extends AppController
 
 
     /**
-     * プロフィール登録
+     * オーガナイザープロフィール登録
      *
      * @param int $id ユーザーID
      * @return \Cake\Http\Response|null 登録成功の場合はviewへ
@@ -83,28 +83,46 @@ class OrganizersController extends AppController
     {
         $this->viewBuilder()->setLayout('add');
 
-        $organizer = $this->Organizers->newEntity();
+        $user = $this->Organizers->Users->findByIdAndRegisterFlagAndClassification($id, 1, 2)->first();
 
-        if ($this->request->is('post')) {
+        if ($user) {
 
-            $organizer = $this->Organizers->patchEntity($organizer, $this->request->getData());
+            // 既に区分プロフィール作成済みか
+            $profile = $this->Organizers->findByUserId($user->id)->first();
 
-            if ($this->Organizers->save($organizer)) {
-                $this->Flash->success(__('プロフィール作成しました。メニューが使用できるようになりました。'));
-                return $this->redirect(['action' => 'view', $organizer->user_id]);
+            // プロフィール未作成で、取得ユーザーIDがログインユーザーIDと一致すれば許可
+            if (!$profile && $user->id === $this->Auth->user('id')) {
+
+                $organizer = $this->Organizers->newEntity();
+
+                if ($this->request->is('post')) {
+
+                    $organizer = $this->Organizers->patchEntity($organizer, $this->request->getData());
+
+                    if ($this->Organizers->save($organizer)) {
+                        $this->Flash->success(__('プロフィール作成しました。メニューが使用できるようになりました。'));
+                        return $this->redirect(['action' => 'view', $organizer->user_id]);
+                    }
+
+                    $this->Flash->error(__('エラーがあります。'));
+                }
+
+                $this->set('genres',  $this->Common->valueToKey($this->genres));
+                $this->set('user_id', $id);
+                $this->set(compact('organizer'));
+
+            } else {
+                throw new NotFoundException(__('404 不正なアクセスまたはコンテンツが見つかりません。'));
             }
 
-            $this->Flash->error(__('エラーがあります。'));
+        } else {
+            throw new NotFoundException(__('404 不正なアクセスまたはコンテンツが見つかりません。'));
         }
-
-        $this->set('genres', $this->Common->valueToKey($this->genres));
-        $this->set('user_id', $id);
-        $this->set(compact('organizer'));
     }
 
 
     /**
-     * 編集
+     * オーガナイザープロフィール編集
      *
      * @param string $id ユーザID
      * @return \Cake\Http\Response|null

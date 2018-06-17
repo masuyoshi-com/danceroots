@@ -106,7 +106,7 @@
                         );
                     }
                 ?>
-
+                <hr>
                 <p class="card-text mt-3">
                     <?= h($organizer->self_intro) ?>
                 </p>
@@ -137,28 +137,58 @@
 
     <div class="col-lg-8 col-md-12">
 
-        <div class="card card-image mb-3" style="background-color: #0d47a1;">
-            <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
-                <div>
-                    <h6 class="pink-text">
-                        <i class="fa fa-calendar-plus-o"></i>
-                        <strong>Event</strong>
-                    </h6>
-                    <h3 class="py-3 font-weight-bold">
-                        <strong>Event 管理</strong>
-                    </h3>
-                    <p class="pb-3">
-                        イベント主催や、コンテストなど予定のイベントの登録を行いましょう。
-                        イベント一覧に表示され、効率的に告知することが可能です。
-                        イベント管理では、イベント登録・編集などが行えます。
-                    </p>
-                    <?= $this->Html->link('イベント管理',
-                        ['controller' => 'Events', 'action' => 'list', $logins['id']],
-                        ['class' => 'btn btn-pink btn-rounded btn-md']
-                    ) ?>
+        <div class="row mb-3">
+
+            <div class="col-lg-6 col-md-12">
+                <div class="card card-image mb-3" style="background-color: #0d47a1;">
+                    <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
+                        <div>
+                            <h6 class="pink-text">
+                                <i class="fa fa-calendar-plus-o"></i>
+                                <strong>Event</strong>
+                            </h6>
+                            <h3 class="py-3 font-weight-bold">
+                                <strong>Event</strong>
+                            </h3>
+                            <p class="pb-3">
+                                イベント主催や、コンテストなど予定のイベントの登録を行いましょう。
+                                イベント一覧に表示され、皆に告知することが可能です。
+                            </p>
+                            <?= $this->Html->link('イベント管理',
+                                ['controller' => 'Events', 'action' => 'list', $logins['id']],
+                                ['class' => 'btn btn-pink btn-rounded btn-md']
+                            ) ?>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <div class="col-lg-6 col-md-12">
+                <div class="card card-image" style="background-color: #0099CC;">
+                    <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
+                        <div>
+                            <h6 class="green-text">
+                                <i class="fa fa-briefcase"></i>
+                                <strong> Recruitment</strong>
+                            </h6>
+                            <h3 class="py-3 font-weight-bold">
+                                <strong>StreetDancer 求人</strong>
+                            </h3>
+                            <p class="pb-3">
+                                ダンサー人材採用を積極的に検討してください。
+                                ダンサーに機会を与えることで、更なる発展につながります。
+                            </p>
+                            <?= $this->Html->link('ダンサー求人管理',
+                                ['controller' => 'Jobs', 'action' => 'list', $logins['id']],
+                                ['class' => 'btn btn-success btn-rounded btn-md']
+
+                            ) ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /.row -->
 
         <?php if (count($informations) !== 0) : ?>
         <div class="card mb-4">
@@ -172,7 +202,7 @@
                         ) ?>
                     </small>
                 </p>
-                <table class="table no-header mt-1">
+                <table class="table table-striped table-hover no-header mt-1">
                     <tbody>
                         <?php foreach ($informations as $information) : ?>
                         <tr>
@@ -216,7 +246,7 @@
                     <hr>
                     <p class="card-text">
                         過去に開催したイベント動画や、ダンス動画を共有してください。
-                        イベント動画を通して、あなたの開催するイベントに人が集まりやすくなります。
+                        あなたの開催するイベントに人が集まりやすくなります。
                     </p>
                     <p class="card-text text-right">
                         <small class="text-muted">ダンス動画管理へ <i class="fa fa-arrow-circle-right blue-text"></i></small>

@@ -3,7 +3,9 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="jumbotron text-center">
-            <h1 class="h1-responsive"><i class="fa fa-youtube-play yt-ic"></i> My Favorite Dance Videos</h1>
+            <h2 class="h2-responsive">
+                <i class="fa fa-youtube-play yt-ic"></i> マイ ダンス動画
+            </h2>
             <hr class="my-2">
             <p class="lead grey-text">
                 <small>登録済み動画一覧です。やり直したい場合は、削除してから再度登録してください。</small>

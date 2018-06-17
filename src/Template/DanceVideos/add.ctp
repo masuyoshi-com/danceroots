@@ -7,10 +7,10 @@
 
     <div class="col-lg-8">
         <div class="jumbotron text-center">
-            <h1 class="h1-responsive"><i class="fa fa-youtube-play yt-ic"></i> Favorite Dance Videos</h1>
+            <h2 class="h2-responsive"><i class="fa fa-youtube-play yt-ic"></i> お気に入りダンス動画</h2>
             <hr class="my-2">
             <p class="lead grey-text">
-                <small>共有したいYoutubeURLを入力欄にコピペしてください。</small>
+                <small>共有するダンス動画【YouTubeURL】を入力欄にコピペしてください。</small>
             </p>
             <hr class="my-2">
         </div>

@@ -54,6 +54,9 @@
         </div>
     </div><!-- /. gradient-card-header -->
 
+
+    <?php if (count($circle_messages) !== 0) : ?>
+
     <div class="row px-4">
         <div class="col-lg-12">
             <p class="dark-gray-text text-right">
@@ -110,4 +113,13 @@
             </div>
         </div>
     </div><!-- /.px-4 -->
+    <?php else : ?>
+
+    <div class="row">
+        <div class="col-lg-12 text-center m-4">
+            サークルメッセージはありません。
+        </div>
+    </div>
+
+    <?php endif; ?>
 </div><!-- /.card -->

@@ -7,7 +7,7 @@
 
     <div class="col-lg-8">
         <div class="jumbotron text-center">
-            <h1 class="h1-responsive"><i class="fa fa-user-circle" aria-hidden="true"></i> マイ アカウント</h1>
+            <h2 class="h2-responsive"><i class="fa fa-user-circle" aria-hidden="true"></i> マイ アカウント</h2>
             <hr class="my-2">
             <p class="lead dark-grey-text">
                 <small><i class="fa fa-info-circle"></i> メールアドレス変更の際は有効なメールアドレスか確認させていただきます。</small>

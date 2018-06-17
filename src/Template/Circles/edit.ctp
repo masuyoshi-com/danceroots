@@ -5,7 +5,7 @@
     <div class="col-lg-12">
         <div class="view gradient-card-header aqua-gradient">
             <h2 class="h2-responsive mb-0">
-                <i class="fa fa-pencil-square"></i> ダンスサークル編集
+                <i class="fa fa-pencil"></i> ダンスサークル編集
             </h2>
             <p class="mb-0 none">
                 <small>
@@ -24,7 +24,7 @@
         </div>
 
         <?= $this->Form->create($circle, ['type' => 'file']) ?>
-        <?= $this->Form->hidden('user_id', ['value' => h($circle->id)]) ?>
+        <?= $this->Form->hidden('user_id', ['value' => h($circle->user_id)]) ?>
 
         <div class="row">
             <div class="col-lg-6 col-md-12">
@@ -203,7 +203,9 @@
 
         <div class="row mt-3 mb-3">
             <div class="col-lg-12">
-                <?= $this->Form->button('編集する', ['class' => 'btn btn-success btn-block']) ?>
+                <?= $this->Form->button('<i class="fa fa-edit" aria-hidden="true"></i> 編集',
+                    ['class' => 'btn btn-success btn-block', 'escape' => false]
+                ) ?>
             </div>
         </div>
     </div>

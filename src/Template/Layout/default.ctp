@@ -45,11 +45,11 @@
     <?php if (strstr($url, 'view')) : ?>
         <?= $this->Html->script('facebook') ?>
     <?php endif; ?>
-    
+
     <script>
     $(function () {
 
-        $("#mdb-lightbox-ui").load('<?= $this->Url->build('/mdb-addons/mdb-lightbox-ui.html') ?>');
+        $('#mdb-lightbox-ui').load('<?= $this->Url->build('/mdb-addons/mdb-lightbox-ui.html') ?>');
 
         initRun.feedback('<?= $this->Url->build(['controller' => 'Feedbacks', 'action' => 'add']) ?>');
 

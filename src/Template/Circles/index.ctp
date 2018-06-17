@@ -150,7 +150,7 @@
                     <div class="row grey lighten-4 p-2 text-center">
                         <div class="col-lg-4 col-md-6 col-xs-12">
                             <p class="dark-grey-text">
-                                <i class="fa fa-clock-o"></i> 登録日: <?= h($circle->created) ?>
+                                <i class="fa fa-clock-o" aria-hidden="true"></i> 登録日: <?= h($circle->created) ?>
                             </p>
                         </div>
                         <div class="col-lg-4 col-md-6 col-xs-12">

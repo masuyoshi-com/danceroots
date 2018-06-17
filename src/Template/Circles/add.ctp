@@ -5,7 +5,7 @@
     <div class="col-lg-12">
         <div class="view gradient-card-header aqua-gradient">
             <h2 class="h2-responsive mb-0">
-                <i class="fa fa-user-plus"></i> ダンスサークル登録
+                <i class="fa fa-users"></i> ダンスサークル登録
             </h2>
             <p class="mb-0 none">
                 <small>

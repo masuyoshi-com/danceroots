@@ -22,12 +22,13 @@ class AppController extends Controller
     {
         parent::initialize();
 
+        $this->loadComponent('Acl.Acl');
         /**
-         * AUTH認証入る
+         * AUTH認証
          * ログインリダイレクトは条件分岐で区分により各ホーム画面へ切り替え
          */
         $this->loadComponent('Auth', [
-            'authorize'    => 'Controller',
+            'authorize'    => ['Acl.Actions' => ['actionPath' => 'controllers/']],
             'authenticate' => [
                 'Form' => [
                     'fields' => [
@@ -49,9 +50,6 @@ class AppController extends Controller
             'unauthorizedRedirect' => $this->referer()
         ]);
 
-        /**
-         * 開発工程最終エリアで有効化
-         */
         $this->loadComponent('Security');
         $this->loadComponent('Csrf');
         $this->loadComponent('RequestHandler');
@@ -74,6 +72,9 @@ class AppController extends Controller
     {
         // ログインユーザー情報とユーザー区分でリンク先を動的変更
         if (!is_null($this->Auth->user())) {
+
+            // ログイン後、認可エラーをログインエラーと同じにしないためにautherrorはfalseにしておく
+            $this->Auth->config('authError', false);
 
             $logins = $this->Auth->user();
 
@@ -100,19 +101,19 @@ class AppController extends Controller
 
 
     /**
-     * アクセス制御 - あとで実装
+     * ACLアクセス制御
      *
-     * @param  [type]  $user [description]
-     * @return boolean       [description]
+     * @param array $user ログインユーザー情報
+     * @return object ACLチェック
      */
-
     public function isAuthorized($user)
     {
-        // デフォルトでは、アクセスを拒否します。
-        //return false;
-        return true;
+        $Collection = new ComponentRegistry();
+        $acl        = new AclComponent($Collection);
+        $controller = $this->request->controller;
+        $action     = $this->request->action;
+        return $acl->check(['Users' => ['id' => $user['id']]], "$controller/$action");
     }
-
 
 
 }

@@ -96,7 +96,7 @@
                         );
                     }
                 ?>
-
+                <hr>
                 <p class="card-text mt-3">
                     <?= h($general->self_intro) ?>
                 </p>
@@ -130,28 +130,28 @@
         <div class="row mb-4">
             <div class="col-lg-12 col-md-12 text-center">
                 <div class="card card-image mb-3" style="background-color: #0d47a1;">
-                    <div class="text-white rgba-black-strong py-5 px-4 rounded">
+                    <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
                         <div>
                             <h6 class="pink-text">
-                                <strong><i class="fa fa-youtube-play yt-ic"></i> Dance Video</strong>
+                                <i class="fa fa-calendar-plus-o"></i>
+                                <strong>Event</strong>
                             </h6>
                             <h3 class="py-3 font-weight-bold">
-                                <strong>Dance Video</strong>
+                                <strong>Event</strong>
                             </h3>
                             <p class="pb-3">
-                                あなたのお気に入りのYoutubeダンス動画を共有しましょう。
+                                イベント参加予定や、コンテストなどのイベント登録を行いましょう。
+                                イベント一覧に表示され、皆に告知することが可能です。
                             </p>
-                            <?= $this->Html->link('<i class="fa fa-plus left"></i> DanceVideo 登録',
-                                ['controller' => 'DanceVideos', 'action' => 'list', $logins['id']],
-                                [
-                                    'class' => 'btn btn-pink btn-rounded btn-md',
-                                    'escape' => false,
-                                ]
+                            <?= $this->Html->link('イベント管理',
+                                ['controller' => 'Events', 'action' => 'list', $logins['id']],
+                                ['class' => 'btn btn-pink btn-rounded btn-md']
                             ) ?>
                         </div>
                     </div>
                 </div>
             </div>
+
             <!--
             <div class="col-lg-6 col-md-12">
                 <div class="card card-image" style="background-color: #0099CC;">
@@ -193,7 +193,7 @@
                         ) ?>
                     </small>
                 </p>
-                <table class="table no-header mt-1">
+                <table class="table table-striped table-hover no-header mt-1">
                     <tbody>
                         <?php foreach ($informations as $information) : ?>
                         <tr>
@@ -226,4 +226,42 @@
     </div><!-- /.col-lg-8 -->
 </div><!-- /. row -->
 
-<hr class="mb-5">
+<hr>
+
+<div class="row mb-3">
+    <div class="col-lg-12 col-md-12 mb-3">
+        <a href="<?= $this->Url->build(['controller' => 'DanceVideos', 'action' => 'list', $logins['id']]) ?>">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title dark-grey-text"><strong><i class="fa fa-youtube-play yt-ic"></i> ダンス動画管理</strong></h5>
+                    <hr>
+                    <p class="card-text">
+                        お気に入りダンス動画を共有しましょう。他のユーザーに良い影響を与えるキッカケになります。
+                    </p>
+                    <p class="card-text text-right">
+                        <small class="text-muted">ダンス動画管理へ <i class="fa fa-arrow-circle-right blue-text"></i></small>
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+    <!--
+    <div class="col-lg-6 col-md-12">
+        <a href="<?= $this->Url->build(['controller' => 'DanceMusics', 'action' => 'list', $logins['id']]) ?>">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title dark-grey-text"><strong><i class="fa fa-music"></i> ダンス音楽管理</strong></h5>
+                    <hr>
+                    <p class="card-text">
+                        良い音楽を皆で共有することでたくさんの人に良い影響を与えます。
+                        ぜひ、あなたの好きな音楽を教えてください。
+                    </p>
+                    <p class="card-text text-right">
+                        <small class="text-muted">ダンス音楽管理へ <i class="fa fa-arrow-circle-right blue-text"></i></small>
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+    -->
+</div><!-- /.row -->

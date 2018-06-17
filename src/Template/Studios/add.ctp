@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'ダンススタジオ登録') ?>
+<?php $this->assign('title', 'ダンススタジオプロフィール作成'); ?>
 
 <div class="row">
     <div class="col-lg-12">
@@ -86,7 +86,7 @@
         <div class="card card-cascade narrower">
 
             <div class="view gradient-card-header mdb-color lighten-2">
-                <h5 class="mb-0 font-bold">DanceStudio 登録</h5>
+                <h5 class="mb-0 font-bold"><i class="fa fa-address-card" aria-hidden="true"></i> プロフィール作成</h5>
                 <small><i class="fa fa-info-circle"></i> 閲覧者の印象に残るように詳細に項目を入力しましょう。問い合わせの可能性が高くなります。</small>
             </div>
 
@@ -248,7 +248,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <?= $this->Form->button('<i class="fa fa-plus"></i> 登録', [
+                        <?= $this->Form->button('<i class="fa fa-plus"></i> プロフィール作成', [
                                 'type'   => 'submit',
                                 'class'  => 'btn btn-success btn-block',
                                 'escape' => false,

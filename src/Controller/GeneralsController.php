@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
+use Cake\Network\Exception\NotFoundException;
 
 /**
  * Generals Controller
@@ -80,23 +82,38 @@ class GeneralsController extends AppController
     {
         $this->viewBuilder()->setLayout('add');
 
-        $general = $this->Generals->newEntity();
+        // 区分ユーザーが存在し、本登録済みか
+        $user = $this->Generals->Users->findByIdAndRegisterFlagAndClassification($id, 1, 3)->first();
 
-        if ($this->request->is('post')) {
+        if ($user) {
+            // そのユーザーは既に一度プロフィール登録しているか
+            $profile = $this->Generals->findByUserId($user->id)->first();
 
-            $general = $this->Generals->patchEntity($general, $this->request->getData());
+            if (!$profile && $user->id === $this->Auth->user('id')) {
 
-            if ($this->Generals->save($general)) {
-                $this->Flash->success(__('プロフィール作成しました。メニューが使用できるようになりました。'));
-                return $this->redirect(['action' => 'view', $general->user_id]);
+                $general = $this->Generals->newEntity();
+
+                if ($this->request->is('post')) {
+
+                    $general = $this->Generals->patchEntity($general, $this->request->getData());
+
+                    if ($this->Generals->save($general)) {
+                        $this->Flash->success(__('プロフィール作成しました。メニューが使用できるようになりました。'));
+                        return $this->redirect(['action' => 'view', $general->user_id]);
+                    }
+
+                    $this->Flash->error(__('プロフィール作成できません。解決しない場合はフィードバックより報告してください。'));
+                }
+
+                $this->set('genres', $this->Common->valueToKey($this->genres));
+                $this->set('user_id', $id);
+                $this->set(compact('general'));
+            } else {
+                throw new NotFoundException(__('404 不正なアクセスまたはコンテンツが見つかりません。'));
             }
-
-            $this->Flash->error(__('エラーがあります。'));
+        } else {
+            throw new NotFoundException(__('404 不正なアクセスまたはコンテンツが見つかりません。'));
         }
-
-        $this->set('genres', $this->Common->valueToKey($this->genres));
-        $this->set('user_id', $id);
-        $this->set(compact('general'));
     }
 
 
@@ -118,10 +135,10 @@ class GeneralsController extends AppController
 
             $general = $this->Generals->patchEntity($general, $this->request->getData());
             if ($this->Generals->save($general)) {
-                $this->Flash->success(__('更新しました。'));
+                $this->Flash->success(__('プロフィールを更新しました。'));
                 return $this->redirect(['action' => 'view', $general->user_id]);
             }
-            $this->Flash->error(__('エラーがあります。'));
+            $this->Flash->error(__('プロフィール編集できません。解決しない場合はフィードバックより報告してください。'));
         }
 
         $this->set('genres', $this->Common->valueToKey($this->genres));

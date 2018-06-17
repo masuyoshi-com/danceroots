@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'ダンサープロフィール登録') ?>
+<?php $this->assign('title', 'ダンサープロフィール作成'); ?>
 
 <div class="row">
     <div class="col-lg-12">
@@ -21,15 +21,6 @@
                         <div class="form-group">
                             <label class="dark-gray-text w-100 text-left"><small>アイコン画像</small> <span class="badge badge-info">正方形サイズ</span></label>
                             <?= $this->Form->control('icon_file', ['type' => 'file', 'class' => 'form-control']) ?>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <label class="dark-gray-text w-100 text-left"><small>ダンサー名</small></label>
-                        <div class="md-form mt-0">
-                            <?= $this->Form->control('name', ['class' => 'form-control']) ?>
                         </div>
                     </div>
                 </div>
@@ -99,7 +90,7 @@
         <div class="card card-cascade narrower">
 
             <div class="view gradient-card-header mdb-color lighten-2">
-                <h5 class="mb-0 font-bold">プロフィール作成</h5>
+                <h5 class="mb-0 font-bold"><i class="fa fa-address-card" aria-hidden="true"></i> プロフィール作成</h5>
                 <small><i class="fa fa-info-circle"></i> 閲覧者の印象に残るように詳細に項目を入力しましょう。</small>
             </div>
 

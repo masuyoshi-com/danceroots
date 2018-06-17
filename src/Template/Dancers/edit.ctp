@@ -35,15 +35,6 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <label class="dark-gray-text w-100 text-left"><small>ダンサー名</small></label>
-                        <div class="md-form mt-0">
-                            <?= $this->Form->control('name', ['class' => 'form-control']) ?>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-12">
                         <label class="dark-gray-text w-100 text-left"><small>ダンスチーム名</small></label>
                         <div class="md-form mt-0">
                             <?= $this->Form->control('team_name', ['class' => 'form-control']) ?>
@@ -109,7 +100,7 @@
                     <div class="card card-cascade narrower">
 
                         <div class="view gradient-card-header mdb-color lighten-2">
-                            <h5 class="mb-0 font-bold">プロフィール編集</h5>
+                            <h5 class="mb-0 font-bold"><i class="fa fa-pencil" aria-hidden="true"></i> プロフィール編集</h5>
                             <small>
                                 <i class="fa fa-info-circle"></i> 閲覧者の印象に残るように詳細に項目を入力しましょう。
                             </small>
@@ -339,9 +330,10 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <?= $this->Form->button('編集する', [
+            <?= $this->Form->button('<i class="fa fa-edit" aria-hidden="true"></i> 編集', [
                     'type'   => 'submit',
                     'class'  => 'btn btn-success btn-block',
+                    'escape' => false
                 ])
             ?>
         </div>

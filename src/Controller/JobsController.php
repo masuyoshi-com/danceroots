@@ -128,14 +128,14 @@ class JobsController extends AppController
         if ($this->request->is('post')) {
             $job = $this->Jobs->patchEntity($job, $this->request->getData());
             if ($this->Jobs->save($job)) {
-                $this->Flash->success(__('登録しました。'));
+                $this->Flash->success(__('ダンス関連求人を登録しました。'));
                 return $this->redirect(['action' => 'view', $job->id]);
             }
-            $this->Flash->error(__('エラーがあります。'));
+            $this->Flash->error(__('求人登録できません。解決しない場合はフィードバックまで報告してください。'));
         }
 
         $this->set('categories', $this->Common->valueToKey($this->categories));
-        $this->set('genres', $this->Common->valueToKey($this->genres));
+        $this->set('genres',     $this->Common->valueToKey($this->genres));
         $this->set('user_id', $id);
         $this->set(compact('job'));
     }
@@ -167,7 +167,7 @@ class JobsController extends AppController
         }
 
         $this->set('categories', $this->Common->valueToKey($this->categories));
-        $this->set('genres', $this->Common->valueToKey($this->genres));
+        $this->set('genres',     $this->Common->valueToKey($this->genres));
         $this->set(compact('job'));
     }
 

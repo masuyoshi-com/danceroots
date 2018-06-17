@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'プロフィール作成') ?>
+<?php $this->assign('title', 'オーガナイザー/企業プロフィール作成'); ?>
 
 <div class="row">
     <div class="col-lg-12">
@@ -18,8 +18,8 @@
                     <div class="card card-cascade narrower">
 
                         <div class="view gradient-card-header mdb-color lighten-2">
-                            <h5 class="mb-0 font-bold">プロフィール作成</h5>
-                            <small><i class="fa fa-info-circle"></i> できるだけ詳細に項目を入力しましょう。イベント告知の質が高くなります。</small>
+                            <h5 class="mb-0 font-bold"><i class="fa fa-address-card" aria-hidden="true"></i> プロフィール作成</h5>
+                            <small><i class="fa fa-info-circle"></i> できるだけ詳細に項目を入力しましょう。</small>
                         </div>
 
                         <div class="card-body mb-3">
@@ -133,7 +133,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <?= $this->Form->button('<i class="fa fa-plus"></i> 登録', [
+                                    <?= $this->Form->button('<i class="fa fa-plus"></i> プロフィール作成', [
                                             'type'   => 'submit',
                                             'class'  => 'btn btn-success btn-block',
                                             'escape' => false,

@@ -242,6 +242,7 @@ class CirclesController extends AppController
 
         if ($this->request->is(['patch', 'post', 'put'])) {
 
+
             $circle = $this->Circles->patchEntity($circle, $this->request->getData());
 
             if ($this->Circles->save($circle)) {
@@ -260,7 +261,7 @@ class CirclesController extends AppController
 
     /**
      * 削除はフラグのみ更新
-     * 
+     *
      * @return \Cake\Http\Response|null
      */
     public function delete()

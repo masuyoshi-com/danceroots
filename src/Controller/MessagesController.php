@@ -176,8 +176,8 @@ class MessagesController extends AppController
             $url = null;
         }
 
-        $this->set('url', $url);
-        $this->set('user_id', $from_id);
+        $this->set('url',        $url);
+        $this->set('user_id',    $from_id);
         $this->set('to_user_id', $to_id);
         $this->set(compact('message', 'to_user'));
     }

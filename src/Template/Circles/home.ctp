@@ -12,10 +12,10 @@
         <div class="row mb-4">
             <div class="col-lg-12">
                 <h5>
-                    <span class="badge badge-primary"><i class="fa fa-home"></i> CIRCLE HOME </span>
+                    <span class="badge badge-primary"><i class="fa fa-home"></i> <?= h($circle->name) ?> HOME </span>
                 </h5>
                 <h2 class="dark-grey-text font-weight-bold text-center">
-                    <?= h($circle->name) ?>
+                    <?= h($circle->title) ?>
                 </h2>
                 <hr>
             </div>
@@ -366,7 +366,7 @@
                         );
                     }
                 ?>
-
+                <hr>
                 <p class="card-text mt-3">
                     <?= h($circle->intro) ?>
                 </p>

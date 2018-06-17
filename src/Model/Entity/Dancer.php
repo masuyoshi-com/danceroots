@@ -6,15 +6,15 @@ use Cake\ORM\Entity;
 /**
  * ダンサーエンティティ
  *
- * @property int $id
- * @property int $user_id
+ * @property int    $id
+ * @property int    $user_id
  * @property string $team_name
- * @property int $age
+ * @property int    $age
  * @property string $icon
  * @property string $genre
  * @property string $pref
  * @property string $self_intro
- * @property int $career
+ * @property int    $career
  * @property string $image1
  * @property string $image2
  * @property string $image3
@@ -31,6 +31,7 @@ use Cake\ORM\Entity;
  * @property string $respect_dancer
  * @property string $favorite_artist
  * @property string $plan
+ * @property int    $offer_flag
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
@@ -73,6 +74,7 @@ class Dancer extends Entity
         'respect_dancer'  => true,
         'favorite_artist' => true,
         'plan'            => true,
+        'offer_flag'      => true,
         'created'         => true,
         'modified'        => true,
         'user'            => true

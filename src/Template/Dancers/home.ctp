@@ -96,7 +96,7 @@
                         );
                     }
                 ?>
-
+                <hr>
                 <p class="card-text mt-3">
                     <?= h($dancer->self_intro) ?>
                 </p>
@@ -192,7 +192,7 @@
                         ) ?>
                     </small>
                 </p>
-                <table class="table no-header mt-1">
+                <table class="table table-striped table-hover no-header mt-1">
                     <tbody>
                         <?php foreach ($informations as $information) : ?>
                         <tr>

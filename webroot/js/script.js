@@ -25,7 +25,7 @@ var initRun = (function( $ ) {
         clear: 'クリア',
         close: '閉じる',
         // Format
-        format: 'yyyy-mm-dd',
+        format: 'yyyy/mm/dd',
     });
 
     $('.time').pickatime({donetext: '完了'});

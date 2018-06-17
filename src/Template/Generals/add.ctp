@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'プロフィール作成'); ?>
+<?php $this->assign('title', '一般プロフィール作成'); ?>
 
 <div class="row">
     <div class="col-lg-12">
@@ -52,8 +52,8 @@
         <div class="card card-cascade narrower">
 
             <div class="view gradient-card-header mdb-color lighten-2">
-                <h5 class="mb-0 font-bold"><i class="fa fa-plus"></i> プロフィール作成</h5>
-                <small><i class="fa fa-info-circle"></i> 必要項目に入力してください。</small>
+                <h5 class="mb-0 font-bold"><i class="fa fa-address-card" aria-hidden="true"></i> プロフィール作成</h5>
+                <small><i class="fa fa-info-circle"></i> 必要項目を入力してください。</small>
             </div>
 
             <div class="card-body">
@@ -138,7 +138,7 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="card card-body">
-            <?= $this->Form->button('<i class="fa fa-plus"></i> 登録', [
+            <?= $this->Form->button('<i class="fa fa-plus"></i> プロフィール作成', [
                     'type'   => 'submit',
                     'class'  => 'btn btn-success',
                     'escape' => false,

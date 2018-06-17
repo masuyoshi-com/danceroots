@@ -29,19 +29,17 @@
     <div class="col-lg-8 col-md-12 mb-5">
         <div class="card card-cascade narrower mb-3">
             <div class="card-body mb-3">
+
+                <?php if ($organizer->youtube) : ?>
                 <div class="row">
                     <div class="col-lg-12">
                         <h6><i class="fa fa-youtube-play yt-ic"></i> Event Video</h6>
-                        <?php if ($organizer->youtube) : ?>
-                            <div class="embed-responsive embed-responsive-16by9 z-depth-1">
-                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($organizer->youtube) ?>?rel=0" style="height: 100%" allowfullscreen></iframe>
-                            </div>
-                        <?php else : ?>
-                            <?= $this->Html->image('/img/sample/no_video.jpg', ['class' => 'img-fluid']) ?>
-                        <?php endif; ?>
+                        <div class="embed-responsive embed-responsive-16by9 z-depth-1">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($organizer->youtube) ?>?rel=0" style="height: 100%" allowfullscreen></iframe>
+                        </div>
                     </div>
                 </div>
-
+                <?php endif; ?>
                 <hr>
 
                 <?php if ($organizer->image1 || $organizer->image2 || $organizer->image3) : ?>
@@ -143,7 +141,10 @@
                 <div class="col-lg-12">
                     <?php
                         if ($organizer->user_id === $logins['id']) {
-                            print $this->Html->link('プロフィールを編集する', ['action' => 'edit', h($organizer->user_id)], ['class' => 'btn btn-primary btn-block']);
+                            print $this->Html->link('<i class="fa fa-pencil"></i> プロフィールを編集',
+                                ['action' => 'edit', h($organizer->user_id)],
+                                ['class'  => 'btn btn-primary btn-block', 'escape' => false]
+                            );
                         } else {
                             print $this->Html->link('<i class="fa fa-envelope"></i> メッセージを送る',
                             [
@@ -240,7 +241,7 @@
                         );
                     }
                 ?>
-
+                <hr>
                 <p class="card-text mt-3">
                     <?= h($organizer->self_intro) ?>
                 </p>

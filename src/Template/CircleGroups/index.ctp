@@ -35,6 +35,7 @@
         </div>
     </div>
 
+    <?php if (count($circle_groups) !== 0) : ?>
     <div class="card card-body">
         <div class="row">
             <?php foreach ($circle_groups as $group) : ?>
@@ -138,4 +139,15 @@
             </nav>
         </div>
     </div>
+
+    <?php else : ?>
+    <div class="card card-body">
+        <div class="row">
+            <div class="col-lg-12">
+                現在参加しているメンバーはいません。
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+    
 </section>

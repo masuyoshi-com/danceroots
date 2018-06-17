@@ -3,7 +3,7 @@
 <div class="row">
     <?php if (AD === 0) : ?>
         <div class="col-lg-12 text-center">
-            <section id="dynamicContentWrapper-docsPanel" class="mb-5">
+            <section id="dynamicContentWrapper-docsPanel" class="mb-4">
                 <div class="card border border-danger z-depth-0" style="height: 200px;">
                     <div class="card-body text-center">
                         <p>
@@ -97,8 +97,7 @@
                         );
                     }
                 ?>
-
-
+                <hr>
                 <p class="card-text mt-3">
                     <?= h($general->self_intro) ?>
                 </p>
@@ -141,7 +140,7 @@
         <div class="card card-cascade narrower">
 
             <div class="view gradient-card-header mdb-color lighten-2">
-                <h5 class="mb-0 font-bold"><?= h($general->name) ?> Profile</h5>
+                <h5 class="mb-0 font-bold"><?= h($general->user->username) ?> Profile</h5>
             </div>
 
             <div class="card-body mb-3">
@@ -228,7 +227,9 @@
         <div class="card card-body mb-3">
             <?php
                 if ($general->user_id === $logins['id']) {
-                    print $this->Html->link('プロフィールを編集する', ['action' => 'edit', h($general->user_id)], ['class' => 'btn btn-primary']);
+                    print $this->Html->link('<i class="fa fa-edit" aria-hidden="true"></i> プロフィールを編集',
+                        ['action' => 'edit', h($general->user_id)], ['class' => 'btn btn-primary', 'escape' => false]
+                    );
                 } else {
                     print $this->Html->link('<i class="fa fa-envelope"></i> メッセージを送る',
                     [

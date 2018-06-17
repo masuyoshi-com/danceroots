@@ -10,22 +10,23 @@ use Cake\Validation\Validator;
  * ユーザーモデル
  *
  * @property \App\Model\Table\CircleGroupsTable|\Cake\ORM\Association\HasMany $CircleGroups
- * @property \App\Model\Table\CirclesTable|\Cake\ORM\Association\HasMany $Circles
- * @property \App\Model\Table\DanceMoviesTable|\Cake\ORM\Association\HasMany $DanceMovies
- * @property \App\Model\Table\DanceMusicsTable|\Cake\ORM\Association\HasMany $DanceMusics
- * @property \App\Model\Table\DanceVideosTable|\Cake\ORM\Association\HasMany $DanceVideos
- * @property \App\Model\Table\DancersTable|\Cake\ORM\Association\HasMany $Dancers
+ * @property \App\Model\Table\CirclesTable|\Cake\ORM\Association\HasMany      $Circles
+ * @property \App\Model\Table\DanceMoviesTable|\Cake\ORM\Association\HasMany  $DanceMovies
+ * @property \App\Model\Table\DanceMusicsTable|\Cake\ORM\Association\HasMany  $DanceMusics
+ * @property \App\Model\Table\DanceVideosTable|\Cake\ORM\Association\HasMany  $DanceVideos
+ * @property \App\Model\Table\DancersTable|\Cake\ORM\Association\HasMany      $Dancers
  * @property \App\Model\Table\EventEntriesTable|\Cake\ORM\Association\HasMany $EventEntries
- * @property \App\Model\Table\EventsTable|\Cake\ORM\Association\HasMany $Events
- * @property \App\Model\Table\FeedbacksTable|\Cake\ORM\Association\HasMany $Feedbacks
- * @property \App\Model\Table\GeneralsTable|\Cake\ORM\Association\HasMany $Generals
- * @property \App\Model\Table\JobsTable|\Cake\ORM\Association\HasMany $Jobs
- * @property \App\Model\Table\MessagesTable|\Cake\ORM\Association\HasMany $Messages
- * @property \App\Model\Table\OrganizersTable|\Cake\ORM\Association\HasMany $Organizers
- * @property \App\Model\Table\ReportsTable|\Cake\ORM\Association\HasMany $Reports
- * @property \App\Model\Table\StudiosTable|\Cake\ORM\Association\HasMany $Studios
- * @property \App\Model\Table\TeamGroupsTable|\Cake\ORM\Association\HasMany $TeamGroups
- * @property \App\Model\Table\TeamsTable|\Cake\ORM\Association\HasMany $Teams
+ * @property \App\Model\Table\EventsTable|\Cake\ORM\Association\HasMany       $Events
+ * @property \App\Model\Table\FeedbacksTable|\Cake\ORM\Association\HasMany    $Feedbacks
+ * @property \App\Model\Table\GeneralsTable|\Cake\ORM\Association\HasMany     $Generals
+ * @property \App\Model\Table\JobsTable|\Cake\ORM\Association\HasMany         $Jobs
+ * @property \App\Model\Table\MessagesTable|\Cake\ORM\Association\HasMany     $Messages
+ * @property \App\Model\Table\OrganizersTable|\Cake\ORM\Association\HasMany   $Organizers
+ * @property \App\Model\Table\ReportsTable|\Cake\ORM\Association\HasMany      $Reports
+ * @property \App\Model\Table\StudiosTable|\Cake\ORM\Association\HasMany      $Studios
+ * @property \App\Model\Table\TeamGroupsTable|\Cake\ORM\Association\HasMany   $TeamGroups
+ * @property \App\Model\Table\TeamsTable|\Cake\ORM\Association\HasMany        $Teams
+ * @property \App\Model\Table\GroupsTable|\Cake\ORM\Association\BelongsTo     $Groups
  *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
  * @method \App\Model\Entity\User newEntity($data = null, array $options = [])
@@ -55,6 +56,14 @@ class UsersTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Acl.Acl', ['type' => 'requester']);
+
+        // ACL対象グループテーブル
+        $this->belongsTo('Groups', [
+            'className'  => 'Groups',
+            'foreignKey' => 'group_id',
+            'joinType'   => 'INNER'
+        ]);
 
         $this->hasMany('CircleGroups', [
             'foreignKey' => 'user_id'

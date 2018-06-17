@@ -13,7 +13,7 @@ use App\Controller\AppController;
 class InformationsController extends AppController
 {
     public $paginate = [
-           'limit' => 2,
+           'limit' => 20,
            'order' => ['Informations.created' => 'desc']
      ];
 

@@ -5,7 +5,7 @@
     <div class="col-lg-12">
         <div class="view gradient-card-header blue-gradient">
             <h2 class="h2-responsive mb-0">
-                <i class="fa fa-pencil-square"></i> ダンサー求人編集
+                <i class="fa fa-pencil"></i> ダンサー求人編集
             </h2>
             <p class="mb-0 none">
                 <small>
@@ -211,7 +211,9 @@
 
         <div class="row mt-3 mb-3">
             <div class="col-lg-12">
-                <?= $this->Form->button('編集する', ['class' => 'btn btn-success btn-block']) ?>
+                <?= $this->Form->button('<i class="fa fa-edit" aria-hidden="true"></i> 編集',
+                    ['class' => 'btn btn-success btn-block', 'escape' => false]
+                ) ?>
             </div>
         </div>
 

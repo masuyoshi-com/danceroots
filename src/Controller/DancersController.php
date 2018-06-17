@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
+use Cake\Network\Exception\NotFoundException;
 
 /**
  * Dancers Controller
@@ -76,7 +78,7 @@ class DancersController extends AppController
                 }
             }
 
-            $query = $this->Dancers->findBySearch($this->request->query);
+            $query   = $this->Dancers->findBySearch($this->request->query);
             $dancers = $this->paginate($query);
 
             // 検索項目状態をセッションに格納
@@ -133,23 +135,37 @@ class DancersController extends AppController
     {
         $this->viewBuilder()->setLayout('add');
 
-        $dancer = $this->Dancers->newEntity();
+        // 区分ユーザーが存在し、本登録済みか
+        $user = $this->Dancers->Users->findByIdAndRegisterFlagAndClassification($id, 1, 0)->first();
 
-        if ($this->request->is('post')) {
+        if ($user) {
 
-            $dancer = $this->Dancers->patchEntity($dancer, $this->request->getData());
+            // そのユーザーは既に一度プロフィール登録しているか
+            $profile = $this->Dancers->findByUserId($user->id)->first();
 
-            if ($this->Dancers->save($dancer)) {
-                $this->Flash->success(__('プロフィール作成しました。メニューが使用できるようになりました。'));
-                return $this->redirect(['action' => 'view', $dancer->user_id]);
+            if (!$profile && $user->id === $this->Auth->user('id')) {
+                $dancer = $this->Dancers->newEntity();
+
+                if ($this->request->is('post')) {
+
+                    $dancer = $this->Dancers->patchEntity($dancer, $this->request->getData());
+
+                    if ($this->Dancers->save($dancer)) {
+                        $this->Flash->success(__('プロフィール作成しました。各メニューが使用できるようになりました。'));
+                        return $this->redirect(['action' => 'view', $dancer->user_id]);
+                    }
+
+                    $this->Flash->error(__('プロフィール作成できません。解決しない場合はフィードバックより報告してください。'));
+                }
+                $this->set('genres',  $this->Common->valueToKey($this->genres));
+                $this->set('user_id', $id);
+                $this->set(compact('dancer'));
+            } else {
+                throw new NotFoundException(__('404 不正なアクセスまたはコンテンツが見つかりません。'));
             }
-
-            $this->Flash->error(__('エラーがあります。'));
+        } else {
+            throw new NotFoundException(__('404 不正なアクセスまたはコンテンツが見つかりません。'));
         }
-
-        $this->set('genres', $this->Common->valueToKey($this->genres));
-        $this->set('user_id', $id);
-        $this->set(compact('dancer'));
     }
 
 
@@ -171,10 +187,10 @@ class DancersController extends AppController
 
             $dancer = $this->Dancers->patchEntity($dancer, $this->request->getData());
             if ($this->Dancers->save($dancer)) {
-                $this->Flash->success(__('更新しました。'));
+                $this->Flash->success(__('プロフィールを更新しました。'));
                 return $this->redirect(['action' => 'view', $dancer->user_id]);
             }
-            $this->Flash->error(__('エラーがあります。'));
+            $this->Flash->error(__('エラーがあります。解決しない場合はフィードバックより報告してください。'));
         }
 
         $videos = [];

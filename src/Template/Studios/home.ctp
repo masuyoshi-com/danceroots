@@ -102,7 +102,7 @@
                         );
                     }
                 ?>
-
+                <hr>
                 <?php if ($studio->establishment) : ?>
                     <p class="card-text mt-3">
                         設立日: <?= h($studio->establishment) ?>
@@ -206,7 +206,7 @@
                         ) ?>
                     </small>
                 </p>
-                <table class="table no-header mt-1">
+                <table class="table table-striped table-hover no-header mt-1">
                     <tbody>
                         <?php foreach ($informations as $information) : ?>
                         <tr>

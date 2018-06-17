@@ -265,7 +265,7 @@
 
                 <h4 class="card-title">
                     <strong>
-                        <?= $this->Html->link(h($job->user->username), $profile_links, ['class' => 'dark-grey-text']) ?>
+                        <?= $this->Html->link(h($job->user->username), $profile_links, ['class' => 'dark-grey-text', 'target' => '_blank']) ?>
                     </strong>
                 </h4>
 

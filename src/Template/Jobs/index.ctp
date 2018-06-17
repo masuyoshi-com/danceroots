@@ -144,7 +144,7 @@
                     <div class="row grey lighten-4 p-2 text-center">
                         <div class="col-lg-5 col-md-6 col-xs-12">
                             <p class="dark-grey-text">
-                                <strong>登録日</strong><br>
+                                <strong><i class="fa fa-clock-o" aria-hidden="true"></i>  登録日</strong><br>
                                 <?= h($job->created) ?>
                             </p>
                         </div>

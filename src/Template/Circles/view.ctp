@@ -5,7 +5,7 @@
 <div class="row">
     <?php if (AD === 0) : ?>
         <div class="col-lg-12 text-center">
-            <section id="dynamicContentWrapper-docsPanel" class="mb-5">
+            <section id="dynamicContentWrapper-docsPanel" class="mb-4">
                 <div class="card border border-danger z-depth-0" style="height: 200px;">
                     <div class="card-body text-center">
                         <p>
@@ -32,14 +32,16 @@
         <div class="card card-cascade narrower">
 
             <div class="view gradient-card-header aqua-gradient lighten-3">
-                <h5 class="mb-0 font-weight-bold"><?= h($circle->name) ?></h5>
+                <h5 class="mb-0 font-weight-bold">
+                    <small>サークル名: </small>
+                    <?= h($circle->name) ?>
+                </h5>
             </div>
 
             <div class="card-body mb-3">
-
                 <div class="row">
-                    <div class="col-lg-12 mb-3">
-                        <h5 class="mb-3">
+                    <div class="col-lg-6 col-md-6 col-xs-12">
+                        <h5 class="">
                             <?php
                                 if ($circle->genre) {
                                     print '<span class="badge ' . getBadgeColor(h($circle->genre)) . '">' . h($circle->genre) . '</span>';
@@ -51,7 +53,9 @@
                             <span class="badge indigo"><?= h($circle->pref) ?> </span>
                             <span class="badge badge-success"><?= h($circle->distinction) ?></span>
                         </h5>
+                    </div>
 
+                    <div class="col-lg-6 col-md-6 col-xs-12">
                         <?php if ($logins['id'] === $circle->user_id) : ?>
                         <h5 class="text-right">
                             <span class="badge badge-warning">サークル所有者</span>
@@ -60,7 +64,17 @@
                             <?php endif; ?>
                         </h5>
                         <?php endif; ?>
+                    </div>
+                </div>
 
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h4 class="h4-responsive text-center"><?= h($circle->title) ?></h4>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12 mb-3">
                         <?php if ($circle->image) : ?>
                         <div class="row mt-3 mb-3">
                             <div class="col-lg-12">
@@ -69,9 +83,11 @@
                             </div>
                         </div>
                         <?php endif; ?>
-
                     </div>
                 </div>
+
+
+                <hr class="mt-0">
 
                 <div class="row">
                     <div class="col-lg-4 col-md-6 col-xs-12">
@@ -177,7 +193,7 @@
                 </div>
 
                 <?php if ($circle->distinction === 'メンバー募集') : ?>
-                    <?php if ($logins['id'] !== $circle->user_id && $join_flag === 0) : ?>
+                    <?php if ($logins['id'] !== $circle->user_id && $join_flag === 0 && $logins['classification'] === 0) : ?>
                         <?= $this->Form->create('', ['url' => ['controller' => 'CircleGroups', 'action' => 'add']]) ?>
                         <?= $this->Form->hidden('circle_id', ['value' => h($circle->id)]) ?>
                         <?= $this->Form->hidden('user_id',   ['value' => $logins['id']]) ?>
@@ -212,7 +228,7 @@
                                 ) ?>
                             </div>
                         </div>
-                    <?php else : ?>
+                    <?php elseif ($join_flag === 1) : ?>
                         <div class="row">
                             <div class="col-lg-12">
                                 <?= $this->Html->link('サークル参加済み。マイサークルへ',

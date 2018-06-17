@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\Network\Exception\NotFoundException;
 
 /**
  * Studios Controller
@@ -138,23 +139,39 @@ class StudiosController extends AppController
     {
         $this->viewBuilder()->setLayout('add');
 
-        $studio = $this->Studios->newEntity();
+        $user = $this->Studios->Users->findByIdAndRegisterFlagAndClassification($id, 1, 1)->first();
 
-        if ($this->request->is('post')) {
+        if ($user) {
+            // 既に区分プロフィール作成済みか
+            $profile = $this->Studios->findByUserId($user->id)->first();
 
-            $studio = $this->Studios->patchEntity($studio, $this->request->getData());
+            // プロフィール未作成で、取得ユーザーIDがログインユーザーIDと一致すれば許可
+            if (!$profile && $user->id === $this->Auth->user('id')) {
+                $studio = $this->Studios->newEntity();
 
-            if ($this->Studios->save($studio)) {
-                $this->Flash->success(__('プロフィール作成しました。メニューが使用できるようになりました。'));
-                return $this->redirect(['action' => 'view', $studio->user_id]);
+                if ($this->request->is('post')) {
+
+                    $studio = $this->Studios->patchEntity($studio, $this->request->getData());
+
+                    if ($this->Studios->save($studio)) {
+                        $this->Flash->success(__('プロフィール作成しました。メニューが使用できるようになりました。'));
+                        return $this->redirect(['action' => 'view', $studio->user_id]);
+                    }
+
+                    $this->Flash->error(__('エラーがあります。'));
+                }
+
+                $this->set('genres', $this->Common->valueToKey($this->genres));
+                $this->set('user_id', $id);
+                $this->set(compact('studio'));
+            } else {
+                throw new NotFoundException(__('404 不正なアクセスまたはコンテンツが見つかりません。'));
             }
 
-            $this->Flash->error(__('エラーがあります。'));
+        } else {
+            throw new NotFoundException(__('404 不正なアクセスまたはコンテンツが見つかりません。'));
         }
 
-        $this->set('genres', $this->Common->valueToKey($this->genres));
-        $this->set('user_id', $id);
-        $this->set(compact('studio'));
     }
 
 

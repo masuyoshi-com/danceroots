@@ -108,7 +108,7 @@
                         設立日: <?= h($studio->establishment) ?>
                     </p>
                 <?php endif; ?>
-
+                <hr>
                 <p class="card-text mt-3">
                     <?= h($studio->self_intro) ?>
                 </p>
@@ -139,7 +139,7 @@
                     <div>
                         <?= $this->Html->link('<i class="fa fa-paper-plane-o"></i> メッセージ',
                             ['controller' => 'Messages', 'action' => 'add', $logins['id'], h($studio->user_id)],
-                            ['class' => 'btn purple-gradient btn-rounded', 'escape' => false]
+                            ['class' => 'btn blue-gradient btn-rounded', 'escape' => false]
                         ) ?>
                     </div>
                 <?php endif; ?>
@@ -358,7 +358,10 @@
         <div class="col-lg-12">
             <?php
                 if ($studio->user_id === $logins['id']) {
-                    print $this->Html->link('プロフィールを編集する', ['action' => 'edit', h($studio->user_id)], ['class' => 'btn btn-primary btn-block']);
+                    print $this->Html->link('<i class="fa fa-pencil" aria-hidden="true"></i> プロフィールを編集',
+                        ['action' => 'edit', h($studio->user_id)],
+                        ['class' => 'btn btn-primary btn-block', 'escape' => false]
+                    );
                 } else {
                     print $this->Html->link('<i class="fa fa-envelope"></i> このスタジオに問い合わせる',
                     [
@@ -367,7 +370,7 @@
                             $logins['id'],
                             h($studio->user_id)
                     ],
-                    ['class' => 'btn purple-gradient btn-block', 'escape' => false]);
+                    ['class' => 'btn blue-gradient btn-block', 'escape' => false]);
                 }
             ?>
         </div>

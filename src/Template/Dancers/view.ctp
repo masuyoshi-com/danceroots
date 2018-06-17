@@ -45,20 +45,15 @@
                 </p>
                 <h4 class="card-title"><strong><?= h($dancer->user->username) ?></strong></h4>
                 <?php if ($dancer->team_name) : ?>
-                <h5 class="dark-grey-text">Team: <strong><?= h($dancer->team_name) ?></strong></h5>
+                    <h5 class="dark-grey-text">Team: <strong><?= h($dancer->team_name) ?></strong></h5>
                 <?php endif; ?>
-                <h5>
-                    <span class="badge cyan">
-                        <?php
-                            if ($dancer->offer_flag === 0) {
-                                print 'オファー対応できます';
-                            } else {
-                                print 'オファー対応しません';
-                            }
-                        ?>
-                    </span>
-                </h5>
 
+                <?php if ($dancer->offer_flag === 0) : ?>
+                    <h5>
+                        <span class="badge cyan">オファー対応できます</span>
+                    </h5>
+                <?php endif; ?>
+                <hr>
                 <?php
                     if ($dancer->facebook) {
                         print $this->Html->link('<i class="fa fa-facebook dark-grey-text"></i>', h($dancer->facebook),
@@ -408,7 +403,7 @@
         <div class="col-lg-12 text-center">
             <?php
                 if ($dancer->user_id === $logins['id']) {
-                    print $this->Html->link('<i class="fa fa-edit" aria-hidden="true"></i> プロフィールを編集',
+                    print $this->Html->link('<i class="fa fa-pencil" aria-hidden="true"></i> プロフィールを編集',
                         ['action' => 'edit', h($dancer->user_id)],
                         ['class' => 'btn btn-primary btn-block', 'escape' => false]
                     );
@@ -416,7 +411,7 @@
                     print $this->Html->link('<i class="fa fa-envelope"></i> メッセージを送る',
                     [
                             'controller' => 'Messages',
-                            'action' => 'add',
+                            'action'     => 'add',
                             $logins['id'],
                             h($dancer->user_id)
                     ],

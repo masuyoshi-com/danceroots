@@ -16,24 +16,22 @@
         <div class="card card-cascade narrower">
 
             <div class="view gradient-card-header mdb-color lighten-2">
-                <h5 class="mb-0 font-bold">プロフィール 編集</h5>
-                <small><i class="fa fa-info-circle"></i> できるだけ詳細に項目を入力しましょう。イベント告知の質が高くなります。</small>
+                <h5 class="mb-0 font-bold"><i class="fa fa-pencil" aria-hidden="true"></i> プロフィール編集</h5>
+                <small><i class="fa fa-info-circle"></i> できるだけ詳細に項目を入力しましょう。</small>
             </div>
 
             <div class="card-body mb-3">
 
+                <?php if ($video) : ?>
                 <div class="row">
                     <div class="col-lg-12">
                         <h6><i class="fa fa-youtube-play yt-ic"></i> Event Video</h6>
-                        <?php if ($video) : ?>
-                            <div class="embed-responsive embed-responsive-16by9 z-depth-1">
-                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($video) ?>?rel=0" style="height: 100%" allowfullscreen></iframe>
-                            </div>
-                        <?php else : ?>
-                            <?= $this->Html->image('/img/sample/no_video.jpg', ['class' => 'img-fluid']) ?>
-                        <?php endif; ?>
+                        <div class="embed-responsive embed-responsive-16by9 z-depth-1">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($video) ?>?rel=0" style="height: 100%" allowfullscreen></iframe>
+                        </div>
                     </div>
                 </div>
+                <?php endif; ?>
 
                 <div class="row">
                     <div class="col-lg-12 mt-3">
@@ -260,7 +258,9 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <?= $this->Form->button('編集する', ['type' => 'submit', 'class' => 'btn btn-success btn-block']) ?>
+            <?= $this->Form->button('<i class="fa fa-edit" aria-hidden="true"></i> 編集',
+                ['type' => 'submit', 'class' => 'btn btn-success btn-block', 'escape' => false]
+            ) ?>
         </div>
     </div>
 
