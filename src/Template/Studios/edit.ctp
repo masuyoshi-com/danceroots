@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'ダンススタジオ編集') ?>
+<?php $this->assign('title', 'ダンススタジオプロフィール編集'); ?>
 
 <div class="row">
     <div class="col-lg-12">
@@ -310,7 +310,13 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <?= $this->Form->button('編集する', ['type'   => 'submit', 'class'  => 'btn btn-success btn-block']) ?>
+            <?= $this->Form->button('<i class="fa fa-edit" aria-hidden="true"></i> 編集',
+                [
+                    'type'   => 'submit',
+                    'class'  => 'btn btn-success btn-block',
+                    'escape' => false
+                ]
+            ) ?>
         </div>
     </div>
 </div><!-- /.card -->

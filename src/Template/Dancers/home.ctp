@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'ホーム'); ?>
+<?php $this->assign('title', h($dancer->user->username) . ' ホーム'); ?>
 
 <div class="row">
     <?php if (AD === 0) : ?>

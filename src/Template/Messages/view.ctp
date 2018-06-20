@@ -87,7 +87,7 @@
                     <?php if ($message->user_id !== $logins['id']) : ?>
                         <p>
                             <?= $this->Html->link('<i class="fa fa-paper-plane-o"></i> メッセージ',
-                                ['action' => 'add', $logins['id'], h($message->user_id), h($message->id)],
+                                ['action' => 'add', $message->user_id, $message->id],
                                 ['class' => 'btn btn-primary btn-sm', 'escape' => false]
                             ) ?>
                         </p>
@@ -111,7 +111,7 @@
                             ['class' => 'btn btn-sm btn-info', 'escape' => false]
                     ) ?>
                     <?= $this->Form->postLink('<i class="fa fa-trash" aria-hidden="true"></i> メッセージ削除',
-                        ['action' => 'to_delete', h($message->id)],
+                        ['action' => 'to_delete', $message->id],
                         ['class' => 'btn btn-sm btn-danger', 'escape' => false, 'confirm' => '本当に削除しても良いですか？']
                     )?>
                 </div>

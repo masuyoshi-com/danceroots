@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <?= $this->Html->link('<i class="fa fa-plus"></i> ダンサー求人登録',
-                    ['controller' => 'Jobs', 'action' => 'add', h($id)],
+                    ['controller' => 'Jobs', 'action' => 'add'],
                     ['class' => 'btn btn-outline-primary waves-effect btn-block', 'escape' => false]
                 ) ?>
             </div>

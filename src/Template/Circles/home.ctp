@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'サークルホーム') ?>
+<?php $this->assign('title', h($circle->name) . 'ホーム'); ?>
 
 <div class="row">
     <div class="col-lg-12">
@@ -25,7 +25,7 @@
             <div class="view gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
                 <div>
                     <?= $this->Html->link('<i class="fa fa-list mt-0"></i>',
-                            ['controller' => 'CircleMessages', 'action' => 'index', h($circle->id)],
+                            ['controller' => 'CircleMessages', 'action' => 'index', $circle->id],
                             [
                                 'class'          => 'btn btn-outline-white btn-rounded btn-sm px-2',
                                 'data-toggle'    => 'tooltip',
@@ -37,13 +37,13 @@
                 </div>
                 <strong>
                     <?= $this->Html->link('メッセージ',
-                            ['controller' => 'CircleMessages', 'action' => 'index', h($circle->id)],
+                            ['controller' => 'CircleMessages', 'action' => 'index', $circle->id],
                             ['class' => 'white-text mx-3']
                     ) ?>
                 </strong>
                 <div>
                     <?= $this->Html->link('<i class="fa fa-pencil mt-0"></i>',
-                            ['controller' => 'CircleMessages', 'action' => 'add', h($circle->id), $logins['id']],
+                            ['controller' => 'CircleMessages', 'action' => 'add', $circle->id],
                             [
                                 'class'          => 'btn btn-outline-white btn-rounded btn-sm px-2',
                                 'data-toggle'    => 'tooltip',
@@ -383,16 +383,16 @@
                         ) ?>
                         <div class="dropdown-menu dropdown-primary">
                             <?= $this->Html->link('マイサークル',      ['action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
-                            <?= $this->Html->link('サークル詳細',      ['action' => 'view', h($circle->id), $logins['id']], ['class' => 'dropdown-item']) ?>
-                            <?= $this->Html->link('サークル編集',      ['action' => 'edit', h($circle->id)], ['class' => 'dropdown-item']) ?>
-                            <?= $this->Html->link('サークルメッセージ', ['controller' => 'CircleMessages', 'action' => 'index', h($circle->id)], ['class' => 'dropdown-item']) ?>
-                            <?= $this->Html->link('メンバーリスト',    ['controller' => 'CircleGroups', 'action' => 'index', h($circle->id)], ['class' => 'dropdown-item']) ?>
+                            <?= $this->Html->link('サークル詳細',      ['action' => 'view', $circle->id], ['class' => 'dropdown-item']) ?>
+                            <?= $this->Html->link('サークル編集',      ['action' => 'edit', $circle->id], ['class' => 'dropdown-item']) ?>
+                            <?= $this->Html->link('サークルメッセージ', ['controller' => 'CircleMessages', 'action' => 'index', $circle->id], ['class' => 'dropdown-item']) ?>
+                            <?= $this->Html->link('メンバーリスト',    ['controller' => 'CircleGroups', 'action' => 'index', $circle->id], ['class' => 'dropdown-item']) ?>
                         </div>
                     </div>
                 <?php else : ?>
                     <div>
                         <?= $this->Html->link('<i class="fa fa-paper-plane-o"></i> メッセージ',
-                            ['controller' => 'Messages', 'action' => 'add', $logins['id'], h($circle->user_id)],
+                            ['controller' => 'Messages', 'action' => 'add', $circle->user_id],
                             ['class' => 'btn aqua-gradient btn-rounded', 'escape' => false]
                         ) ?>
                     </div>

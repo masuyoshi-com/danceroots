@@ -57,7 +57,7 @@ class InquiriesController extends AppController
      */
     public function thanks()
     {
-        // リフェラー処理必要
+        $this->Common->referer();
         $this->viewBuilder()->setLayout('public');
     }
 

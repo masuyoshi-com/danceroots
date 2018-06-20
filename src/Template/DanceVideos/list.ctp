@@ -1,25 +1,38 @@
-<?php $this->assign('title', 'マイダンス動画共有リスト'); ?>
+<?php $this->assign('title', 'マイダンス動画リスト'); ?>
 
 <div class="row">
-    <div class="col-lg-12">
-        <div class="jumbotron text-center">
+    <?php if (AD === 0) : ?>
+        <div class="col-lg-6 col-md-12">
+    <?php else : ?>
+        <div class="col-lg-12 col-md-12">
+    <?php endif; ?>
+        <div class="jumbotron text-center pt-5 pb-5">
             <h2 class="h2-responsive">
                 <i class="fa fa-youtube-play yt-ic"></i> マイ ダンス動画
             </h2>
             <hr class="my-2">
             <p class="lead grey-text">
-                <small>登録済み動画一覧です。やり直したい場合は、削除してから再度登録してください。</small>
+                <small><i class="fa fa-info-circle" aria-hidden="true"></i> お気に入りのダンス動画を共有しましょう。</small>
             </p>
             <hr class="my-2">
             <div class="row">
                 <div class="col-lg-12">
-                    <?= $this->Html->link('<i class="fa fa-plus"></i> ダンス動画登録', ['action' => 'add', h($id)],
+                    <?= $this->Html->link('<i class="fa fa-plus"></i> ダンス動画登録', ['action' => 'add'],
                         ['class' => 'btn btn-info btn-block', 'escape' => false]
                     ) ?>
                 </div>
             </div>
         </div>
     </div>
+    <?php if (AD === 0) : ?>
+        <div class="col-lg-6 col-md-12">
+            <div class="text-center jumbotron">
+                <p>
+                    <strong>広告枠</strong>
+                </p>
+            </div>
+        </div>
+    <?php endif; ?>
 </div>
 
 <div class="row">
@@ -110,7 +123,7 @@
 
                         <div class="text-right">
                             <?= $this->Html->link('<i class="fa fa-pencil" aria-hidden="true"></i>',
-                                    ['action' => 'edit', h($video->id)],
+                                    ['action' => 'edit', $video->id],
                                     [
                                         'class'          => 'btn btn-sm btn-outline-primary  btn-rounded waves-effect',
                                         'escape'         => false,
@@ -120,7 +133,7 @@
                                     ]
                             ) ?>
                             <?= $this->Form->postLink('<i class="fa fa-close" aria-hidden="true"></i>',
-                                    ['action' => 'delete', h($video->id), h($id)],
+                                    ['action' => 'delete', $video->id],
                                     [
                                         'class'          => 'btn btn-sm btn-outline-danger btn-rounded waves-effect',
                                         'confirm'        => '本当に削除しますか？',

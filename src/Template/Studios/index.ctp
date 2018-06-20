@@ -47,11 +47,20 @@
     <?php foreach ($studios as $studio) : ?>
     <div class="col-lg-3 col-md-6 mb-4">
 
-        <div class="card">
+        <div class="card testimonial-card">
             <div class="view overlay">
                 <?php
                     if ($studio->image1) {
                         print $this->Html->image($studio->image1, ['class' => 'img-fluid']);
+                    } elseif ($studio->icon) {
+                        print '
+                            <div class="card-up indigo lighten-1">
+                            </div>
+                            <!-- Avatar -->
+                            <div class="avatar mx-auto white">
+                                ' . $this->Html->image(h($studio->icon), ['class' => 'rounded-circle']) . '
+                            </div>
+                        ';
                     } else {
                         print $this->Html->image('/img/sample/noimage-600x360.jpg', ['class' => 'img-fluid']);
                     }
@@ -65,11 +74,20 @@
                     <span class="badge badge-success"><?= h($studio->pref) ?></span>
                     <span class="badge badge-info">Studio</span>
                 </p>
-                <h5 class="card-title">
-                    <strong>
-                        <?= $this->Html->link(h($studio->studio_name), ['action' => 'view', h($studio->user_id)], ['class' => 'dark-grey-text']) ?>
-                    </strong>
-                </h5>
+
+                <a href="<?= $this->Url->build(['action' => 'view', h($studio->user_id)], ['class' => 'dark-grey-text']) ?>">
+                    <h6 class="dark-grey-text"><?= h($studio->user->username) ?></h6>
+                    <h5 class="card-title mb-1 dark-grey-text">
+                        <small>スタジオ名:</small>
+                        <strong>
+                            <?= h($studio->studio_name) ?>
+                        </strong>
+                    </h5>
+                    <p class="dark-grey-text">
+                        <small>代表者:</small>
+                        <?= h($studio->name) ?>
+                    </p>
+                </a>
                 <?php if ($studio->station) : ?>
                     <p class="dark-grey-text"><small>最寄り駅: <?= h($studio->station) ?></small></p>
                 <?php endif; ?>

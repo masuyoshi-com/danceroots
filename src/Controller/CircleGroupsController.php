@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
+use Cake\Network\Exception\NotFoundException;
 
 /**
  * CircleGroups Controller
@@ -12,51 +14,66 @@ use App\Controller\AppController;
  */
 class CircleGroupsController extends AppController
 {
-
     public $paginate = [
         'limit' => 16,
         'order' => ['CircleGroups.created' => 'desc']
     ];
 
     /**
-     * サークルメンバー一覧
+     * サークルメンバーリスト
      *
      * 参加者のみがリストを閲覧できる。メッセージを送ったり、各プロフィールを確認できる。
      * サークルメッセージを選択することもできる。
      *
-     * @param int $circle_id サークルID
-
+     * @param string|null $circle_id サークルID
      * @return \Cake\Http\Response|void
-     * @todo リフェラー
      */
-    public function index($circle_id)
+    public function index($circle_id = null)
     {
         $circle = $this->CircleGroups->Circles->findById($circle_id)->first();
-        $query  = $this->CircleGroups->findByCircleId($circle_id)->contain(['Users']);
 
-        $circle_groups = $this->paginate($query)->toArray();
+        if ($circle) {
 
-        // サークルグループメンバー各プロフィールリンク取得
-        for ($i = 0; $i < count($circle_groups); $i++) {
-            $circle_groups[$i]['profile'] = $this->Common->getUsersByClassification($circle_groups[$i]['user']['classification'], $circle_groups[$i]['user_id']);
-            $circle_groups[$i]['user']['classification'] = $this->Common->getCategoryName($circle_groups[$i]['user']['classification']);
-            $circle_groups[$i]['link'] = $this->Common->linkSwitch($circle_groups[$i]['user']['classification'], 'view', $circle_groups[$i]['user_id']);
+            // ログインIDがサークルに所属しているか
+            $member = $this->CircleGroups->findByCircleIdAndUserId($circle_id, $this->Auth->user('id'))->first();
+
+            // サークルオーナーかサークルメンバーである場合
+            if ($circle->user_id === $this->Auth->user('id') || count($member) === 1) {
+
+                $query = $this->CircleGroups->findByCircleId($circle_id)->contain(['Users']);
+                $circle_groups = $this->paginate($query)->toArray();
+
+                // サークルグループメンバー各プロフィールリンク取得
+                for ($i = 0; $i < count($circle_groups); $i++) {
+                    $circle_groups[$i]['profile'] = $this->Common->getUsersByClassification($circle_groups[$i]['user']['classification'], $circle_groups[$i]['user_id']);
+                    $circle_groups[$i]['user']['classification'] = $this->Common->getCategoryName($circle_groups[$i]['user']['classification']);
+                    $circle_groups[$i]['link'] = $this->Common->linkSwitch($circle_groups[$i]['user']['classification'], 'view', $circle_groups[$i]['user_id']);
+                }
+
+                $this->set(compact('circle', 'circle_groups'));
+
+            } else {
+                throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
+            }
+
+        } else {
+            throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
         }
 
-        $this->set(compact('circle', 'circle_groups'));
     }
 
 
     /**
-     * サークルグループ登録 (依頼も含む)
+     * サークルグループ登録
      *
      * @return \Cake\Http\Response|null
      *
-     * @todo リフェラー
      * @todo サークルオーナーにメール配信
      */
     public function add()
     {
+        $this->Common->referer();
+
         $this->autoRender = false;
         $circleGroup = $this->CircleGroups->newEntity();
 
@@ -69,15 +86,15 @@ class CircleGroupsController extends AppController
             // 参加数が5つになっている場合は登録拒否
             if ($join_count >= 5) {
                 $this->Flash->error(__('サークル参加できません。サークル参加数が最大の5つに達しています。'));
-                return $this->redirect(['controller' => 'circles', 'action' => 'view', $circleGroup->circle_id, $circleGroup->user_id]);
+                return $this->redirect(['controller' => 'circles', 'action' => 'view', $circleGroup->circle_id]);
             }
 
             if ($this->CircleGroups->save($circleGroup)) {
 
                 $this->Flash->success(__('サークル参加しました。マイサークルで状態を確認できます。'));
-                return $this->redirect(['controller' => 'circles', 'action' => 'view', $circleGroup->circle_id, $circleGroup->user_id]);
+                return $this->redirect(['controller' => 'circles', 'action' => 'view', $circleGroup->circle_id]);
             }
-            $this->Flash->error(__('サークル参加できません。フィードバックよりお問合せください。'));
+            $this->Flash->error(__('サークル参加できません。解決しない場合はフィードバックよりお問い合わせください。'));
         }
     }
 
@@ -91,6 +108,7 @@ class CircleGroupsController extends AppController
      */
     public function delete($id = null)
     {
+        $this->Common->referer();
         $this->request->allowMethod(['post', 'delete']);
         $circleGroup = $this->CircleGroups->get($id);
 

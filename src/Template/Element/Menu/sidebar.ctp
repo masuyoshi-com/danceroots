@@ -49,6 +49,9 @@
                             <li>
                                 <?= $this->Html->link('ダンス動画', ['controller' => 'DanceVideos', 'action' => 'index'], ['class' => 'waves-effect']) ?>
                             </li>
+                            <li>
+                                <?= $this->Html->link('マイ ダンス動画', ['controller' => 'DanceVideos', 'action' => 'list', $logins['id']], ['class' => 'waves-effect']) ?>
+                            </li>
                             <!--
                             <li>
                                 <?= $this->Html->link('ダンス音楽', ['controller' => 'DanceMusics', 'action' => 'index'], ['class' => 'waves-effect']) ?>
@@ -82,7 +85,7 @@
                                 <?= $this->Html->link('イベント検索', ['controller' => 'Events', 'action' => 'index'], ['class' => 'waves-effect']) ?>
                             </li>
                             <li>
-                                <?= $this->Html->link('イベント登録', ['controller' => 'Events', 'action' => 'add', $logins['id']], ['class' => 'waves-effect']) ?>
+                                <?= $this->Html->link('イベント登録', ['controller' => 'Events', 'action' => 'add'], ['class' => 'waves-effect']) ?>
                             </li>
                         </ul>
                     </div>

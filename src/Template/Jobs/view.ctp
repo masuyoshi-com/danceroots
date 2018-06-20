@@ -210,7 +210,7 @@
                     <div class="col-lg-12">
                         <div class="md-form">
                             <?= $this->Html->link('<i class="fa fa-envelope"></i> この求人を問い合わせる',
-                                ['controller' => 'Messages', 'action' => 'add', $logins['id'], h($job->user_id)],
+                                ['controller' => 'Messages', 'action' => 'add', $job->user_id],
                                 ['class' => 'btn btn-primary btn-block', 'escape' => false]
                             ) ?>
                         </div>
@@ -221,8 +221,8 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <?= $this->Html->link('<i class="fa fa-edit"></i> この求人を編集する',
-                                ['action' => 'edit', h($job->id)],
-                                ['class' => 'btn btn-success btn-block', 'escape' => false]
+                            ['action' => 'edit', $job->id],
+                            ['class' => 'btn btn-success btn-block', 'escape' => false]
                         ) ?>
                     </div>
                     <div class="col-lg-6">
@@ -326,14 +326,14 @@
                 <?php if ($logins['id'] === $job->user_id) : ?>
                     <div class="md-form">
                         <?= $this->Html->link('<i class="fa fa-gavel" aria-hidden="true"></i> マイジョブ ',
-                            ['action' => 'list', h($job->user_id)],
+                            ['action' => 'list', $job->user_id],
                             ['class'  => 'btn blue-gradient btn-rounded', 'escape' => false]
                         ) ?>
                     </div>
                 <?php else : ?>
                     <div class="md-form">
                         <?= $this->Html->link('<i class="fa fa-envelope" aria-hidden="true"></i> この求人に関してお問い合わせ ',
-                            ['controller' => 'Messages', 'action' => 'add', $logins['id'], h($job->user_id)],
+                            ['controller' => 'Messages', 'action' => 'add', $job->user_id],
                             ['class'  => 'btn blue-gradient btn-rounded', 'escape' => false]
                         ) ?>
                     </div>

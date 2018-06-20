@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <?= $this->Html->link('<i class="fa fa-plus"></i> イベント新規登録',
-                    ['controller' => 'Events', 'action' => 'add', h($id)],
+                    ['controller' => 'Events', 'action' => 'add'],
                     ['class' => 'btn btn-outline-secondary waves-effect btn-block', 'escape' => false]
                 ) ?>
             </div>

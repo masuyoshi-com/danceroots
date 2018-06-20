@@ -25,34 +25,37 @@ class DancersController extends AppController
     /**
      * ホーム - 初期登録時、プロフィール未作成の場合、強制的にaddアクションへ
      *
-     * @param int $id ユーザーID
+     * @param string|null $id ユーザーID
      * @return redirect add 初期登録の場合のみ
-     *
-     * @todo ダンスチーム作成しているか
-     * @todo ダンスサークル作成しているか
-     *
+     * @throws \Cake\Network\Exception\NotFoundException
      */
-    public function home($id)
+    public function home($id = null)
     {
         if ($id) {
 
-            $query = $this->Dancers->findByUserId($id)->contain(['Users']);
-            $dancer = $query->first();
+            // ユーザーIDとログインIDが一致している場合のみ
+            if ((int)$id === $this->Auth->user('id')) {
 
-            if (!$dancer) {
-                $this->Flash->default(__('最初にプロフィールを作成しましょう。'));
-                $this->redirect(['action' => 'add', $id]);
+                $dancer = $this->Dancers->findByUserId($id)->contain(['Users'])->first();
+
+                if (!$dancer) {
+                    $this->Flash->default(__('最初にプロフィールを作成しましょう。'));
+                    $this->redirect(['action' => 'add', $id]);
+                }
+
+                $dancer['user']['classification'] = $this->Common->getCategoryName($dancer['user']['classification']);
+                // メッセージ未読数取得
+                $message_number = $this->Dancers->Users->Messages->findByToUserIdAndReadFlag($id, 0)->count();
+
+                // お知らせ最新1か月以内を3件のみ取得
+                $this->loadModel('Informations');
+                $informations = $this->Informations->find()->where(['Informations.created >' => new \DateTime('-1 months')])->limit(3)->all();
+
+                $this->set(compact('dancer', 'message_number', 'informations'));
+
+            } else {
+                throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
             }
-
-            $dancer['user']['classification'] = $this->Common->getCategoryName($dancer['user']['classification']);
-            // メッセージ未読数取得
-            $message_number = $this->Dancers->Users->Messages->findByToUserIdAndReadFlag($id, 0)->count();
-
-            // お知らせ最新1か月以内を3件のみ取得
-            $this->loadModel('Informations');
-            $informations = $this->Informations->find()->where(['Informations.created >' => new \DateTime('-1 months')])->limit(3)->all();
-
-            $this->set(compact('dancer', 'message_number', 'informations'));
 
         } else {
             // 強制ログアウト → 最初から操作させる
@@ -99,40 +102,42 @@ class DancersController extends AppController
 
 
     /**
-     * プロフィール詳細 - findはユーザIDで検索
+     * プロフィール詳細
      *
-     * @param string $id ログインID === ユーザーID
+     * @param string|null $id ユーザーID
      * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException
-     *
-     * @todo リフェラー
+     * @throws \Cake\Network\Exception\NotFoundException
      */
-    public function view($id)
+    public function view($id = null)
     {
-        $query = $this->Dancers->findByUserId($id)->contain(['Users']);
-        $dancer = $query->first();
+        $dancer = $this->Dancers->findByUserId($id)->contain(['Users'])->first();
 
-        // Youtube動画IDのみを取得
-        for ($i = 1; $i <= 3; $i++) {
-            $dancer['youtube' . $i] = $this->Common->getYoutubeId($dancer['youtube' . $i]);
+        if ($dancer) {
+            // Youtube動画IDのみを取得
+            for ($i = 1; $i <= 3; $i++) {
+                $dancer['youtube' . $i] = $this->Common->getYoutubeId($dancer['youtube' . $i]);
+            }
+
+            // ユーザ区分をカテゴリ名で取得
+            $dancer['user']['classification'] = $this->Common->getCategoryName($dancer['user']['classification']);
+            $this->set('dancer', $dancer);
+        } else {
+            throw new NotFoundException(__('404 ページが見つかりません。'));
         }
 
-        // ユーザ区分をカテゴリ名で取得
-        $dancer['user']['classification'] = $this->Common->getCategoryName($dancer['user']['classification']);
-        $this->set('dancer', $dancer);
     }
 
 
     /**
      * ダンサープロフィール登録 -初期登録は画面周りをシンプルに変更
      *
-     * @param int $id ユーザーID
+     * @param string|null $id ユーザーID
      * @return \Cake\Http\Response|null 登録成功の場合はviewへ
-     *
-     * @todo リフェラー
      */
-    public function add($id)
+    public function add($id = null)
     {
+        $this->Common->referer();
+
         $this->viewBuilder()->setLayout('add');
 
         // 区分ユーザーが存在し、本登録済みか
@@ -172,16 +177,15 @@ class DancersController extends AppController
     /**
      * ダンサー編集
      *
-     * @param string $id ユーザID
+     * @param string|null $id ユーザID
      * @return \Cake\Http\Response|null
      * @throws \Cake\Network\Exception\NotFoundException - レコードが存在しない場合
-     *
-     * @todo リフェラー
      */
-    public function edit($id)
+    public function edit($id = null)
     {
-        $query = $this->Dancers->findByUserId($id)->contain(['Users']);
-        $dancer = $query->first();
+        $this->Common->referer();
+
+        $dancer = $this->Dancers->findByUserId($id)->contain(['Users'])->first();
 
         if ($this->request->is(['patch', 'post', 'put'])) {
 
@@ -193,35 +197,18 @@ class DancersController extends AppController
             $this->Flash->error(__('エラーがあります。解決しない場合はフィードバックより報告してください。'));
         }
 
-        $videos = [];
-        for ($i = 1; $i <= 3; $i++) {
-            $videos[] = $this->Common->getYoutubeId($dancer['youtube' . $i]);
-        }
+        if ($dancer && (int)$dancer->user_id === $this->Auth->user('id')) {
 
-        $this->set('genres', $this->Common->valueToKey($this->genres));
-        $this->set(compact('dancer', 'videos'));
-    }
+            $videos = [];
+            for ($i = 1; $i <= 3; $i++) {
+                $videos[] = $this->Common->getYoutubeId($dancer['youtube' . $i]);
+            }
 
-
-    /**
-     * Delete method - 管理用
-     *
-     * @param string|null $id Dancer id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     *
-     * @todo 後にフラグか実際に消すか判断
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $dancer = $this->Dancers->get($id);
-        if ($this->Dancers->delete($dancer)) {
-            $this->Flash->success(__('The dancer has been deleted.'));
+            $this->set('genres', $this->Common->valueToKey($this->genres));
+            $this->set(compact('dancer', 'videos'));
         } else {
-            $this->Flash->error(__('The dancer could not be deleted. Please, try again.'));
+            throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
         }
-
-        return $this->redirect(['action' => 'index']);
     }
+
 }

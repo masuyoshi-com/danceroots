@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'ダンス動画共有検索'); ?>
+<?php $this->assign('title', 'ダンス動画検索'); ?>
 
 <div class="row">
     <?php if (AD === 0) : ?>
@@ -6,18 +6,16 @@
     <?php else : ?>
         <div class="col-lg-12 col-md-12">
     <?php endif; ?>
-        <div class="jumbotron text-center">
+        <div class="jumbotron text-center pt-5 pb-4">
             <h1 class="h1-responsive"><i class="fa fa-youtube-play yt-ic"></i> Favorite Dance Videos</h1>
             <hr class="my-2">
             <p class="lead grey-text">
                 <small>あなたの好きなダンス動画を登録しましょう。</small>
             </p>
             <hr class="my-2">
-            <?= $this->Html->link('<i class="fa fa-plus"></i> ダンス動画登録',
-                    ['action' => 'add', $logins['id']],
+            <?= $this->Html->link('<i class="fa fa-plus"></i> ダンス動画登録', ['action' => 'add'],
                     ['class' => 'btn btn-info btn-block', 'escape' => false]
-                )
-            ?>
+            ) ?>
         </div>
     </div>
     <?php if (AD === 0) : ?>

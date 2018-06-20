@@ -30,7 +30,7 @@
                     <div class="col-lg-12">
                         <div class="md-form">
                             <blockquote class="blockquote bq-primary">
-                                <p class="h2">メッセージ作成者 <?= h($user->username) ?></p>
+                                <p class="h2">メッセージ作成者 <?= h($from_user->username) ?></p>
                             </blockquote>
                         </div>
                         <hr class="mdb-form-color">

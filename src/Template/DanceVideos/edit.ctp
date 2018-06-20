@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'ダンス動画共有編集'); ?>
+<?php $this->assign('title', 'ダンス動画編集'); ?>
 
 <div class="row">
 
@@ -6,13 +6,20 @@
     </div>
 
     <div class="col-lg-8">
-        <div class="jumbotron text-center">
-            <h1 class="h1-responsive"><i class="fa fa-youtube-play yt-ic"></i> Favorite Dance Videos</h1>
+        <div class="jumbotron text-center pt-5 pb-1">
+            <h2 class="h2-responsive"><i class="fa fa-youtube-play yt-ic"></i> ダンス動画編集</h2>
             <hr class="my-2">
             <p class="lead grey-text">
-                <small>共有したいYoutubeURLを入力欄にコピペしてください。</small>
+                <small><i class="fa fa-info-circle" aria-hidden="true"></i> 共有したいYoutubeURLを入力欄にコピペしてください。</small>
             </p>
+
             <hr class="my-2">
+            <p class="text-left">
+                <?= $this->Html->link('<i class="fa fa-arrow-circle-left" aria-hidden="true"></i> マイ動画一覧',
+                    ['action' => 'list', $logins['id']],
+                    ['class' => 'btn btn-sm btn-warning', 'escape' => false]
+                ) ?>
+            </p>
         </div>
 
         <div class="row">

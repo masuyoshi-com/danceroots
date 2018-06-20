@@ -1,4 +1,4 @@
-<?php $this->assign('title', h($organizer->name) . ' プロフィール'); ?>
+<?php $this->assign('title', h($organizer->user->username) . 'プロフィール'); ?>
 
 <div class="row">
     <?php if (AD === 0) : ?>
@@ -142,18 +142,14 @@
                     <?php
                         if ($organizer->user_id === $logins['id']) {
                             print $this->Html->link('<i class="fa fa-pencil"></i> プロフィールを編集',
-                                ['action' => 'edit', h($organizer->user_id)],
+                                ['action' => 'edit', $organizer->user_id],
                                 ['class'  => 'btn btn-primary btn-block', 'escape' => false]
                             );
                         } else {
                             print $this->Html->link('<i class="fa fa-envelope"></i> メッセージを送る',
-                            [
-                                    'controller' => 'Messages',
-                                    'action'     => 'add',
-                                    $logins['id'],
-                                    h($organizer->user_id)
-                            ],
-                            ['class' => 'btn purple-gradient btn-block', 'escape' => false]);
+                                ['controller' => 'Messages', 'action' => 'add', $organizer->user_id],
+                                ['class' => 'btn purple-gradient btn-block', 'escape' => false]
+                            );
                         }
                     ?>
                 </div>
@@ -271,7 +267,7 @@
                 <?php else : ?>
                     <div>
                         <?= $this->Html->link('<i class="fa fa-paper-plane-o"></i> メッセージ',
-                            ['controller' => 'Messages', 'action' => 'add', $logins['id'], h($organizer->user_id)],
+                            ['controller' => 'Messages', 'action' => 'add', $organizer->user_id],
                             ['class' => 'btn purple-gradient btn-rounded', 'escape' => false]
                         ) ?>
                     </div>

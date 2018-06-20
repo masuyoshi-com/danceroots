@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'ダンス動画共有登録'); ?>
+<?php $this->assign('title', 'ダンス動画登録'); ?>
 
 <div class="row">
 
@@ -6,11 +6,11 @@
     </div>
 
     <div class="col-lg-8">
-        <div class="jumbotron text-center">
+        <div class="jumbotron text-center pt-5 pb-5">
             <h2 class="h2-responsive"><i class="fa fa-youtube-play yt-ic"></i> お気に入りダンス動画</h2>
             <hr class="my-2">
             <p class="lead grey-text">
-                <small>共有するダンス動画【YouTubeURL】を入力欄にコピペしてください。</small>
+                <small><i class="fa fa-info-circle" aria-hidden="true"></i> 共有するダンス動画 (YouTubeURL) を入力してください。</small>
             </p>
             <hr class="my-2">
         </div>

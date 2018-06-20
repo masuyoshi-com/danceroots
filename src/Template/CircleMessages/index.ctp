@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'サークルメッセージ一覧') ?>
+<?php $this->assign('title', 'サークルメッセージ一覧'); ?>
 
 <?= $this->Form->create('', ['type' => 'get']) ?>
 <div class="card p-3 mb-3">
@@ -29,7 +29,7 @@
     <div class="view gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
         <div>
             <?= $this->Html->link('<i class="fa fa-home mt-0"></i>',
-                    ['controller' => 'Circles', 'action' => 'home', h($circle->id), $logins['id']],
+                    ['controller' => 'Circles', 'action' => 'home', $circle->id],
                     [
                         'class'          => 'btn btn-outline-white btn-rounded btn-sm px-2',
                         'data-toggle'    => 'tooltip',
@@ -42,7 +42,7 @@
         <a href="javascript:void(0)" class="white-text mx-3"><?= h($circle->name) ?> メッセージ一覧</a>
         <div>
             <?= $this->Html->link('<i class="fa fa-pencil mt-0"></i>',
-                    ['controller' => 'CircleMessages', 'action' => 'add', h($circle->id), $logins['id']],
+                    ['controller' => 'CircleMessages', 'action' => 'add', $circle->id],
                     [
                         'class'          => 'btn btn-outline-white btn-rounded btn-sm px-2',
                         'data-toggle'    => 'tooltip',

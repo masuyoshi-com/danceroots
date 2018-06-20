@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Mailer\MailerAwareTrait;
+use Cake\Network\Exception\NotFoundException;
 
 /**
  * Users Controller
@@ -117,7 +118,6 @@ class UsersController extends AppController
     }
 
 
-
     /**
      * ログイン - 区分でリダイレクト先を変更
      */
@@ -210,7 +210,7 @@ class UsersController extends AppController
     /**
      * サインアップ完了
      *
-     * @return redirect URL手入力はトップページ、クエリが存在する場合はエラーページ
+     * @return redirect URL手入力はNotFountException、クエリが存在する場合はエラーページ
      * すでに本登録されている場合はregistered。48時間以上もエラー
      */
     public function complete()
@@ -240,7 +240,7 @@ class UsersController extends AppController
                 return $this->redirect(['action' => 'error']);
             }
         } else {
-            return $this->redirect(['controller' => 'pages', 'action' => 'index']);
+            throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
         }
 
     }
@@ -248,13 +248,13 @@ class UsersController extends AppController
 
     /**
      * マイアカウント
+     * パスワード変更はなりすましの可能性もあるため、完了後にメールを送る。心当たりがない場合は問い合わせを促すため
      *
      * @param string|null $id ユーザーID
      * @return \Cake\Http\Response|null
      * @throws \Cake\Network\Exception\NotFoundException レコードが存在しない場合
      *
-     * @todo メール変更は有効なメールアドレスか確認するため、仮登録しておく。リンク付きメールを
-     * クリックされた時点でアップデートをかける。パスワード変更のみの場合はそのままアップデートする。
+     * @todo 現状メールアドレス変更は問い合わせ後、運用がメール確認をとる。確認後、メールアドレスを運用が更新する
      */
     public function edit($id = null)
     {
@@ -262,48 +262,73 @@ class UsersController extends AppController
 
         if ($this->request->is(['patch', 'post', 'put'])) {
 
-            if ($this->request->data['e_password']) {
-                $this->request->data['password'] = $this->request->data['e_password'];
-                unset($this->request->data['e_password']);
+            if ($this->request->data['current_password']) {
+
+                $user = $this->Users->findById($this->request->data['id'])->first();
+
+                if ($user) {
+                    // 現在のパスワードを認証
+                    if (password_verify($this->request->data['current_password'], $user->password)) {
+                        // 新たなパスワードがある場合
+                        if ($this->request->data['new_password']) {
+                            // 新たなパスワードと確認パスワードが一致するか
+                            if ($this->request->data['new_password'] === $this->request->data['confirm_password']) {
+
+                                $this->request->data['password'] = $this->request->data['new_password'];
+
+                                unset($this->request->data['new_password']);
+                                unset($this->request->data['confirm_password']);
+
+                                $user = $this->Users->patchEntity($user, $this->request->getData());
+
+                                if ($this->Users->save($user)) {
+                                    // パスワード変更メール送信
+                                    if (SEND_MAIL_FUNCTION === 0) {
+                                        // 差出人ユーザー取得
+                                        $this->getMailer('User')->send('user_pass_edit', [$user]);
+                                    }
+                                    $this->Flash->success(__('アカウント編集しました。パスワード変更完了のメールが送信されました。'));
+                                    // ホームへ
+                                    $homes = $this->Common->linkSwitch($user->classification, 'home', $user->id);
+                                    return $this->redirect($homes);
+                                }
+                                $this->Flash->error(__('エラーがあります。解決しない場合はフィードバックより報告してください。'));
+
+                            } else {
+                                $this->Flash->error(__('新たなパスワードが確認と一致しません。'));
+                            }
+                        } else {
+                            $this->Flash->error(__('現在のパスワードの認証は完了しましたが、新たなパスワードが見つかりません。'));
+                        }
+                    } else {
+                        $this->Flash->error(__('現在のパスワードが認証できません。'));
+                    }
+
+                } else {
+                    throw new NotFoundException(__('404 不正なアクセスまたはユーザーが見つかりません。'));
+                }
+
+            } else {
+                $user = $this->Users->patchEntity($user, $this->request->getData());
+
+                if ($this->Users->save($user)) {
+                    $this->Flash->success(__('アカウント編集しました。'));
+
+                    // ホームへ
+                    $homes = $this->Common->linkSwitch($user->classification, 'home', $user->id);
+                    return $this->redirect($homes);
+                }
+                $this->Flash->error(__('エラーがあります。解決しない場合はフィードバックより報告してください。'));
             }
-
-            $user = $this->Users->patchEntity($user, $this->request->getData());
-
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('アカウント編集しました。'));
-
-                // ホームへ
-                $homes = $this->Common->linkSwitch($user->classification, 'home', $user->id);
-                return $this->redirect($homes);
-            }
-            $this->Flash->error(__('エラーがあります。再度確認してください。'));
         }
 
-        $this->set(compact('user'));
-    }
-
-
-    /**
-     * ユーザ退会処理 - 削除はしない
-     *
-     * @param string|null $id User id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     *
-     * @todo delete_flagでユーザを退会させる。現状データは残しておくこと。実装は運用後
-     * @todo 実際のユーザーデータ削除は運用側で実行する
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $user = $this->Users->get($id);
-        if ($this->Users->delete($user)) {
-            $this->Flash->success(__('The user has been deleted.'));
+        // 取得したユーザーが現在ログインしているユーザIDと同じか
+        if ($user->id === $this->Auth->user('id')) {
+            $this->set(compact('user'));
         } else {
-            $this->Flash->error(__('The user could not be deleted. Please, try again.'));
+            throw new NotFoundException(__('404 ページが見つかりません。'));
         }
 
-        return $this->redirect(['action' => 'index']);
     }
 
 
@@ -319,10 +344,10 @@ class UsersController extends AppController
      /**
       * 本登録案内メールお知らせ
       *
-      * @todo referer
       */
       public function midstream()
       {
+          $this->Common->referer();
           $this->viewBuilder()->setLayout('simple');
       }
 
@@ -330,10 +355,10 @@ class UsersController extends AppController
      /**
       * 本登録済み
       *
-      * @todo referer
       */
       public function registered()
       {
+          $this->Common->referer();
           $this->viewBuilder()->setLayout('simple');
       }
 
@@ -379,6 +404,7 @@ class UsersController extends AppController
       */
      public function forgotMail()
      {
+         $this->Common->referer();
          $this->viewBuilder()->setLayout('simple');
      }
 
@@ -386,7 +412,7 @@ class UsersController extends AppController
     /**
      * パスワード再発行・編集
      *
-     * @return redirect 一時ハッシュが存在しない場合、4848時間以上のアクセスはエラー画面へ
+     * @return redirect 一時ハッシュが存在しない場合、48時間以上のアクセスはエラー画面へ
      *  URL手入力はトップページへ
      */
     public function reissue()
@@ -439,11 +465,10 @@ class UsersController extends AppController
 
     /**
      * パスワード再発行完了
-     *
-     * @todo referer
      */
      public function passComp()
      {
+         $this->Common->referer();
          $this->viewBuilder()->setLayout('simple');
      }
 

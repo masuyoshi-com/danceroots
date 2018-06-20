@@ -333,14 +333,14 @@
                 <?php if ($logins['id'] !== $circle->user_id) : ?>
                 <div class="md-form">
                     <?= $this->Html->link('<i class="fa fa-envelope"></i> メッセージ',
-                        ['controller' => 'Messages', 'action' => 'add', $logins['id'], h($circle->user_id)],
+                        ['controller' => 'Messages', 'action' => 'add', $circle->user_id],
                         ['class'  => 'btn aqua-gradient btn-rounded', 'escape' => false]
                     ) ?>
                 </div>
                 <?php else : ?>
                 <div class="md-form">
                     <?= $this->Html->link('マイダンスサークル',
-                        ['action' => 'list', h($circle->user_id)],
+                        ['action' => 'list', $circle->user_id],
                         ['class'  => 'btn aqua-gradient btn-rounded', 'escape' => false]
                     ) ?>
                 </div>

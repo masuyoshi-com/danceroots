@@ -213,7 +213,6 @@ class EventsTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['user_id'], 'Users'));
-
         return $rules;
     }
 
@@ -229,6 +228,7 @@ class EventsTable extends Table
             ->where(['Events.pref LIKE'     => '%' . $requests['pref'] . '%'])
             ->where(['Events.category LIKE' => '%' . $requests['category'] . '%'])
             ->where(['OR' => [
+                ['Users.username LIKE'      => '%' . $requests['word'] . '%'],
                 ['Events.event_name LIKE'   => '%' . $requests['word'] . '%'],
                 ['Events.address LIKE'      => '%' . $requests['word'] . '%'],
                 ['Events.place LIKE'        => '%' . $requests['word'] . '%'],

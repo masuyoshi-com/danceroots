@@ -1,4 +1,4 @@
-<?php $this->assign('title', $dancer->name . 'プロフィール編集') ?>
+<?php $this->assign('title', $dancer->name . 'プロフィール編集'); ?>
 
 <div class="row">
     <div class="col-lg-12">

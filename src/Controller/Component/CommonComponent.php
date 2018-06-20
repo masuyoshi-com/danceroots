@@ -3,6 +3,7 @@ namespace App\Controller\Component;
 
 use Cake\Controller\Component;
 use Cake\ORM\TableRegistry;
+use Cake\Network\Exception\NotFoundException;
 
 class CommonComponent extends Component
 {
@@ -132,16 +133,16 @@ class CommonComponent extends Component
 
 
     /**
-     * URL手入力禁止
+     * URL手入力がある場合、例外処理
      *
-     * @param none
+     * @param void
+     * @return throw NotFoundException
      */
-    public function refeler()
+    public function referer()
     {
-        if (!isset($_SERVER['HTTP_REFERER']) || $_SERVER['HTTP_REFERER'] === null) {
-            $_SESSION = [];
-            SessionComponent::destroy();
-            die('不正な操作があった可能性があります。申し訳ありませんが最初からやり直して</a>ください。');
+        $refeler = $this->request->env('HTTP_REFERER');
+        if (!isset($refeler) || $refeler === null) {
+            throw new NotFoundException(__('404 ページが見つかりません。'));
         }
     }
 

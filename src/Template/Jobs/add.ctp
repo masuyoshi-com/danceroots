@@ -1,4 +1,3 @@
-
 <?php $this->assign('title', 'ダンス関連求人登録'); ?>
 
 <div class="card card-cascade narrower">

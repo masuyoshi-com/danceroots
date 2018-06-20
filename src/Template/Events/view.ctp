@@ -180,7 +180,7 @@
                     <div class="col-lg-12">
                         <div class="md-form">
                             <?= $this->Html->link('<i class="fa fa-envelope"></i> このイベントに問い合わせる',
-                                ['controller' => 'Messages', 'action' => 'add', $logins['id'], h($event->user_id)],
+                                ['controller' => 'Messages', 'action' => 'add', $event->user_id],
                                 ['class' => 'btn btn-primary btn-block', 'escape' => false]
                             ) ?>
                         </div>
@@ -295,14 +295,14 @@
                 <?php if ($logins['id'] === $event->user_id) : ?>
                     <div class="md-form">
                         <?= $this->Html->link('<i class="fa fa-calendar"></i> マイイベント ',
-                            ['action' => 'list', h($event->user_id)],
+                            ['action' => 'list', $event->user_id],
                             ['class'  => 'btn purple-gradient btn-rounded', 'escape' => false]
                         ) ?>
                     </div>
                 <?php else : ?>
                     <div class="md-form">
                         <?= $this->Html->link('<i class="fa fa-paper-plane-o"></i> メッセージ ',
-                            ['controller' => 'Messages', 'action' => 'add', $logins['id'], h($event->user_id)],
+                            ['controller' => 'Messages', 'action' => 'add', $event->user_id],
                             ['class'  => 'btn blue-gradient btn-rounded', 'escape' => false]
                         ) ?>
                     </div>

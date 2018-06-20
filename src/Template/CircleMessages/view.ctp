@@ -15,7 +15,7 @@
                         if ($circle_message->owner->icon) {
                             print $this->Html->image($circle_message->owner->icon, ['class' => 'img-fluid rounded-circle z-depth-2 avatar']);
                         } else {
-                            print $this->Html->image('/img/sample/no_icon.jpg');
+                            print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'img-fluid rounded-circle z-depth-2 avatar']);
                         }
                     ?>
                 </div>
@@ -107,7 +107,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <?= $this->Html->link('<i class="fa fa-home" aria-hidden="true"></i> サークルホーム',
-                            ['controller' => 'Circles', 'action' => 'home', h($circle_message->circle_id), $logins['id']],
+                            ['controller' => 'Circles', 'action' => 'home', h($circle_message->circle_id)],
                             ['class' => 'btn btn-sm btn-warning', 'escape' => false]
                     ) ?>
                     <?= $this->Html->link('<i class="fa fa-list" aria-hidden="true"></i> <span class="none">メッセージ</span>一覧',

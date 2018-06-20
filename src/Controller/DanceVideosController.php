@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
+use Cake\Network\Exception\NotFoundException;
 
 /**
  * DanceVideos Controller
@@ -23,26 +25,33 @@ class DanceVideosController extends AppController
      * マイYoutube動画一覧
      * ※ オブジェクト箇所を任意に要素追加する場合はページネート時にtoArray()で一旦配列として処理する
      *
-     * @param $id ユーザーID
+     * @param string|null $id ユーザーID
+     * @throws \Cake\Network\Exception\NotFoundException
      */
-    public function list($id)
+    public function list($id = null)
     {
-        $query  = $this->DanceVideos->findByUserId($id);
-        $videos = $this->paginate($query)->toArray();
+        // GETリクエストとAUTHを認証する
+        if ((int)$id === $this->Auth->user('id')) {
 
-        if ($videos) {
-            for ($i = 0; $i < count($videos); $i++) {
-                $videos[$i]['youtube'] = $this->Common->getYoutubeId($videos[$i]['youtube']);
+            $query  = $this->DanceVideos->findByUserId($id);
+            $videos = $this->paginate($query)->toArray();
+
+            if ($videos) {
+                for ($i = 0; $i < count($videos); $i++) {
+                    $videos[$i]['youtube'] = $this->Common->getYoutubeId($videos[$i]['youtube']);
+                }
+
+                // ユーザー区分プロフィール取得(ICON使用目的)
+                $profiles = $this->Common->getUsersByClassification($videos[0]['user']['classification'], $videos[0]['user']['id']);
+                $this->set('icon', $profiles->icon);
             }
-
-            // ユーザー区分プロフィール取得(ICON使用目的)
-            $profiles = $this->Common->getUsersByClassification($videos[0]['user']['classification'], $videos[0]['user']['id']);
-            $this->set('icon', $profiles->icon);
+            $this->set('id', $id);
+            $this->set('videos', $videos);
+            $this->set('genres', $this->Common->valueToKey($this->genres));
+        } else {
+            throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
         }
 
-        $this->set('id', $id);
-        $this->set('videos', $videos);
-        $this->set('genres', $this->Common->valueToKey($this->genres));
     }
 
 
@@ -50,6 +59,7 @@ class DanceVideosController extends AppController
      * ダンス動画検索
      *
      * @return \Cake\Http\Response|void
+     * @throws \Cake\Network\Exception\NotFoundException
      */
     public function index()
     {
@@ -90,11 +100,9 @@ class DanceVideosController extends AppController
 
     /**
      * ダンス動画共有登録
-     *
-     * @param int $id ユーザーID
      * @return \Cake\Http\Response|null
      */
-    public function add($id)
+    public function add()
     {
         $danceVideo = $this->DanceVideos->newEntity();
 
@@ -105,12 +113,12 @@ class DanceVideosController extends AppController
             if ($this->DanceVideos->save($danceVideo)) {
 
                 $this->Flash->success(__('ダンス動画を登録しました。'));
-                return $this->redirect(['action' => 'list', $id]);
+                return $this->redirect(['action' => 'list', $this->request->data['user_id']]);
             }
             $this->Flash->error(__('エラーがありました。再度確認してください。'));
         }
 
-        $this->set('user_id', $id);
+        $this->set('user_id', $this->Auth->user('id'));
         $this->set('genres', $this->Common->valueToKey($this->genres));
         $this->set(compact('danceVideo'));
     }
@@ -119,11 +127,13 @@ class DanceVideosController extends AppController
     /**
      * ダンス動画編集
      *
-     * @param int $id ダンス動画ID
+     * @param string|null $id ダンス動画ID
      * @return \Cake\Http\Response|null
      */
-    public function edit($id)
+    public function edit($id = null)
     {
+        $this->Common->referer();
+
         $danceVideo = $this->DanceVideos->get($id);
 
         if ($this->request->is(['patch', 'post', 'put'])) {
@@ -146,22 +156,22 @@ class DanceVideosController extends AppController
     /**
      * ダンス動画共有削除
      *
-     * @param string $id      ダンス動画ID
-     * @param string $user_id ユーザーID
+     * @param string|null $id ダンス動画ID
      * @return \Cake\Http\Response|null listアクションへ
      * @throws \Cake\Datasource\Exception\RecordNotFoundException レコードが存在しない場合
      */
-    public function delete($id, $user_id)
+    public function delete($id = null)
     {
+        $this->Common->referer();
         $this->request->allowMethod(['post', 'delete']);
         $danceVideo = $this->DanceVideos->get($id);
 
         if ($this->DanceVideos->delete($danceVideo)) {
-            $this->Flash->success(__('削除しました。'));
+            $this->Flash->success(__('動画を削除しました。'));
         } else {
             $this->Flash->error(__('削除できません。問題が解決しなければサポートに連絡してください。'));
         }
 
-        return $this->redirect(['action' => 'list', $user_id]);
+        return $this->redirect(['action' => 'list', $this->Auth->user('id')]);
     }
 }

@@ -1,4 +1,4 @@
-<?php $this->assign('title', h($organizer->name) . ' ホーム'); ?>
+<?php $this->assign('title', h($organizer->user->username) . ' ホーム'); ?>
 
 <div class="row">
     <?php if (AD === 0) : ?>

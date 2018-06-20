@@ -66,7 +66,7 @@
                         if ($group->user->id !== $logins['id']) {
 
                             print $this->Html->link('<i class="fa fa-envelope" area-hidden="true"></i>',
-                                    ['controller' => 'Messages', 'action' => 'add', $logins['id'], h($group->user->id)],
+                                    ['controller' => 'Messages', 'action' => 'add', $group->user->id],
                                     [
                                         'class'          => 'p-2 fa-lg email-ic',
                                         'data-toggle'    => 'tooltip',
@@ -149,5 +149,5 @@
         </div>
     </div>
     <?php endif; ?>
-    
+
 </section>

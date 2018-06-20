@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Mailer\MailerAwareTrait;
+use Cake\Network\Exception\NotFoundException;
 
 /**
  * Messages Controller
@@ -22,53 +23,61 @@ class MessagesController extends AppController
     /**
      * メッセージ受信箱 送られてきたのでToとする
      *
-     * @param int $id ユーザーID
+     * @param string|null $id ユーザーID
      * @return \Cake\Http\Response|void
      */
-    public function index($id)
+    public function index($id = null)
     {
-        // 受信箱データ
-        $to_query    = $this->Messages->findAllByToUserIdAndToDelFlag($id, 0);
-        $to_messages = $this->paginate($to_query)->toArray();
+        if ((int)$id === $this->Auth->user('id')) {
+            // 受信箱データ
+            $to_query    = $this->Messages->findAllByToUserIdAndToDelFlag($id, 0);
+            $to_messages = $this->paginate($to_query)->toArray();
 
-        // Fromユーザ取得
-        if ($to_messages) {
-            $j = 0;
-            foreach ($to_messages as $to) {
-                $to_messages[$j]['from_username'] = $this->Messages->Users
-                    ->findById($to->user_id)
-                    ->select(['Users.id', 'Users.username'])->toArray();
-                $j++;
+            // Fromユーザ取得
+            if ($to_messages) {
+                $j = 0;
+                foreach ($to_messages as $to) {
+                    $to_messages[$j]['from_username'] = $this->Messages->Users
+                        ->findById($to->user_id)
+                        ->select(['Users.id', 'Users.username'])->toArray();
+                    $j++;
+                }
             }
-        }
 
-        $this->set('to_messages',   $to_messages);
+            $this->set('to_messages',   $to_messages);
+        } else {
+            throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
+        }
     }
 
 
     /**
      * 送信箱 差出人になったのでFromとする
      *
-     * @param int $id ユーザーID
+     * @param string|null $id ユーザーID
      * @return \Cake\Http\Response|void
      */
-    public function outbox($id)
+    public function outbox($id = null)
     {
-        // 送信箱データ
-        $from_query    = $this->Messages->findAllByUserIdAndFromDelFlag($id, 0);
-        $from_messages = $this->paginate($from_query)->toArray();
+        if ((int)$id === $this->Auth->user('id')) {
+            // 送信箱データ
+            $from_query    = $this->Messages->findAllByUserIdAndFromDelFlag($id, 0);
+            $from_messages = $this->paginate($from_query)->toArray();
 
-        // Toユーザー取得
-        if ($from_messages) {
-            $i = 0;
-            foreach ($from_messages as $from) {
-                $from_messages[$i]['to_username'] = $this->Messages->Users
-                    ->findById($from->to_user_id)
-                    ->select(['Users.id', 'Users.username'])->toArray();
-                $i++;
+            // Toユーザー取得
+            if ($from_messages) {
+                $i = 0;
+                foreach ($from_messages as $from) {
+                    $from_messages[$i]['to_username'] = $this->Messages->Users
+                        ->findById($from->to_user_id)
+                        ->select(['Users.id', 'Users.username'])->toArray();
+                    $i++;
+                }
             }
+            $this->set('from_messages', $from_messages);
+        } else {
+            throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
         }
-        $this->set('from_messages', $from_messages);
     }
 
 
@@ -78,11 +87,11 @@ class MessagesController extends AppController
      * @param string|null $id メッセージID
      * @return \Cake\Http\Response|void
      * @throws \Cake\Datasource\Exception\RecordNotFoundException レコードがない場合
-     *
-     * @todo リフェラー処理
      */
     public function view($id = null)
     {
+        $this->Common->referer();
+
         $message = $this->Messages->get($id, ['contain' => ['Users']]);
         // メッセージが未読の場合、既読フラグアップデート
         if ($message->read_flag === 0) {
@@ -107,6 +116,8 @@ class MessagesController extends AppController
      */
      public function outView($id = null)
      {
+         $this->Common->referer();
+
          $message = $this->Messages->get($id);
          // 相手ユーザ名を取得
          $message['to_username'] = $this->Messages->Users->findById($message->to_user_id)
@@ -120,17 +131,13 @@ class MessagesController extends AppController
     /**
      * メッセージ作成
      *
-     * @param int $from_id  差出人ユーザーID
-     * @param int $to_id    送信先ユーザーID
-     * @param int $reply_id 基のメッセージID
-     *
+     * @param string|null $to_id    送信先ユーザーID
+     * @param string|null $reply_id 基のメッセージID
      * @return \Cake\Http\Response|null
-     *
-     * @todo メッセージ作成後、送信相手にメールお知らせメッセージを送る
-     * @todo url手入力禁止
      */
-    public function add($from_id, $to_id, $reply_id = null)
+    public function add($to_id = null, $reply_id = null)
     {
+        $this->Common->referer();
         // 送信先ユーザー取得
         $to_user = $this->Messages->Users->findById($to_id)->first();
         $message = $this->Messages->newEntity();
@@ -139,8 +146,8 @@ class MessagesController extends AppController
 
             // 返信の場合はどのメッセージに対してかわかるようにメッセージIDを登録
             if ($reply_id) {
-                $this->request->data['reply_id']   = $reply_id;
 
+                $this->request->data['reply_id'] = $reply_id;
                 // 親(基)となるメッセージのrepley_flagを更新
                 $parent_message = $this->Messages->get($reply_id);
                 // メッセージが未読の場合、既読フラグアップデート
@@ -168,18 +175,16 @@ class MessagesController extends AppController
             $this->Flash->error(__('送信できません。再度確認してください。'));
         }
 
+        // 一つ前のページをセットしておく
         if ($this->referer() !== '/') {
-            // GETで送信
             $url = $this->referer();
         } else {
-            // 不正なアクセス処理記述
             $url = null;
         }
 
-        $this->set('url',        $url);
-        $this->set('user_id',    $from_id);
+        $this->set('user_id',    $this->Auth->user('id'));
         $this->set('to_user_id', $to_id);
-        $this->set(compact('message', 'to_user'));
+        $this->set(compact('message', 'to_user', 'url'));
     }
 
 
@@ -193,6 +198,8 @@ class MessagesController extends AppController
      */
     public function toDelete($id = null)
     {
+        $this->Common->referer();
+
         $this->request->allowMethod(['post', 'delete']);
         $message = $this->Messages->get($id);
         $message->to_del_flag = 1;
@@ -216,6 +223,8 @@ class MessagesController extends AppController
      */
     public function fromDelete($id = null)
     {
+        $this->Common->referer();
+
         $this->request->allowMethod(['post', 'delete']);
         $message = $this->Messages->get($id);
         $message->from_del_flag = 1;

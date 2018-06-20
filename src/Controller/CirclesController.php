@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Event\Event;
 use Cake\Mailer\MailerAwareTrait;
+use Cake\Network\Exception\NotFoundException;
 
 /**
  * Circles Controller
@@ -49,21 +50,25 @@ class CirclesController extends AppController
     /**
      * マイサークル (所属しているサークル一覧表示)
      *
-     * @param int $id ユーザーID
-     * @todo 参加しているサークルの呼び出し
+     * @param string|null $id ユーザーID
+     * @throws \Cake\Network\Exception\NotFoundException
      */
-    public function list($id)
+    public function list($id = null)
     {
-        // 登録済みサークル
-        $circles = $this->Circles->findByUserIdAndDeleteFlag($id, 0)->all();
+        if ((int)$id === $this->Auth->user('id')) {
+            // 登録済みサークル
+            $circles = $this->Circles->findByUserIdAndDeleteFlag($id, 0)->all();
 
-        // 参加済みサークル
-        $circle_groups = $this->Circles->CircleGroups->findByUserId($id)->contain('Circles', function ($q) {
-                return $q->where(['Circles.delete_flag' => 0]);
-        })->all();
+            // 参加済みサークル
+            $circle_groups = $this->Circles->CircleGroups->findByUserId($id)->contain('Circles', function ($q) {
+                    return $q->where(['Circles.delete_flag' => 0]);
+            })->all();
 
-        $this->set(compact('circles', 'circle_groups'));
-        $this->set('id', $id);
+            $this->set(compact('circles', 'circle_groups'));
+            $this->set('id', $id);
+        } else {
+            throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
+        }
     }
 
 
@@ -71,44 +76,59 @@ class CirclesController extends AppController
      * サークルホーム
      * 参加者がホームでサークルのお知らせや、メンバーリスト、グループメッセージを送ったりできる
      *
-     * @param int $circle_id サークルID
-     * @param int $user_id   ユーザーID
-     *
-     * @todo リフェラー
+     * @param string|null $circle_id サークルID
+     * @throws \Cake\Network\Exception\NotFoundException
      */
-    public function home($circle_id, $user_id)
+    public function home($circle_id = null)
     {
         $circle = $this->Circles->get($circle_id, ['contain' => ['Users']]);
 
-        // オーナー検索
-        $circle['owner'] = $this->Common->getUsersByClassification($circle['user']['classification'], $circle->user_id);
-        // 区分リンク取得
-        $profile_links = $this->Common->linkSwitch($circle['user']['classification'], 'view', $circle->user_id);
-        // 区分カテゴリ名取得
-        $circle['user']['classification'] = $this->Common->getCategoryName($circle['user']['classification']);
+        if ($circle) {
 
-        // サークルメッセージ呼び出し
-        $circle_messages = $this->Circles->CircleMessages->findByCircleId($circle_id)
-            ->contain(['Users'])
-            ->order(['CircleMessages.modified' => 'DESC'])
-            ->limit(20)
-            ->all();
+            // ログインIDがサークルに所属しているか検索
+            $member = $this->Circles->CircleGroups->findByCircleIdAndUserId($circle_id, $this->Auth->user('id'))->first();
 
-        // サークルメンバー呼び出し
-        $circle_members = $this->Circles->CircleGroups->findByCircleId($circle_id)
-            ->contain(['Users'])
-            ->order(['CircleGroups.created' => 'DESC'])
-            ->limit(20)
-            ->toArray();
+            // サークルオーナーかサークルメンバーである場合
+            if ($circle->user_id === $this->Auth->user('id') || count($member) === 1) {
 
-        // 必要なプロフィールを取得
-        for ($i = 0; $i < count($circle_members); $i++) {
-            $circle_members[$i]['profile'] = $this->Common->getUsersByClassification($circle_members[$i]['user']['classification'], $circle_members[$i]['user_id']);
-            $circle_members[$i]['user']['classification'] = $this->Common->getCategoryName($circle_members[$i]['user']['classification']);
-            $circle_members[$i]['link'] = $this->Common->linkSwitch($circle_members[$i]['user']['classification'], 'view', $circle_members[$i]['user_id']);
+                // オーナー検索
+                $circle['owner'] = $this->Common->getUsersByClassification($circle['user']['classification'], $circle->user_id);
+                // 区分リンク取得
+                $profile_links = $this->Common->linkSwitch($circle['user']['classification'], 'view', $circle->user_id);
+                // 区分カテゴリ名取得
+                $circle['user']['classification'] = $this->Common->getCategoryName($circle['user']['classification']);
+
+                // サークルメッセージ呼び出し
+                $circle_messages = $this->Circles->CircleMessages->findByCircleId($circle_id)
+                    ->contain(['Users'])
+                    ->order(['CircleMessages.modified' => 'DESC'])
+                    ->limit(20)
+                    ->all();
+
+                // サークルメンバー呼び出し
+                $circle_members = $this->Circles->CircleGroups->findByCircleId($circle_id)
+                    ->contain(['Users'])
+                    ->order(['CircleGroups.created' => 'DESC'])
+                    ->limit(20)
+                    ->toArray();
+
+                // 必要なプロフィールを取得
+                for ($i = 0; $i < count($circle_members); $i++) {
+                    $circle_members[$i]['profile'] = $this->Common->getUsersByClassification($circle_members[$i]['user']['classification'], $circle_members[$i]['user_id']);
+                    $circle_members[$i]['user']['classification'] = $this->Common->getCategoryName($circle_members[$i]['user']['classification']);
+                    $circle_members[$i]['link'] = $this->Common->linkSwitch($circle_members[$i]['user']['classification'], 'view', $circle_members[$i]['user_id']);
+                }
+
+                $this->set(compact('circle', 'circle_messages', 'circle_members', 'profile_links'));
+
+            } else {
+                throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
+            }
+
+        } else {
+            throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
         }
 
-        $this->set(compact('circle', 'circle_messages', 'circle_members', 'profile_links'));
     }
 
 
@@ -152,53 +172,58 @@ class CirclesController extends AppController
     /**
      * サークル詳細
      *
-     * @param int $id      サークルID
-     * @param int $user_id ユーザーID 閲覧者が参加しているか否かに利用
+     * @param string|null $id サークルID
      * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException レコードが存在しない場合
-     *
-     * @todo リフェラー
+     * @throws \Cake\Network\Exception\NotFoundException レコードが存在しない場合
      */
-    public function view($id, $user_id)
+    public function view($id = null)
     {
         $circle = $this->Circles->get($id, ['contain' => ['Users']]);
 
-        // 既にイベント参加依頼しているか検索
-        $join_flag = $this->Circles->CircleGroups->findByCircleIdAndUserId($id, $user_id)->count();
-        // オーナー検索
-        $circle['owner'] = $this->Common->getUsersByClassification($circle['user']['classification'], $circle->user_id);
-        // 区分リンク取得
-        $profile_links = $this->Common->linkSwitch($circle['user']['classification'], 'view', $circle->user_id);
-        // 区分カテゴリ名取得
-        $circle['user']['classification'] = $this->Common->getCategoryName($circle['user']['classification']);
+        if ($circle) {
 
-        // サークルメンバー呼び出し
-        $circle_members = $this->Circles->CircleGroups->findByCircleId($id)
-            ->contain(['Users'])
-            ->order(['CircleGroups.created' => 'DESC'])
-            ->limit(10)
-            ->toArray();
+            // 既にイベント参加依頼しているか検索
+            $join_flag = $this->Circles->CircleGroups->findByCircleIdAndUserId($id, $this->Auth->user('id'))->count();
+            // オーナー検索
+            $circle['owner'] = $this->Common->getUsersByClassification($circle['user']['classification'], $circle->user_id);
+            // 区分リンク取得
+            $profile_links = $this->Common->linkSwitch($circle['user']['classification'], 'view', $circle->user_id);
+            // 区分カテゴリ名取得
+            $circle['user']['classification'] = $this->Common->getCategoryName($circle['user']['classification']);
 
-        // 必要なプロフィールを取得
-        for ($i = 0; $i < count($circle_members); $i++) {
-            $circle_members[$i]['profile'] = $this->Common->getUsersByClassification($circle_members[$i]['user']['classification'], $circle_members[$i]['user_id']);
-            $circle_members[$i]['user']['classification'] = $this->Common->getCategoryName($circle_members[$i]['user']['classification']);
-            $circle_members[$i]['link'] = $this->Common->linkSwitch($circle_members[$i]['user']['classification'], 'view', $circle_members[$i]['user_id']);
+            // サークルメンバー呼び出し
+            $circle_members = $this->Circles->CircleGroups->findByCircleId($id)
+                ->contain(['Users'])
+                ->order(['CircleGroups.created' => 'DESC'])
+                ->limit(10)
+                ->toArray();
+
+            // 必要なプロフィールを取得
+            for ($i = 0; $i < count($circle_members); $i++) {
+                $circle_members[$i]['profile'] = $this->Common->getUsersByClassification($circle_members[$i]['user']['classification'], $circle_members[$i]['user_id']);
+                $circle_members[$i]['user']['classification'] = $this->Common->getCategoryName($circle_members[$i]['user']['classification']);
+                $circle_members[$i]['link'] = $this->Common->linkSwitch($circle_members[$i]['user']['classification'], 'view', $circle_members[$i]['user_id']);
+            }
+
+            $this->set(compact('circle', 'circle_members', 'profile_links', 'join_flag'));
+            $this->set('genres', $this->Common->valueToKey($this->genres));
+
+        } else {
+            throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
         }
-
-        $this->set(compact('circle', 'circle_members', 'profile_links', 'join_flag'));
-        $this->set('genres', $this->Common->valueToKey($this->genres));
     }
 
 
     /**
      * サークル登録
      *
-     * @param int $id ユーザーID
+     * @param string|null $id ユーザーID
      * @return \Cake\Http\Response|null
      */
-    public function add($id)
+    public function add($id = null)
     {
+        $this->Common->referer();
+
         $circle = $this->Circles->newEntity();
 
         if ($this->request->is('post')) {
@@ -212,9 +237,9 @@ class CirclesController extends AppController
             if ($circle_count <= 5) {
                 if ($this->Circles->save($circle)) {
                     $this->Flash->success(__('サークル作成しました。'));
-                    return $this->redirect(['action' => 'view', $circle->id, $circle->user_id]);
+                    return $this->redirect(['action' => 'view', $circle->id]);
                 }
-                $this->Flash->error(__('エラーがありました。'));
+                $this->Flash->error(__('サークル作成できません。解決しない場合はフィードバックよりお問い合わせください。'));
             } else {
                 $this->Flash->error(__('サークルは最大5つまでしか保持できません。'));
             }
@@ -234,14 +259,16 @@ class CirclesController extends AppController
      *
      * @param string|null $id サークルID
      * @return \Cake\Http\Response|null
-     * @throws \Cake\Network\Exception\NotFoundException レコードが存在しない場合
+     * @throws \Cake\Network\Exception\NotFoundException
+     *  レコードが存在しない場合、ログインユーザーとサークルユーザーIDが異なる場合
      */
     public function edit($id = null)
     {
+        $this->Common->referer();
+
         $circle = $this->Circles->get($id);
 
         if ($this->request->is(['patch', 'post', 'put'])) {
-
 
             $circle = $this->Circles->patchEntity($circle, $this->request->getData());
 
@@ -252,10 +279,16 @@ class CirclesController extends AppController
             $this->Flash->error(__('エラーがあります。再度確認してください。'));
         }
 
-        $this->set('distinctions', $this->Common->valueToKey($this->distinctions));
-        $this->set('ages',         $this->Common->valueToKey($this->ages));
-        $this->set('genres',       $this->Common->valueToKey($this->genres));
-        $this->set(compact('circle'));
+        if ($circle && $circle->user_id === $this->Auth->user('id')) {
+
+            $this->set('distinctions', $this->Common->valueToKey($this->distinctions));
+            $this->set('ages',         $this->Common->valueToKey($this->ages));
+            $this->set('genres',       $this->Common->valueToKey($this->genres));
+            $this->set(compact('circle'));
+
+        } else {
+            throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
+        }
     }
 
 
@@ -266,6 +299,7 @@ class CirclesController extends AppController
      */
     public function delete()
     {
+        $this->Common->referer();
         $this->autoRender = false;
 
         if ($this->request->is('ajax')) {

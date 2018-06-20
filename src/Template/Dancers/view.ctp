@@ -134,7 +134,7 @@
                 <?php else : ?>
                     <div>
                         <?= $this->Html->link('<i class="fa fa-paper-plane-o"></i> メッセージ',
-                            ['controller' => 'Messages', 'action' => 'add', $logins['id'], h($dancer->user_id)],
+                            ['controller' => 'Messages', 'action' => 'add', $dancer->user_id],
                             ['class' => 'btn blue-gradient btn-rounded', 'escape' => false]
                         ) ?>
                     </div>
@@ -409,13 +409,9 @@
                     );
                 } else {
                     print $this->Html->link('<i class="fa fa-envelope"></i> メッセージを送る',
-                    [
-                            'controller' => 'Messages',
-                            'action'     => 'add',
-                            $logins['id'],
-                            h($dancer->user_id)
-                    ],
-                    ['class' => 'btn blue-gradient btn-block', 'escape' => false]);
+                        ['controller' => 'Messages', 'action' => 'add', $dancer->user_id],
+                        ['class' => 'btn blue-gradient btn-block', 'escape' => false]
+                    );
                 }
             ?>
         </div>

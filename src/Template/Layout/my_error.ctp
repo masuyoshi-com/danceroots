@@ -19,7 +19,7 @@
 <body class="fixed-sn black-skin">
     <header>
         <?= $this->element('Menu/simple_side') ?>
-        <?= $this->element('Menu/simple_nav') ?>
+        <?= $this->element('Menu/error_nav') ?>
     </header>
 
     <main>

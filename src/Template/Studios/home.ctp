@@ -1,10 +1,10 @@
-<?php $this->assign('title', h($studio->name) . ' ホーム') ?>
+<?php $this->assign('title', h($studio->user->username) . ' ホーム'); ?>
 
 <div class="row">
 
     <?php if (AD === 0) : ?>
         <div class="col-lg-12 text-center">
-            <section id="dynamicContentWrapper-docsPanel" class="mb-5">
+            <section id="dynamicContentWrapper-docsPanel" class="mb-4">
                 <div class="card border border-danger z-depth-0" style="height: 200px;">
                     <div class="card-body text-center">
                         <p>
@@ -27,7 +27,7 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-4 col-md-12 mt-4">
+    <div class="col-lg-4 col-md-12 mt-5">
         <section class="card card-cascade card-avatar mb-4 mt-5">
 
             <?php

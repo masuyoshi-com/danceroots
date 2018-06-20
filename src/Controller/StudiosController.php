@@ -17,8 +17,9 @@ class StudiosController extends AppController
     public $search_keys = ['pref', 'word'];
 
     public $paginate = [
-           'limit' => 16,
-           'order' => ['Studios.created' => 'desc']
+           'limit'   => 16,
+           'order'   => ['Studios.created' => 'desc'],
+           'contain' => ['Users']
      ];
 
 
@@ -37,31 +38,36 @@ class StudiosController extends AppController
     /**
      * ホーム - 初期登録時、プロフィール未作成の場合、強制的にaddアクションへ
      *
-     * @param int $id ユーザーID
+     * @param string|null $id ユーザーID
      * @return redirect add 初期登録の場合のみ
      *
      */
-    public function home($id)
+    public function home($id = null)
     {
         if ($id) {
 
-            $query = $this->Studios->findByUserId($id)->contain(['Users']);
-            $studio = $query->first();
+            // ユーザーIDとログインIDが一致している場合のみ
+            if ((int)$id === $this->Auth->user('id')) {
 
-            if (!$studio) {
-                $this->Flash->default(__('最初にプロフィールを作成しましょう。'));
-                $this->redirect(['action' => 'add', $id]);
+                $query = $this->Studios->findByUserId($id)->contain(['Users']);
+                $studio = $query->first();
+
+                if (!$studio) {
+                    $this->Flash->default(__('最初にプロフィールを作成しましょう。'));
+                    $this->redirect(['action' => 'add', $id]);
+                }
+
+                $studio['user']['classification'] = $this->Common->getCategoryName($studio['user']['classification']);
+                // メッセージ未読数取得
+                $message_number = $this->Studios->Users->Messages->findByToUserIdAndReadFlag($id, 0)->count();
+                // お知らせ最新1か月以内を3件のみ取得
+                $this->loadModel('Informations');
+                $informations = $this->Informations->find()->where(['Informations.created >' => new \DateTime('-1 months')])->limit(3)->all();
+
+                $this->set(compact('studio', 'message_number', 'informations'));
+            } else {
+                throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
             }
-
-            $studio['user']['classification'] = $this->Common->getCategoryName($studio['user']['classification']);
-            // メッセージ未読数取得
-            $message_number = $this->Studios->Users->Messages->findByToUserIdAndReadFlag($id, 0)->count();
-            // お知らせ最新1か月以内を3件のみ取得
-            $this->loadModel('Informations');
-            $informations = $this->Informations->find()->where(['Informations.created >' => new \DateTime('-1 months')])->limit(3)->all();
-
-            $this->set(compact('studio', 'message_number', 'informations'));
-
         } else {
             // 強制ログアウト → 最初から操作させる
             $this->Flash->error(__('ユーザー情報を取得できません。最初からやり直してください。'));
@@ -86,7 +92,7 @@ class StudiosController extends AppController
                 }
             }
 
-            $query = $this->Studios->findBySearch($this->request->query);
+            $query   = $this->Studios->findBySearch($this->request->query);
             $studios = $this->paginate($query);
 
             // 検索項目状態をセッションに格納
@@ -106,37 +112,40 @@ class StudiosController extends AppController
 
 
     /**
-     * プロフィール詳細 - findはユーザIDで検索
+     * プロフィール詳細
      *
-     * @param string $id ユーザーID
+     * @param string|null $id ユーザーID
      * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException
-     *
-     * @todo リフェラー
+     * @throws \Cake\Network\Exception\NotFoundException
      */
-    public function view($id)
+    public function view($id = null)
     {
-        $query = $this->Studios->findByUserId($id)->contain(['Users']);
-        $studio = $query->first();
+        $studio = $this->Studios->findByUserId($id)->contain(['Users'])->first();
 
-        $studio['youtube'] = $this->Common->getYoutubeId($studio['youtube']);
+        if ($studio) {
+            $studio['youtube'] = $this->Common->getYoutubeId($studio['youtube']);
 
-        // ユーザ区分をカテゴリ名で取得
-        $studio['user']['classification'] = $this->Common->getCategoryName($studio['user']['classification']);
-        $this->set('studio', $studio);
+            // ユーザ区分をカテゴリ名で取得
+            $studio['user']['classification'] = $this->Common->getCategoryName($studio['user']['classification']);
+            $this->set('studio', $studio);
+        } else {
+            throw new NotFoundException(__('404 ページが見つかりません。'));
+        }
+
     }
 
 
     /**
      * スタジオプロフィール登録
      *
-     * @param int $id ユーザーID
+     * @param string|null $id ユーザーID
      * @return \Cake\Http\Response|null 登録成功の場合はviewへ
-     *
-     * @todo リフェラー
+     * @throws \Cake\Network\Exception\NotFoundException
      */
-    public function add($id)
+    public function add($id = null)
     {
+        $this->Common->referer();
+
         $this->viewBuilder()->setLayout('add');
 
         $user = $this->Studios->Users->findByIdAndRegisterFlagAndClassification($id, 1, 1)->first();
@@ -158,7 +167,7 @@ class StudiosController extends AppController
                         return $this->redirect(['action' => 'view', $studio->user_id]);
                     }
 
-                    $this->Flash->error(__('エラーがあります。'));
+                    $this->Flash->error(__('エラーがあります。解決しない場合はフィードバックよりお問い合わせください。'));
                 }
 
                 $this->set('genres', $this->Common->valueToKey($this->genres));
@@ -178,52 +187,39 @@ class StudiosController extends AppController
     /**
      * スタジオ編集
      *
-     * @param string $id ユーザID
+     * @param string|null $id ユーザID
      * @return \Cake\Http\Response|null
      * @throws \Cake\Network\Exception\NotFoundException - レコードが存在しない場合
-     *
-     * @todo リフェラー
      */
-    public function edit($id)
+    public function edit($id = null)
     {
-        $query = $this->Studios->findByUserId($id)->contain(['Users']);
-        $studio = $query->first();
+        $this->Common->referer();
+
+        $studio = $this->Studios->findByUserId($id)->contain(['Users'])->first();
 
         if ($this->request->is(['patch', 'post', 'put'])) {
 
             $studio = $this->Studios->patchEntity($studio, $this->request->getData());
+
             if ($this->Studios->save($studio)) {
-                $this->Flash->success(__('更新しました。'));
+                $this->Flash->success(__('プロフィール更新しました。'));
                 return $this->redirect(['action' => 'view', $studio->user_id]);
             }
-            $this->Flash->error(__('エラーがあります。'));
+
+            $this->Flash->error(__('エラーがあります。解決しない場合はフィードバックよりお問い合わせください。'));
         }
 
-        $videos = '';
-        $videos = $this->Common->getYoutubeId($studio['youtube']);
+        if ($studio && (int)$studio->user_id === $this->Auth->user('id')) {
 
-        $this->set('genres', $this->Common->valueToKey($this->genres));
-        $this->set(compact('studio', 'videos'));
-    }
+            $videos = '';
+            $videos = $this->Common->getYoutubeId($studio['youtube']);
 
+            $this->set('genres', $this->Common->valueToKey($this->genres));
+            $this->set(compact('studio', 'videos'));
 
-    /**
-     * Delete method
-     *
-     * @param string|null $id Studio id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $studio = $this->Studios->get($id);
-        if ($this->Studios->delete($studio)) {
-            $this->Flash->success(__('The studio has been deleted.'));
         } else {
-            $this->Flash->error(__('The studio could not be deleted. Please, try again.'));
+            throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
         }
-
-        return $this->redirect(['action' => 'index']);
     }
+
 }

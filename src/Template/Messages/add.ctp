@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'メッセージ送信') ?>
+<?php $this->assign('title', 'メッセージ作成'); ?>
 
 <div class="row">
     <div class="col-lg-2">

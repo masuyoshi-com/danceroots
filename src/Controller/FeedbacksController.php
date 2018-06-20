@@ -39,6 +39,7 @@ class FeedbacksController extends AppController
      */
     public function add()
     {
+        $this->Common->referer();
         $this->autoRender = false;
 
         $feedback = $this->Feedbacks->newEntity();

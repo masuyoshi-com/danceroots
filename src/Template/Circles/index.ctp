@@ -160,7 +160,7 @@
                         </div>
                         <div class="col-lg-4 col-md-12">
                             <?= $this->Html->link('詳細',
-                                    ['action' => 'view', h($circle->id), $logins['id']],
+                                    ['action' => 'view', h($circle->id)],
                                     ['class' => 'btn btn-primary btn-md btn-block']
                             ) ?>
                         </div>

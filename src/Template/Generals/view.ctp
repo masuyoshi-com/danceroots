@@ -1,4 +1,4 @@
-<?php $this->assign('タイトル', $general->name . 'プロフィール'); ?>
+<?php $this->assign('タイトル', h($general->user->username) . 'プロフィール'); ?>
 
 <div class="row">
     <?php if (AD === 0) : ?>
@@ -126,7 +126,7 @@
                 <?php else : ?>
                     <div>
                         <?= $this->Html->link('<i class="fa fa-paper-plane-o"></i> メッセージ',
-                            ['controller' => 'Messages', 'action' => 'add', $logins['id'], h($general->user_id)],
+                            ['controller' => 'Messages', 'action' => 'add', $general->user_id],
                             ['class' => 'btn purple-gradient btn-rounded', 'escape' => false]
                         ) ?>
                     </div>
@@ -228,17 +228,14 @@
             <?php
                 if ($general->user_id === $logins['id']) {
                     print $this->Html->link('<i class="fa fa-edit" aria-hidden="true"></i> プロフィールを編集',
-                        ['action' => 'edit', h($general->user_id)], ['class' => 'btn btn-primary', 'escape' => false]
+                        ['action' => 'edit', $general->user_id],
+                        ['class' => 'btn btn-primary', 'escape' => false]
                     );
                 } else {
                     print $this->Html->link('<i class="fa fa-envelope"></i> メッセージを送る',
-                    [
-                        'controller' => 'Messages',
-                        'action'     => 'add',
-                        $logins['id'],
-                        h($general->user_id)
-                    ],
-                    ['class' => 'btn purple-gradient', 'escape' => false]);
+                        ['controller' => 'Messages', 'action' => 'add', $general->user_id],
+                        ['class' => 'btn purple-gradient', 'escape' => false]
+                    );
                 }
             ?>
         </div>

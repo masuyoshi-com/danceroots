@@ -110,6 +110,7 @@ class CircleMessagesTable extends Table
         return $this->find('all')
             ->where(['CircleMessages.circle_id' => $circle_id])
             ->where(['OR' => [
+                ['Users.username LIKE'       => '%' . $requests['word'] . '%'],
                 ['CircleMessages.title LIKE' => '%' . $requests['word'] . '%'],
                 ['CircleMessages.body LIKE'  => '%' . $requests['word'] . '%']]])
             ;

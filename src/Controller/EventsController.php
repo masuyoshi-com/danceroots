@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
-
+use Cake\Network\Exception\NotFoundException;
 /**
  * Events Controller
  *
@@ -46,15 +46,18 @@ class EventsController extends AppController
     /**
      * マイリスト - 登録済みイベント一覧
      *
-     * @param int $id ユーザーID
-     * @return void
+     * @param string|null $id ユーザーID
+     * @throws \Cake\Network\Exception\NotFoundException
      */
-    public function list($id)
+    public function list($id = null)
     {
-        $events = $this->paginate($this->Events->findByUserIdAndDeleteFlag($id, 0));
-
-        $this->set(compact('events'));
-        $this->set('id', $id);
+        if ((int)$id === $this->Auth->user('id')) {
+            $events = $this->paginate($this->Events->findByUserIdAndDeleteFlag($id, 0));
+            $this->set(compact('events'));
+            $this->set('id', $id);
+        } else {
+            throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
+        }
     }
 
 
@@ -106,31 +109,32 @@ class EventsController extends AppController
      */
     public function view($id = null)
     {
+        $event = $this->Events->get($id, ['contain' => ['Users']]);
 
-        $event = $this->Events->get($id, [
-            'contain' => ['Users']
-        ]);
+        if ($event) {
+            $event['youtube'] = $this->Common->getYoutubeId($event['youtube']);
+            // オーナー検索
+            $event['owner'] = $this->Common->getUsersByClassification($event['user']['classification'], $event->user_id);
+            // 区分リンク取得
+            $profile_links = $this->Common->linkSwitch($event['user']['classification'], 'view', $event->user_id);
+            // 区分カテゴリ名取得
+            $event['user']['classification'] = $this->Common->getCategoryName($event['user']['classification']);
 
-        $event['youtube'] = $this->Common->getYoutubeId($event['youtube']);
-        // オーナー検索
-        $event['owner'] = $this->Common->getUsersByClassification($event['user']['classification'], $event->user_id);
-        // 区分リンク取得
-        $profile_links = $this->Common->linkSwitch($event['user']['classification'], 'view', $event->user_id);
-        // 区分カテゴリ名取得
-        $event['user']['classification'] = $this->Common->getCategoryName($event['user']['classification']);
+            $this->set(compact('profile_links'));
+            $this->set('event', $event);
+        } else {
+            throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
+        }
 
-        $this->set(compact('profile_links'));
-        $this->set('event', $event);
     }
 
 
     /**
      * イベント登録
      *
-     * @param int $id ユーザーID
      * @return redirect view イベントID付与
      */
-    public function add($id)
+    public function add()
     {
         $event = $this->Events->newEntity();
 
@@ -141,13 +145,13 @@ class EventsController extends AppController
             if ($this->Events->save($event)) {
 
                 $this->Flash->success(__('イベント登録しました。'));
-
                 return $this->redirect(['action' => 'view', $event->id]);
+                
             }
 
             $this->Flash->error(__('エラーがありました。'));
         }
-        $this->set('user_id', $id);
+        $this->set('user_id',    $this->Auth->user('id'));
         $this->set('categories', $this->Common->valueToKey($this->categories));
         $this->set(compact('event'));
     }
@@ -162,6 +166,8 @@ class EventsController extends AppController
      */
     public function edit($id = null)
     {
+        $this->Common->referer();
+
         $event = $this->Events->get($id, ['contain' => ['Users']]);
 
         if ($this->request->is(['patch', 'post', 'put'])) {
@@ -175,8 +181,13 @@ class EventsController extends AppController
             $this->Flash->error(__('エラーがありました。'));
         }
 
-        $this->set('categories', $this->Common->valueToKey($this->categories));
-        $this->set(compact('event'));
+        // イベントが存在し、なおかつリファラーを抜けてもユーザーIDを認証する
+        if ($event && $event->user_id === $this->Auth->user('id')) {
+            $this->set('categories', $this->Common->valueToKey($this->categories));
+            $this->set(compact('event'));
+        } else {
+            throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
+        }
     }
 
 
@@ -189,6 +200,7 @@ class EventsController extends AppController
      */
     public function delete()
     {
+        $this->Common->referer();
         $this->autoRender = false;
 
         if ($this->request->is('ajax')) {

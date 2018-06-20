@@ -1,4 +1,4 @@
-<?php $this->assign('title', '一般プロフィール作成'); ?>
+<?php $this->assign('title', 'プロフィール作成'); ?>
 
 <div class="row">
     <div class="col-lg-12">

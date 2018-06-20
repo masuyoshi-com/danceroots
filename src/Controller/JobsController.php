@@ -2,8 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use Cake\Http\Exception\NotFoundException;
 use Cake\Event\Event;
+use Cake\Network\Exception\NotFoundException;
 
 /**
  * ダンス関連求人コントローラー
@@ -44,15 +44,18 @@ class JobsController extends AppController
     /**
      * マイリスト - 登録済み求人一覧
      *
-     * @param int $id ユーザーID
+     * @param string|null $id ユーザーID
      * @return void
      */
-    public function list($id)
+    public function list($id = null)
     {
-        $jobs = $this->paginate($this->Jobs->findByUserIdAndDeleteFlag($id, 0));
-
-        $this->set(compact('jobs'));
-        $this->set('id', $id);
+        if ((int)$id === $this->Auth->user('id')) {
+            $jobs = $this->paginate($this->Jobs->findByUserIdAndDeleteFlag($id, 0));
+            $this->set(compact('jobs'));
+            $this->set('id', $id);
+        } else {
+            throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
+        }
     }
 
 
@@ -104,15 +107,19 @@ class JobsController extends AppController
     {
         $job = $this->Jobs->get($id, ['contain' => ['Users']]);
 
-        // オーナー検索
-        $job['owner'] = $this->Common->getUsersByClassification($job['user']['classification'], $job->user_id);
-        // 区分リンク取得
-        $profile_links = $this->Common->linkSwitch($job['user']['classification'], 'view', $job->user_id);
-        // 区分カテゴリ名取得
-        $job['user']['classification'] = $this->Common->getCategoryName($job['user']['classification']);
+        if ($job) {
+            // オーナー検索
+            $job['owner'] = $this->Common->getUsersByClassification($job['user']['classification'], $job->user_id);
+            // 区分リンク取得
+            $profile_links = $this->Common->linkSwitch($job['user']['classification'], 'view', $job->user_id);
+            // 区分カテゴリ名取得
+            $job['user']['classification'] = $this->Common->getCategoryName($job['user']['classification']);
 
-        $this->set(compact('profile_links'));
-        $this->set('job', $job);
+            $this->set(compact('profile_links'));
+            $this->set('job', $job);
+        } else {
+            throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
+        }
     }
 
 
@@ -121,22 +128,26 @@ class JobsController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function add($id)
+    public function add()
     {
         $job = $this->Jobs->newEntity();
 
         if ($this->request->is('post')) {
+
             $job = $this->Jobs->patchEntity($job, $this->request->getData());
+
             if ($this->Jobs->save($job)) {
+
                 $this->Flash->success(__('ダンス関連求人を登録しました。'));
                 return $this->redirect(['action' => 'view', $job->id]);
+
             }
             $this->Flash->error(__('求人登録できません。解決しない場合はフィードバックまで報告してください。'));
         }
 
         $this->set('categories', $this->Common->valueToKey($this->categories));
         $this->set('genres',     $this->Common->valueToKey($this->genres));
-        $this->set('user_id', $id);
+        $this->set('user_id',    $this->Auth->user('id'));
         $this->set(compact('job'));
     }
 
@@ -150,9 +161,9 @@ class JobsController extends AppController
      */
     public function edit($id = null)
     {
-        $job = $this->Jobs->get($id, [
-            'contain' => []
-        ]);
+        $this->Common->referer();
+
+        $job = $this->Jobs->get($id);
 
         if ($this->request->is(['patch', 'post', 'put'])) {
 
@@ -166,9 +177,13 @@ class JobsController extends AppController
             $this->Flash->error(__('エラーがありました。'));
         }
 
-        $this->set('categories', $this->Common->valueToKey($this->categories));
-        $this->set('genres',     $this->Common->valueToKey($this->genres));
-        $this->set(compact('job'));
+        if ($job && $job->user_id === $this->Auth->user('id')) {
+            $this->set('categories', $this->Common->valueToKey($this->categories));
+            $this->set('genres',     $this->Common->valueToKey($this->genres));
+            $this->set(compact('job'));
+        } else {
+            throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
+        }
     }
 
 
@@ -181,6 +196,7 @@ class JobsController extends AppController
      */
     public function delete()
     {
+        $this->Common->referer();
         $this->autoRender = false;
 
         if ($this->request->is('ajax')) {

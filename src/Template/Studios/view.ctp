@@ -1,4 +1,4 @@
-<?php $this->assign('title', h($studio->name)); ?>
+<?php $this->assign('title', h($studio->user->username) . ' プロフィール詳細'); ?>
 
 <div class="row">
     <?php if (AD === 0) : ?>
@@ -42,8 +42,9 @@
                     <span class="badge badge-success"><?= h($studio->pref) ?></span>
                     <span class="badge badge-info"><?= h($studio->user->classification) ?></span>
                 </p>
+                <h5><?= h($studio->user->username) ?></h5>
                 <h4 class="card-title"><strong><?= h($studio->studio_name) ?></strong></h4>
-                <h5>代表者: <?= h($studio->name) ?></h5>
+                <h5><small>スタジオ代表者:</small> <?= h($studio->name) ?></h5>
 
                 <?php if ($studio->tel) : ?>
                     <p class="dark-grey-text">TEL: <?= h($studio->tel) ?></p>
@@ -138,7 +139,7 @@
                 <?php else : ?>
                     <div>
                         <?= $this->Html->link('<i class="fa fa-paper-plane-o"></i> メッセージ',
-                            ['controller' => 'Messages', 'action' => 'add', $logins['id'], h($studio->user_id)],
+                            ['controller' => 'Messages', 'action' => 'add', $studio->user_id],
                             ['class' => 'btn blue-gradient btn-rounded', 'escape' => false]
                         ) ?>
                     </div>
@@ -359,18 +360,14 @@
             <?php
                 if ($studio->user_id === $logins['id']) {
                     print $this->Html->link('<i class="fa fa-pencil" aria-hidden="true"></i> プロフィールを編集',
-                        ['action' => 'edit', h($studio->user_id)],
+                        ['action' => 'edit', $studio->user_id],
                         ['class' => 'btn btn-primary btn-block', 'escape' => false]
                     );
                 } else {
                     print $this->Html->link('<i class="fa fa-envelope"></i> このスタジオに問い合わせる',
-                    [
-                            'controller' => 'Messages',
-                            'action'     => 'add',
-                            $logins['id'],
-                            h($studio->user_id)
-                    ],
-                    ['class' => 'btn blue-gradient btn-block', 'escape' => false]);
+                        ['controller' => 'Messages', 'action' => 'add', $studio->user_id],
+                        ['class' => 'btn blue-gradient btn-block', 'escape' => false]
+                    );
                 }
             ?>
         </div>

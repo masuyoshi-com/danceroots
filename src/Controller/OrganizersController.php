@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
+use Cake\Network\Exception\NotFoundException;
 
 /**
  * Organizers Controller
@@ -16,30 +18,35 @@ class OrganizersController extends AppController
     /**
      * ホーム - 初期登録時、プロフィール未作成の場合、強制的にaddアクションへ
      *
-     * @param int $id ユーザーID
+     * @param string|null $id ユーザーID
      * @return redirect add 初期登録の場合のみ
-     *
+     * @throws \Cake\Network\Exception\NotFoundException
      */
-    public function home($id)
+    public function home($id = null)
     {
         if ($id) {
 
-            $query = $this->Organizers->findByUserId($id)->contain(['Users']);
-            $organizer = $query->first();
+            if ((int)$id === $this->Auth->user('id')) {
 
-            if (!$organizer) {
-                $this->Flash->default(__('最初にプロフィールを作成しましょう。'));
-                $this->redirect(['action' => 'add', $id]);
+                $organizer = $this->Organizers->findByUserId($id)->contain(['Users'])->first();
+
+                if (!$organizer) {
+                    $this->Flash->default(__('最初にプロフィールを作成しましょう。'));
+                    $this->redirect(['action' => 'add', $id]);
+                }
+
+                $organizer['user']['classification'] = $this->Common->getCategoryName($organizer['user']['classification']);
+                // メッセージ未読数取得
+                $message_number = $this->Organizers->Users->Messages->findByToUserIdAndReadFlag($id, 0)->count();
+                // お知らせ最新1か月以内を3件のみ取得
+                $this->loadModel('Informations');
+                $informations = $this->Informations->find()->where(['Informations.created >' => new \DateTime('-1 months')])->limit(3)->all();
+
+                $this->set(compact('organizer', 'message_number', 'informations'));
+
+            } else {
+                throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
             }
-
-            $organizer['user']['classification'] = $this->Common->getCategoryName($organizer['user']['classification']);
-            // メッセージ未読数取得
-            $message_number = $this->Organizers->Users->Messages->findByToUserIdAndReadFlag($id, 0)->count();
-            // お知らせ最新1か月以内を3件のみ取得
-            $this->loadModel('Informations');
-            $informations = $this->Informations->find()->where(['Informations.created >' => new \DateTime('-1 months')])->limit(3)->all();
-
-            $this->set(compact('organizer', 'message_number', 'informations'));
 
         } else {
             // 強制ログアウト → 最初から操作させる
@@ -50,37 +57,39 @@ class OrganizersController extends AppController
 
 
     /**
-     * プロフィール詳細 - findはユーザIDで検索
+     * プロフィール詳細
      *
-     * @param string $id ユーザーID
+     * @param string|null $id ユーザーID
      * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException
-     *
-     * @todo リフェラー
+     * @throws \Cake\Network\Exception\NotFoundException
      */
-    public function view($id)
+    public function view($id = null)
     {
-        $query = $this->Organizers->findByUserId($id)->contain(['Users']);
-        $organizer = $query->first();
+        $organizer = $this->Organizers->findByUserId($id)->contain(['Users'])->first();
 
-        $organizer['youtube'] = $this->Common->getYoutubeId($organizer['youtube']);
+        if ($organizer) {
 
-        // ユーザ区分をカテゴリ名で取得
-        $organizer['user']['classification'] = $this->Common->getCategoryName($organizer['user']['classification']);
-        $this->set('organizer', $organizer);
+            $organizer['youtube'] = $this->Common->getYoutubeId($organizer['youtube']);
+            // ユーザ区分をカテゴリ名で取得
+            $organizer['user']['classification'] = $this->Common->getCategoryName($organizer['user']['classification']);
+            $this->set('organizer', $organizer);
+
+        } else {
+            throw new NotFoundException(__('404 ページが見つかりません。'));
+        }
     }
 
 
     /**
      * オーガナイザープロフィール登録
      *
-     * @param int $id ユーザーID
+     * @param string|null $id ユーザーID
      * @return \Cake\Http\Response|null 登録成功の場合はviewへ
-     *
-     * @todo リフェラー
      */
-    public function add($id)
+    public function add($id = null)
     {
+        $this->Common->referer();
+
         $this->viewBuilder()->setLayout('add');
 
         $user = $this->Organizers->Users->findByIdAndRegisterFlagAndClassification($id, 1, 2)->first();
@@ -104,7 +113,7 @@ class OrganizersController extends AppController
                         return $this->redirect(['action' => 'view', $organizer->user_id]);
                     }
 
-                    $this->Flash->error(__('エラーがあります。'));
+                    $this->Flash->error(__('エラーがあります。解決しない場合はフィードバックよりお問い合わせください。'));
                 }
 
                 $this->set('genres',  $this->Common->valueToKey($this->genres));
@@ -124,52 +133,40 @@ class OrganizersController extends AppController
     /**
      * オーガナイザープロフィール編集
      *
-     * @param string $id ユーザID
+     * @param string|null $id ユーザID
      * @return \Cake\Http\Response|null
      * @throws \Cake\Network\Exception\NotFoundException - レコードが存在しない場合
-     *
-     * @todo リフェラー
      */
-    public function edit($id)
+    public function edit($id = null)
     {
-        $query = $this->Organizers->findByUserId($id)->contain(['Users']);
-        $organizer = $query->first();
+        $this->Common->referer();
+
+        $organizer = $this->Organizers->findByUserId($id)->contain(['Users'])->first();
 
         if ($this->request->is(['patch', 'post', 'put'])) {
 
             $organizer = $this->Organizers->patchEntity($organizer, $this->request->getData());
+
             if ($this->Organizers->save($organizer)) {
-                $this->Flash->success(__('更新しました。'));
+                $this->Flash->success(__('プロフィール更新しました。'));
                 return $this->redirect(['action' => 'view', $organizer->user_id]);
             }
-            $this->Flash->error(__('エラーがあります。'));
+
+            $this->Flash->error(__('エラーがあります。解決しない場合はフィードバックよりお問い合わせください。'));
         }
 
-        $video = '';
-        $video = $this->Common->getYoutubeId($organizer['youtube']);
+        if ($organizer && (int)$organizer->user_id === $this->Auth->user('id')) {
 
-        $this->set('genres', $this->Common->valueToKey($this->genres));
-        $this->set(compact('organizer', 'video'));
-    }
+            $video = '';
+            $video = $this->Common->getYoutubeId($organizer['youtube']);
 
+            $this->set('genres', $this->Common->valueToKey($this->genres));
+            $this->set(compact('organizer', 'video'));
 
-    /**
-     * Delete method
-     *
-     * @param string|null $id Organizer id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $organizer = $this->Organizers->get($id);
-        if ($this->Organizers->delete($organizer)) {
-            $this->Flash->success(__('The organizer has been deleted.'));
         } else {
-            $this->Flash->error(__('The organizer could not be deleted. Please, try again.'));
+            throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
         }
 
-        return $this->redirect(['action' => 'index']);
     }
+
 }

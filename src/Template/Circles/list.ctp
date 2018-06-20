@@ -60,7 +60,7 @@
                         </div>
                         <div class="col-lg-9 col-md-12 col-xs-12">
                             <?= $this->Html->link($circle->name,
-                                ['action' => 'view', h($circle->id), $logins['id']],
+                                ['action' => 'view', h($circle->id)],
                                 [
                                     'data-toggle'    => 'tooltip',
                                     'data-placement' => 'bottom',
@@ -76,7 +76,7 @@
                         <div class="col-lg-12">
                             <?= $this->Html->link('<i class="fa fa-home fa-lg" aria-hidden="true"></i>
                                 <span class="none"> サークルホーム</span>',
-                                ['action' => 'home', h($circle->id), $logins['id']],
+                                ['action' => 'home', h($circle->id)],
                                 [
                                     'class'  => 'btn btn-sm btn-primary',
                                     'escape' => false
@@ -126,7 +126,7 @@
                         </div>
                         <div class="col-lg-9 col-md-12 col-xs-12">
                             <?= $this->Html->link($group->circle->name,
-                                ['action' => 'view', h($group->circle_id), $logins['id']],
+                                ['action' => 'view', h($group->circle_id)],
                                 [
                                     'data-toggle'    => 'tooltip',
                                     'data-placement' => 'bottom',
@@ -141,7 +141,7 @@
                     <div class="row text-center">
                         <div class="col-lg-6 col-md-6 col-xs-12">
                             <?= $this->Html->link('<i class="fa fa-home fa-lg" aria-hidden="true"></i>',
-                                ['action' => 'home', h($group->circle_id), h($group->user_id)],
+                                ['action' => 'home', h($group->circle_id)],
                                 [
                                     'data-toggle'    => 'tooltip',
                                     'data-placement' => 'bottom',
