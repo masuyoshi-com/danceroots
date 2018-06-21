@@ -32,11 +32,11 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-12">
-                    <label class="dark-gray-text w-100 text-left"><small>現在のメールアドレス </small>
-                        <span class="badge badge-primary">変更の際はお問い合わせ</span>
+                    <label class="dark-gray-text w-100 text-left"><small>メールアドレス </small>
+                        <span class="badge badge-primary">変更の際は別途認証が必要です。</span>
                     </label>
                     <div class="md-form mt-0">
-                        <?= $this->Form->control('email', ['class' => 'form-control', 'disabled']) ?>
+                        <?= $this->Form->control('email', ['class' => 'form-control']) ?>
                     </div>
                 </div>
             </div>

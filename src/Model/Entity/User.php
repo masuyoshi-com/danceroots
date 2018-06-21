@@ -15,6 +15,7 @@ use Cake\Auth\DefaultPasswordHasher;
  * @property int    $classification
  * @property int    $register_flag
  * @property string $tmp_hash
+ * @property string $tmp_email
  * @property int    $injustice_count
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
@@ -51,6 +52,7 @@ class User extends Entity
         'classification'  => true,
         'register_flag'   => true,
         'tmp_hash'        => true,
+        'tmp_email'       => true,
         'injustice_count' => true,
         'created'         => true,
         'modified'        => true,
@@ -113,8 +115,8 @@ class User extends Entity
             $group_id = $this->group_id;
         } else {
             $users_table = TableRegistry::get('Users');
-            $user     = $users_table->find('all', ['fields' => ['group_id']])->where(['id' => $this->id])->first();
-            $group_id = $user->group_id;
+            $user        = $users_table->find('all', ['fields' => ['group_id']])->where(['id' => $this->id])->first();
+            $group_id    = $user->group_id;
         }
         if (!$group_id) {
             return null;

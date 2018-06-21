@@ -55,6 +55,7 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.1 controllers/Studios/index',
             'bin/cake acl grant Groups.1 controllers/Studios/view',
             'bin/cake acl grant Groups.1 controllers/Users/edit',
+            'bin/cake acl grant Groups.1 controllers/Users/emailEdit',
 
             // Studios
             'bin/cake acl deny Groups.2 controllers',
@@ -72,6 +73,7 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.2 controllers/Messages',
             'bin/cake acl grant Groups.2 controllers/Organizers/view',
             'bin/cake acl grant Groups.2 controllers/Users/edit',
+            'bin/cake acl grant Groups.2 controllers/Users/emailEdit',
 
             // Organizers
             'bin/cake acl deny Groups.3 controllers',
@@ -90,6 +92,7 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.3 controllers/Studios/index',
             'bin/cake acl grant Groups.3 controllers/Studios/view',
             'bin/cake acl grant Groups.3 controllers/Users/edit',
+            'bin/cake acl grant Groups.3 controllers/Users/emailEdit',
 
             // Generals
             'bin/cake acl deny Groups.4 controllers',
@@ -109,6 +112,7 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.4 controllers/Studios/index',
             'bin/cake acl grant Groups.4 controllers/Studios/view',
             'bin/cake acl grant Groups.4 controllers/Users/edit',
+            'bin/cake acl grant Groups.4 controllers/Users/emailEdit',
 
             // Controller追加，Groupの変更などで更新する場合
             'bin/cake acl_extras aco_update',
@@ -194,9 +198,10 @@ class UsersController extends AppController
 
                  $user = $this->Users->patchEntity($user, $this->request->getData());
 
+                 // メールが有効でない場合は仮登録メール配信の例外で処理止める
+                 $this->getMailer('User')->send('user_regist', [$user]);
+
                  if ($this->Users->save($user)) {
-                     // 仮登録メール配信
-                     $this->getMailer('User')->send('user_regist', [$user]);
                      return $this->redirect(['action' => 'midstream']);
                  }
              } else {
@@ -229,11 +234,15 @@ class UsersController extends AppController
 
                 // ユーザ仮登録(created)は48時間以内に登録されたものか
                 if (!$user->created->wasWithinLast(2)) {
+                    // 48時間以上の放置はユーザーを強制削除
+                    $this->Users->delete($user);
                     return $this->redirect(['action' => 'error']);
                 }
 
                 // register_flagを1にアップデート
                 $user->register_flag = 1;
+                // tmp_hashは別の認証でも使用するためnullにしておく
+                $user->tmp_hash = null;
                 $this->Users->save($user);
 
             } else {
@@ -249,12 +258,11 @@ class UsersController extends AppController
     /**
      * マイアカウント
      * パスワード変更はなりすましの可能性もあるため、完了後にメールを送る。心当たりがない場合は問い合わせを促すため
+     * fieldListを使用して3つの処理に分ける。ユーザー名変更処理、メール変更処理、パスワード変更処理
      *
      * @param string|null $id ユーザーID
      * @return \Cake\Http\Response|null
      * @throws \Cake\Network\Exception\NotFoundException レコードが存在しない場合
-     *
-     * @todo 現状メールアドレス変更は問い合わせ後、運用がメール確認をとる。確認後、メールアドレスを運用が更新する
      */
     public function edit($id = null)
     {
@@ -262,6 +270,10 @@ class UsersController extends AppController
 
         if ($this->request->is(['patch', 'post', 'put'])) {
 
+            // エラーカウント初期化
+            $error = 0;
+
+            // パスワード変更処理
             if ($this->request->data['current_password']) {
 
                 $user = $this->Users->findById($this->request->data['id'])->first();
@@ -269,6 +281,7 @@ class UsersController extends AppController
                 if ($user) {
                     // 現在のパスワードを認証
                     if (password_verify($this->request->data['current_password'], $user->password)) {
+
                         // 新たなパスワードがある場合
                         if ($this->request->data['new_password']) {
                             // 新たなパスワードと確認パスワードが一致するか
@@ -276,10 +289,7 @@ class UsersController extends AppController
 
                                 $this->request->data['password'] = $this->request->data['new_password'];
 
-                                unset($this->request->data['new_password']);
-                                unset($this->request->data['confirm_password']);
-
-                                $user = $this->Users->patchEntity($user, $this->request->getData());
+                                $user = $this->Users->patchEntity($user, $this->request->getData(), ['fieldList' => ['password']]);
 
                                 if ($this->Users->save($user)) {
                                     // パスワード変更メール送信
@@ -287,38 +297,64 @@ class UsersController extends AppController
                                         // 差出人ユーザー取得
                                         $this->getMailer('User')->send('user_pass_edit', [$user]);
                                     }
-                                    $this->Flash->success(__('アカウント編集しました。パスワード変更完了のメールが送信されました。'));
-                                    // ホームへ
-                                    $homes = $this->Common->linkSwitch($user->classification, 'home', $user->id);
-                                    return $this->redirect($homes);
+                                } else {
+                                    $this->Flash->error(__('エラーがあります。解決しない場合はフィードバックより報告してください。'));
+                                    $error++;
                                 }
-                                $this->Flash->error(__('エラーがあります。解決しない場合はフィードバックより報告してください。'));
-
                             } else {
                                 $this->Flash->error(__('新たなパスワードが確認と一致しません。'));
+                                $error++;
                             }
                         } else {
                             $this->Flash->error(__('現在のパスワードの認証は完了しましたが、新たなパスワードが見つかりません。'));
+                            $error++;
                         }
                     } else {
                         $this->Flash->error(__('現在のパスワードが認証できません。'));
+                        $error++;
                     }
-
                 } else {
                     throw new NotFoundException(__('404 不正なアクセスまたはユーザーが見つかりません。'));
                 }
+            }
 
-            } else {
-                $user = $this->Users->patchEntity($user, $this->request->getData());
+            // メール変更処理(tmp_mailで仮登録) 有効認証するためハッシュリンク付きメール送信
+            if ($this->request->data['email'] !== $user->email) {
+
+                $this->request->data['tmp_email'] = $this->request->data['email'];
+                // tmp_hash 仮登録ハッシュ生成
+                $this->request->data['tmp_hash'] = md5(uniqid(rand(), 1));
+                // 手動でEmailがユニークか調べる
+                $mail_count = $this->Users->findByEmail($this->request->data['email'])->count();
+
+                if ($mail_count === 0) {
+                    $user = $this->Users->patchEntity($user, $this->request->getData(), ['fieldList' => ['tmp_email', 'tmp_hash']]);
+                    // 一時認証メールを登録
+                    if ($this->Users->save($user)) {
+                        if (SEND_MAIL_FUNCTION === 0) {
+                            $this->getMailer('User')->send('user_email_edit', [$user]);
+                        }
+                    } else {
+                        $this->Flash->error(__('エラーがあります。解決しない場合はフィードバックより報告してください。'));
+                        $error++;
+                    }
+                } else {
+                    $this->Flash->error(__('既に使用されているメールアドレスです。'));
+                    $error++;
+                }
+            }
+
+            // パスワード変更と、メール変更に問題がなければユーザ名変更を実行後Success
+            if ($error === 0) {
+                // ユーザー名処理
+                $user = $this->Users->patchEntity($user, $this->request->getData(), ['fieldList' => ['username']]);
 
                 if ($this->Users->save($user)) {
-                    $this->Flash->success(__('アカウント編集しました。'));
-
+                    $this->Flash->success(__('アカウント編集しました。メールアドレス変更の場合は送付メールで手続きをしてください。'));
                     // ホームへ
                     $homes = $this->Common->linkSwitch($user->classification, 'home', $user->id);
                     return $this->redirect($homes);
                 }
-                $this->Flash->error(__('エラーがあります。解決しない場合はフィードバックより報告してください。'));
             }
         }
 
@@ -330,6 +366,43 @@ class UsersController extends AppController
         }
 
     }
+
+
+    /**
+     * メール編集
+     *
+     * @return redirect ユーザーが存在しない、保存できないはエラー画面へ
+     * @throws \Cake\Network\Exception\NotFoundException
+     */
+     public function emailEdit()
+     {
+         $this->viewBuilder()->setLayout('simple');
+
+         if ($this->request->query) {
+
+             // 送られてきたハッシュが存在するか
+             $user = $this->Users->findByTmpHash($this->request->query['e'])->first();
+
+             if ($user) {
+
+                 // 重複アクセスを避けるため一時ハッシュはnullにしておく
+                 $user->tmp_hash  = null;
+                 $user->email     = $user->tmp_email;
+                 $user->tmp_email = null;
+
+                 if ($this->Users->save($user)) {
+                     // メール変更後、ログインなどのセッションを一旦破棄(新たなメールでログインしてもらうため)
+                     $this->Session->destroy();
+                 } else {
+                     return $this->redirect(['action' => 'error']);
+                 }
+             } else {
+                 return $this->redirect(['action' => 'error']);
+             }
+         } else {
+             throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
+         }
+     }
 
 
     /**
@@ -420,6 +493,7 @@ class UsersController extends AppController
         $this->viewBuilder()->setLayout('simple');
 
         if ($this->request->query) {
+
             // 送られてきたハッシュが存在するか
             $user = $this->Users->findByTmpHash($this->request->query['p'])->first();
 
@@ -427,7 +501,7 @@ class UsersController extends AppController
 
                 // パスワード再発行の際、Eメール入力日時(modified)は48時間以内に登録されたものか
                 if (!$user->modified->wasWithinLast(2)) {
-                    // 48時間以上なら一時ハッシュはnullにしておく
+                    // 重複アクセスを避けるため一時ハッシュはnullにしておく
                     $user->tmp_hash = null;
                     $this->Users->save($user);
                     return $this->redirect(['action' => 'error']);

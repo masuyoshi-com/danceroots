@@ -6,7 +6,7 @@ use Cake\Mailer\Mailer;
 class UserMailer extends Mailer
 {
     /**
-     * 仮登録完了メール
+     * 仮登録完了・本登録手続き認証メール
      *
      * @param  object $user ユーザー
      * @return void
@@ -22,7 +22,7 @@ class UserMailer extends Mailer
 
 
     /**
-     * パスワードを忘れた場合のメール
+     * パスワードを忘れた場合の認証メール
      *
      * @param object $user
      * @return void
@@ -38,7 +38,8 @@ class UserMailer extends Mailer
 
 
     /**
-     * パスワード変更メール
+     * パスワード変更通知メール
+     * 第三者の不正なパスワード変更かを知るきっかけになる
      *
      * @param  object $user ユーザー
      * @return void
@@ -52,5 +53,21 @@ class UserMailer extends Mailer
             ->viewVars(['user' => $user]);
     }
 
+
+    /**
+     * メールアドレス変更の認証メール(メールアドレスが有効かどうか)
+     * 宛先は一時認証メールに飛ばす
+     *
+     * @param  object $user ユーザー
+     * @return void
+     */
+    public function user_email_edit($user)
+    {
+        $this
+            ->from([INFO_EMAIL => SITE_NAME])
+            ->to($user->tmp_email)
+            ->subject('【' . SITE_NAME . '】メール認証 - メール変更手続きのお知らせ')
+            ->viewVars(['user' => $user]);
+    }
 
 }

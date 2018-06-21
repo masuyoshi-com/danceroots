@@ -44,10 +44,10 @@
                     <span class="badge badge-success"><?= h($studio->pref) ?></span>
                     <span class="badge badge-info">Studio</span>
                 </p>
-
+                <h5><?= h($studio->user->username) ?></h5>
                 <h4 class="card-title"><strong><?= h($studio->studio_name) ?></strong></h4>
 
-                <h5>代表者: <?= h($studio->name) ?></h5>
+                <h5><small>スタジオ代表者:</small> <?= h($studio->name) ?></h5>
 
                 <?php if ($studio->url) : ?>
                 <p class="dark-grey-text">
