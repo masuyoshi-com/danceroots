@@ -371,7 +371,7 @@ class UsersController extends AppController
     /**
      * メール編集
      *
-     * @return redirect ユーザーが存在しない、保存できないはエラー画面へ
+     * @return redirect ユーザーが存在しない、保存できない場合はエラー画面へ
      * @throws \Cake\Network\Exception\NotFoundException
      */
      public function emailEdit()
