@@ -113,7 +113,7 @@
                     </div>
 
                     <div class="embed-responsive embed-responsive-16by9 d-flex justify-content-center zoom">
-                        <?= $this->Html->image('http://img.youtube.com/vi/' . h($video->youtube) . '/mqdefault.jpg',
+                        <?= $this->Html->image('https://img.youtube.com/vi/' . h($video->youtube) . '/mqdefault.jpg',
                             [
                                 'class'       => 'img-thumbnail img-fluid',
                                 'data-toggle' => 'modal',
