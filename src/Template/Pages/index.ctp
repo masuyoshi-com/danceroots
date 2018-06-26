@@ -85,6 +85,12 @@
         <h1 class="section-heading h1 dark-grey-text text-center mt-5 pt-lg-3">
             dancer<span class="font-blue">oo</span>ts<span class="none">.net</span>の利用は全て無料です。
         </h1>
+        <h5 class="text-center">
+            <small>
+                <span class="red-text">※</span>現在、BETAでのテスト運用です。予期しないデータが表示される場合があります。<br>
+                プロフィール作成などは可能です。今後様々なアップデートの予定がありますので、是非お楽しみに!!
+            </small>
+        </h5>
         <hr>
 
         <p class="section-description mb-5 mt-lg-5 mx-lg-5 text-center">
