@@ -5,7 +5,7 @@ if (isset($_SERVER['PHP_ENV']) && $_SERVER['PHP_ENV'] === 'production') {
     return
     [
         // 広告フラグ 0 => 表示 1 => 非表示
-        define('AD', 0),
+        define('AD', 1),
 
         // メール送信機能 0 => 各処理後送信 1 => 送信しない
         define('SEND_MAIL_FUNCTION', 0),
