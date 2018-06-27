@@ -19,6 +19,9 @@ if (isset($_SERVER['PHP_ENV']) && $_SERVER['PHP_ENV'] === 'production') {
         // サイト名
         define('SITE_NAME', 'Danceroots'),
 
+        // サイトサブタイトル
+        define('SITE_SUB_TITLE', 'ストリートダンス総合プラットフォーム'),
+        
         // URL
         define('URL', 'https://danceroots.net/'),
 
