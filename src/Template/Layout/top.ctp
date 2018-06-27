@@ -6,6 +6,8 @@
     <?= $this->Html->meta(['http-equiv' => 'x-ua-compatible', 'content' => 'ie=edge']) ?>
     <title>Danceroots | ストリートダンス総合SNS</title>
     <?= $this->Html->meta('icon') ?>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-5544353-4"></script>
+    <?= $this->Html->script('gtag') ?>
     <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') ?>
     <?= $this->Html->css('/css/top-bootstrap.min') ?>
     <!-- ※MDBFree & Tempateベースで作成 -->
@@ -259,11 +261,11 @@
         </div>
     </footer>
 
-    <?= $this->Html->script('/js/jquery-3.2.1.min') ?>
+    <?= $this->Html->script('jquery-3.2.1.min') ?>
     <!-- Bootstrap dropdown -->
-    <?= $this->Html->script('/js/popper.min') ?>
-    <?= $this->Html->script('/js/bootstrap.min') ?>
-    <?= $this->Html->script('/js/mdb.min') ?>
+    <?= $this->Html->script('popper.min') ?>
+    <?= $this->Html->script('bootstrap.min') ?>
+    <?= $this->Html->script('mdb.min') ?>
     <script>
         new WOW().init();
         $('[data-toggle="tooltip"]').tooltip()

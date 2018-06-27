@@ -6,6 +6,8 @@
     <?= $this->Html->meta(['http-equiv' => 'x-ua-compatible', 'content' => 'ie=edge']) ?>
     <title>Danceroots | <?= $this->fetch('title') ?></title>
     <?= $this->Html->meta('icon') ?>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-5544353-4"></script>
+    <?= $this->Html->script('gtag') ?>
     <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') ?>
     <?= $this->Html->css('/css/top-bootstrap.min') ?>
     <?= $this->Html->css('/css/top-mdb.min') ?>
