@@ -1,3 +1,4 @@
+<?php $this->assign('title', 'アカウント登録済み'); ?>
 <div class="container mt-5">
     <div class="row">
         <div class="col-lg-12 mt-5">

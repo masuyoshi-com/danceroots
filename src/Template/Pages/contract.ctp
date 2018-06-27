@@ -1,4 +1,4 @@
-
+<?php $this->assign('title', '利用規約'); ?>
 <div class="container">
     <div class="row mt-5">
         <div class="col-lg-12 dark-grey-text">

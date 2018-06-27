@@ -1,3 +1,4 @@
+<?php $this->assign('title', 'アカウント本登録完了'); ?>
 <div class="container mt-5">
     <div class="row">
         <div class="col-lg-12 mt-5">

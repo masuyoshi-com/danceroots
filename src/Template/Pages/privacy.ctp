@@ -1,3 +1,4 @@
+<?php $this->assign('title', 'プライバシーポリシー'); ?>
 <div class="container">
     <div class="row mt-5">
         <div class="col-lg-12 dark-grey-text">
