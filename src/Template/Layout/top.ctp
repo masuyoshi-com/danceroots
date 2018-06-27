@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="jp">
 <head>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-6641711520108217",
+        enable_page_level_ads: true
+        });
+    </script>
     <?= $this->Html->charset() ?>
     <?= $this->Html->meta(['name' => 'viewport', 'content' => 'width=device-width, initial-scale=1, shrink-to-fit=no']) ?>
     <?= $this->Html->meta(['http-equiv' => 'x-ua-compatible', 'content' => 'ie=edge']) ?>
@@ -8,8 +15,6 @@
     <?= $this->Html->meta('icon') ?>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-5544353-4"></script>
     <?= $this->Html->script('gtag') ?>
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <?= $this->Html->script('adsence') ?>
     <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') ?>
     <?= $this->Html->css('/css/top-bootstrap.min') ?>
     <!-- ※MDBFree & Tempateベースで作成 -->
