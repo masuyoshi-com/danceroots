@@ -8,6 +8,8 @@
     <?= $this->Html->meta('icon') ?>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-5544353-4"></script>
     <?= $this->Html->script('gtag') ?>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <?= $this->Html->script('adsence') ?>
     <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') ?>
     <?= $this->Html->css('/css/top-bootstrap.min') ?>
     <!-- ※MDBFree & Tempateベースで作成 -->

@@ -9,6 +9,8 @@
     <?= $this->Html->meta('icon') ?>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-5544353-4"></script>
     <?= $this->Html->script('gtag') ?>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <?= $this->Html->script('adsence') ?>
     <?= $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css') ?>
     <?= $this->Html->css('bootstrap.min') ?>
     <?= $this->Html->css('mdb.min') ?>
