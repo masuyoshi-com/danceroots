@@ -102,6 +102,16 @@
     <div class="col-lg-1">
     </div>
     <div class="col-lg-10">
+        <?= $this->Flash->render() ?>
+    </div>
+    <div class="col-lg-1">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-1">
+    </div>
+    <div class="col-lg-10">
         <div class="card card-body mb-3">
 
             <div class="row">
@@ -118,8 +128,6 @@
             </div>
 
             <hr>
-
-            <?= $this->Flash->render() ?>
 
             <div class="row">
                 <div class="col-lg-12">
