@@ -28,7 +28,6 @@
                 ]
             ) ?>
         </li>
-        <!--
         <li class="nav-item">
             <?= $this->Html->link('<i class="fa fa-music"></i> <span class="clearfix d-none d-sm-inline-block">音楽</span>',
                 ['controller' => 'DanceMusics', 'action' => 'index'],
@@ -41,7 +40,6 @@
                 ]
             ) ?>
         </li>
-        -->
         <li class="nav-item dropdown">
             <?= $this->Html->link('<i class="fa fa-user"></i> <span class="clearfix d-none d-sm-inline-block">アカウント</span>', '#',
                 [

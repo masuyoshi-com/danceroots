@@ -56,6 +56,7 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.1 controllers/Studios/view',
             'bin/cake acl grant Groups.1 controllers/Users/edit',
             'bin/cake acl grant Groups.1 controllers/Users/emailEdit',
+            'bin/cake acl grant Groups.1 controllers/DanceMusics',
 
             // Studios
             'bin/cake acl deny Groups.2 controllers',

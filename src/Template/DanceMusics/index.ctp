@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-lg-6 col-md-12">
         <div class="jumbotron">
-            <h1 class="h1-responsive"><i class="fa fa-music pink-text"></i> Favorite Dance Musics</h1>
+            <h1 class="h1-responsive"><i class="fa fa-music pink-text"></i> Favorite Dance Music</h1>
             <hr class="my-2">
             <p class="lead grey-text">
                 <small>音楽動画の共有にご協力ください。良い音楽を聞く、知ることは大切です。</small>

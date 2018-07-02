@@ -41,26 +41,6 @@
                     </div>
                 </li>
                 <li>
-                    <?= $this->Html->link('<i class="fa fa-heart"></i> お気に入り<i class="fa fa-angle-down rotate-icon"></i>', 'javascript:void(0)',
-                        ['class' => 'collapsible-header waves-effect arrow-r', 'escape' => false]
-                    ) ?>
-                    <div class="collapsible-body">
-                        <ul class="list-unstyled">
-                            <li>
-                                <?= $this->Html->link('ダンス動画', ['controller' => 'DanceVideos', 'action' => 'index'], ['class' => 'waves-effect']) ?>
-                            </li>
-                            <li>
-                                <?= $this->Html->link('マイ ダンス動画', ['controller' => 'DanceVideos', 'action' => 'list', $logins['id']], ['class' => 'waves-effect']) ?>
-                            </li>
-                            <!--
-                            <li>
-                                <?= $this->Html->link('ダンス音楽', ['controller' => 'DanceMusics', 'action' => 'index'], ['class' => 'waves-effect']) ?>
-                            </li>
-                            -->
-                        </ul>
-                    </div>
-                </li>
-                <li>
                     <?= $this->Html->link('<i class="fa fa-building"></i> スタジオ<i class="fa fa-angle-down rotate-icon"></i>', 'javascript:void(0)',
                         ['class' => 'collapsible-header waves-effect arrow-r', 'escape' => false]
                     ) ?>
@@ -71,6 +51,42 @@
                             </li>
                             <li>
                                 <?= $this->Html->link('ダンス関連求人', ['controller' => 'Jobs', 'action' => 'index'], ['class' => 'waves-effect']) ?>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <?= $this->Html->link('<i class="fa fa-youtube-play" aria-hidden="true"></i> ダンス動画<i class="fa fa-angle-down rotate-icon"></i>', 'javascript:void(0)',
+                        ['class' => 'collapsible-header waves-effect arrow-r', 'escape' => false]
+                    ) ?>
+                    <div class="collapsible-body">
+                        <ul class="list-unstyled">
+                            <li>
+                                <?= $this->Html->link('ダンス動画', ['controller' => 'DanceVideos', 'action' => 'index'], ['class' => 'waves-effect']) ?>
+                            </li>
+                            <li>
+                                <?= $this->Html->link('マイ ダンス動画', ['controller' => 'DanceVideos', 'action' => 'list', $logins['id']], ['class' => 'waves-effect']) ?>
+                            </li>
+                            <li>
+                                <?= $this->Html->link('おすすめ', ['controller' => 'DanceVideos', 'action' => 'recommend'], ['class' => 'waves-effect']) ?>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <?= $this->Html->link('<i class="fa fa-music" aria-hidden="true"></i> ミュージック<i class="fa fa-angle-down rotate-icon"></i>', 'javascript:void(0)',
+                        ['class' => 'collapsible-header waves-effect arrow-r', 'escape' => false]
+                    ) ?>
+                    <div class="collapsible-body">
+                        <ul class="list-unstyled">
+                            <li>
+                                <?= $this->Html->link('ダンス音楽', ['controller' => 'DanceMusics', 'action' => 'index'], ['class' => 'waves-effect']) ?>
+                            </li>
+                            <li>
+                                <?= $this->Html->link('マイ ダンス音楽', ['controller' => 'DanceMusics', 'action' => 'list', $logins['id']], ['class' => 'waves-effect']) ?>
+                            </li>
+                            <li>
+                                <?= $this->Html->link('ランキング・おすすめ', ['controller' => 'DanceMusics', 'action' => 'recommend'], ['class' => 'waves-effect']) ?>
                             </li>
                         </ul>
                     </div>

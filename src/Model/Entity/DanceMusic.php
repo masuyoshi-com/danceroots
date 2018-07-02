@@ -8,10 +8,22 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $user_id
- * @property string $title
- * @property string $youtube
- * @property string $genre
- * @property string $tag
+ * @property string $artis_name
+ * @property string $collection_name
+ * @property string $track_name
+ * @property string $collection_artist_name
+ * @property string $artist_view_url
+ * @property string $collection_view_url
+ * @property string $track_view_url
+ * @property string $preview_url
+ * @property string $artwork_url
+ * @property float $collection_price
+ * @property float $track_price
+ * @property \Cake\I18n\FrozenTime $release_date
+ * @property string $track_explicitness
+ * @property string $country
+ * @property string $currency
+ * @property string $primary_genre_name
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
@@ -21,22 +33,28 @@ class DanceMusic extends Entity
 {
 
     /**
-     * Fields that can be mass assigned using newEntity() or patchEntity().
-     *
-     * Note that when '*' is set to true, this allows all unspecified fields to
-     * be mass assigned. For security purposes, it is advised to set '*' to false
-     * (or remove it), and explicitly make individual fields accessible as needed.
-     *
      * @var array
      */
     protected $_accessible = [
-        'user_id' => true,
-        'title' => true,
-        'youtube' => true,
-        'genre' => true,
-        'tag' => true,
-        'created' => true,
-        'modified' => true,
-        'user' => true
+        'user_id'                => true,
+        'artist_name'            => true,
+        'collection_name'        => true,
+        'track_name'             => true,
+        'collection_artist_name' => true,
+        'artist_view_url'        => true,
+        'collection_view_url'    => true,
+        'track_view_url'         => true,
+        'preview_url'            => true,
+        'artwork_url'            => true,
+        'collection_price'       => true,
+        'track_price'            => true,
+        'release_date'           => true,
+        'track_explicitness'     => true,
+        'country'                => true,
+        'currency'               => true,
+        'primary_genre_name'     => true,
+        'created'                => true,
+        'modified'               => true,
+        'user'                   => true
     ];
 }

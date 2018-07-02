@@ -27,7 +27,7 @@ class DanceMusicsTable extends Table
     /**
      * Initialize method
      *
-     * @param array $config The configuration for the Table.
+     * @param array $config
      * @return void
      */
     public function initialize(array $config)
@@ -42,58 +42,19 @@ class DanceMusicsTable extends Table
 
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',
-            'joinType' => 'INNER'
+            'joinType'   => 'INNER'
         ]);
     }
 
     /**
-     * Default validation rules.
+     * 保存時ルールチェッカー
      *
-     * @param \Cake\Validation\Validator $validator Validator instance.
-     * @return \Cake\Validation\Validator
-     */
-    public function validationDefault(Validator $validator)
-    {
-        $validator
-            ->allowEmpty('id', 'create');
-
-        $validator
-            ->scalar('title')
-            ->maxLength('title', 100)
-            ->requirePresence('title', 'create')
-            ->notEmpty('title');
-
-        $validator
-            ->scalar('youtube')
-            ->maxLength('youtube', 255)
-            ->requirePresence('youtube', 'create')
-            ->notEmpty('youtube');
-
-        $validator
-            ->scalar('genre')
-            ->maxLength('genre', 50)
-            ->requirePresence('genre', 'create')
-            ->notEmpty('genre');
-
-        $validator
-            ->scalar('tag')
-            ->maxLength('tag', 50)
-            ->allowEmpty('tag');
-
-        return $validator;
-    }
-
-    /**
-     * Returns a rules checker object that will be used for validating
-     * application integrity.
-     *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @param \Cake\ORM\RulesChecker $rules
      * @return \Cake\ORM\RulesChecker
      */
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['user_id'], 'Users'));
-
         return $rules;
     }
 }

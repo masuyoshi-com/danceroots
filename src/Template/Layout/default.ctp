@@ -52,9 +52,17 @@
     <?= $this->Html->script('mdb.min') ?>
     <?= $this->Html->script('script') ?>
 
-    <?php if (strstr($url, 'view')) : ?>
-        <?= $this->Html->script('facebook') ?>
-    <?php endif; ?>
+    <?php
+        if (strstr($url, 'dance-musics')) {
+            print $this->Html->script('autolink');
+        }
+    ?>
+
+    <?php
+        if (strstr($url, 'view')) {
+            print $this->Html->script('facebook');
+        }
+    ?>
 
     <script>
     $(function () {
