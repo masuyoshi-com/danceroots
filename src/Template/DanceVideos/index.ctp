@@ -6,8 +6,8 @@
     <?php else : ?>
         <div class="col-lg-12 col-md-12">
     <?php endif; ?>
-        <div class="jumbotron text-center pt-5 pb-4">
-            <h1 class="h1-responsive"><i class="fa fa-youtube-play yt-ic"></i> Favorite Dance Videos</h1>
+        <div class="jumbotron text-center pt-4 pb-1">
+            <h2 class="h2-responsive"><i class="fa fa-youtube-play yt-ic"></i> Favorite Dance Videos</h2>
             <hr class="my-2">
             <p class="lead grey-text">
                 <small>あなたの好きなダンス動画を登録しましょう。</small>
@@ -30,30 +30,28 @@
 </div>
 
 <?= $this->Form->create('', ['type' => 'get']) ?>
-<div class="card p-3 mb-3">
+<div class="card card-body p-3 mb-3">
     <div class="row">
-        <div class="col-lg-12">
-            <div class="form-inline md-form mt-2 ml-2 mb-2">
-                <div class="col-lg-3 col-md-12 col-xs-12">
-                    <?= $this->Form->control('genre',
-                        [
-                            'id'      => 'f--genre',
-                            'type'    => 'select',
-                            'class'   => 'mdb-select colorful-select dropdown-primary',
-                            'options' => $genres,
-                            'empty'   => 'ジャンルを選択'
-                        ]
-                    ) ?>
-                </div>
-                <div class="col-lg-9 col-md-12 col-xs-12 input-group">
-                    <?= $this->Form->control('word', ['class' => 'form-control my-0', 'placeholder' => '検索']) ?>
-                    <?= $this->Form->button('<i class="fa fa-search"></i>',
-                        [
-                            'class'  => 'btn btn-indigo ml-2 waves-effect waves-light',
-                            'escape' => false
-                        ]
-                    ) ?>
-                </div>
+        <div class="col-lg-3 col-md-5 col-xs-12 mt-3">
+            <?= $this->Form->control('genre',
+                [
+                    'id'      => 'f--genre',
+                    'type'    => 'select',
+                    'class'   => 'mdb-select colorful-select dropdown-primary',
+                    'options' => $genres,
+                    'empty'   => 'ジャンルを選択'
+                ]
+            ) ?>
+        </div>
+        <div class="col-lg-9 col-md-7 col-xs-12">
+            <div class="form-inline md-form input-group mt-2 mb-2">
+                <?= $this->Form->control('word', ['class' => 'form-control my-0', 'placeholder' => '検索']) ?>
+                <?= $this->Form->button('<i class="fa fa-search"></i>',
+                    [
+                        'class'  => 'btn btn-primary ml-2 waves-effect waves-light',
+                        'escape' => false
+                    ]
+                ) ?>
             </div>
         </div>
     </div><!-- /.row -->
@@ -107,7 +105,9 @@
                                         print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'rounded-circle avatar-img z-depth-1']);
                                     }
                                 ?>
-                                <?= h($video->user->username) ?>
+                                <small>
+                                    <?= h($video->user->username) ?>
+                                </small>
                             </a>
                         </div>
                     </div>

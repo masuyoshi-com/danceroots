@@ -6,7 +6,7 @@
     <?php else : ?>
         <div class="col-lg-12 col-md-12">
     <?php endif; ?>
-        <div class="jumbotron text-center pt-5 pb-5">
+        <div class="jumbotron text-center pt-4 pb-4">
             <h2 class="h2-responsive">
                 <i class="fa fa-youtube-play yt-ic"></i> マイ ダンス動画
             </h2>
@@ -87,7 +87,9 @@
                                     print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'rounded-circle avatar-img z-depth-1']);
                                 }
                             ?>
-                            <?= h($video->user->username) ?>
+                            <small>
+                                <?= h($video->user->username) ?>
+                            </small>
                         </div>
                     </div>
 

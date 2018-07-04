@@ -6,7 +6,7 @@
     </div>
 
     <div class="col-lg-8">
-        <div class="jumbotron text-center pt-5 pb-5">
+        <div class="jumbotron text-center pt-4 pb-4">
             <h2 class="h2-responsive"><i class="fa fa-youtube-play yt-ic"></i> お気に入りダンス動画</h2>
             <hr class="my-2">
             <p class="lead grey-text">
