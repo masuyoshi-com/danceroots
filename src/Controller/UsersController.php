@@ -118,8 +118,10 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.4 controllers/Users/emailEdit',
             'bin/cake acl grant Groups.4 controllers/DanceMusics',
 
+            // linux環境はbin/cakeをchmod +x bin/cakeしておく
             // Controller追加，Groupの変更などで更新する場合
             'bin/cake acl_extras aco_update',
+
 
             // その後に各区分に上記コマンドで設定
         ];

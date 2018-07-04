@@ -177,7 +177,11 @@
                                     'style' => 'width: 25px; height: 25px;'
                                 ]);
                         } else {
-                            print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'rounded-circle avatar-img z-depth-1']);
+                            print $this->Html->image('/img/sample/no_icon.jpg',
+                                [
+                                    'class' => 'rounded-circle avatar-img z-depth-1 mr-2 mb-2',
+                                    'style' => 'width: 25px; height: 25px;'
+                                ]);
                         }
                     ?>
                     <?= $this->Html->link($music->user->username, $music->link, ['class' => 'dark-grey-text', 'target' => '_blank']) ?>
