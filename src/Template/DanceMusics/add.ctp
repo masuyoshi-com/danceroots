@@ -1,10 +1,10 @@
 <?php $this->assign('title', 'ダンス音楽共有登録') ?>
 <div class="row">
     <div class="col-lg-12">
-        <div class="jumbotron text-center pt-5 pb-5">
-            <h1 class="h1-responsive"><i class="fa fa-music pink-text"></i> Favorite Dance Music
+        <div class="jumbotron text-center pt-4 pb-4">
+            <h2 class="h2-responsive"><i class="fa fa-music pink-text"></i> お気に入り音楽登録
                 <small><i class="fa fa-plus pink-text"></i></small>
-            </h1>
+            </h2>
             <hr class="my-2">
             <p class="lead grey-text">
                 <small>まずは音楽を検索しましょう。音楽を選択して登録してください。</small>
@@ -13,6 +13,7 @@
         </div>
     </div>
 </div>
+
 <?= $this->Form->create('', ['type' => 'get']) ?>
 <div class="card p-3 mb-3">
     <div class="row">

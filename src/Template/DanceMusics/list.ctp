@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'ダンス音楽検索'); ?>
+<?php $this->assign('title', 'マイ ダンス音楽リスト'); ?>
 
 <div class="row">
     <?php if (AD === 0) : ?>
@@ -8,11 +8,11 @@
     <?php endif; ?>
         <div class="jumbotron text-center pt-4 pb-4">
             <h2 class="h2-responsive">
-                <i class="fa fa-music pink-text"></i> Favorite Dance Music
+                <i class="fa fa-music pink-text"></i> マイ ダンス音楽
             </h2>
             <hr class="my-2">
             <p class="lead grey-text">
-                <small><i class="fa fa-info-circle" aria-hidden="true"></i> お気に入りの音楽を皆で共有しましょう。</small>
+                <small><i class="fa fa-info-circle" aria-hidden="true"></i> お気に入りの音楽を共有しましょう。</small>
             </p>
             <hr class="my-2">
             <div class="row">
@@ -34,35 +34,6 @@
         </div>
     <?php endif; ?>
 </div>
-
-<?= $this->Form->create('', ['type' => 'get']) ?>
-<div class="card card-body p-3 mb-3">
-    <div class="row">
-        <div class="col-lg-3 col-md-5 col-xs-12 mt-3">
-            <?= $this->Form->control('genre',
-                [
-                    'id'      => 'f--genre',
-                    'type'    => 'select',
-                    'class'   => 'mdb-select colorful-select dropdown-primary',
-                    'options' => $genres,
-                    'empty'   => 'ジャンルを選択'
-                ]
-            ) ?>
-        </div>
-        <div class="col-lg-9 col-md-7 col-xs-12">
-            <div class="form-inline md-form input-group mt-2 mb-2">
-                <?= $this->Form->control('word', ['class' => 'form-control my-0', 'placeholder' => '検索']) ?>
-                <?= $this->Form->button('<i class="fa fa-search"></i>',
-                    [
-                        'class'  => 'btn btn-primary ml-2 waves-effect waves-light',
-                        'escape' => false
-                    ]
-                ) ?>
-            </div>
-        </div>
-    </div><!-- /.row -->
-</div><!-- /.card -->
-<?= $this->Form->end() ?>
 
 <div class="row">
     <div class="col-lg-12">
@@ -167,23 +138,12 @@
 
     <div class="col-lg-2 col-md-3 col-xs-6 mb-3">
         <div class="card card-body text-center pb-0">
-            <p class="dark-grey-text text-left m-0">
+            <p class="m-0 text-right">
                 <small>
-                    <?php
-                        if ($music->profile->icon) {
-                            print $this->Html->image($music->profile->icon,
-                                [
-                                    'class' => 'rounded-circle avatar-img z-depth-1 mr-2 mb-2',
-                                    'style' => 'width: 25px; height: 25px;'
-                                ]);
-                        } else {
-                            print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'rounded-circle avatar-img z-depth-1']);
-                        }
-                    ?>
-                    <?= $this->Html->link($music->user->username, $music->link, ['class' => 'dark-grey-text', 'target' => '_blank']) ?>
+                    Date: <?= h($music->created->format('Y/m/d')) ?>
                 </small>
             </p>
-            <hr class="mt-1">
+            <hr>
             <p>
                 <?= $this->Html->link($this->Html->image($music->artwork_url, ['class' => 'img-fluid z-depth-2']),
                     'javascript:void(0)',
@@ -206,7 +166,7 @@
                 ) ?>
                 </small>
             </p>
-            <p class="mb-0">
+            <p>
                 <small>
                     <?= $this->Html->link($music->track_name, 'javascript:void(0)',
                         [
@@ -217,12 +177,20 @@
                     ) ?>
                 </small>
             </p>
-            <hr class="mb-1">
-            <p class="dark-grey-text text-right">
-                <small>
-                    Date: <?= h($music->created->format('Y/m/d')) ?>
-                </small>
-            </p>
+            <hr class="mt-0 mb-2">
+            <div class="text-right mb-2">
+                <?= $this->Form->postLink('<i class="fa fa-close" aria-hidden="true"></i>',
+                        ['action' => 'delete', $music->id],
+                        [
+                            'class'          => 'btn btn-sm btn-outline-danger btn-rounded waves-effect',
+                            'confirm'        => '本当に削除しますか？',
+                            'escape'         => false,
+                            'data-toggle'    => 'tooltip',
+                            'data-placement' => 'bottom',
+                            'title'          => '削除'
+                        ]
+                ) ?>
+            </div>
         </div><!-- /.card -->
     </div><!-- /.col-lg-2 -->
 <?php $i++; endforeach; ?>

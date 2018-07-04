@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Network\Exception\NotFoundException;
 
 /**
  * DanceMusics Controller
@@ -16,53 +17,78 @@ class DanceMusicsController extends AppController
     const ITUNES_API_URL       = 'https://itunes.apple.com/search?term=';
     const ITUNES_QUERY_OPTIONS = '&country=JP&entity=song&media=music&lang=ja_jp';
 
+    // 検索Form名
+    public $search_keys = ['genre', 'word'];
+
+    // iTunes ジャンル
+    public $genres = [
+        'ヒップホップ／ラップ', 'R&B／ソウル', 'サウンドトラック', 'ジャズ', 'ダンス',
+        'レゲエ', 'エレクトロニック', 'オルタナティブ', 'ポップ', 'ロック', 'J-Pop',
+    ];
+
+    public $paginate = [
+           'limit' => 50,
+           'order' => ['DanceMusics.created' => 'desc'],
+     ];
+
     /**
-     * Index method
+     * ダンス音楽共有一覧
      *
      * @return \Cake\Http\Response|void
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Users']
-        ];
-        $danceMusics = $this->paginate($this->DanceMusics);
+        $this->paginate = ['contain' => ['Users']];
 
-        $this->set('genres', $this->genres);
+        if ($this->request->query) {
+
+            for ($i = 0; $i < count($this->search_keys); $i++) {
+                if (!isset($this->request->query[$this->search_keys[$i]])) {
+                    $this->request->query[$this->search_keys[$i]] = '';
+                }
+            }
+
+            $query       = $this->DanceMusics->findBySearch($this->request->query)->group('track_name');
+            $danceMusics = $this->paginate($query)->toArray();
+
+            $this->Session->write('music_search_request', $this->request->query);
+
+        } else {
+            $query       = $this->DanceMusics->find()->group('track_name');
+            $danceMusics = $this->paginate($query)->toArray();
+        }
+
+        if ($this->Session->check('music_search_request')) {
+            $this->request->data = $this->Session->read('music_search_request');
+        }
+
+        // 登録者区分プロフィールを取得 / YoutubeIDのみに変更 / 区分リンク取得
+        if ($danceMusics) {
+            for ($i = 0; $i < count($danceMusics); $i++) {
+                $danceMusics[$i]['profile'] = $this->Common->getUsersByClassification($danceMusics[$i]['user']['classification'], $danceMusics[$i]['user']['id']);
+                $danceMusics[$i]['link']    = $this->Common->linkSwitch($danceMusics[$i]['user']['classification'], 'view', $danceMusics[$i]['user']['id']);
+            }
+        }
+
+        $this->set('genres', $this->Common->valueToKey($this->genres));
         $this->set(compact('danceMusics'));
-    }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Dance Music id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $danceMusic = $this->DanceMusics->get($id, [
-            'contain' => ['Users']
-        ]);
-
-        $this->set('danceMusic', $danceMusic);
     }
 
 
     /**
-     * ダンス音楽検索
+     * ダンス音楽登録
      *
      * @return \Cake\Http\Response|null
      */
     public function add()
     {
-
         if ($this->request->query) {
 
             $url  =  self::ITUNES_API_URL . urlencode($this->request->query['term']) . self::ITUNES_QUERY_OPTIONS;
 
             $option = [
-                CURLOPT_RETURNTRANSFER => true, //文字列として返す
+                CURLOPT_RETURNTRANSFER => true, // 文字列として返す
                 CURLOPT_TIMEOUT        => 3,    // タイムアウト時間
             ];
 
@@ -107,7 +133,14 @@ class DanceMusicsController extends AppController
                     $this->request->data[$i]['artist_name']            = $songs[$i]['artistName'];
                     $this->request->data[$i]['collection_name']        = $songs[$i]['collectionName'];
                     $this->request->data[$i]['track_name']             = $songs[$i]['trackName'];
-                    $this->request->data[$i]['collection_artist_name'] = $songs[$i]['collectionArtistName'];
+
+                    // itunes API データが存在しない可能性のあるカラム notice回避
+                    if (isset($songs[$i]['collectionArtistName'])) {
+                        $this->request->data[$i]['collection_artist_name'] = $songs[$i]['collectionArtistName'];
+                    } else {
+                        $this->request->data[$i]['collection_artist_name'] = null;
+                    }
+
                     $this->request->data[$i]['artist_view_url']        = $songs[$i]['artistViewUrl'];
                     $this->request->data[$i]['collection_view_url']    = $songs[$i]['collectionViewUrl'];
                     $this->request->data[$i]['track_view_url']         = $songs[$i]['trackViewUrl'];
@@ -132,9 +165,22 @@ class DanceMusicsController extends AppController
             $entities = $this->DanceMusics->newEntities($this->request->getData());
 
             if ($entities) {
+
+                // ユーザIDに紐づいたトラック名が重複する場合、エラー
+                foreach ($entities as $entity) {
+
+                    $error_count = $this->DanceMusics->findByUserIdAndTrackName($entity->user_id, $entity->track_name)->count();
+
+                    if ($error_count === 1) {
+                        $this->Flash->error(__('既に登録済みのデータがあります。再度確認してください。'));
+                        return $this->redirect($this->referer());
+                    }
+                }
+
                 foreach ($entities as $entity) {
                     $this->DanceMusics->save($entity);
                 }
+
                 $this->Flash->success(__('ミュージックを登録しました。'));
                 return $this->redirect(['action' => 'list', $this->Auth->user('id')]);
             } else {
@@ -151,50 +197,47 @@ class DanceMusicsController extends AppController
 
 
     /**
-     * Edit method
+     * マイ ダンス音楽
      *
-     * @param string|null $id Dance Music id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     * @param string|null $id ユーザーID
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Network\Exception\NotFoundException
      */
-    public function edit($id = null)
+    public function list($id = null)
     {
-        /*
-        $danceMusic = $this->DanceMusics->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $danceMusic = $this->DanceMusics->patchEntity($danceMusic, $this->request->getData());
-            if ($this->DanceMusics->save($danceMusic)) {
-                $this->Flash->success(__('The dance music has been saved.'));
+        if ((int)$id === $this->Auth->user('id')) {
 
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The dance music could not be saved. Please, try again.'));
+            $query       = $this->DanceMusics->findByUserId($id);
+            $danceMusics = $this->paginate($query);
+
+            $this->set(compact('danceMusics'));
+
+        } else {
+            throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
         }
-        $users = $this->DanceMusics->Users->find('list', ['limit' => 200]);
-        */
-        $this->set('genres', $this->genres);
-        $this->set(compact('danceMusic', 'users'));
     }
 
+
     /**
-     * Delete method
+     * 音楽削除
      *
      * @param string|null $id Dance Music id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     * @return \Cake\Http\Response|null リスト ユーザーID付与
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException
      */
     public function delete($id = null)
     {
+        $this->Common->referer();
+
         $this->request->allowMethod(['post', 'delete']);
         $danceMusic = $this->DanceMusics->get($id);
+
         if ($this->DanceMusics->delete($danceMusic)) {
-            $this->Flash->success(__('The dance music has been deleted.'));
+            $this->Flash->success(__('音楽を削除しました。'));
         } else {
-            $this->Flash->error(__('The dance music could not be deleted. Please, try again.'));
+            $this->Flash->error(__('削除できません。問題が解決しなければサポートに連絡してください。'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['action' => 'list', $this->Auth->user('id')]);
     }
 }

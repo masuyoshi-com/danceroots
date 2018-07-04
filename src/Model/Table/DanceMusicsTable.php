@@ -57,4 +57,23 @@ class DanceMusicsTable extends Table
         $rules->add($rules->existsIn(['user_id'], 'Users'));
         return $rules;
     }
+
+
+    /**
+    * ダンス音楽検索 - ジャンル/フリーワード
+    *
+    * @param array $requests
+    */
+    public function findBySearch($requests)
+    {
+        return $this->find('all')
+            ->where(['DanceMusics.primary_genre_name LIKE' => '%' . $requests['genre'] . '%'])
+            ->where(['OR' => [
+                ['Users.username LIKE'                     => '%' . $requests['word'] . '%'],
+                ['DanceMusics.artist_name LIKE'            => '%' . $requests['word'] . '%'],
+                ['DanceMusics.collection_name LIKE'        => '%' . $requests['word'] . '%'],
+                ['DanceMusics.track_name LIKE'             => '%' . $requests['word'] . '%'],
+                ['DanceMusics.collection_artist_name LIKE' => '%' . $requests['word'] . '%']]])
+            ;
+    }
 }
