@@ -80,10 +80,10 @@
                     <div class="collapsible-body">
                         <ul class="list-unstyled">
                             <li>
-                                <?= $this->Html->link('ダンス音楽', ['controller' => 'DanceMusics', 'action' => 'index'], ['class' => 'waves-effect']) ?>
+                                <?= $this->Html->link('ミュージック検索', ['controller' => 'DanceMusics', 'action' => 'index'], ['class' => 'waves-effect']) ?>
                             </li>
                             <li>
-                                <?= $this->Html->link('マイ ダンス音楽', ['controller' => 'DanceMusics', 'action' => 'list', $logins['id']], ['class' => 'waves-effect']) ?>
+                                <?= $this->Html->link('マイ ミュージック', ['controller' => 'DanceMusics', 'action' => 'list', $logins['id']], ['class' => 'waves-effect']) ?>
                             </li>
                             <li>
                                 <?= $this->Html->link('ランキング・おすすめ', ['controller' => 'DanceMusics', 'action' => 'recommend'], ['class' => 'waves-effect']) ?>

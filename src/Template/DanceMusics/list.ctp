@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'マイ ダンス音楽リスト'); ?>
+<?php $this->assign('title', 'マイ ミュージックリスト'); ?>
 
 <div class="row">
     <?php if (AD === 0) : ?>
@@ -8,7 +8,7 @@
     <?php endif; ?>
         <div class="jumbotron text-center pt-4 pb-4">
             <h2 class="h2-responsive">
-                <i class="fa fa-music pink-text"></i> マイ ダンス音楽
+                <i class="fa fa-music pink-text"></i> マイ ミュージック
             </h2>
             <hr class="my-2">
             <p class="lead grey-text">

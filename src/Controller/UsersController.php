@@ -75,6 +75,7 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.2 controllers/Organizers/view',
             'bin/cake acl grant Groups.2 controllers/Users/edit',
             'bin/cake acl grant Groups.2 controllers/Users/emailEdit',
+            'bin/cake acl grant Groups.2 controllers/DanceMusics',
 
             // Organizers
             'bin/cake acl deny Groups.3 controllers',
@@ -94,6 +95,7 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.3 controllers/Studios/view',
             'bin/cake acl grant Groups.3 controllers/Users/edit',
             'bin/cake acl grant Groups.3 controllers/Users/emailEdit',
+            'bin/cake acl grant Groups.3 controllers/DanceMusics',
 
             // Generals
             'bin/cake acl deny Groups.4 controllers',
@@ -114,6 +116,7 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.4 controllers/Studios/view',
             'bin/cake acl grant Groups.4 controllers/Users/edit',
             'bin/cake acl grant Groups.4 controllers/Users/emailEdit',
+            'bin/cake acl grant Groups.4 controllers/DanceMusics',
 
             // Controller追加，Groupの変更などで更新する場合
             'bin/cake acl_extras aco_update',

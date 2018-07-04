@@ -128,9 +128,7 @@
                         <?= $this->Html->link('イベント',        ['controller' => 'Events',      'action' => 'list',  $logins['id']], ['class' => 'dropdown-item']) ?>
                         <?= $this->Html->link('ダンス関連求人',  ['controller' => 'Jobs',        'action' => 'list',  $logins['id']], ['class' => 'dropdown-item']) ?>
                         <?= $this->Html->link('ダンス動画',      ['controller' => 'DanceVideos', 'action' => 'list',  $logins['id']], ['class' => 'dropdown-item']) ?>
-                        <!--
-                        <?= $this->Html->link('ダンス音楽',      ['controller' => 'DanceMusics', 'action' => 'list',  $logins['id']], ['class' => 'dropdown-item']) ?>
-                        -->
+                        <?= $this->Html->link('ミュージック',    ['controller' => 'DanceMusics', 'action' => 'list',  $logins['id']], ['class' => 'dropdown-item']) ?>
                     </div>
                 </div>
             </div><!-- /.card-body -->
@@ -201,8 +199,8 @@
                 <p class="text-right mt-0 mb-0">
                     <small>
                         <?= $this->Html->link('ー覧へ <i class="fa fa-arrow-circle-right blue-text"></i>',
-                                ['controller' => 'Informations', 'action' => 'index'],
-                                ['class' => 'dark-grey-text', 'escape' => false]
+                            ['controller' => 'Informations', 'action' => 'index'],
+                            ['class' => 'dark-grey-text', 'escape' => false]
                         ) ?>
                     </small>
                 </p>
@@ -242,40 +240,37 @@
 <hr class="mb-3">
 
 <div class="row mb-3">
-    <div class="col-lg-12 col-md-12 mb-3">
+    <div class="col-lg-6 col-md-12 mb-3">
         <a href="<?= $this->Url->build(['controller' => 'DanceVideos', 'action' => 'list', $logins['id']]) ?>">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title dark-grey-text"><strong><i class="fa fa-youtube-play yt-ic"></i> ダンス動画管理</strong></h5>
                     <hr>
                     <p class="card-text">
-                        あなたがインスパイアを受けたYoutubeダンス動画を共有しましょう。
-                        皆で共有することがこのSNSの目的の一つです。是非協力してください。
+                        あなたがインスパイアを受けたダンス動画を共有しましょう。
                     </p>
                     <p class="card-text text-right">
-                        <small class="text-muted">ダンス動画管理へ <i class="fa fa-arrow-circle-right blue-text"></i></small>
+                        <small class="text-muted">マイ ダンス動画へ <i class="fa fa-arrow-circle-right blue-text"></i></small>
                     </p>
                 </div>
             </div>
         </a>
     </div>
-    <!--
     <div class="col-lg-6 col-md-12">
-        <a href="<?php $this->Url->build(['controller' => 'DanceMusics', 'action' => 'list', $logins['id']]) ?>">
+        <a href="<?= $this->Url->build(['controller' => 'DanceMusics', 'action' => 'list',  $logins['id']]) ?>">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title dark-grey-text"><strong><i class="fa fa-music"></i> ダンス音楽管理</strong></h5>
+                    <h5 class="card-title dark-grey-text"><strong><i class="fa fa-music pink-text"></i> ミュージック管理</strong></h5>
                     <hr>
                     <p class="card-text">
-                        良い音楽を知ることは、ダンスのセンスを高めるために欠かせません。
-                        音楽がなければダンスは生まれてこなかったのです。あなたの好きな音楽を教えてください。
+                        良い音楽を知ることは、センスを高めるために欠かせません。
+                        ぜひ、好きな音楽を教えてください。
                     </p>
                     <p class="card-text text-right">
-                        <small class="text-muted">ダンス音楽管理へ <i class="fa fa-arrow-circle-right blue-text"></i></small>
+                        <small class="text-muted">マイ ミュージックへ <i class="fa fa-arrow-circle-right blue-text"></i></small>
                     </p>
                 </div>
             </div>
         </a>
     </div>
-    -->
 </div><!-- /.row -->

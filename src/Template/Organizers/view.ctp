@@ -259,9 +259,7 @@
                             <?= $this->Html->link('イベント',        ['controller' => 'Events',      'action' => 'list',  $logins['id']], ['class' => 'dropdown-item']) ?>
                             <?= $this->Html->link('ダンス関連求人',  ['controller' => 'Jobs',        'action' => 'list',  $logins['id']], ['class' => 'dropdown-item']) ?>
                             <?= $this->Html->link('ダンス動画',      ['controller' => 'DanceVideos', 'action' => 'list',  $logins['id']], ['class' => 'dropdown-item']) ?>
-                            <!--
-                            <?= $this->Html->link('ダンス音楽',      ['controller' => 'DanceMusics', 'action' => 'list',  $logins['id']], ['class' => 'dropdown-item']) ?>
-                            -->
+                            <?= $this->Html->link('ミュージック',    ['controller' => 'DanceMusics', 'action' => 'list',  $logins['id']], ['class' => 'dropdown-item']) ?>
                         </div>
                     </div>
                 <?php else : ?>

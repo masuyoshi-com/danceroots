@@ -84,8 +84,7 @@
                         </strong>
                     </h5>
                     <p class="dark-grey-text">
-                        <small>代表者:</small>
-                        <?= h($studio->name) ?>
+                        <small>代表者: <?= h($studio->name) ?></small>
                     </p>
                 </a>
                 <?php if ($studio->station) : ?>

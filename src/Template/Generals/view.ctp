@@ -117,10 +117,8 @@
                             <?= $this->Html->link('プロフィール編集', ['controller' => 'Generals',    'action' => 'edit', $logins['id']], ['class' => 'dropdown-item']) ?>
                             <?= $this->Html->link('メッセージ',      ['controller' => 'Messages',    'action' => 'index', $logins['id']], ['class' => 'dropdown-item']) ?>
                             <?= $this->Html->link('イベント',        ['controller' => 'Events',      'action' => 'list',  $logins['id']], ['class' => 'dropdown-item']) ?>
-                            <?= $this->Html->link('ダンス動画',      ['controller' => 'DanceVideos', 'action' => 'edit',  $logins['id']], ['class' => 'dropdown-item']) ?>
-                            <!--
-                            <?= $this->Html->link('ダンス音楽',      ['controller' => 'DanceMusics', 'action' => 'edit',  $logins['id']], ['class' => 'dropdown-item']) ?>
-                            -->
+                            <?= $this->Html->link('ダンス動画',      ['controller' => 'DanceVideos', 'action' => 'list',  $logins['id']], ['class' => 'dropdown-item']) ?>
+                            <?= $this->Html->link('ミュージック',    ['controller' => 'DanceMusics', 'action' => 'list',  $logins['id']], ['class' => 'dropdown-item']) ?>
                         </div>
                     </div>
                 <?php else : ?>

@@ -112,16 +112,14 @@
                     ) ?>
                     <div class="dropdown-menu dropdown-primary">
                         <?= $this->Html->link('マイプロフィール', $views, ['class' => 'dropdown-item']) ?>
-                        <?= $this->Html->link('メッセージ', ['controller' => 'Messages',    'action' => 'index', $logins['id']], ['class' => 'dropdown-item']) ?>
+                        <?= $this->Html->link('メッセージ',  ['controller' => 'Messages',    'action' => 'index', $logins['id']], ['class' => 'dropdown-item']) ?>
                         <!--
-                        <?= $this->Html->link('チーム',     ['controller' => 'Teams',       'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
+                        <?= $this->Html->link('チーム',      ['controller' => 'Teams',       'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
                         -->
-                        <?= $this->Html->link('サークル',   ['controller' => 'Circles',     'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
-                        <?= $this->Html->link('イベント',   ['controller' => 'Events',      'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
-                        <?= $this->Html->link('ダンス動画', ['controller' => 'DanceVideos', 'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
-                        <!--
-                        <?= $this->Html->link('ダンス音楽', ['controller' => 'DanceMusics', 'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
-                        -->
+                        <?= $this->Html->link('サークル',    ['controller' => 'Circles',     'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
+                        <?= $this->Html->link('イベント',    ['controller' => 'Events',      'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
+                        <?= $this->Html->link('ダンス動画',  ['controller' => 'DanceVideos', 'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
+                        <?= $this->Html->link('ミュージック', ['controller' => 'DanceMusics', 'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
                     </div>
                 </div>
             </div><!-- /.card-body -->
@@ -228,7 +226,7 @@
 <hr class="mb-3">
 
 <div class="row mb-3">
-    <div class="col-lg-6 col-md-12 mb-3">
+    <div class="col-lg-4 col-md-12 mb-3">
         <a href="<?= $this->Url->build(['controller' => 'Events', 'action' => 'list', $logins['id']]) ?>">
             <div class="card">
                 <div class="card-body">
@@ -246,7 +244,7 @@
             </div>
         </a>
     </div>
-    <div class="col-lg-6 col-md-12 mb-3">
+    <div class="col-lg-4 col-md-12 mb-3">
         <a href="<?= $this->Url->build(['controller' => 'DanceVideos', 'action' => 'list', $logins['id']]) ?>">
             <div class="card">
                 <div class="card-body">
@@ -257,29 +255,27 @@
                         皆で共有することがこのSNSの目的の一つです。是非協力してください。
                     </p>
                     <p class="card-text text-right">
-                        <small class="text-muted">ダンス動画管理へ <i class="fa fa-arrow-circle-right blue-text"></i></small>
+                        <small class="text-muted">マイ ダンス動画へ <i class="fa fa-arrow-circle-right blue-text"></i></small>
                     </p>
                 </div>
             </div>
         </a>
     </div>
-    <!--
     <div class="col-lg-4 col-md-12">
         <a href="<?= $this->Url->build(['controller' => 'DanceMusics', 'action' => 'list', $logins['id']]) ?>">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title dark-grey-text"><strong><i class="fa fa-music"></i> ダンス音楽管理</strong></h5>
+                    <h5 class="card-title dark-grey-text"><strong><i class="fa fa-music pink-text"></i> ミュージック管理</strong></h5>
                     <hr>
                     <p class="card-text">
                         良い音楽を知ることは、ダンスのセンスを高めるために欠かせません。
                         音楽がなければダンスは生まれてこなかったのです。あなたの好きな音楽を教えてください。
                     </p>
                     <p class="card-text text-right">
-                        <small class="text-muted">ダンス音楽管理へ <i class="fa fa-arrow-circle-right blue-text"></i></small>
+                        <small class="text-muted">マイ ミュージックへ <i class="fa fa-arrow-circle-right blue-text"></i></small>
                     </p>
                 </div>
             </div>
         </a>
     </div>
-    -->
 </div><!-- /.row -->
