@@ -36,7 +36,7 @@
                     'escape'         => false,
                     'data-toggle'    => 'tooltip',
                     'data-placement' => 'bottom',
-                    'title'          => 'ダンス音楽'
+                    'title'          => 'ミュージック'
                 ]
             ) ?>
         </li>
