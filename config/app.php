@@ -1,17 +1,20 @@
 <?php
 
 if (isset($_SERVER['PHP_ENV']) && $_SERVER['PHP_ENV'] === 'production') {
-    define('HOST',     '127.0.0.1');
-    define('USER',     'root');
-    define('PASSWORD', 'ms-05');
+    define('HOST',      '127.0.0.1');
+    define('USER',      'root');
+    define('PASSWORD',  'ms-05');
+    define('DEBUG_BOOL', false);
 } elseif (isset($_SERVER['PHP_ENV']) && $_SERVER['PHP_ENV'] === 'development') {
-    define('HOST',     '127.0.0.1');
-    define('USER',     'root');
-    define('PASSWORD', 'ms-05');
+    define('HOST',      '127.0.0.1');
+    define('USER',      'root');
+    define('PASSWORD',  'ms-05');
+    define('DEBUG_BOOL', true);
 } else {
-    define('HOST',     '127.0.0.1');
-    define('USER',     'root');
-    define('PASSWORD', 'ms-05');
+    define('HOST',      '127.0.0.1');
+    define('USER',      'root');
+    define('PASSWORD',  'ms-05');
+    define('DEBUG_BOOL', true);
 }
 
 return [
@@ -24,7 +27,7 @@ return [
      * Development Mode:
      * true: Errors and warnings shown.
      */
-    'debug' => filter_var(env('DEBUG', true), FILTER_VALIDATE_BOOLEAN),
+    'debug' => filter_var(env('DEBUG', DEBUG_BOOL), FILTER_VALIDATE_BOOLEAN),
 
     /**
      * Configure basic information about the application.
