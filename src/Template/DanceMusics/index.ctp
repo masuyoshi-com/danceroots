@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'ダンス音楽検索'); ?>
+<?php $this->assign('title', 'ダンスミュージック検索'); ?>
 
 <div class="row">
     <?php if (AD === 0) : ?>
@@ -225,6 +225,14 @@
             <p class="dark-grey-text text-right">
                 <small>
                     Date: <?= h($music->created->format('Y/m/d')) ?>
+                    <!--
+                    Date: <?= h($music->created->timeAgoInWords([
+                        'accuracy' => [
+                            'month' => 'month',
+                        ],
+                        'end'      => '20 year'
+                    ])) ?>
+                    -->
                 </small>
             </p>
         </div><!-- /.card -->

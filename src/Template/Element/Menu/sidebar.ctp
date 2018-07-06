@@ -87,11 +87,12 @@
                             <li>
                                 <?= $this->Html->link('マイ ミュージック', ['controller' => 'DanceMusics', 'action' => 'list', $logins['id']], ['class' => 'waves-effect']) ?>
                             </li>
-                            <!--
                             <li>
-                                <?= $this->Html->link('ランキング・おすすめ', ['controller' => 'DanceMusics', 'action' => 'recommend'], ['class' => 'waves-effect']) ?>
+                                <?= $this->Html->link('最新ランキング', ['controller' => 'DanceMusics', 'action' => 'ranking'], ['class' => 'waves-effect']) ?>
                             </li>
-                            -->
+                            <li>
+                                <?= $this->Html->link('おすすめミュージック', ['controller' => 'DanceMusics', 'action' => 'recommend'], ['class' => 'waves-effect']) ?>
+                            </li>
                         </ul>
                     </div>
                 </li>

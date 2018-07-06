@@ -219,6 +219,76 @@ class DanceMusicsController extends AppController
 
 
     /**
+     * ミュージックランキング
+     *
+     * @return \Cake\Http\Response|null
+     */
+    public function ranking()
+    {
+        $urls = [
+            // トップソング($songs1)
+            'https://rss.itunes.apple.com/api/v1/us/itunes-music/top-songs/all/30/explicit.json',
+            // トップアルバム($songs2)
+            'https://rss.itunes.apple.com/api/v1/us/itunes-music/top-albums/all/30/explicit.json',
+            // 最新リリース($songs3)
+            'https://rss.itunes.apple.com/api/v1/us/itunes-music/recent-releases/all/30/explicit.json',
+            // 新着ミュージック($songs4)
+            'https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/30/explicit.json',
+            // 注目トラック($songs5)
+            'https://rss.itunes.apple.com/api/v1/us/itunes-music/hot-tracks/all/30/explicit.json'
+        ];
+
+        $option = [
+            CURLOPT_RETURNTRANSFER => true, // 文字列として返す
+            CURLOPT_TIMEOUT        => 3,    // タイムアウト時間
+        ];
+
+        for ($i = 0; $i < count($urls); $i++) {
+
+            $ch = curl_init($urls[$i]);
+            curl_setopt_array($ch, $option);
+
+            $json    = curl_exec($ch);
+            $info    = curl_getinfo($ch);
+            $errorNo = curl_errno($ch);
+
+            // OK以外はエラーなので空白配列を返す
+            if ($errorNo !== CURLE_OK) {
+                // 詳しくエラーハンドリングしたい場合はerrorNoで確認
+                // タイムアウトの場合はCURLE_OPERATION_TIMEDOUT
+                $jsons = [];
+            }
+
+            // 200以外のステータスコードは失敗とみなし空配列を返す
+            if ($info['http_code'] !== 200) {
+                $jsons = [];
+            }
+
+            // 文字列から変換
+            $jsons = json_decode($json, true);
+
+            if ($jsons) {
+                foreach ($jsons as $key => $array) {
+                    $songs[$i] = $array;
+                }
+            }
+            // テンプレートタグに変数数値合わせるため(初期値1から)
+            $j = $i + 1;
+            $this->set('songs' . $j, $songs[$i]['results']);
+        }
+    }
+
+
+    /**
+     * ミュージックおすすめ一覧
+     */
+     public function recommend()
+     {
+
+     }
+
+
+    /**
      * 音楽削除
      *
      * @param string|null $id Dance Music id.

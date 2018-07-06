@@ -85,7 +85,7 @@
                             <p>
                                 <small>ジャンル名: <?= h($songs[$i]['primaryGenreName']) ?></small>
                             </p>
-                            <p>
+                            <p class="grey-text">
                                 <small>
                                     Released: <?= date('Y/m/d', strtotime(h($songs[$i]['releaseDate']))); ?>
                                     <span class="badge badge-danger"><?= h($songs[$i]['trackExplicitness']) ?></span>
