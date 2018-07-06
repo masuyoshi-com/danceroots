@@ -259,7 +259,7 @@
     <div class="row">
         <div class="col-lg-12">
             <p class="dark-grey-text text-center mt-3">
-                登録している音楽はありません。
+                音楽が見つかりませんでした。
             </p>
         </div>
     </div>
