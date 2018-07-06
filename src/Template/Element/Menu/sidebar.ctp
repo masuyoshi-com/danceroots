@@ -91,7 +91,7 @@
                                 <?= $this->Html->link('最新ランキング', ['controller' => 'DanceMusics', 'action' => 'ranking'], ['class' => 'waves-effect']) ?>
                             </li>
                             <li>
-                                <?= $this->Html->link('おすすめミュージック', ['controller' => 'DanceMusics', 'action' => 'recommend'], ['class' => 'waves-effect']) ?>
+                                <?= $this->Html->link('おすすめミュージック', ['controller' => 'RecommendMusics', 'action' => 'index'], ['class' => 'waves-effect']) ?>
                             </li>
                         </ul>
                     </div>
