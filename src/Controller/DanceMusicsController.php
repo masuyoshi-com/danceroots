@@ -32,7 +32,7 @@ class DanceMusicsController extends AppController
      ];
 
     /**
-     * ダンス音楽共有一覧
+     * ミュージック共有検索・一覧
      *
      * @return \Cake\Http\Response|void
      */
@@ -77,7 +77,7 @@ class DanceMusicsController extends AppController
 
 
     /**
-     * ダンス音楽登録
+     * ミュージック登録
      *
      * @return \Cake\Http\Response|null
      */
@@ -197,7 +197,7 @@ class DanceMusicsController extends AppController
 
 
     /**
-     * マイ ダンス音楽
+     * マイ ミュージック
      *
      * @param string|null $id ユーザーID
      * @return \Cake\Http\Response|void
@@ -277,15 +277,6 @@ class DanceMusicsController extends AppController
             $this->set('songs' . $j, $songs[$i]['results']);
         }
     }
-
-
-    /**
-     * ミュージックおすすめ一覧
-     */
-     public function recommend()
-     {
-
-     }
 
 
     /**

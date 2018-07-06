@@ -138,7 +138,7 @@
 
     <div class="col-lg-2 col-md-3 col-xs-6 mb-3">
         <div class="card card-body text-center pb-0">
-            <p class="m-0 text-right">
+            <p class="grey-text text-right m-0">
                 <small>
                     Date: <?= h($music->created->format('Y/m/d')) ?>
                 </small>

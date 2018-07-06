@@ -167,7 +167,7 @@
 
     <div class="col-lg-2 col-md-3 col-xs-6 mb-3">
         <div class="card card-body text-center pb-0">
-            <p class="dark-grey-text text-left m-0">
+            <p class="grey-text text-left m-0">
                 <small>
                     <?php
                         if ($music->profile->icon) {
@@ -184,7 +184,7 @@
                                 ]);
                         }
                     ?>
-                    <?= $this->Html->link($music->user->username, $music->link, ['class' => 'dark-grey-text', 'target' => '_blank']) ?>
+                    <?= $this->Html->link($music->user->username, $music->link, ['class' => 'grey-text', 'target' => '_blank']) ?>
                 </small>
             </p>
             <hr class="mt-1">
@@ -222,7 +222,7 @@
                 </small>
             </p>
             <hr class="mb-1">
-            <p class="dark-grey-text text-right">
+            <p class="grey-text text-right">
                 <small>
                     Date: <?= h($music->created->format('Y/m/d')) ?>
                     <!--

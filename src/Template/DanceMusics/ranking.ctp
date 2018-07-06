@@ -14,7 +14,7 @@
     </div>
 </div>
 
-<ul class="nav nav-tabs nav-justified indigo mb-3" role="tablist">
+<ul class="nav nav-tabs nav-justified purple-gradient mb-3" role="tablist">
     <li class="nav-item">
         <a class="nav-link active" data-toggle="tab" href="#panel1" role="tab">トップソング</a>
     </li>
