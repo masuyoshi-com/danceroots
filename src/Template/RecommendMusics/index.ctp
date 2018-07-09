@@ -8,16 +8,9 @@
             </h2>
             <hr class="my-2">
             <p class="lead grey-text">
-                <small><i class="fa fa-info-circle" aria-hidden="true"></i> Dancerootsのおすすめミュージック</small>
+                <small>Dancerootsのおすすめミュージック</small>
             </p>
             <hr class="my-2">
-            <div class="row">
-                <div class="col-lg-12">
-                    <?= $this->Html->link('<i class="fa fa-plus"></i> ミュージック登録', ['action' => 'add'],
-                        ['class' => 'btn btn-info btn-block', 'escape' => false]
-                    ) ?>
-                </div>
-            </div>
         </div><!-- /.jumbotron -->
     </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
