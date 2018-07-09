@@ -58,6 +58,7 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.1 controllers/Users/emailEdit',
             'bin/cake acl grant Groups.1 controllers/DanceMusics',
             'bin/cake acl grant Groups.1 controllers/RecommendMusics',
+            'bin/cake acl grant Groups.1 controllers/RecommendVideos',
 
             // Studios
             'bin/cake acl deny Groups.2 controllers',
@@ -78,6 +79,7 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.2 controllers/Users/emailEdit',
             'bin/cake acl grant Groups.2 controllers/DanceMusics',
             'bin/cake acl grant Groups.2 controllers/RecommendMusics',
+            'bin/cake acl grant Groups.2 controllers/RecommendVideos',
 
             // Organizers
             'bin/cake acl deny Groups.3 controllers',
@@ -99,6 +101,7 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.3 controllers/Users/emailEdit',
             'bin/cake acl grant Groups.3 controllers/DanceMusics',
             'bin/cake acl grant Groups.3 controllers/RecommendMusics',
+            'bin/cake acl grant Groups.3 controllers/RecommendVideos',
 
             // Generals
             'bin/cake acl deny Groups.4 controllers',
@@ -121,11 +124,11 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.4 controllers/Users/emailEdit',
             'bin/cake acl grant Groups.4 controllers/DanceMusics',
             'bin/cake acl grant Groups.4 controllers/RecommendMusics',
+            'bin/cake acl grant Groups.4 controllers/RecommendVideos',
 
             // linux環境はbin/cakeをchmod +x bin/cakeしておく
             // Controller追加，Groupの変更などで更新する場合
             'bin/cake acl_extras aco_update',
-
 
             // その後に各区分に上記コマンドで設定
         ];

@@ -67,11 +67,9 @@
                             <li>
                                 <?= $this->Html->link('マイ ダンス動画', ['controller' => 'DanceVideos', 'action' => 'list', $logins['id']], ['class' => 'waves-effect']) ?>
                             </li>
-                            <!--
                             <li>
-                                <?= $this->Html->link('おすすめ', ['controller' => 'DanceVideos', 'action' => 'recommend'], ['class' => 'waves-effect']) ?>
+                                <?= $this->Html->link('おすすめ動画', ['controller' => 'RecommendVideos', 'action' => 'index'], ['class' => 'waves-effect']) ?>
                             </li>
-                            -->
                         </ul>
                     </div>
                 </li>
