@@ -89,6 +89,46 @@ class DanceMusicsController extends AppController
      */
     public function add()
     {
+        if (isset($this->request->query['term'])) {
+
+            $url = self::ITUNES_API_URL . urlencode($this->request->query['term']) . self::ITUNES_QUERY_OPTIONS;
+
+            $option = [
+                CURLOPT_RETURNTRANSFER => true, // 文字列として返す
+                CURLOPT_TIMEOUT        => 3,    // タイムアウト時間
+            ];
+
+            $ch = curl_init($url);
+            curl_setopt_array($ch, $option);
+
+            $json    = curl_exec($ch);
+            $info    = curl_getinfo($ch);
+            $errorNo = curl_errno($ch);
+
+            // OK以外はエラーなので空白配列を返す
+            if ($errorNo !== CURLE_OK) {
+                // 詳しくエラーハンドリングしたい場合はerrorNoで確認
+                // タイムアウトの場合はCURLE_OPERATION_TIMEDOUT
+                $jsons = [];
+            }
+
+            // 200以外のステータスコードは失敗とみなし空配列を返す
+            if ($info['http_code'] !== 200) {
+                $jsons = [];
+            }
+
+            // 文字列から変換
+            $jsons = json_decode($json, true);
+
+            if ($jsons) {
+                foreach ($jsons as $key => $array) {
+                    $songs = $array;
+                }
+            }
+            $this->Session->write('term_search_request', $this->request->query['term']);
+            $this->set(compact('songs'));
+        }
+
         if ($this->request->is('post')) {
 
             for ($i = 0; $i < count($songs); $i++) {
@@ -151,46 +191,6 @@ class DanceMusicsController extends AppController
             } else {
                 $this->Flash->error(__('未選択または登録できるレコードがありませんでした。'));
             }
-        }
-
-        if (isset($this->request->query['term'])) {
-
-            $url = self::ITUNES_API_URL . urlencode($this->request->query['term']) . self::ITUNES_QUERY_OPTIONS;
-
-            $option = [
-                CURLOPT_RETURNTRANSFER => true, // 文字列として返す
-                CURLOPT_TIMEOUT        => 3,    // タイムアウト時間
-            ];
-
-            $ch = curl_init($url);
-            curl_setopt_array($ch, $option);
-
-            $json    = curl_exec($ch);
-            $info    = curl_getinfo($ch);
-            $errorNo = curl_errno($ch);
-
-            // OK以外はエラーなので空白配列を返す
-            if ($errorNo !== CURLE_OK) {
-                // 詳しくエラーハンドリングしたい場合はerrorNoで確認
-                // タイムアウトの場合はCURLE_OPERATION_TIMEDOUT
-                $jsons = [];
-            }
-
-            // 200以外のステータスコードは失敗とみなし空配列を返す
-            if ($info['http_code'] !== 200) {
-                $jsons = [];
-            }
-
-            // 文字列から変換
-            $jsons = json_decode($json, true);
-
-            if ($jsons) {
-                foreach ($jsons as $key => $array) {
-                    $songs = $array;
-                }
-            }
-            $this->Session->write('term_search_request', $this->request->query['term']);
-            $this->set(compact('songs'));
         }
 
         $this->loadModel('Artists');

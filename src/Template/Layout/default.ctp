@@ -92,7 +92,7 @@
 
         <?php if (strstr($url, 'dance-musics/add')) : ?>
             initRun.genreChange('<?= $this->Url->build(['controller' => 'DanceMusics', 'action' => 'add', '?' => ['art' => '']]) ?>');
-        <?php endif;?>
+        <?php endif; ?>
     });
     </script>
 </body>
