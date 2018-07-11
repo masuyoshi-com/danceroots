@@ -1,4 +1,5 @@
 <?php $this->assign('title', 'ミュージック共有登録') ?>
+
 <div class="row">
     <div class="col-lg-12">
         <div class="jumbotron text-center pt-4 pb-4">
@@ -14,7 +15,69 @@
     </div>
 </div>
 
+<div class="card card-body mb-3 none">
+    <div class="d-flex">
+        <div>
+            <h6 class="dark-grey-text pt-4">
+                アルファベットアーティスト検索
+            </h6>
+        </div>
+        <div class="ml-auto">
+            <?= $this->Form->select('art', ['hiphop' => 'HipHop', 'rb' => 'R&B'],
+                [
+                    'id'    => 'artist-genre',
+                    'class' => 'mdb-select colorful-select dropdown-primary'
+                ]
+            ) ?>
+        </div>
+    </div>
+
+    <hr class="mt-0">
+    <div class="row">
+        <?php for ($i = 0; $i < count($alphabets); $i++) : ?>
+        <div class="col-lg-1 col-md-2 col-sm-3 col-xs-3">
+            <div>
+                <a class="btn btn-sm btn-default btn-block m-1" data-toggle="collapse" href="#collapse<?= $i ?>" aria-expanded="false" aria-controls="collapse<?= $i ?>">
+                    <strong><?= h($alphabets[$i]) ?></strong>
+                </a>
+            </div>
+        </div>
+        <?php endfor; ?>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-lg-12">
+            <?php for ($i = 0; $i < count($alphabets); $i++) : ?>
+            <div class="collapse" id="collapse<?= $i ?>">
+                <div class="d-flex flex-wrap mt-2">
+                    <?php for ($j = 0; $j < count($artists[$alphabets[$i]]); $j++) : ?>
+                        <div class="m-2">
+                            <?php
+                                if ($art) {
+                                    print $this->Html->link($artists[$alphabets[$i]][$j]->name,
+                                        ['action' => 'add', '?' => ['term' => $artists[$alphabets[$i]][$j]->name, 'art' => $art]]
+                                    );
+                                } else {
+                                    print $this->Html->link($artists[$alphabets[$i]][$j]->name,
+                                        ['action' => 'add', '?' => ['term' => $artists[$alphabets[$i]][$j]->name]]
+                                    );
+                                }
+                            ?>
+                        </div>
+                    <?php endfor; ?>
+                </div>
+            </div>
+            <?php endfor; ?>
+        </div>
+    </div><!-- /.row -->
+</div><!-- /.card -->
+
 <?= $this->Form->create('', ['type' => 'get']) ?>
+<?php
+    if ($art) {
+        print $this->Form->hidden('art', ['value' => $art]);
+    }
+?>
 <div class="card p-3 mb-3">
     <div class="row">
         <div class="col-lg-12">

@@ -218,11 +218,25 @@ var initRun = (function( $ ) {
     };
 
 
+    /**
+     * ミュージック登録アルファベット検索変更値GET
+     *
+     * @param  {string} url PHP urlヘルパー
+     * @return {redirect} ジャンル変更あった場合にアーティスト検索変更
+     */
+    var genreChange = function (url) {
+        $('#artist-genre').change(function () {
+            var artist_genre = $('#artist-genre').val();
+            window.location.href = url + artist_genre;
+        });
+    }
+
     return {
         feedback     : feedback,
         circleDelete : circleDelete,
         eventDelete  : eventDelete,
-        jobDelete    : jobDelete
+        jobDelete    : jobDelete,
+        genreChange  : genreChange
     }
 
 }( jQuery ));

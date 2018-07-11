@@ -26,6 +26,12 @@ class DanceMusicsController extends AppController
         'レゲエ', 'エレクトロニック', 'オルタナティブ', 'ポップ', 'ロック', 'J-Pop',
     ];
 
+    // アルファベット検索用配列
+    public $alphabets = [
+        '0-9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
+        'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+    ];
+
     public $paginate = [
            'limit' => 50,
            'order' => ['DanceMusics.created' => 'desc'],
@@ -83,47 +89,6 @@ class DanceMusicsController extends AppController
      */
     public function add()
     {
-        if ($this->request->query) {
-
-            $url  =  self::ITUNES_API_URL . urlencode($this->request->query['term']) . self::ITUNES_QUERY_OPTIONS;
-
-            $option = [
-                CURLOPT_RETURNTRANSFER => true, // 文字列として返す
-                CURLOPT_TIMEOUT        => 3,    // タイムアウト時間
-            ];
-
-            $ch = curl_init($url);
-            curl_setopt_array($ch, $option);
-
-            $json    = curl_exec($ch);
-            $info    = curl_getinfo($ch);
-            $errorNo = curl_errno($ch);
-
-            // OK以外はエラーなので空白配列を返す
-            if ($errorNo !== CURLE_OK) {
-                // 詳しくエラーハンドリングしたい場合はerrorNoで確認
-                // タイムアウトの場合はCURLE_OPERATION_TIMEDOUT
-                $jsons = [];
-            }
-
-            // 200以外のステータスコードは失敗とみなし空配列を返す
-            if ($info['http_code'] !== 200) {
-                $jsons = [];
-            }
-
-            // 文字列から変換
-            $jsons = json_decode($json, true);
-
-            if ($jsons) {
-                foreach ($jsons as $key => $array) {
-                    $songs = $array;
-                }
-            }
-            // 検索キーワードをセッションに記録しておく
-            $this->Session->write('song_search_request', $this->request->query);
-            $this->set(compact('songs'));
-        }
-
         if ($this->request->is('post')) {
 
             for ($i = 0; $i < count($songs); $i++) {
@@ -188,11 +153,81 @@ class DanceMusicsController extends AppController
             }
         }
 
-        // 検索項目状態があればリード
-        if ($this->Session->check('song_search_request')) {
-            $this->request->data = $this->Session->read('song_search_request');
+        if (isset($this->request->query['term'])) {
+
+            $url = self::ITUNES_API_URL . urlencode($this->request->query['term']) . self::ITUNES_QUERY_OPTIONS;
+
+            $option = [
+                CURLOPT_RETURNTRANSFER => true, // 文字列として返す
+                CURLOPT_TIMEOUT        => 3,    // タイムアウト時間
+            ];
+
+            $ch = curl_init($url);
+            curl_setopt_array($ch, $option);
+
+            $json    = curl_exec($ch);
+            $info    = curl_getinfo($ch);
+            $errorNo = curl_errno($ch);
+
+            // OK以外はエラーなので空白配列を返す
+            if ($errorNo !== CURLE_OK) {
+                // 詳しくエラーハンドリングしたい場合はerrorNoで確認
+                // タイムアウトの場合はCURLE_OPERATION_TIMEDOUT
+                $jsons = [];
+            }
+
+            // 200以外のステータスコードは失敗とみなし空配列を返す
+            if ($info['http_code'] !== 200) {
+                $jsons = [];
+            }
+
+            // 文字列から変換
+            $jsons = json_decode($json, true);
+
+            if ($jsons) {
+                foreach ($jsons as $key => $array) {
+                    $songs = $array;
+                }
+            }
+            $this->Session->write('term_search_request', $this->request->query['term']);
+            $this->set(compact('songs'));
         }
-        $this->set(compact('danceMusic'));
+
+        $this->loadModel('Artists');
+        $art = '';
+
+        if ($this->request->query) {
+            if (isset($this->request->query['art']) && $this->request->query['art'] === 'rb') {
+                // R&Bアーティスト
+                $artists = $this->Artists->getArtistByGenre($this->alphabets, 'rb');
+                $this->Session->write('art_search_request', $this->request->query['art']);
+                // ワード検索でGETリクエストを引き継ぐためviewに変数渡す
+                $art = $this->request->query['art'];
+            } else {
+                // HipHopアーティスト
+                $artists = $this->Artists->getArtistByGenre($this->alphabets, 'hiphop');
+                // セレクトボックスでhiphopが再度選択された場合
+                if (isset($this->request->query['art'])) {
+                    $this->Session->write('art_search_request', $this->request->query['art']);
+                    $art = $this->request->query['art'];
+                }
+            }
+        } else {
+            // デフォルトはhiphopアーティスト
+            $artists = $this->Artists->getArtistByGenre($this->alphabets, 'hiphop');
+        }
+
+        // 検索項目状態があればリード
+        if ($this->Session->check('art_search_request')) {
+            $this->request->data['art'] = $this->Session->read('art_search_request');
+        }
+
+        if ($this->Session->check('term_search_request')) {
+            $this->request->data['term'] = $this->Session->read('term_search_request');
+        }
+
+        $this->set(compact('danceMusic', 'artists', 'art'));
+        $this->set('alphabets', $this->alphabets);
     }
 
 

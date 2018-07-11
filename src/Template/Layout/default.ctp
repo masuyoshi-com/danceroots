@@ -89,6 +89,10 @@
                 '<?= $this->Url->build(['controller' => 'Jobs', 'action' => 'list', $logins['id']]) ?>'
             );
         <?php endif;?>
+
+        <?php if (strstr($url, 'dance-musics/add')) : ?>
+            initRun.genreChange('<?= $this->Url->build(['controller' => 'DanceMusics', 'action' => 'add', '?' => ['art' => '']]) ?>');
+        <?php endif;?>
     });
     </script>
 </body>
