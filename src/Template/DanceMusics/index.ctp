@@ -224,15 +224,7 @@
             <hr class="mb-1">
             <p class="grey-text text-right">
                 <small>
-                    Date: <?= h($music->created->format('Y/m/d')) ?>
-                    <!--
-                    Date: <?= h($music->created->timeAgoInWords([
-                        'accuracy' => [
-                            'month' => 'month',
-                        ],
-                        'end'      => '20 year'
-                    ])) ?>
-                    -->
+                    <?= h($music->primary_genre_name) ?>
                 </small>
             </p>
         </div><!-- /.card -->
