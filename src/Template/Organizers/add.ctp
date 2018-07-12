@@ -19,7 +19,7 @@
 
                         <div class="view gradient-card-header mdb-color lighten-2">
                             <h5 class="mb-0 font-bold"><i class="fa fa-address-card" aria-hidden="true"></i> プロフィール作成</h5>
-                            <small><i class="fa fa-info-circle"></i> できるだけ詳細に項目を入力しましょう。</small>
+                            <small><i class="fa fa-info-circle"></i> 詳細に項目を入力しましょう。</small>
                         </div>
 
                         <div class="card-body mb-3">

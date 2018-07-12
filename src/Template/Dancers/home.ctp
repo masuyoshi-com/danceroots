@@ -1,23 +1,20 @@
 <?php $this->assign('title', h($dancer->user->username) . ' ホーム'); ?>
 
+<?php if (AD === 0) : ?>
 <div class="row">
-    <?php if (AD === 0) : ?>
-        <div class="col-lg-12 text-center">
-            <section id="dynamicContentWrapper-docsPanel" class="mb-4">
-                <div class="card border border-danger z-depth-0" style="height: 200px;">
-                    <div class="card-body text-center">
-                        <p>
-                            <strong>広告枠</strong>
-                        </p>
-                    </div>
+    <div class="col-lg-12 text-center">
+        <section id="dynamicContentWrapper-docsPanel" class="mb-4">
+            <div class="card border border-danger z-depth-0" style="height: 200px;">
+                <div class="card-body text-center">
+                    <p>
+                        <strong>広告枠</strong>
+                    </p>
                 </div>
-            </section>
-        </div>
-    <?php else : ?>
-        <div class="row mb-5">
-        </div>
-    <?php endif; ?>
+            </div>
+        </section>
+    </div>
 </div>
+<?php endif; ?>
 
 <div class="row">
     <div class="col-lg-12">
@@ -25,8 +22,10 @@
     </div>
 </div>
 
+<hr class="none mb-4">
+
 <div class="row">
-    <div class="col-lg-4 col-md-12 mt-5">
+    <div class="col-lg-4 col-md-12 mt-4">
         <section class="card card-cascade card-avatar mb-3 mt-5">
 
             <?php
@@ -126,8 +125,8 @@
         </section>
     </div><!-- /.col-lg-4 -->
 
-    <div class="col-lg-8 col-md-12">
-        <div class="row mb-4">
+    <div class="col-lg-8 col-md-12 mt-4">
+        <div class="row mb-3">
             <!--
             <div class="col-lg-6 col-md-12">
                 <div class="card card-image mb-3" style="background-color: #0d47a1;">

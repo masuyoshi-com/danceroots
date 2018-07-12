@@ -6,12 +6,13 @@
     </div>
 </div>
 
+<hr class="none mb-4">
+
 <?= $this->Form->create($general, ['type' => 'file']); ?>
 <?= $this->Form->hidden('user_id', ['value' => h($general->user_id)]) ?>
 
 <div class="row mb-3">
-
-    <div class="col-lg-4 col-md-12 mt-5">
+    <div class="col-lg-4 col-md-12 mt-4">
         <section class="card card-cascade card-avatar mb-4 mt-5">
 
             <?php

@@ -10,7 +10,6 @@
 <?= $this->Form->hidden('user_id', ['value' => h($dancer->user_id)]); ?>
 
 <div class="row">
-
     <div class="col-lg-4 col-md-12 mt-5">
         <section class="card card-cascade card-avatar mt-5">
 

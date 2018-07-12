@@ -1,24 +1,20 @@
 <?php $this->assign('title', h($studio->user->username) . ' ホーム'); ?>
 
+<?php if (AD === 0) : ?>
 <div class="row">
-
-    <?php if (AD === 0) : ?>
-        <div class="col-lg-12 text-center">
-            <section id="dynamicContentWrapper-docsPanel" class="mb-4">
-                <div class="card border border-danger z-depth-0" style="height: 200px;">
-                    <div class="card-body text-center">
-                        <p>
-                            <strong>広告枠</strong>
-                        </p>
-                    </div>
+    <div class="col-lg-12 text-center">
+        <section id="dynamicContentWrapper-docsPanel" class="mb-4">
+            <div class="card border border-danger z-depth-0" style="height: 200px;">
+                <div class="card-body text-center">
+                    <p>
+                        <strong>広告枠</strong>
+                    </p>
                 </div>
-            </section>
-        </div>
-    <?php else : ?>
-        <div class="row mb-4">
-        </div>
-    <?php endif; ?>
+            </div>
+        </section>
+    </div>
 </div>
+<?php endif; ?>
 
 <div class="row">
     <div class="col-lg-12">
@@ -26,9 +22,11 @@
     </div>
 </div>
 
+<hr class="none mb-4">
+
 <div class="row">
-    <div class="col-lg-4 col-md-12 mt-5">
-        <section class="card card-cascade card-avatar mb-4 mt-5">
+    <div class="col-lg-4 col-md-12 mt-4">
+        <section class="card card-cascade card-avatar mb-3 mt-5">
 
             <?php
                 if ($studio->icon) {
@@ -135,8 +133,8 @@
         </section>
     </div><!-- /.col-lg-4 -->
 
-    <div class="col-lg-8 col-md-12">
 
+    <div class="col-lg-8 col-md-12 mt-4">
         <div class="row mb-3">
 
             <div class="col-lg-6 col-md-12">
@@ -151,7 +149,7 @@
                                 <strong>Event</strong>
                             </h3>
                             <p class="pb-3">
-                                イベント主催や、コンテストなど予定のイベントの登録を行いましょう。
+                                イベント主催や、コンテストなど予定の登録を行いましょう。
                                 イベント一覧に表示され、皆に告知することが可能です。
                                 イベント管理では、イベント登録・編集などが行えます。
                             </p>

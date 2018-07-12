@@ -6,11 +6,13 @@
     </div>
 </div>
 
+<hr class="none mb-4">
+
 <?= $this->Form->create($studio, ['type' => 'file']) ?>
 <?= $this->Form->hidden('user_id', ['value' => h($studio->user_id)]) ?>
-<div class="row">
 
-    <div class="col-lg-4 col-md-12 mt-5">
+<div class="row">
+    <div class="col-lg-4 col-md-12 mt-4">
         <section class="card card-cascade card-avatar mb-3 mt-5">
 
             <?php
@@ -92,7 +94,7 @@
 
             <div class="view gradient-card-header mdb-color lighten-2">
                 <h5 class="mb-0 font-bold"><i class="fa fa-pencil" aria-hidden="true"></i> プロフィール編集</h5>
-                <small><i class="fa fa-info-circle"></i> 閲覧者の印象に残るように詳細に項目を入力しましょう。問い合わせの可能性が高くなります。</small>
+                <small><i class="fa fa-info-circle"></i> 詳細に項目を入力しましょう。問い合わせの可能性が高くなります。</small>
             </div>
 
             <div class="card-body">

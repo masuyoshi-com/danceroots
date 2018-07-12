@@ -1,23 +1,20 @@
 <?php $this->assign('title', h($organizer->user->username) . 'プロフィール'); ?>
 
+<?php if (AD === 0) : ?>
 <div class="row">
-    <?php if (AD === 0) : ?>
-        <div class="col-lg-12 text-center">
-            <section id="dynamicContentWrapper-docsPanel" class="mb-4">
-                <div class="card border border-danger z-depth-0" style="height: 200px;">
-                    <div class="card-body text-center">
-                        <p>
-                            <strong>広告枠</strong>
-                        </p>
-                    </div>
+    <div class="col-lg-12 text-center">
+        <section id="dynamicContentWrapper-docsPanel" class="mb-4">
+            <div class="card border border-danger z-depth-0" style="height: 200px;">
+                <div class="card-body text-center">
+                    <p>
+                        <strong>広告枠</strong>
+                    </p>
                 </div>
-            </section>
-        </div>
-    <?php else : ?>
-        <div class="row mb-4">
-        </div>
-    <?php endif; ?>
-</div>
+            </div>
+        </section>
+    </div>
+</div
+<?php endif; ?>
 
 <div class="row">
     <div class="col-lg-12">
@@ -25,21 +22,24 @@
     </div>
 </div>
 
+<hr class="none mb-4">
+
 <div class="row">
-    <div class="col-lg-8 col-md-12 mb-5">
+    <div class="col-lg-8 col-md-12 mb-4">
         <div class="card card-cascade narrower mb-3">
             <div class="card-body mb-3">
 
                 <?php if ($organizer->youtube) : ?>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h6><i class="fa fa-youtube-play yt-ic"></i> Event Video</h6>
-                        <div class="embed-responsive embed-responsive-16by9 z-depth-1">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($organizer->youtube) ?>?rel=0" style="height: 100%" allowfullscreen></iframe>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h6><i class="fa fa-youtube-play yt-ic"></i> Event Video</h6>
+                            <div class="embed-responsive embed-responsive-16by9 z-depth-1">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($organizer->youtube) ?>?rel=0" style="height: 100%" allowfullscreen></iframe>
+                            </div>
                         </div>
                     </div>
-                </div>
                 <?php endif; ?>
+
                 <hr>
 
                 <?php if ($organizer->image1 || $organizer->image2 || $organizer->image3) : ?>
@@ -101,15 +101,15 @@
                 <?php endif; ?>
 
                 <?php if ($organizer->organaized) : ?>
-                <div class="row mt-3">
-                    <div class="col-lg-12 text-left">
-                        <label class="dark-gray-text w-100"><small>主催イベント実績</small></label>
-                        <div class="md-form mt-0">
-                            <?= nl2br(h($organizer->organaized)) ?>
+                    <div class="row mt-3">
+                        <div class="col-lg-12 text-left">
+                            <label class="dark-gray-text w-100"><small>主催イベント実績</small></label>
+                            <div class="md-form mt-0">
+                                <?= nl2br(h($organizer->organaized)) ?>
+                            </div>
+                            <hr class="mdb-form-color">
                         </div>
-                        <hr class="mdb-form-color">
                     </div>
-                </div>
                 <?php endif; ?>
 
                 <div class="row mt-3">
@@ -123,40 +123,19 @@
                 </div>
 
                 <?php if ($organizer->plan) : ?>
-                <div class="row mt-3">
-                    <div class="col-lg-12 text-left">
-                        <label class="dark-gray-text w-100"><small>今後のイベント予定など</small></label>
-                        <div class="md-form mt-0">
-                            <?= nl2br(h($organizer->plan)) ?>
+                    <div class="row mt-3">
+                        <div class="col-lg-12 text-left">
+                            <label class="dark-gray-text w-100"><small>今後のイベント予定など</small></label>
+                            <div class="md-form mt-0">
+                                <?= nl2br(h($organizer->plan)) ?>
+                            </div>
+                            <hr class="mdb-form-color">
                         </div>
-                        <hr class="mdb-form-color">
                     </div>
-                </div>
                 <?php endif; ?>
             </div><!-- /.card-body -->
         </div><!-- /.card -->
-
-        <div class="card card-body">
-            <div class="row">
-                <div class="col-lg-12">
-                    <?php
-                        if ($organizer->user_id === $logins['id']) {
-                            print $this->Html->link('<i class="fa fa-pencil"></i> プロフィールを編集',
-                                ['action' => 'edit', $organizer->user_id],
-                                ['class'  => 'btn btn-primary btn-block', 'escape' => false]
-                            );
-                        } else {
-                            print $this->Html->link('<i class="fa fa-envelope"></i> メッセージを送る',
-                                ['controller' => 'Messages', 'action' => 'add', $organizer->user_id],
-                                ['class' => 'btn purple-gradient btn-block', 'escape' => false]
-                            );
-                        }
-                    ?>
-                </div>
-            </div>
-        </div>
     </div><!-- /.col-lg-8 -->
-
 
     <div class="col-lg-4 col-md-12 mt-4">
         <section class="card card-cascade card-avatar mb-4 mt-5">
@@ -308,3 +287,23 @@
 
     </div><!-- /.col-lg-4 -->
 </div><!-- /. row -->
+
+<div class="card card-body mb-3">
+    <div class="row">
+        <div class="col-lg-12">
+            <?php
+                if ($organizer->user_id === $logins['id']) {
+                    print $this->Html->link('<i class="fa fa-pencil"></i> プロフィールを編集',
+                        ['action' => 'edit', $organizer->user_id],
+                        ['class'  => 'btn btn-primary btn-block', 'escape' => false]
+                    );
+                } else {
+                    print $this->Html->link('<i class="fa fa-envelope"></i> メッセージを送る',
+                        ['controller' => 'Messages', 'action' => 'add', $organizer->user_id],
+                        ['class' => 'btn purple-gradient btn-block', 'escape' => false]
+                    );
+                }
+            ?>
+        </div>
+    </div>
+</div>

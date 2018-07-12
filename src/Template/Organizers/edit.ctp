@@ -17,7 +17,7 @@
 
             <div class="view gradient-card-header mdb-color lighten-2">
                 <h5 class="mb-0 font-bold"><i class="fa fa-pencil" aria-hidden="true"></i> プロフィール編集</h5>
-                <small><i class="fa fa-info-circle"></i> できるだけ詳細に項目を入力しましょう。</small>
+                <small><i class="fa fa-info-circle"></i> 詳細に項目を入力しましょう。</small>
             </div>
 
             <div class="card-body mb-3">
@@ -123,7 +123,7 @@
 
 
     <div class="col-lg-4 col-md-12 mt-5">
-        <section class="card card-cascade card-avatar mb-4 mt-5">
+        <section class="card card-cascade card-avatar mb-2 mt-5">
 
             <?php
                 if ($organizer->icon) {
@@ -195,9 +195,9 @@
     </div><!-- /.col-lg-4 -->
 </div><!-- /. row -->
 
-<div class="card card-body mb-5">
+<div class="card card-body mb-3">
     <div class="row">
-        <div class="col-lg-12 mt-4">
+        <div class="col-lg-12 mt-2">
             <p><i class="fa fa-image"></i> Image <span class="badge badge-info">変更する場合のみ選択</span></p>
         </div>
 
@@ -253,9 +253,9 @@
             </div>
         </div>
     </div>
+</div><!-- /.card -->
 
-    <hr>
-
+<div class="card card-body mb-3">
     <div class="row">
         <div class="col-lg-12">
             <?= $this->Form->button('<i class="fa fa-edit" aria-hidden="true"></i> 編集',
@@ -263,6 +263,6 @@
             ) ?>
         </div>
     </div>
+</div>
 
-</div><!-- /.card -->
 <?= $this->Form->end() ?>

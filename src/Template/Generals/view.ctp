@@ -1,23 +1,20 @@
 <?php $this->assign('タイトル', h($general->user->username) . 'プロフィール'); ?>
 
+<?php if (AD === 0) : ?>
 <div class="row">
-    <?php if (AD === 0) : ?>
-        <div class="col-lg-12 text-center">
-            <section id="dynamicContentWrapper-docsPanel" class="mb-4">
-                <div class="card border border-danger z-depth-0" style="height: 200px;">
-                    <div class="card-body text-center">
-                        <p>
-                            <strong>広告枠</strong>
-                        </p>
-                    </div>
+    <div class="col-lg-12 text-center">
+        <section id="dynamicContentWrapper-docsPanel" class="mb-4">
+            <div class="card border border-danger z-depth-0" style="height: 200px;">
+                <div class="card-body text-center">
+                    <p>
+                        <strong>広告枠</strong>
+                    </p>
                 </div>
-            </section>
-        </div>
-    <?php else : ?>
-        <div class="row mb-4">
-        </div>
-    <?php endif; ?>
+            </div>
+        </section>
+    </div>
 </div>
+<?php endif; ?>
 
 <div class="row">
     <div class="col-lg-12">
@@ -25,9 +22,11 @@
     </div>
 </div>
 
+<hr class="none mb-4">
+
 <div class="row">
     <div class="col-lg-4 col-md-12 mt-4">
-        <section class="card card-cascade card-avatar mb-4 mt-5">
+        <section class="card card-cascade card-avatar mt-5 mb-3">
 
             <?php
                 if ($general->icon) {
@@ -134,7 +133,7 @@
         </section>
     </div><!-- /.col-lg-4 -->
 
-    <div class="col-lg-8 col-md-12 mb-5 mt-3">
+    <div class="col-lg-8 col-md-12 mb-3 mt-2">
         <div class="card card-cascade narrower">
 
             <div class="view gradient-card-header mdb-color lighten-2">
