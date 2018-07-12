@@ -119,9 +119,11 @@
 
                         <hr>
 
-                        <div class="md-form">
-                            <p><i class="fa fa-tag"></i> <?= h($video->tag) ?></p>
-                        </div>
+                        <?php if ($video->tag) : ?>
+                            <div class="md-form">
+                                <p><i class="fa fa-tag"></i> <?= h($video->tag) ?></p>
+                            </div>
+                        <?php endif; ?>
 
                         <div class="text-right">
                             <?= $this->Html->link('<i class="fa fa-pencil" aria-hidden="true"></i>',

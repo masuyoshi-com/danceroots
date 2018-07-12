@@ -139,11 +139,13 @@
 
                         <hr>
 
+                        <?php if ($video->tag) : ?>
                         <div class="md-form">
                             <p><i class="fa fa-tag"></i> <?= h($video->tag) ?></p>
                         </div>
-                        <div class="grey-text text-right"><small>Date: <?= h($video->created) ?></small></div>
+                        <?php endif; ?>
 
+                        <div class="grey-text text-right"><small>Date: <?= h($video->created) ?></small></div>
                     </div><!-- /.card-body -->
                 </div><!-- /.card -->
             </div><!-- /.col-lg-4 -->
