@@ -14,7 +14,7 @@
         <div class="col-lg-3 col-xs-12">
         </div>
         <div class="col-lg-6 col-xs-12">
-            <div class="card card-body">
+            <div class="card card-body mb-3">
                 <?= $this->Form->create() ?>
                 <div class="col-lg-12">
                     <div class="md-form mt-3 mb-4">
