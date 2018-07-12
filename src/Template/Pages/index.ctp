@@ -87,8 +87,8 @@
         </h1>
         <h5 class="text-center">
             <small>
-                <span class="red-text">※</span>現在、BETA運用です。不具合など発見された場合、フィードバック報告をいただけると助かります。<br>
-                今後様々なアップデートの予定があります。是非ご利用ください。
+                <span class="red-text">※</span>現在はBETAバージョンです。<br>
+                今後様々な機能アップデートを予定しています。是非ご利用ください。
             </small>
         </h5>
         <hr>

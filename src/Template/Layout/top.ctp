@@ -204,10 +204,10 @@
                     </h6>
                     <hr class="blue mb-4 pb-1 mt-0 d-inline-block mx-auto" style="width: 60px;">
                     <p>
-                        ダンス動画共有
+                        ダンス動画
                     </p>
                     <p>
-                        <!--ダンス音楽共有-->
+                        ミュージック
                     </p>
                     <p>
                         イベント登録・検索
