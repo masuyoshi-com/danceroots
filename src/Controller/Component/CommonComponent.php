@@ -46,9 +46,9 @@ class CommonComponent extends Component
         if ($youtube) {
             // URL内のv=以降の文字列を全て取得(動画ID取得)
             $youtube_id = str_replace('v=', '', strstr($youtube, 'v='));
-            // キャッシュが残っている場合、URLに&t=が付与されるのに対処
-            if(strpos($youtube_id, '&t=') !== false){
-                    return substr($youtube_id, 0, strcspn($youtube_id, '&'));
+            // キャッシュが残っている場合など別途URLに&が付与されるのに対処
+            if(strpos($youtube_id, '&') !== false){
+                return substr($youtube_id, 0, strcspn($youtube_id, '&'));
             }
             return $youtube_id;
         }
