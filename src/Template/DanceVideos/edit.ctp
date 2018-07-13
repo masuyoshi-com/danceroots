@@ -32,7 +32,7 @@
 
         <div class="card card-body mb-3">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-6 col-md-6 col-xs-12">
                     <div class="md-form">
                         <?= $this->Form->control('genre',
                             [
@@ -45,6 +45,21 @@
                         <label for="f--genre">ジャンル</label>
                     </div>
                 </div>
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                    <div class="md-form">
+                        <?= $this->Form->control('year',
+                            [
+                                'id'      => 'f--year',
+                                'type'    => 'select',
+                                'class'   => 'mdb-select colorful-select dropdown-primary',
+                                'options' => $years
+                            ]
+                        ) ?>
+                        <label for="f--year">何年頃</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-lg-12">
                     <div class="md-form">
                         <?= $this->Form->control('tag',
@@ -57,12 +72,16 @@
                         <label for="f--tag">タグ</label>
                     </div>
                 </div>
+            </div>
+            <div class="row">
                 <div class="col-lg-12">
                     <label class="dark-gray-text w-100 text-left"><small>タイトル</small></label>
                     <div class="md-form mt-0">
                         <?= $this->Form->control('title', ['id' => 'f--title', 'class' => 'form-control']) ?>
                     </div>
                 </div>
+            </div>
+            <div class="row">
                 <div class="col-lg-12">
                     <label class="dark-gray-text w-100 text-left"><small>Youtube</small> <span class="badge badge-info">動画URLをコピペ</span></label>
                     <div class="md-form mt-0">

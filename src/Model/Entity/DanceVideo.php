@@ -6,13 +6,14 @@ use Cake\ORM\Entity;
 /**
  * DanceVideo Entity
  *
- * @property int $id
- * @property int $user_id
+ * @property int    $id
+ * @property int    $user_id
  * @property string $title
  * @property string $youtube
  * @property string $genre
  * @property string $tag
- * @property int $good
+ * @property string $year
+ * @property int    $good
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
@@ -29,6 +30,7 @@ class DanceVideo extends Entity
         'youtube'  => true,
         'genre'    => true,
         'tag'      => true,
+        'year'     => true,
         'good'     => true,
         'created'  => true,
         'modified' => true,

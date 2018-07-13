@@ -119,7 +119,8 @@ class DanceVideosController extends AppController
         }
 
         $this->set('user_id', $this->Auth->user('id'));
-        $this->set('genres', $this->Common->valueToKey($this->genres));
+        $this->set('genres',  $this->Common->valueToKey($this->genres));
+        $this->set('years',   $this->Common->getSelectYears());
         $this->set(compact('danceVideo'));
     }
 
@@ -149,6 +150,7 @@ class DanceVideosController extends AppController
         }
 
         $this->set('genres', $this->Common->valueToKey($this->genres));
+        $this->set('years',  $this->Common->getSelectYears());
         $this->set(compact('danceVideo'));
     }
 

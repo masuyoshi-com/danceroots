@@ -104,9 +104,18 @@
                     </div>
 
                     <div class="card-body">
+                        <div class="grey-text">
+                            <small>
+                                <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($video->year) ?>年
+                            </small>
+                        </div>
                         <div class="social-meta">
-                            <h5 class="text-left"><span class="badge <?= getBadgeColor(h($video->genre)) ?>"><?= h($video->genre) ?></span></h5>
-                            <p><strong>
+
+                            <h5 class="text-left">
+                                <span class="badge <?= getBadgeColor(h($video->genre)) ?>"><?= h($video->genre) ?></span>
+                            </h5>
+                            <p>
+                                <strong>
                                 <?= $this->Html->link($video->title, 'javascript:void(0)',
                                     [
                                         'class'       => 'dark-grey-text',
@@ -114,7 +123,8 @@
                                         'data-target' => '#m--youtube' . $i
                                     ]
                                 ) ?>
-                            </strong></p>
+                                </strong>
+                            </p>
                         </div>
 
                         <hr>
@@ -124,6 +134,8 @@
                                 <p><i class="fa fa-tag"></i> <?= h($video->tag) ?></p>
                             </div>
                         <?php endif; ?>
+
+
 
                         <div class="text-right">
                             <?= $this->Html->link('<i class="fa fa-pencil" aria-hidden="true"></i>',

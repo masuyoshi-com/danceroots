@@ -10,6 +10,7 @@ use Cake\ORM\Entity;
  * @property string $title
  * @property string $youtube
  * @property string $genre
+ * @property string $year
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  */
@@ -23,6 +24,7 @@ class RecommendVideo extends Entity
         'title'    => true,
         'youtube'  => true,
         'genre'    => true,
+        'year'     => true,
         'created'  => true,
         'modified' => true
     ];

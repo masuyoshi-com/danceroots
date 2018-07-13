@@ -111,7 +111,14 @@
                                 </strong>
                             </p>
                         </div>
+
                         <hr>
+
+                        <div class="grey-text text-right">
+                            <small>
+                                <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($video->year) ?>年
+                            </small>
+                        </div>
                     </div><!-- /.card-body -->
                 </div><!-- /.card -->
             </div><!-- /.col-lg-3 -->

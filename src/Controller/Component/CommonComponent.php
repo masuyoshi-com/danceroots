@@ -146,4 +146,16 @@ class CommonComponent extends Component
         }
     }
 
+
+    /**
+     * 現在の年までのセレクトボックス年数
+     */
+    public function getSelectYears()
+    {
+        $now_year = date('Y');
+        for ($i = 1985; $i <= $now_year; $i ++) {
+            $years[$i] = $i;
+        }
+        return $years;
+    }
 }

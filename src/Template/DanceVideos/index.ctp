@@ -95,22 +95,29 @@
                 <div class="card news-card">
 
                     <div class="card-body">
-                        <div class="content">
-                            <!--<div class="right-side-meta"><span><i class="fa fa-heart-o"></i> 265 likes</span></div>-->
-                            <a href=<?= $this->Url->build(h($video->link)) ?> class="dark-gray-text" target="_blank">
-                                <?php
-                                    if ($video->profile->icon) {
-                                        print $this->Html->image($video->profile->icon, ['class' => 'rounded-circle avatar-img z-depth-1']);
-                                    } else {
-                                        print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'rounded-circle avatar-img z-depth-1']);
-                                    }
-                                ?>
+                        <div class="d-flex">
+                            <div class="content">
+                                <!--<div class="right-side-meta"><span><i class="fa fa-heart-o"></i> 265 likes</span></div>-->
+                                <a href=<?= $this->Url->build(h($video->link)) ?> class="dark-gray-text" target="_blank">
+                                    <?php
+                                        if ($video->profile->icon) {
+                                            print $this->Html->image($video->profile->icon, ['class' => 'rounded-circle avatar-img z-depth-1']);
+                                        } else {
+                                            print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'rounded-circle avatar-img z-depth-1']);
+                                        }
+                                    ?>
+                                    <small>
+                                        <?= h($video->user->username) ?>
+                                    </small>
+                                </a>
+                            </div>
+                            <div class="grey-text ml-auto pt-1">
                                 <small>
-                                    <?= h($video->user->username) ?>
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($video->year) ?>年
                                 </small>
-                            </a>
-                        </div>
-                    </div>
+                            </div>
+                        </div><!-- /.d-flex -->
+                    </div><!-- /.card-body -->
 
                     <div class="embed-responsive embed-responsive-16by9 d-flex justify-content-center zoom">
                         <?= $this->Html->image('https://img.youtube.com/vi/' . h($video->youtube) . '/mqdefault.jpg',
@@ -123,10 +130,10 @@
                     </div>
 
                     <div class="card-body">
-
                         <div class="social-meta">
                             <h5 class="text-left"><span class="badge <?= getBadgeColor(h($video->genre)) ?>"><?= h($video->genre) ?></span></h5>
-                            <p><strong>
+                            <p>
+                                <strong>
                                 <?= $this->Html->link($video->title, 'javascript:void(0)',
                                     [
                                         'class'       => 'dark-grey-text',
@@ -134,7 +141,8 @@
                                         'data-target' => '#m--youtube' . $i
                                     ]
                                 ) ?>
-                            </strong></p>
+                                </strong>
+                            </p>
                         </div>
 
                         <hr>
@@ -145,7 +153,6 @@
                         </div>
                         <?php endif; ?>
 
-                        <div class="grey-text text-right"><small>Date: <?= h($video->created) ?></small></div>
                     </div><!-- /.card-body -->
                 </div><!-- /.card -->
             </div><!-- /.col-lg-4 -->
