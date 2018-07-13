@@ -47,7 +47,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-12">
                     <div class="md-form">
-                        <?= $this->Form->control('year',
+                        <?= $this->Form->control('show_year',
                             [
                                 'id'      => 'f--year',
                                 'type'    => 'select',

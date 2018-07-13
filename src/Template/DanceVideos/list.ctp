@@ -106,7 +106,7 @@
                     <div class="card-body">
                         <div class="grey-text">
                             <small>
-                                <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($video->year) ?>年
+                                <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($video->show_year) ?>年
                             </small>
                         </div>
                         <div class="social-meta">

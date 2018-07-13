@@ -12,7 +12,7 @@ use Cake\ORM\Entity;
  * @property string $youtube
  * @property string $genre
  * @property string $tag
- * @property string $year
+ * @property string $show_year
  * @property int    $good
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
@@ -25,15 +25,15 @@ class DanceVideo extends Entity
      * @var array
      */
     protected $_accessible = [
-        'user_id'  => true,
-        'title'    => true,
-        'youtube'  => true,
-        'genre'    => true,
-        'tag'      => true,
-        'year'     => true,
-        'good'     => true,
-        'created'  => true,
-        'modified' => true,
-        'user'     => true
+        'user_id'   => true,
+        'title'     => true,
+        'youtube'   => true,
+        'genre'     => true,
+        'tag'       => true,
+        'show_year' => true,
+        'good'      => true,
+        'created'   => true,
+        'modified'  => true,
+        'user'      => true
     ];
 }

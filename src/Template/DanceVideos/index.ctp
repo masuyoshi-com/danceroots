@@ -113,7 +113,7 @@
                             </div>
                             <div class="grey-text ml-auto pt-1">
                                 <small>
-                                    <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($video->year) ?>年
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($video->show_year) ?>年
                                 </small>
                             </div>
                         </div><!-- /.d-flex -->
