@@ -2,7 +2,7 @@
 
 <div class="card card-cascade wider reverse mt-5 pt-4 mb-3">
     <div class="view view-cascade overlay">
-        <?= $this->Html->image('detail-dancer.1920×1080.jpg', ['class' => 'card-img-top', 'alt' => 'ストリートダンス区分イメージ']) ?>
+        <?= $this->Html->image('detail-dancer.1920×950.jpg', ['class' => 'card-img-top', 'alt' => 'ストリートダンス区分イメージ']) ?>
         <a href="#!">
             <div class="mask rgba-white-slight"></div>
         </a>

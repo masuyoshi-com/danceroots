@@ -144,7 +144,6 @@
 
         <hr id="studio" class="hr-width mb-5 mt-5 pb-3">
 
-
         <div class="row">
             <div class="col-lg-7 col-xl-7 pb-3">
                 <h6 class="font-bold pb-1 orange-text">Studio/School</h6>
