@@ -4,7 +4,6 @@ select.form-control:not([size]):not([multiple]) {
     height: calc(2.25rem + 7px);
 }
 
-
 /* original */
 .font-blue {
     color: #4285f4;
@@ -21,8 +20,41 @@ select.form-control:not([size]):not([multiple]) {
     color: #ff3547;
 }
 
+footer.page-footer .title {
+    text-transform: uppercase;
+}
+
+footer.page-footer {
+    padding-top: 20px;
+    color: #fff;
+}
+
+footer.page-footer .footer-copyright {
+    overflow: hidden;
+    height: 50px;
+    line-height: 50px;
+    color: rgba(255, 255, 255, .6);
+    background-color: rgba(0, 0, 0, .2);
+    text-align: center;
+    font-size: .9rem;
+}
+
+.font-bold {
+    font-weight: 500;
+}
+
+.mb-r {
+    margin-bottom: 2rem!important;
+}
+
 @media screen and (max-width: 768px) {
     .none {
         display: none;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .mb-r {
+        margin-bottom: 2rem!important;
     }
 }

@@ -164,9 +164,15 @@
                         ) ?>
                     </li>
                     <li class="nav-item">
-                        <?= $this->Html->link('ログイン', ['controller' => 'Users', 'action' => 'login'],
-                            ['class' => 'nav-link waves-effect waves-light',]
-                        ) ?>
+                        <?php
+                            if (isset($logins)) {
+                                print $this->Html->link('マイホーム', $homes, ['class' => 'nav-link waves-effect waves-light']);
+                            } else {
+                                print $this->Html->link('ログイン', ['controller' => 'Users', 'action' => 'login'],
+                                    ['class' => 'nav-link waves-effect waves-light']
+                                );
+                            }
+                        ?>
                     </li>
                 </ul>
             </div><!-- /.collapse -->

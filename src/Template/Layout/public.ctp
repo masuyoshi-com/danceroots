@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="jp">
 <head>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-6641711520108217",
+        enable_page_level_ads: true
+        });
+    </script>
     <?= $this->Html->charset() ?>
     <?= $this->Html->meta(['name' => 'viewport', 'content' => 'width=device-width, initial-scale=1, shrink-to-fit=no']) ?>
     <?= $this->Html->meta(['http-equiv' => 'x-ua-compatible', 'content' => 'ie=edge']) ?>
@@ -9,65 +16,12 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-5544353-4"></script>
     <?= $this->Html->script('gtag') ?>
     <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') ?>
-    <?= $this->Html->css('/css/top-bootstrap.min') ?>
-    <?= $this->Html->css('/css/top-mdb.min') ?>
+    <?= $this->Html->css('/css/bootstrap.min') ?>
+    <?= $this->Html->css('/css/mdb.min') ?>
     <?= $this->Html->css('/css/top-style') ?>
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
-    <style rel="stylesheet">
-
-        .navbar {
-            background-color: transparent;
-        }
-
-        .scrolling-navbar {
-            -webkit-transition: background .5s ease-in-out, padding .5s ease-in-out;
-            -moz-transition: background .5s ease-in-out, padding .5s ease-in-out;
-            transition: background .5s ease-in-out, padding .5s ease-in-out;
-        }
-
-        .top-nav-collapse {
-            background-color: #1C2331;
-        }
-
-        footer.page-footer {
-            background-color: #1C2331;
-            margin-top: 0;
-        }
-
-        @media only screen and (max-width: 767px) {
-            .navbar {
-                background-color: #1C2331;
-            }
-            .display-3 {
-                font-size: 2rem;
-                margin-top: 6rem;
-            }
-            h3 {
-                font-size: 1rem;
-            }
-        }
-
-        @media only screen and (max-width: 667px) {
-            .display-3 {
-                font-size: 3rem;
-            }
-        }
-
-        /*Caption*/
-        .flex-center {
-            color: #fff;
-        }
-
-        .navbar .btn-group .dropdown-menu a:hover {
-            color: #000 !important;
-        }
-
-        .navbar .btn-group .dropdown-menu a:active {
-            color: #fff !important;
-        }
-    </style>
 </head>
 
 <body>
@@ -129,16 +83,26 @@
                         ) ?>
                     </li>
                     <li class="nav-item">
-                        <?= $this->Html->link('ログイン', ['controller' => 'Users', 'action' => 'login'],
-                            ['class' => 'nav-link waves-effect waves-light']
-                        ) ?>
+                        <?php
+                            if (isset($logins)) {
+                                print $this->Html->link('マイホーム', $homes, ['class' => 'nav-link waves-effect waves-light']);
+                            } else {
+                                print $this->Html->link('ログイン', ['controller' => 'Users', 'action' => 'login'],
+                                    ['class' => 'nav-link waves-effect waves-light']
+                                );
+                            }
+                        ?>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <?= $this->fetch('content') ?>
+    <main class="pt-4">
+        <div class="container">
+            <?= $this->fetch('content') ?>
+        </div>
+    </main>
 
     <footer class="page-footer center-on-small-only unique-color-dark">
         <div class="container mt-5 mb-4 text-center text-md-left">
@@ -151,9 +115,11 @@
                     <p>
                         マイプロフィール作成
                     </p>
+                    <!--
                     <p>
                         ダンスチーム登録・検索
                     </p>
+                    -->
                     <p>
                         ダンスサークル作成・検索
                     </p>
@@ -167,10 +133,10 @@
                     </h6>
                     <hr class="blue mb-4 pb-1 mt-0 d-inline-block mx-auto" style="width: 60px;">
                     <p>
-                        ダンス動画共有
+                        ダンス動画
                     </p>
                     <p>
-                        ダンス音楽共有
+                        ミュージック
                     </p>
                     <p>
                         イベント登録・検索
@@ -216,6 +182,15 @@
                             ['controller' => 'Inquiries', 'action' => 'index'],
                             ['escape' => false]
                         ) ?>
+                    </p>
+                    <hr>
+                    <p>
+                        <span id="ss_gmo_img_wrapper_130-66_image_ja">
+                            <a href="https://jp.globalsign.com/" target="_blank" rel="nofollow">
+                                <img alt="SSL GMOグローバルサインのサイトシール" border="0" id="ss_img" src="//seal.globalsign.com/SiteSeal/images/gs_noscript_130-66_ja.gif">
+                            </a>
+                        </span>
+                        <script type="text/javascript" src="//seal.globalsign.com/SiteSeal/gmogs_image_130-66_ja.js" defer="defer"></script>
                     </p>
                 </div>
             </div><!-- /.row -->

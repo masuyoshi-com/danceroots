@@ -18,12 +18,18 @@
                         <h3 class="flex-item">Streetdancer Social Platform</h3>
                     </li>
                     <li>
-                        <?= $this->Html->link('サインアップ', ['controller' => 'Users', 'action' => 'signup'],
-                            ['class' => 'btn btn-primary btn-lg flex-item']
-                        ) ?>
-                        <?= $this->Html->link('ログイン', ['controller' => 'Users', 'action' => 'login'],
-                            ['class'=> 'btn btn-outline-white btn-lg flex-item']
-                        ) ?>
+                        <?php
+                            if (isset($logins)) {
+                                print $this->Html->link('My Home', $homes, ['class' => 'btn btn-default btn-lg flex-item']);
+                            } else {
+                                print $this->Html->link('サインアップ', ['controller' => 'Users', 'action' => 'signup'],
+                                    ['class' => 'btn btn-primary btn-lg flex-item']
+                                );
+                                print $this->Html->link('ログイン', ['controller' => 'Users', 'action' => 'login'],
+                                    ['class'=> 'btn btn-outline-white btn-lg flex-item']
+                                );
+                            }
+                        ?>
                     </li>
                 </ul>
             </div><!-- /.full-bg-img -->
@@ -40,9 +46,15 @@
                         <h3 class="my-4">今すぐ可能性を広げよう。</h3>
                     </li>
                     <li>
-                        <?= $this->Html->link('サインアップ', ['controller' => 'Users', 'action' => 'signup'],
-                            ['class' => 'btn btn-primary btn-lg']
-                        ) ?>
+                        <?php
+                            if (isset($logins)) {
+                                print $this->Html->link('My Home', $homes, ['class' => 'btn btn-primary btn-lg']);
+                            } else {
+                                print $this->Html->link('サインアップ', ['controller' => 'Users', 'action' => 'signup'],
+                                    ['class' => 'btn btn-primary btn-lg']
+                                );
+                            }
+                        ?>
                     </li>
                 </ul>
             </div><!-- /.full-bg-img -->
@@ -59,9 +71,15 @@
                         <h3 class="my-4">あなたの活躍の場を広げるサポートをします。</h3>
                     </li>
                     <li>
-                        <?= $this->Html->link('プロフィールを作成', ['controller' => 'Users', 'action' => 'signup'],
-                            ['class' => 'btn btn-default btn-lg']
-                        ) ?>
+                        <?php
+                            if (isset($logins)) {
+                                print $this->Html->link('My Home', $homes, ['class' => 'btn btn-default btn-lg']);
+                            } else {
+                                print $this->Html->link('プロフィールを作成', ['controller' => 'Users', 'action' => 'signup'],
+                                    ['class' => 'btn btn-default btn-lg']
+                                );
+                            }
+                        ?>
                     </li>
                 </ul>
             </div><!-- /.full-bg-img -->

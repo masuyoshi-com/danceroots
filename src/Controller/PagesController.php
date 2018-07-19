@@ -107,4 +107,16 @@ class PagesController extends AppController
         $this->viewBuilder()->setLayout('public');
     }
 
+
+    /**
+     * ダンサー区分詳細
+     */
+     public function dancer()
+     {
+         $this->viewBuilder()->setLayout('public');
+     }
+
+
+
+
 }
