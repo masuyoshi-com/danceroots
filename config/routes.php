@@ -58,6 +58,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/contract', ['controller' => 'Pages', 'action' => 'contract']);
     $routes->connect('/privacy',  ['controller' => 'Pages', 'action' => 'privacy']);
     $routes->connect('/dancer',   ['controller' => 'Pages', 'action' => 'dancer']);
+    $routes->connect('/studio',   ['controller' => 'Pages', 'action' => 'studio']);
 
     // ログイン後ホーム画面
     // $routes->connect('/home', ['controller' => 'Pages', 'action' => 'home']);

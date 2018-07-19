@@ -158,6 +158,9 @@
                 <?= $this->Html->link('サインアップ', ['controller' => 'Users', 'action' => 'signup'],
                     ['class' => 'btn btn-warning btn-md mb-3']
                 ) ?>
+                <?= $this->Html->link('詳細説明', ['controller' => 'Pages', 'action' => 'studio'],
+                    ['class' => 'btn btn-outline-warning btn-md mb-3']
+                )?>
             </div>
 
             <div class="col-lg-5 col-xl-5 mb-5">

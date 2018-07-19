@@ -109,7 +109,7 @@ class PagesController extends AppController
 
 
     /**
-     * ダンサー区分詳細
+     * ダンサー区分詳細説明
      */
      public function dancer()
      {
@@ -117,6 +117,13 @@ class PagesController extends AppController
      }
 
 
-
+     /**
+      * スタジオ区分詳細説明
+      */
+     public function studio()
+     {
+         $this->viewBuilder()->setLayout('public');
+     }
+     
 
 }
