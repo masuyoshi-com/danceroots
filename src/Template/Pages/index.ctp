@@ -136,6 +136,9 @@
                 <?= $this->Html->link('サインアップ', ['controller' => 'Users', 'action' => 'signup'],
                     ['class' => 'btn btn-info btn-md mb-3']
                 )?>
+                <?= $this->Html->link('詳細説明', ['controller' => 'Pages', 'action' => 'dancer'],
+                    ['class' => 'btn btn-outline-info btn-md mb-3']
+                )?>
             </div><!-- /.col-lg-7 -->
         </div><!-- /.row -->
 
