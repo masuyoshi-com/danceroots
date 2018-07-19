@@ -136,7 +136,7 @@
                 <?= $this->Html->link('サインアップ', ['controller' => 'Users', 'action' => 'signup'],
                     ['class' => 'btn btn-info btn-md mb-3']
                 )?>
-                <?= $this->Html->link('詳細説明', ['controller' => 'Pages', 'action' => 'dancer'],
+                <?= $this->Html->link('ダンサー詳細', ['controller' => 'Pages', 'action' => 'dancer'],
                     ['class' => 'btn btn-outline-info btn-md mb-3']
                 )?>
             </div><!-- /.col-lg-7 -->
@@ -158,7 +158,7 @@
                 <?= $this->Html->link('サインアップ', ['controller' => 'Users', 'action' => 'signup'],
                     ['class' => 'btn btn-warning btn-md mb-3']
                 ) ?>
-                <?= $this->Html->link('詳細説明', ['controller' => 'Pages', 'action' => 'studio'],
+                <?= $this->Html->link('スタジオ詳細', ['controller' => 'Pages', 'action' => 'studio'],
                     ['class' => 'btn btn-outline-warning btn-md mb-3']
                 )?>
             </div>
@@ -187,6 +187,9 @@
                 <?= $this->Html->link('サインアップ', ['controller' => 'Users', 'action' => 'signup'],
                     ['class' => 'btn btn-secondary btn-md mb-3']
                 ) ?>
+                <?= $this->Html->link('オーガナイザー詳細', ['controller' => 'Pages', 'action' => 'organizer'],
+                    ['class' => 'btn btn-outline-secondary btn-md mb-3']
+                )?>
             </div><!-- /.col-lg-5 -->
         </div><!-- /.row -->
 
@@ -203,10 +206,13 @@
                     ダンスに関することに興味があるのなら、dancerootsを利用しましょう。音楽やダンスに関するたくさんの情報を
                     皆で共有し、良いインスパイアを受けてください。
                 </p>
-                <p>
-                    <?= $this->Html->link('新規登録', ['controller' => 'Users', 'action' => 'signup'],
-                        ['class' => 'btn btn-success btn-block mb-3']
+                <p class="text-center">
+                    <?= $this->Html->link('サインアップ', ['controller' => 'Users', 'action' => 'signup'],
+                        ['class' => 'btn btn-success btn-md mb-3']
                     ) ?>
+                    <?= $this->Html->link('一般詳細', ['controller' => 'Pages', 'action' => 'general'],
+                        ['class' => 'btn btn-outline-success btn-md mb-3']
+                    )?>
                 </p>
             </div><!-- /.col-lg-12 -->
         </div><!-- /.row -->
