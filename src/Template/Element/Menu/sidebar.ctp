@@ -4,7 +4,7 @@
         <!-- Logo -->
         <li>
             <div class="logo-wrapper waves-light">
-                <a href="<?= $this->Url->build($homes) ?>">
+                <a href="<?= $this->Url->build('/') ?>">
                     <p style="font-size: 30px; color: white;" class="flex-center">
                         <strong>Dancer<span class="font-blue">oo</span>ts</strong><small style="font-size: 10px;">BETA</small>
                     </p>
