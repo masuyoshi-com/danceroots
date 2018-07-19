@@ -2,7 +2,7 @@
 
 <div class="card card-cascade wider reverse mt-5 pt-4 mb-3">
     <div class="view view-cascade overlay">
-        <?= $this->Html->image('detail-dancer.1920×950.jpg', ['class' => 'card-img-top', 'alt' => 'ストリートダンス区分イメージ']) ?>
+        <?= $this->Html->image('detail-dancer1920×950.jpg', ['class' => 'card-img-top', 'alt' => 'ストリートダンス区分イメージ']) ?>
         <a href="#!">
             <div class="mask rgba-white-slight"></div>
         </a>
@@ -167,6 +167,21 @@
         <p>
             ダンスインストラクターの仕事や、ショーケースの仕事などを効率的に探すことが可能です。
             好きなことを仕事にする機会の幅を少しでも広げましょう。
+        </p>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-lg-12">
+        <h4 class="blockquote bq-primary font-weight-bold dark-grey-text">
+            フィードバック
+        </h4>
+        <p>
+            サイトを利用している上で困ったことが起きた場合には、フィードバックより当サイトへお問い合わせください。
+            迷惑ユーザーやバグ、またはこんな機能が欲しい、改善してほしいことなど、なんでも構いません。
+        </p>
+        <p>
+            最高のストリートダンスプラットフォームを目指します。機能実装などはリクエスト数が多い順に改善・アップデートしていきます。できる限り迅速に対応します。
         </p>
     </div>
 </div>
