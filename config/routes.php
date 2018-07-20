@@ -44,6 +44,7 @@ use Cake\Routing\Route\DashedRoute;
 Router::defaultRouteClass(DashedRoute::class);
 
 Router::scope('/', function (RouteBuilder $routes) {
+
     /**
      * Here, we are connecting '/' (base path) to a controller called 'Pages',
      * its action called 'display', and we pass a param to select the view file
@@ -54,13 +55,14 @@ Router::scope('/', function (RouteBuilder $routes) {
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */
-    $routes->connect('/pages/*',   ['controller' => 'Pages', 'action' => 'display']);
+    //$routes->connect('/pages/*',   ['controller' => 'Pages', 'action' => 'display']);
     $routes->connect('/contract',  ['controller' => 'Pages', 'action' => 'contract']);
     $routes->connect('/privacy',   ['controller' => 'Pages', 'action' => 'privacy']);
     $routes->connect('/dancer',    ['controller' => 'Pages', 'action' => 'dancer']);
     $routes->connect('/studio',    ['controller' => 'Pages', 'action' => 'studio']);
     $routes->connect('/organizer', ['controller' => 'Pages', 'action' => 'organizer']);
-    
+    $routes->connect('/general',   ['controller' => 'Pages', 'action' => 'general']);
+
     // ログイン後ホーム画面
     // $routes->connect('/home', ['controller' => 'Pages', 'action' => 'home']);
 

@@ -134,4 +134,13 @@ class PagesController extends AppController
          $this->viewBuilder()->setLayout('public');
      }
 
+
+     /**
+      * 一般区分詳細説明
+      */
+     public function general()
+     {
+         $this->viewBuilder()->setLayout('public');
+     }
+
 }
