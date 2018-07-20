@@ -1,4 +1,8 @@
-<?php $this->assign('title', 'オーガナイザー・企業機能紹介'); ?>
+<?php
+    $this->assign('description',
+        'オーガナイザー・企業区分ユーザーになることで、主催するイベントを簡単に、効率的に告知することができます。ダンサー検索、イベントに協力してもらうための人材を募集する求人登録なども利用できます。ダンス動画やミュージックなども共有しましょう。');
+    $this->assign('title', 'オーガナイザー・企業機能紹介');
+?>
 
 <div class="card card-cascade wider reverse mt-5 pt-4 mb-3">
     <div class="view view-cascade overlay">

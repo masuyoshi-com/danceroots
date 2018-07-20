@@ -1,4 +1,8 @@
-<?php $this->assign('title', 'ストリートダンサー機能紹介'); ?>
+<?php
+    $this->assign('description',
+    'ストリートダンス区分ユーザーになることで、ダンサープロフィール、ダンスサークル作成・管理、ダンスチームのプロフィールを作成できます。他にもダンス動画やミュージックの共有、イベントやダンス関連の求人まで情報を得ることができます。');
+    $this->assign('title', 'ストリートダンサー機能紹介');
+?>
 
 <div class="card card-cascade wider reverse mt-5 pt-4 mb-3">
     <div class="view view-cascade overlay">

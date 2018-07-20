@@ -1,4 +1,8 @@
-<?php $this->assign('title', 'スタジオ・スクール機能紹介'); ?>
+<?php
+    $this->assign('description',
+        'ダンススタジオ・スクール区分ユーザーになることで、スタジオプロフィールが作成でき効率的にダンススタジオを告知できます。また、ダンサー検索、イベント・ダンスインストラクターを募集する求人登録などが利用できます。ダンス動画やミュージックなども共有しましょう。');
+    $this->assign('title', 'スタジオ・スクール機能紹介');
+?>
 
 <div class="card card-cascade wider reverse mt-5 pt-4 mb-3">
     <div class="view view-cascade overlay">

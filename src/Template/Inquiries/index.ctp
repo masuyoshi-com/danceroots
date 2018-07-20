@@ -1,4 +1,7 @@
-<?php $this->assign('title', 'お問い合わせ'); ?>
+<?php
+    $this->assign('description', 'Dancerroots - ストリートダンス総合SNS。 お問い合わせはサイトに関する不明点、または迷惑行為報告なども受け付けております。');
+    $this->assign('title', 'お問い合わせ');
+?>
 
 <div class="row">
     <div class="col-lg-12 dark-grey-text">

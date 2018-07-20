@@ -1,4 +1,8 @@
-<?php $this->assign('title', '一般機能紹介'); ?>
+<?php
+    $this->assign('description',
+        '一般区分ユーザーになることで、ストリートダンスに関する最新情報を得ることができます。あなたが参加するイベントなども告知することができ、より多くのストリートダンスに関心をもっているユーザーに告知することができます。他にもダンサー検索、スタジオ検索、ダンス動画やミュージックなどの共有も可能になります。');
+    $this->assign('title', '一般機能紹介');
+?>
 
 <div class="card card-cascade wider reverse mt-5 pt-4 mb-3">
     <div class="view view-cascade overlay">

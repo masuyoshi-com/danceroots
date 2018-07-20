@@ -1,4 +1,7 @@
-<?php $this->assign('title', 'プライバシーポリシー'); ?>
+<?php
+    $this->assign('description', 'Dancerroots - ストリートダンス総合SNSを利用する際のプライバシーポリシーです。');
+    $this->assign('title', 'プライバシーポリシー');
+?>
 
 <div class="row">
     <div class="col-lg-12 dark-grey-text">

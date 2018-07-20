@@ -11,6 +11,8 @@
     <?= $this->Html->charset() ?>
     <?= $this->Html->meta(['name' => 'viewport', 'content' => 'width=device-width, initial-scale=1, shrink-to-fit=no']) ?>
     <?= $this->Html->meta(['http-equiv' => 'x-ua-compatible', 'content' => 'ie=edge']) ?>
+    <?= $this->Html->meta('description',
+        'ストリートダンス総合SNS。ストリートダンサー・スタジオ・オーガナイザーなどの検索、ダンス動画・ミュージックの共有、イベントや求人情報もストリートダンスに特化した専用プラットフォーム。利用は全て無料です。') ?>
     <title>Danceroots | ストリートダンス総合SNS</title>
     <?= $this->Html->meta('icon') ?>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-5544353-4"></script>
@@ -231,16 +233,16 @@
                         <?= $this->Html->link('HOME', '/') ?>
                     </p>
                     <p>
-                        <?= $this->Html->link('Dancer', '/#dancer') ?>
+                        <?= $this->Html->link('Dancer', ['controller' => 'Pages', 'action' => 'dancer']) ?>
                     </p>
                     <p>
-                        <?= $this->Html->link('Studio', '/#studio') ?>
+                        <?= $this->Html->link('Studio', ['controller' => 'Pages', 'action' => 'studio']) ?>
                     </p>
                     <p>
-                        <?= $this->Html->link('Organaizer', '/#organaizer') ?>
+                        <?= $this->Html->link('Organaizer', ['controller' => 'Pages', 'action' => 'organizer']) ?>
                     </p>
                     <p>
-                        <?= $this->Html->link('General', '/#general') ?>
+                        <?= $this->Html->link('General', ['controller' => 'Pages', 'action' => 'general']) ?>
                     </p>
                 </div>
                 <div class="col-md-4 col-lg-3 col-xl-3">
