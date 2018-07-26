@@ -24,7 +24,7 @@
     <hr>
     <div class="row">
         <div class="col-lg-4 col-md-12 mb-lg-0 mb-5">
-            <div class="single-news mb-3">
+            <div id="contents" class="single-news mb-3">
                 <div class="view overlay rounded z-depth-2 mb-4">
                     <?= $this->Html->image('lectures/j-dilla500×500.jpg', ['class' => 'img-fluid w-100', 'alt' => 'HipHopアーティストJDilla']) ?>
                     <a>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="d-flex justify-content-between">
                     <div class="col-11 text-truncate pl-0 mb-3">
-                        <a class="font-weight-bold">ダンス仲間を探そう</a>
+                        <?= $this->Html->link('ストリートダンス仲間を探そう', ['action' => 'dancefriend'], ['class' => 'font-weight-bold']) ?>
                     </div>
                     <a><i class="fa fa-angle-double-right"></i></a>
                 </div>
@@ -49,7 +49,7 @@
             <div class="single-news mb-3">
                 <div class="d-flex justify-content-between">
                     <div class="col-11 text-truncate pl-0 mb-3">
-                        <a>初期練習はダンスの基礎だけでよい</a>
+                        <?= $this->Html->link('初期練習はダンスの基礎だけでよい', ['action' => 'initialPractice']) ?>
                     </div>
                     <a><i class="fa fa-angle-double-right"></i></a>
                 </div>
@@ -58,7 +58,25 @@
             <div class="single-news mb-3">
                 <div class="d-flex justify-content-between">
                     <div class="col-11 text-truncate pl-0 mb-3">
-                        <a>毎日決めた練習時間は守る</a>
+                        <?= $this->Html->link('毎日決めた練習時間は守る', ['action' => 'practiceTime']) ?>
+                    </div>
+                    <a><i class="fa fa-angle-double-right"></i></a>
+                </div>
+            </div><!-- /.single-news -->
+
+            <div class="single-news">
+                <div class="d-flex justify-content-between">
+                    <div class="col-11 text-truncate pl-0">
+                        <?= $this->Html->link('色んなストリートダンサーを見る', ['action' => 'variousDancers']) ?>
+                    </div>
+                    <a><i class="fa fa-angle-double-right"></i></a>
+                </div>
+            </div><!-- /.single-news -->
+
+            <div class="single-news">
+                <div class="d-flex justify-content-between">
+                    <div class="col-11 text-truncate pl-0">
+                        <?= $this->Html->link('最初にかっこいいと思うダンサーを本当は目指すべきではない', ['action' => 'notAiming']) ?>
                     </div>
                     <a><i class="fa fa-angle-double-right"></i></a>
                 </div>
@@ -67,7 +85,7 @@
             <div class="single-news mb-3">
                 <div class="d-flex justify-content-between">
                     <div class="col-11 text-truncate pl-0 mb-3">
-                        <a>基礎を突き詰める</a>
+                        <?= $this->Html->link('基礎を突き詰める', ['action' => 'foundation']) ?>
                     </div>
                     <a><i class="fa fa-angle-double-right"></i></a>
                 </div>
@@ -76,7 +94,7 @@
             <div class="single-news">
                 <div class="d-flex justify-content-between">
                     <div class="col-11 text-truncate pl-0">
-                        <a>色んなダンサーを見る</a>
+                        <?= $this->Html->link('周りがダンスをやめていってもあなたは続けられるか？', ['action' => 'continueDancing']) ?>
                     </div>
                     <a><i class="fa fa-angle-double-right"></i></a>
                 </div>
@@ -85,7 +103,7 @@
             <div class="single-news">
                 <div class="d-flex justify-content-between">
                     <div class="col-11 text-truncate pl-0">
-                        <a>最初にかっこいいと思うダンサーを本当は目指すべきではない</a>
+                        <?= $this->Html->link('とりあえずサンプリングする', ['action' => 'sampling']) ?>
                     </div>
                     <a><i class="fa fa-angle-double-right"></i></a>
                 </div>
@@ -94,7 +112,7 @@
             <div class="single-news">
                 <div class="d-flex justify-content-between">
                     <div class="col-11 text-truncate pl-0">
-                        <a>周りがダンスをやめていってもあなたは続けられるか？</a>
+                        <?= $this->Html->link('ストリートダンス動画と一緒に踊る', ['action' => 'streetdanceVideo']) ?>
                     </div>
                     <a><i class="fa fa-angle-double-right"></i></a>
                 </div>
@@ -103,25 +121,7 @@
             <div class="single-news">
                 <div class="d-flex justify-content-between">
                     <div class="col-11 text-truncate pl-0">
-                        <a>とりあえずサンプリングする</a>
-                    </div>
-                    <a><i class="fa fa-angle-double-right"></i></a>
-                </div>
-            </div><!-- /.single-news -->
-
-            <div class="single-news">
-                <div class="d-flex justify-content-between">
-                    <div class="col-11 text-truncate pl-0">
-                        <a>ストリートダンス動画と一緒に踊る</a>
-                    </div>
-                    <a><i class="fa fa-angle-double-right"></i></a>
-                </div>
-            </div><!-- /.single-news -->
-
-            <div class="single-news">
-                <div class="d-flex justify-content-between">
-                    <div class="col-11 text-truncate pl-0">
-                        <a>ダンスインストラクターに過剰な憧れは禁物</a>
+                        <?= $this->Html->link('ダンスインストラクターに過剰な憧れは禁物', ['action' => 'noLonging']) ?>
                     </div>
                     <a><i class="fa fa-angle-double-right"></i></a>
                 </div>
@@ -129,7 +129,7 @@
         </div><!-- /.col-lg-4 -->
 
         <div class="col-lg-4 col-md-6 mb-md-0 mb-5">
-            <div class="single-news mb-3">
+            <div id="contents-2" class="single-news mb-3">
                 <div class="view overlay rounded z-depth-2 mb-4">
                     <?= $this->Html->image('lectures/2pac500×500.jpg', ['class' => 'img-fluid w-100', 'alt' => 'HipHopアーティスト2Pac']) ?>
                     <a>
@@ -147,7 +147,7 @@
 
                 <div class="d-flex justify-content-between">
                     <div class="col-11 text-truncate pl-0 mb-3">
-                        <a class="font-weight-bold">バリデーションを自分なりに考える</a>
+                        <?= $this->Html->link('ルーティン・バリデーションを考える', ['action' => 'validation'], ['class' => 'font-weight-bold']) ?>
                     </div>
                     <a><i class="fa fa-angle-double-right"></i></a>
                 </div>
@@ -156,7 +156,7 @@
             <div class="single-news mb-3">
                 <div class="d-flex justify-content-between">
                     <div class="col-11 text-truncate pl-0 mb-3">
-                        <a>音楽を知る</a>
+                        <?= $this->Html->link('音楽を知る', ['action' => 'knowMusic']) ?>
                     </div>
                     <a><i class="fa fa-angle-double-right"></i></a>
                 </div>
@@ -165,7 +165,7 @@
             <div class="single-news mb-3">
                 <div class="d-flex justify-content-between">
                     <div class="col-11 text-truncate pl-0 mb-3">
-                        <a>服装に気を使う</a>
+                        <?= $this->Html->link('服装に気を使う', ['action' => 'clothing']) ?>
                     </div>
                     <a><i class="fa fa-angle-double-right"></i></a>
                 </div>
@@ -174,7 +174,7 @@
             <div class="single-news mb-3">
                 <div class="d-flex justify-content-between">
                     <div class="col-11 text-truncate pl-0 mb-3">
-                        <a>ストリートダンスルーツを辿る</a>
+                        <?= $this->Html->link('ストリートダンスルーツを辿る', ['action' => 'danceRoots']) ?>
                     </div>
                     <a><i class="fa fa-angle-double-right"></i></a>
                 </div>
@@ -183,7 +183,7 @@
             <div class="single-news">
                 <div class="d-flex justify-content-between">
                     <div class="col-11 text-truncate pl-0">
-                        <a>自分の知っていることを人に教える</a>
+                        <?= $this->Html->link('自分の知っていることを人に教える', ['action' => 'teachPeople']) ?>
                     </div>
                     <a><i class="fa fa-angle-double-right"></i></a>
                 </div>
@@ -192,7 +192,7 @@
             <div class="single-news">
                 <div class="d-flex justify-content-between">
                     <div class="col-11 text-truncate pl-0">
-                        <a>壁にぶつかってからが勝負</a>
+                        <?= $this->Html->link('壁にぶつかってからが勝負', ['action' => 'wallGame']) ?>
                     </div>
                     <a><i class="fa fa-angle-double-right"></i></a>
                 </div>
@@ -201,7 +201,7 @@
             <div class="single-news">
                 <div class="d-flex justify-content-between">
                     <div class="col-11 text-truncate pl-0">
-                        <a>ストリートダンスショーまたはコンテストに挑戦する</a>
+                        <?= $this->Html->link('ストリートダンスショーまたはコンテストに挑戦する', ['action' => 'challengeContest']) ?>
                     </div>
                     <a><i class="fa fa-angle-double-right"></i></a>
                 </div>
@@ -210,7 +210,7 @@
             <div class="single-news">
                 <div class="d-flex justify-content-between">
                     <div class="col-11 text-truncate pl-0">
-                        <a>他のダンサーのスタイルを自分なりに理解する</a>
+                        <?= $this->Html->link('他のダンサーのスタイルを理解する', ['action' => 'understandStyle']) ?>
                     </div>
                     <a><i class="fa fa-angle-double-right"></i></a>
                 </div>
@@ -219,7 +219,7 @@
         </div><!-- /.col-lg-4 -->
 
         <div class="col-lg-4 col-md-6 mb-0">
-            <div class="single-news mb-3">
+            <div id="contents-3" class="single-news mb-3">
                 <div class="view overlay rounded z-depth-2 mb-4">
                     <?= $this->Html->image('lectures/public-enemy450×450.jpg', ['class' => 'img-fluid w-100', 'alt' => 'HipHopアーティストPublicEnemy']) ?>
                     <a>
@@ -234,7 +234,7 @@
 
                 <div class="d-flex justify-content-between">
                     <div class="col-11 text-truncate pl-0 mb-3">
-                        <a class="font-weight-bold">プロ意識を持つ</a>
+                        <?= $this->Html->link('プロ意識を持つ', ['action' => 'professionalism'], ['class' => 'font-weight-bold']) ?>
                     </div>
                     <a><i class="fa fa-angle-double-right"></i></a>
                 </div>
@@ -243,7 +243,7 @@
             <div class="single-news mb-3">
                 <div class="d-flex justify-content-between">
                     <div class="col-11 text-truncate pl-0 mb-3">
-                        <a>ダンスインストラクターになる</a>
+                        <?= $this->Html->link('ダンスインストラクターになる', ['action' => 'danceInstructor']) ?>
                     </div>
                     <a><i class="fa fa-angle-double-right"></i></a>
                 </div>
@@ -252,7 +252,7 @@
             <div class="single-news mb-3">
                 <div class="d-flex justify-content-between">
                     <div class="col-11 text-truncate pl-0 mb-3">
-                        <a>謙虚であること</a>
+                        <?= $this->Html->link('謙虚であること', ['action' => 'humility']) ?>
                     </div>
                     <a><i class="fa fa-angle-double-right"></i></a>
                 </div>
@@ -261,7 +261,7 @@
             <div class="single-news mb-3">
                 <div class="d-flex justify-content-between">
                     <div class="col-11 text-truncate pl-0 mb-3">
-                        <a>自分のスタイルにたどりつく</a>
+                        <?= $this->Html->link('自分のスタイルを持つ', ['action' => 'havingStyle']) ?>
                     </div>
                     <a><i class="fa fa-angle-double-right"></i></a>
                 </div>
@@ -270,7 +270,7 @@
             <div class="single-news">
                 <div class="d-flex justify-content-between">
                     <div class="col-11 text-truncate pl-0">
-                        <a>ダンス活動で忙しくても、自分一人の練習を設ける</a>
+                        <?= $this->Html->link('ダンス活動で忙しくても自分一人の練習を設ける', ['action' => 'onePracticeTime']) ?>
                     </div>
                     <a><i class="fa fa-angle-double-right"></i></a>
                 </div>
@@ -279,7 +279,7 @@
             <div class="single-news">
                 <div class="d-flex justify-content-between">
                     <div class="col-11 text-truncate pl-0">
-                        <a>HipHop（ストリートダンス）文化自体に触れる</a>
+                        <?= $this->Html->link('HipHop文化自体に触れる', ['action' => 'hiphopCulture']) ?>
                     </div>
                     <a><i class="fa fa-angle-double-right"></i></a>
                 </div>
@@ -288,7 +288,7 @@
             <div class="single-news">
                 <div class="d-flex justify-content-between">
                     <div class="col-11 text-truncate pl-0">
-                        <a>ダンス以外にもう一つ武器を持つ</a>
+                        <?= $this->Html->link('自分のスタイルを貫く', ['action' => 'pierceStyle']) ?>
                     </div>
                     <a><i class="fa fa-angle-double-right"></i></a>
                 </div>
@@ -297,11 +297,12 @@
             <div class="single-news">
                 <div class="d-flex justify-content-between">
                     <div class="col-11 text-truncate pl-0">
-                        <a>自分のスタイルを貫く</a>
+                        <?= $this->Html->link('ダンス以外にもう一つ武器を持つ', ['action' => 'haveWeapon']) ?>
                     </div>
                     <a><i class="fa fa-angle-double-right"></i></a>
                 </div>
             </div><!-- /.single-news -->
+
         </div><!-- /.col-lg-4 -->
     </div><!-- /.row -->
 </section>
