@@ -15,7 +15,7 @@
                         if ($message->profile->icon) {
                             print $this->Html->image($message->profile->icon, ['class' => 'img-fluid rounded-circle z-depth-2 avatar']);
                         } else {
-                            print $this->Html->image('/img/sample/no_icon.jpg');
+                            print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'img-fluid rounded-circle z-depth-2 avatar']);
                         }
                     ?>
                 </div>
