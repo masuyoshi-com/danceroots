@@ -17,16 +17,16 @@
                     <?= $this->Html->link('Home', '/', ['class' => 'nav-link']) ?>
                 </li>
                 <li class="nav-item">
-                    <?= $this->Html->link('Dancer', '#dancer', ['class' => 'nav-link']) ?>
+                    <?= $this->Html->link('Dancer','/#dancer', ['class' => 'nav-link']) ?>
                 </li>
                 <li class="nav-item">
-                    <?= $this->Html->link('Studio', '#studio', ['class' => 'nav-link']) ?>
+                    <?= $this->Html->link('Studio', '/#studio', ['class' => 'nav-link']) ?>
                 </li>
                 <li class="nav-item">
-                    <?= $this->Html->link('Organaizer', '#organaizer', ['class' => 'nav-link']) ?>
+                    <?= $this->Html->link('Organaizer', '/#organaizer', ['class' => 'nav-link']) ?>
                 </li>
                 <li class="nav-item">
-                    <?= $this->Html->link('General', '#general', ['class' => 'nav-link']) ?>
+                    <?= $this->Html->link('General', '/#general', ['class' => 'nav-link']) ?>
                 </li>
                 <li class="nav-item">
                     <?= $this->Html->link('Webダンス講座', ['controller' => 'Lectures', 'action' => 'index'], ['class' => 'nav-link']) ?>
