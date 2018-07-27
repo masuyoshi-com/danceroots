@@ -262,15 +262,15 @@ class DanceMusicsController extends AppController
     {
         $urls = [
             // トップソング($songs1)
-            'https://rss.itunes.apple.com/api/v1/us/itunes-music/top-songs/all/30/explicit.json',
+            'https://rss.itunes.apple.com/api/v1/us/itunes-music/top-songs/all/20/explicit.json',
             // トップアルバム($songs2)
-            'https://rss.itunes.apple.com/api/v1/us/itunes-music/top-albums/all/30/explicit.json',
+            'https://rss.itunes.apple.com/api/v1/us/itunes-music/top-albums/all/20/explicit.json',
             // 最新リリース($songs3)
-            'https://rss.itunes.apple.com/api/v1/us/itunes-music/recent-releases/all/30/explicit.json',
+            'https://rss.itunes.apple.com/api/v1/us/itunes-music/recent-releases/all/20/explicit.json',
             // 新着ミュージック($songs4)
-            'https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/30/explicit.json',
+            'https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/20/explicit.json',
             // 注目トラック($songs5)
-            'https://rss.itunes.apple.com/api/v1/us/itunes-music/hot-tracks/all/30/explicit.json'
+            'https://rss.itunes.apple.com/api/v1/us/itunes-music/hot-tracks/all/20/explicit.json'
         ];
 
         $option = [
