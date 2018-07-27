@@ -74,11 +74,12 @@
                 <p>
                     <?= $this->Html->link('プライバシーポリシー', ['controller' => 'Pages', 'action' => 'privacy']) ?>
                 </p>
-                <!--
                 <p>
-                    <?= $this->Html->link('サイトマップ', ['action' => 'sitemap']) ?>
+                    <?= $this->Html->link('<i class="fa fa-sitemap mr-3"></i> サイトマップ',
+                        ['controller' => 'Pages', 'action' => 'sitemap'],
+                        ['escape' => false]
+                    ) ?>
                 </p>
-                -->
                 <p>
                     <?= $this->Html->link('<i class="fa fa-envelope mr-3"></i> お問い合わせ',
                         ['controller' => 'Inquiries', 'action' => 'index'],
