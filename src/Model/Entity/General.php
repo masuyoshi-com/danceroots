@@ -6,8 +6,8 @@ use Cake\ORM\Entity;
 /**
  * General Entity
  *
- * @property int $id
- * @property int $user_id
+ * @property int    $id
+ * @property int    $user_id
  * @property string $pref
  * @property string $icon
  * @property string $self_intro
