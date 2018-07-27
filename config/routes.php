@@ -62,6 +62,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/studio',    ['controller' => 'Pages', 'action' => 'studio']);
     $routes->connect('/organizer', ['controller' => 'Pages', 'action' => 'organizer']);
     $routes->connect('/general',   ['controller' => 'Pages', 'action' => 'general']);
+    $routes->connect('/sitemap',   ['controller' => 'Pages', 'action' => 'sitemap']);
 
     // ログイン後ホーム画面
     // $routes->connect('/home', ['controller' => 'Pages', 'action' => 'home']);

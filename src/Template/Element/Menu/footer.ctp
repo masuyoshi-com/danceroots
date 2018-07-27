@@ -69,11 +69,16 @@
                 </h6>
                 <hr class="blue mb-4 pb-1 mt-0 d-inline-block mx-auto" style="width: 60px;">
                 <p>
-                    <?= $this->Html->link('利用規約', ['action' => 'contract']) ?>
+                    <?= $this->Html->link('利用規約', ['controller' => 'Pages', 'action' => 'contract']) ?>
                 </p>
                 <p>
-                    <?= $this->Html->link('プライバシーポリシー', ['action' => 'privacy']) ?>
+                    <?= $this->Html->link('プライバシーポリシー', ['controller' => 'Pages', 'action' => 'privacy']) ?>
                 </p>
+                <!--
+                <p>
+                    <?= $this->Html->link('サイトマップ', ['action' => 'sitemap']) ?>
+                </p>
+                -->
                 <p>
                     <?= $this->Html->link('<i class="fa fa-envelope mr-3"></i> お問い合わせ',
                         ['controller' => 'Inquiries', 'action' => 'index'],

@@ -143,4 +143,13 @@ class PagesController extends AppController
          $this->viewBuilder()->setLayout('public');
      }
 
+
+     /**
+      * サイトマップ
+      */
+     public function sitemap()
+     {
+         $this->viewBuilder()->setLayout('public');
+     }
+
 }
