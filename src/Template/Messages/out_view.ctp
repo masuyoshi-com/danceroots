@@ -8,7 +8,14 @@
             <div class="col-lg-12 mb-3">
                 <div class="view gradient-card-header mx-4 blue-gradient">
                     <h4 class="h4-responsive mb-0">
-                        <i class="fa fa-inbox" aria-hidden="true"></i> <?= h($message->to_username[0]->username) ?>さんへ送ったメッセージ
+                        <i class="fa fa-inbox" aria-hidden="true"></i>
+                        <?php
+                            if (isset($message->to_username[0]->username)) {
+                                print h($message->to_username[0]->username) . 'さんへ送ったメッセージ';
+                            } else {
+                                print 'このユーザーは退会されました。';
+                            }
+                        ?>
                     </h4>
                 </div>
             </div>

@@ -60,7 +60,15 @@
                             <tbody>
                                 <?php foreach ($from_messages as $from) : ?>
                                     <tr>
-                                        <td><?= h($from->to_username[0]->username) ?></td>
+                                        <td>
+                                            <?php
+                                                if (isset($from->to_username[0]->username)) {
+                                                    print h($from->to_username[0]->username);
+                                                } else {
+                                                    print '退会済みユーザー';
+                                                }
+                                            ?>
+                                        </td>
                                         <td>
                                             <?= $this->Html->link(h($from->title), ['action' => 'out_view', h($from->id)],
                                                     [
