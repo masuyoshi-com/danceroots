@@ -33,7 +33,6 @@ use Cake\Auth\DefaultPasswordHasher;
  * @property \App\Model\Entity\Job[]         $jobs
  * @property \App\Model\Entity\Message[]     $messages
  * @property \App\Model\Entity\Organizer[]   $organizers
- * @property \App\Model\Entity\Report[]      $reports
  * @property \App\Model\Entity\Studio[]      $studios
  * @property \App\Model\Entity\TeamGroup[]   $team_groups
  * @property \App\Model\Entity\Team[]        $teams
@@ -69,7 +68,6 @@ class User extends Entity
         'jobs'            => true,
         'messages'        => true,
         'organizers'      => true,
-        'reports'         => true,
         'studios'         => true,
         'team_groups'     => true,
         'teams'           => true,
