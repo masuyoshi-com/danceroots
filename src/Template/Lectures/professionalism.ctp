@@ -16,7 +16,7 @@
         <span class="badge deep-orange ml-1">上級</span>
     </p>
     <h1 class="card-title h2-responsive mt-2"><strong>プロ意識を持つ</strong></h1>
-    <p class="deep-orange-text mb-4 font-bold">Have professionalism</p>
+    <p class="deep-orange-text mb-4 font-bold">Have a professionalism</p>
     <hr>
 
     <div class="d-flex justify-content-center">

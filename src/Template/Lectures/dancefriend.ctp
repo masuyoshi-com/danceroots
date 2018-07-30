@@ -11,7 +11,7 @@
         <span class="badge success-color">初級</span>
     </p>
     <h1 class="card-title h2-responsive mt-2"><strong>ストリートダンス仲間を探そう</strong></h1>
-    <p class="blue-text mb-4 font-bold">Find street dancing fellows</p>
+    <p class="blue-text mb-4 font-bold">Find street dancer friends</p>
     <hr>
 
     <div class="d-flex justify-content-center">

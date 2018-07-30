@@ -16,7 +16,7 @@
         <span class="badge deep-purple ml-1">中級</span>
     </p>
     <h1 class="card-title h2-responsive mt-2"><strong>他のダンサーのスタイルを理解する</strong></h1>
-    <p class="purple-text mb-4 font-bold">Understand the style of other dancers</p>
+    <p class="purple-text mb-4 font-bold">Respect other dancers’ style</p>
     <hr>
 
     <div class="d-flex justify-content-center">

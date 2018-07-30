@@ -16,7 +16,7 @@
         <span class="badge deep-orange ml-1">上級</span>
     </p>
     <h1 class="card-title h2-responsive mt-2"><strong>ダンス活動で忙しくても自分一人の練習を設ける</strong></h1>
-    <p class="deep-orange-text mb-4 font-bold">Even if you are busy with dance activities, you will set up your own exercise</p>
+    <p class="deep-orange-text mb-4 font-bold">Practice even you are busy for dance activities</p>
     <hr>
 
     <div class="d-flex justify-content-center">

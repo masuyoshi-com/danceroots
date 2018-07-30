@@ -16,7 +16,7 @@
         <span class="badge deep-purple ml-1">中級</span>
     </p>
     <h1 class="card-title h2-responsive mt-2"><strong>音楽を知る</strong></h1>
-    <p class="purple-text mb-4 font-bold">Know Music</p>
+    <p class="purple-text mb-4 font-bold">Know the music</p>
     <hr>
 
     <div class="d-flex justify-content-center">
@@ -77,7 +77,7 @@
     <hr class="my-4">
 
     <?= $this->Html->link('<i class="fa fa-arrow-circle-left mr-1" aria-hidden="true"></i> 前へ</button>',
-        ['controller' => 'Lectures', 'action' => 'validation'],
+        ['controller' => 'Lectures', 'action' => 'variation'],
         ['class' => 'btn btn-blue waves-effect', 'escape' => false]
     ) ?>
     <?= $this->Html->link('次へ <i class="fa fa-arrow-circle-right ml-1"></i>',

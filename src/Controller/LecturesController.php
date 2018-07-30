@@ -111,9 +111,9 @@ class LecturesController extends AppController
 
 
     /**
-     * 中級編 - バリデーションを自分なりに考える
+     * 中級編 - ルーティン・バリエーションを自分なりに考える
      */
-    public function validation()
+    public function variation()
     {
     }
 

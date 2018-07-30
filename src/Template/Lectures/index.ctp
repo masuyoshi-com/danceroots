@@ -147,7 +147,7 @@
 
                 <div class="d-flex justify-content-between">
                     <div class="col-11 text-truncate pl-0 mb-3">
-                        <?= $this->Html->link('ルーティン・バリデーションを考える', ['action' => 'validation'], ['class' => 'font-weight-bold']) ?>
+                        <?= $this->Html->link('ルーティン・バリエーションを考える', ['action' => 'validation'], ['class' => 'font-weight-bold']) ?>
                     </div>
                     <a><i class="fa fa-angle-double-right"></i></a>
                 </div>

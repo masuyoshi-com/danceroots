@@ -65,7 +65,7 @@
             <div class="full-bg-img flex-center white-text">
                 <ul class="animated fadeInUp col-md-12">
                     <li>
-                        <h1 class="display-4 font-bold">Shap what y<span class="font-blue">o</span>u like</h1>
+                        <h1 class="display-4 font-bold">Shape what y<span class="font-blue">o</span>u like</h1>
                     </li>
                     <li>
                         <h3 class="my-4">あなたの活躍の場を広げるサポートをします。</h3>
@@ -103,16 +103,11 @@
         <h1 class="section-heading h1 dark-grey-text text-center mt-5 pt-lg-3">
             dancer<span class="font-blue">oo</span>ts<span class="none">.net</span>の利用は全て無料です。
         </h1>
-        <h5 class="text-center">
-            <small>
-                <span class="red-text">※</span>現在はBETAバージョンです。<br>
-                今後様々な機能アップデートを予定しています。是非ご利用ください。
-            </small>
-        </h5>
         <hr>
 
         <p class="section-description mb-5 mt-lg-5 mx-lg-5 text-center">
-            ストリートダンサーの活躍の場、ビジネスをより広げるための総合プラットフォームです。<br>ストリートダンスに関する情報を皆で共有し、個人としての活動はもちろん、ダンスチームとしての活動、サークル作成なども行えます。<br>また、スタジオや各種イベントとダンサーのマッチングを素早く行うことができます。
+            Webを通してストリートダンサーの活躍の場を広げ、全国のダンサーとつながる。ストリートダンス文化、歴史の共有。ストリートダンスビジネスの社会的地位向上を目指すことを目的としたストリートダンサーのための総合プラットフォームです。<br>
+            ストリートダンスに関する情報を皆で共有し、個人としての活動はもちろん、ダンスチームとしての活動、サークル作成なども行えます。<br>また、スタジオや各種イベントとダンサーのマッチングを素早く行うことができます。
         </p>
 
         <hr id="dancer" class="hr-width mb-5 mt-5 pb-3">

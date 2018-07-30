@@ -16,7 +16,7 @@
         <span class="badge deep-orange ml-1">上級</span>
     </p>
     <h1 class="card-title h2-responsive mt-2"><strong>ダンス以外にもう一つ武器を持つ</strong></h1>
-    <p class="deep-orange-text mb-4 font-bold">Have another weapon</p>
+    <p class="deep-orange-text mb-4 font-bold">Have another skills besides dance</p>
     <hr>
 
     <div class="d-flex justify-content-center">

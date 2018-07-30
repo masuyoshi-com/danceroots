@@ -16,7 +16,7 @@
         <span class="badge deep-orange ml-1">上級</span>
     </p>
     <h1 class="card-title h2-responsive mt-2"><strong>自分のスタイルを貫く</strong></h1>
-    <p class="deep-orange-text mb-4 font-bold">Pierce my style</p>
+    <p class="deep-orange-text mb-4 font-bold">Stick with your own style</p>
     <hr>
 
     <div class="d-flex justify-content-center">

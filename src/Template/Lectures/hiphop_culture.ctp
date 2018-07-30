@@ -16,7 +16,7 @@
         <span class="badge deep-orange ml-1">上級</span>
     </p>
     <h1 class="card-title h2-responsive mt-2"><strong>HipHop文化自体に触れる</strong></h1>
-    <p class="deep-orange-text mb-4 font-bold">Touch the HipHop culture itselfe</p>
+    <p class="deep-orange-text mb-4 font-bold">Expose yourself to the HipHop culture itself</p>
     <hr>
 
     <div class="d-flex justify-content-center">

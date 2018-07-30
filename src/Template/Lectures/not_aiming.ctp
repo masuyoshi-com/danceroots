@@ -16,7 +16,7 @@
         <span class="badge success-color ml-1">初級</span>
     </p>
     <h1 class="card-title h2-responsive mt-2"><strong>最初にかっこいいと思うダンサーを本当は目指すべきではない</strong></h1>
-    <p class="blue-text mb-4 font-bold">You should not really aim for the first dancers who think it's cool</p>
+    <p class="blue-text mb-4 font-bold">You should not aspire the dancer you’ve first been fascinated with</p>
     <hr>
 
     <div class="d-flex justify-content-center">

@@ -16,7 +16,7 @@
         <span class="badge deep-purple ml-1">中級</span>
     </p>
     <h1 class="card-title h2-responsive mt-2"><strong>ストリートダンスショーまたはコンテストに挑戦する</strong></h1>
-    <p class="purple-text mb-4 font-bold">Challenge a street dance show or contest</p>
+    <p class="purple-text mb-4 font-bold">Try to be on a street dance show or a contest</p>
     <hr>
 
     <div class="d-flex justify-content-center">

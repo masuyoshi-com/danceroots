@@ -16,7 +16,7 @@
         <span class="badge deep-purple ml-1">中級</span>
     </p>
     <h1 class="card-title h2-responsive mt-2"><strong>服装に気を使う</strong></h1>
-    <p class="purple-text mb-4 font-bold">Use attention to clothes</p>
+    <p class="purple-text mb-4 font-bold">Be stylish</p>
     <hr>
 
     <div class="d-flex justify-content-center">

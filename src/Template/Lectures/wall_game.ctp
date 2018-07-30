@@ -16,7 +16,7 @@
         <span class="badge deep-purple ml-1">中級</span>
     </p>
     <h1 class="card-title h2-responsive mt-2"><strong>壁にぶつかってからが勝負</strong></h1>
-    <p class="purple-text mb-4 font-bold">It is a game after hitting a wall</p>
+    <p class="purple-text mb-4 font-bold">Get over a plateau</p>
     <hr>
 
     <div class="d-flex justify-content-center">

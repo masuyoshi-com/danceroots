@@ -16,7 +16,7 @@
         <span class="badge success-color ml-1">初級</span>
     </p>
     <h1 class="card-title h2-responsive mt-2"><strong>周りがダンスをやめていってもあなたは続けられるか</strong></h1>
-    <p class="blue-text mb-4 font-bold">Whether you can continue even if the surroundings stop dancing</p>
+    <p class="blue-text mb-4 font-bold">Can you continue dancing even though your dancer friends quit?</p>
     <hr>
 
     <div class="d-flex justify-content-center">

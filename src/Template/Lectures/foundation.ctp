@@ -16,7 +16,7 @@
         <span class="badge success-color ml-1">初級</span>
     </p>
     <h1 class="card-title h2-responsive mt-2"><strong>基礎を突き詰める</strong></h1>
-    <p class="blue-text mb-4 font-bold">To lay the foundation</p>
+    <p class="blue-text mb-4 font-bold">Pursue the basics</p>
     <hr>
 
     <div class="d-flex justify-content-center">

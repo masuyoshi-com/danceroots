@@ -16,7 +16,7 @@
         <span class="badge success-color ml-1">初級</span>
     </p>
     <h1 class="card-title h2-responsive mt-2"><strong>毎日決めた練習時間は守る</strong></h1>
-    <p class="blue-text mb-4 font-bold">I will keep practice hours decided every day</p>
+    <p class="blue-text mb-4 font-bold">Stick with the schedule on a daily basic</p>
     <hr>
 
     <div class="d-flex justify-content-center">

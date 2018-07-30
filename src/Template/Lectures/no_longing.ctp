@@ -16,7 +16,7 @@
         <span class="badge success-color ml-1">初級</span>
     </p>
     <h1 class="card-title h2-responsive mt-2"><strong>ダンスインストラクターに過剰な憧れは禁物</strong></h1>
-    <p class="blue-text mb-4 font-bold">Excessive longing for dance instructor is not permitted</p>
+    <p class="blue-text mb-4 font-bold">Excessive longing for a dance instructor is not recommended</p>
     <hr>
 
     <div class="d-flex justify-content-center">
@@ -69,7 +69,7 @@
         ['class' => 'btn btn-blue waves-effect', 'escape' => false]
     ) ?>
     <?= $this->Html->link('次へ <i class="fa fa-arrow-circle-right ml-1"></i>',
-        ['controller' => 'Lectures', 'action' => 'validation'],
+        ['controller' => 'Lectures', 'action' => 'variation'],
         ['class' => 'btn btn-outline-primary waves-effect', 'escape' => false]
     ) ?>
 </div><!-- /.jumbotron -->

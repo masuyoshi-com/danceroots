@@ -16,7 +16,7 @@
         <span class="badge success-color ml-1">初級</span>
     </p>
     <h1 class="card-title h2-responsive mt-2"><strong>とりあえずサンプリングする</strong></h1>
-    <p class="blue-text mb-4 font-bold">I will sample it for the time being</p>
+    <p class="blue-text mb-4 font-bold">Just copy</p>
     <hr>
 
     <div class="d-flex justify-content-center">

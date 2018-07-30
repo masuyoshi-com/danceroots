@@ -16,7 +16,7 @@
         <span class="badge deep-purple ml-1">中級</span>
     </p>
     <h1 class="card-title h2-responsive mt-2"><strong>ストリートダンスルーツを辿る</strong></h1>
-    <p class="purple-text mb-4 font-bold">Follow the street dance roots</p>
+    <p class="purple-text mb-4 font-bold">Trace the history of street dance</p>
     <hr>
 
     <div class="d-flex justify-content-center">
