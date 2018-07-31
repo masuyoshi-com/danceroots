@@ -313,4 +313,21 @@ class StudiosTable extends Table
                 ['Studios.studio_name LIKE' => '%' . $requests['word'] . '%']]])
             ;
     }
+
+
+    /**
+    * 一般公開スタジオ検索 - 都道府県・フリーワード
+    *
+    * @param array $requests
+    */
+    public function findBySearchForPublic($requests)
+    {
+        return $this->find('all')
+            ->where(['Studios.pref LIKE' => '%' . $requests['pref'] . '%'])
+            ->where(['OR' => [
+                ['Studios.name LIKE'        => '%' . $requests['word'] . '%'],
+                ['Studios.studio_name LIKE' => '%' . $requests['word'] . '%']]])
+            ->andWhere(['Studios.public_flag' => 0])
+            ;
+    }
 }

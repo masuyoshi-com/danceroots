@@ -24,14 +24,14 @@ class StudiosController extends AppController
 
 
      /**
-      * 各アクション前に発動 レイアウト設定
+      * 初期化メソッド
       *
-      * @param object Event $event
       * @return void
       */
-     public function beforeFilter(Event $event)
+     public function initialize()
      {
-         parent::beforeFilter($event);
+         parent::initialize();
+         $this->Auth->allow(['public', 'publicView']);
      }
 
 
@@ -112,7 +112,45 @@ class StudiosController extends AppController
 
 
     /**
-     * プロフィール詳細
+     * 一般公開スタジオ検索一覧
+     *
+     * @return \Cake\Http\Response|void
+     */
+    public function public()
+    {
+        $this->viewBuilder()->setLayout('public');
+
+        if ($this->request->query) {
+
+            // 検索クエリがなければfindBySearchで警告でないように空白状態を作成
+            for ($i = 0; $i < count($this->search_keys); $i++) {
+                if (!isset($this->request->query[$this->search_keys[$i]])) {
+                    $this->request->query[$this->search_keys[$i]] = '';
+                }
+            }
+
+            $query   = $this->Studios->findBySearchForPublic($this->request->query);
+            $studios = $this->paginate($query);
+
+            // 検索項目状態をセッションに格納
+            $this->Session->write('public_studio_search_request', $this->request->query);
+
+        } else {
+            $query   = $this->Studios->findByPublicFlag(0);
+            $studios = $this->paginate($query);
+        }
+
+        // 検索項目状態があればリード
+        if ($this->Session->check('public_studio_search_request')) {
+            $this->request->data = $this->Session->read('public_studio_search_request');
+        }
+
+        $this->set(compact('studios'));
+    }
+
+
+    /**
+     * スタジオプロフィール詳細
      *
      * @param string|null $id ユーザーID
      * @return \Cake\Http\Response|void
@@ -131,7 +169,30 @@ class StudiosController extends AppController
         } else {
             throw new NotFoundException(__('404 ページが見つかりません。'));
         }
+    }
 
+
+    /**
+     * 一般公開スタジオプロフィール詳細
+     *
+     * @param string|null $id ユーザーID
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Network\Exception\NotFoundException
+     */
+    public function publicView($id = null)
+    {
+        $this->viewBuilder()->setLayout('public');
+        $studio = $this->Studios->findByUserId($id)->contain(['Users'])->first();
+
+        if ($studio) {
+            $studio['youtube'] = $this->Common->getYoutubeId($studio['youtube']);
+
+            // ユーザ区分をカテゴリ名で取得
+            $studio['user']['classification'] = $this->Common->getCategoryName($studio['user']['classification']);
+            $this->set('studio', $studio);
+        } else {
+            throw new NotFoundException(__('404 ページが見つかりません。'));
+        }
     }
 
 

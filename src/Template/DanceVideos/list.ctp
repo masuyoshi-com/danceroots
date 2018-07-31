@@ -186,7 +186,7 @@
     <div class="row">
         <div class="col-lg-12 text-center">
             <h5 class="dark-gray-text mt-3">
-                登録済みダンス動画はありません
+                登録済みダンス動画はありません。
             </h5>
             <hr>
         </div>

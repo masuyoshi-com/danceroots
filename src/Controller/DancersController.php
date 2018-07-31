@@ -22,7 +22,7 @@ class DancersController extends AppController
      ];
 
      /**
-      * 初期化メソッド - Lecturesは全てパブリック(アクセス許可)
+      * 初期化メソッド
       *
       * @return void
       */

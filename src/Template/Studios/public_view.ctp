@@ -1,7 +1,10 @@
-<?php $this->assign('title', h($studio->user->username) . ' プロフィール詳細'); ?>
+<?php $this->assign('title', h($studio->user->username) . ' 詳細'); ?>
+
+<div class="row mt-5">
+</div>
 
 <?php if (AD === 0) : ?>
-<div class="row">
+<div class="row mt-3">
     <div class="col-lg-12 text-center">
         <section id="dynamicContentWrapper-docsPanel" class="mb-4">
             <div class="card border border-danger z-depth-0" style="height: 200px;">
@@ -16,15 +19,9 @@
 </div>
 <?php endif; ?>
 
-<div class="row">
-    <div class="col-lg-12">
-        <?= $this->Flash->render() ?>
-    </div>
-</div>
-
 <hr class="none mb-4">
 
-<div class="row">
+<div class="row mt-3">
     <div class="col-lg-4 col-md-12 mt-4">
         <section class="card card-cascade card-avatar mb-3 mt-5">
 
@@ -113,31 +110,40 @@
                     <?= h($studio->self_intro) ?>
                 </p>
 
-                <?php if ($logins['id'] === $studio->user_id) : ?>
-                    <div class="dropdown">
-                        <?= $this->Form->button('メインメニュー ',
-                            [
-                                'class'         => 'btn btn-primary btn-rounded dropdown-toggle',
-                                'data-toggle'   => 'dropdown',
-                                'aria-haspopup' => 'true',
-                                'area-expanded' => 'false'
-                            ]
-                        ) ?>
-                        <div class="dropdown-menu dropdown-primary">
-                            <?= $this->Html->link('ホーム', $homes, ['class' => 'dropdown-item']) ?>
-                            <?= $this->Html->link('プロフィール編集', ['controller' => 'Studios',    'action' => 'edit',  $logins['id']], ['class' => 'dropdown-item']) ?>
-                            <?= $this->Html->link('メッセージ',      ['controller' => 'Messages',   'action' => 'index', $logins['id']], ['class' => 'dropdown-item']) ?>
-                            <?= $this->Html->link('イベント',        ['controller' => 'Events',     'action' => 'list',  $logins['id']], ['class' => 'dropdown-item']) ?>
-                            <?= $this->Html->link('ダンス関連求人',  ['controller' => 'Jobs',        'action' => 'list',  $logins['id']], ['class' => 'dropdown-item']) ?>
-                            <?= $this->Html->link('ダンス動画',      ['controller' => 'DanceVideos', 'action' => 'list',  $logins['id']], ['class' => 'dropdown-item']) ?>
-                            <?= $this->Html->link('ミュージック',    ['controller' => 'DanceMusics', 'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
+                <?php if (isset($logins)) : ?>
+                    <?php if ($logins['id'] === $studio->user_id) : ?>
+                        <div class="dropdown">
+                            <?= $this->Form->button('メインメニュー ',
+                                [
+                                    'class'         => 'btn btn-primary btn-rounded dropdown-toggle',
+                                    'data-toggle'   => 'dropdown',
+                                    'aria-haspopup' => 'true',
+                                    'area-expanded' => 'false'
+                                ]
+                            ) ?>
+                            <div class="dropdown-menu dropdown-primary">
+                                <?= $this->Html->link('ホーム', $homes, ['class' => 'dropdown-item']) ?>
+                                <?= $this->Html->link('プロフィール編集', ['controller' => 'Studios',    'action' => 'edit',  $logins['id']], ['class' => 'dropdown-item']) ?>
+                                <?= $this->Html->link('メッセージ',      ['controller' => 'Messages',   'action' => 'index', $logins['id']], ['class' => 'dropdown-item']) ?>
+                                <?= $this->Html->link('イベント',        ['controller' => 'Events',     'action' => 'list',  $logins['id']], ['class' => 'dropdown-item']) ?>
+                                <?= $this->Html->link('ダンス関連求人',  ['controller' => 'Jobs',        'action' => 'list',  $logins['id']], ['class' => 'dropdown-item']) ?>
+                                <?= $this->Html->link('ダンス動画',      ['controller' => 'DanceVideos', 'action' => 'list',  $logins['id']], ['class' => 'dropdown-item']) ?>
+                                <?= $this->Html->link('ミュージック',    ['controller' => 'DanceMusics', 'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
+                            </div>
                         </div>
-                    </div>
+                    <?php else : ?>
+                        <div>
+                            <?= $this->Html->link('<i class="fa fa-paper-plane-o"></i> メッセージ',
+                                ['controller' => 'Messages', 'action' => 'add', $studio->user_id],
+                                ['class' => 'btn blue-gradient btn-rounded', 'escape' => false]
+                            ) ?>
+                        </div>
+                    <?php endif; ?>
                 <?php else : ?>
                     <div>
-                        <?= $this->Html->link('<i class="fa fa-paper-plane-o"></i> メッセージ',
-                            ['controller' => 'Messages', 'action' => 'add', $studio->user_id],
-                            ['class' => 'btn blue-gradient btn-rounded', 'escape' => false]
+                        <?= $this->Html->link('ログインでメッセージを送る',
+                            ['controller' => 'Users', 'action' => 'login'],
+                            ['class' => 'btn btn-sm blue-gradient btn-rounded']
                         ) ?>
                     </div>
                 <?php endif; ?>
@@ -147,66 +153,62 @@
 
     <div class="col-lg-8 col-md-12 mb-3">
         <div class="card card-body">
-
             <?php if ($studio->image1 || $studio->image2 || $studio->image3) : ?>
-                <div class="row">
-                    <div class="col-lg-1">
-                    </div>
-                    <div class="col-lg-10">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h6 class="text-right">Studio Image</h6>
 
-                        <div id="carousel-studio" class="carousel slide carousel-fade" data-ride="carousel">
+                    <div id="carousel-studio" class="carousel slide carousel-fade" data-ride="carousel">
 
-                            <ol class="carousel-indicators">
-                                <li data-target="#carousel-studio" data-slide-to="0" class="active"></li>
-                                <li data-target="#carousel-studio" data-slide-to="1"></li>
-                                <li data-target="#carousel-studio" data-slide-to="2"></li>
-                            </ol>
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-studio" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-studio" data-slide-to="1"></li>
+                            <li data-target="#carousel-studio" data-slide-to="2"></li>
+                        </ol>
 
-                            <div class="carousel-inner" role="listbox">
-                                <div class="carousel-item active">
-                                    <?php
-                                        if ($studio->image1) {
-                                            print $this->Html->image($studio->image1, ['class' => 'd-block w-100']);
-                                        } else {
-                                            print $this->Html->image('/img/sample/dummy-image.jpg', ['class' => 'd-block w-100']);
-                                        }
-                                    ?>
+                        <div class="carousel-inner" role="listbox">
+                            <div class="carousel-item active">
+                                <?php
+                                    if ($studio->image1) {
+                                        print $this->Html->image($studio->image1, ['class' => 'd-block w-100']);
+                                    } else {
+                                        print $this->Html->image('/img/sample/dummy-image.jpg', ['class' => 'd-block w-100']);
+                                    }
+                                ?>
 
-                                </div>
-                                <div class="carousel-item">
-                                    <?php
-                                        if ($studio->image2) {
-                                            print $this->Html->image($studio->image2, ['class' => 'd-block w-100']);
-                                        } else {
-                                            print $this->Html->image('/img/sample/dummy-image.jpg', ['class' => 'd-block w-100']);
-                                        }
-                                    ?>
-                                </div>
-                                <div class="carousel-item">
-                                    <?php
-                                        if ($studio->image3) {
-                                            print $this->Html->image($studio->image3, ['class' => 'd-block w-100']);
-                                        } else {
-                                            print $this->Html->image('/img/sample/dummy-image.jpg', ['class' => 'd-block w-100']);
-                                        }
-                                    ?>
-                                </div>
                             </div>
+                            <div class="carousel-item">
+                                <?php
+                                    if ($studio->image2) {
+                                        print $this->Html->image($studio->image2, ['class' => 'd-block w-100']);
+                                    } else {
+                                        print $this->Html->image('/img/sample/dummy-image.jpg', ['class' => 'd-block w-100']);
+                                    }
+                                ?>
+                            </div>
+                            <div class="carousel-item">
+                                <?php
+                                    if ($studio->image3) {
+                                        print $this->Html->image($studio->image3, ['class' => 'd-block w-100']);
+                                    } else {
+                                        print $this->Html->image('/img/sample/dummy-image.jpg', ['class' => 'd-block w-100']);
+                                    }
+                                ?>
+                            </div>
+                        </div>
 
-                            <a class="carousel-control-prev" href="#carousel-studio" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carousel-studio" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </div><!-- /.carouse-studio -->
-                    </div>
-                    <div class="col-lg-1">
-                    </div>
-                </div><!-- /.row -->
-                <hr class="mb-0">
+                        <a class="carousel-control-prev" href="#carousel-studio" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carousel-studio" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div><!-- /.carouse-studio -->
+                </div>
+            </div><!-- /.row -->
+            <hr>
             <?php endif; ?>
 
             <div class="row">
@@ -283,7 +285,6 @@
                     <hr class="mdb-form-color">
                 </div>
             </div>
-
         </div><!-- /.card -->
     </div><!-- /.col-lg-8 -->
 </div><!-- /. row -->
@@ -340,26 +341,6 @@
                 <hr>
             </div>
         <?php endif; ?>
-    </div>
-</div>
-
-<div class="card card-body mb-3">
-    <div class="row">
-        <div class="col-lg-12">
-            <?php
-                if ($studio->user_id === $logins['id']) {
-                    print $this->Html->link('<i class="fa fa-pencil" aria-hidden="true"></i> プロフィールを編集',
-                        ['action' => 'edit', $studio->user_id],
-                        ['class' => 'btn btn-primary btn-block', 'escape' => false]
-                    );
-                } else {
-                    print $this->Html->link('<i class="fa fa-envelope"></i> このスタジオに問い合わせる',
-                        ['controller' => 'Messages', 'action' => 'add', $studio->user_id],
-                        ['class' => 'btn blue-gradient btn-block', 'escape' => false]
-                    );
-                }
-            ?>
-        </div>
     </div>
 </div>
 

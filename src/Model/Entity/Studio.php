@@ -31,6 +31,7 @@ use Cake\ORM\Entity;
  * @property string $image2
  * @property string $image3
  * @property string $introduction
+ * @property int    $public_flag
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
@@ -45,36 +46,37 @@ class Studio extends Entity
      * @var array
      */
     protected $_accessible = [
-        'user_id' => true,
-        'studio_name' => true,
-        'icon' => true,
-        'name' => true,
-        'icon_file' => true,
-        'tel' => true,
-        'self_intro' => true,
-        'pref' => true,
-        'address' => true,
-        'station' => true,
-        'url' => true,
-        'establishment' => true,
+        'user_id'        => true,
+        'studio_name'    => true,
+        'icon'           => true,
+        'name'           => true,
+        'icon_file'      => true,
+        'tel'            => true,
+        'self_intro'     => true,
+        'pref'           => true,
+        'address'        => true,
+        'station'        => true,
+        'url'            => true,
+        'establishment'  => true,
         'bussines_hours' => true,
-        'entry_fee' => true,
-        'monthly_tax' => true,
-        'ex_lesson' => true,
-        'instructors' => true,
-        'youtube' => true,
-        'facebook' => true,
-        'twitter' => true,
-        'instagram' => true,
-        'image1' => true,
-        'image1_file' => true,
-        'image2' => true,
-        'image2_file' => true,
-        'image3' => true,
-        'image3_file' => true,
-        'introduction' => true,
-        'created' => true,
-        'modified' => true,
-        'user' => true
+        'entry_fee'      => true,
+        'monthly_tax'    => true,
+        'ex_lesson'      => true,
+        'instructors'    => true,
+        'youtube'        => true,
+        'facebook'       => true,
+        'twitter'        => true,
+        'instagram'      => true,
+        'image1'         => true,
+        'image1_file'    => true,
+        'image2'         => true,
+        'image2_file'    => true,
+        'image3'         => true,
+        'image3_file'    => true,
+        'introduction'   => true,
+        'public_flag'    => true,
+        'created'        => true,
+        'modified'       => true,
+        'user'           => true
     ];
 }

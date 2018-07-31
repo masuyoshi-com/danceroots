@@ -21,6 +21,12 @@
     <?= $this->Html->css('/css/mdb.min') ?>
     <?= $this->Html->css('/css/top-style') ?>
     <?= $this->Html->script('/js/jquery-3.2.1.min') ?>
+
+    <?php if (strstr($url, 'studios/public-view') || strstr($url, 'events/public-view')) : ?>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgKCqD5RxbGvn317awtqsiexBBd5wJRPo" type="text/javascript"></script>
+        <?= $this->Html->script('googlemap') ?>
+    <?php endif; ?>
+
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>

@@ -100,13 +100,13 @@
                         );
                     }
                 ?>
-                <hr>
                 <?php if ($studio->establishment) : ?>
                     <p class="card-text mt-3">
                         設立日: <?= h($studio->establishment) ?>
                     </p>
                 <?php endif; ?>
-
+                <hr>
+                
                 <p class="card-text mt-3">
                     <?= h($studio->self_intro); ?>
                 </p>

@@ -23,13 +23,13 @@
                     <?= $this->Html->link('Studio', ['controller' => 'Studios', 'action' => 'public'], ['class' => 'nav-link']) ?>
                 </li>
                 <li class="nav-item">
-                    <?= $this->Html->link('DanceEvent', ['controller' => 'Events', 'action' => 'public'], ['class' => 'nav-link']) ?>
+                    <?= $this->Html->link('Event', ['controller' => 'Events', 'action' => 'public'], ['class' => 'nav-link']) ?>
                 </li>
                 <li class="nav-item">
                     <?= $this->Html->link('Webダンス講座', ['controller' => 'Lectures', 'action' => 'index'], ['class' => 'nav-link']) ?>
                 </li>
                 <li class="nav-item dropdown">
-                    <?= $this->Html->link('ユーザー区分 ', '#',
+                    <?= $this->Html->link('ユーザー機能紹介 ', '#',
                         [
                             'class'         => 'nav-link dropdown-toggle',
                             'id'            => 'navbarDropdownMenuLink',

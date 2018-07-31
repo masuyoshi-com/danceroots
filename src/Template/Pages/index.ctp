@@ -21,7 +21,7 @@
                         <?php
 
                             if (isset($logins)) {
-                                print $this->Html->link('Go Home', $homes, ['class' => 'btn btn-default btn-lg flex-item']);
+                                print $this->Html->link('Go Home', $homes, ['class' => 'btn btn-primary btn-lg flex-item']);
                             } else {
                                 print $this->Html->link('サインアップ', ['controller' => 'Users', 'action' => 'signup'],
                                     ['class' => 'btn btn-primary btn-lg flex-item']
