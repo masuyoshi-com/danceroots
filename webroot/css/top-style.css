@@ -85,3 +85,19 @@ footer.page-footer .footer-copyright {
     margin-top: 6rem;
     text-align: center;
 }
+
+/* public drop-down */
+/*
+.dropdown-content li:not(.disabled) span {
+    color: #4285f4;
+}
+
+.btn-primary.dropdown-toggle {
+    background-color: #4285f4!important;
+}
+
+.btn-primary.dropdown-toggle:focus,
+.btn-primary.dropdown-toggle:hover {
+    background-color: #4285f4!important;
+}
+*/

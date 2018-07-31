@@ -17,22 +17,34 @@
                     <?= $this->Html->link('Home', '/', ['class' => 'nav-link']) ?>
                 </li>
                 <li class="nav-item">
-                    <?= $this->Html->link('Dancer','/#dancer', ['class' => 'nav-link']) ?>
+                    <?= $this->Html->link('StreetDancer', ['controller' => 'Dancers', 'action' => 'public'], ['class' => 'nav-link']) ?>
                 </li>
                 <li class="nav-item">
-                    <?= $this->Html->link('Studio', '/#studio', ['class' => 'nav-link']) ?>
+                    <?= $this->Html->link('Studio', ['controller' => 'Studios', 'action' => 'public'], ['class' => 'nav-link']) ?>
                 </li>
                 <li class="nav-item">
-                    <?= $this->Html->link('Organaizer', '/#organaizer', ['class' => 'nav-link']) ?>
-                </li>
-                <li class="nav-item">
-                    <?= $this->Html->link('General', '/#general', ['class' => 'nav-link']) ?>
-                </li>
-                <li class="nav-item">
-                    <?= $this->Html->link('ダンサー検索', ['controller' => 'Dancers', 'action' => 'public'], ['class' => 'nav-link']) ?>
+                    <?= $this->Html->link('DanceEvent', ['controller' => 'Events', 'action' => 'public'], ['class' => 'nav-link']) ?>
                 </li>
                 <li class="nav-item">
                     <?= $this->Html->link('Webダンス講座', ['controller' => 'Lectures', 'action' => 'index'], ['class' => 'nav-link']) ?>
+                </li>
+                <li class="nav-item dropdown">
+                    <?= $this->Html->link('ユーザー区分 ', '#',
+                        [
+                            'class'         => 'nav-link dropdown-toggle',
+                            'id'            => 'navbarDropdownMenuLink',
+                            'data-toggle'   => 'dropdown',
+                            'aria-haspopup' => 'true',
+                            'aria-expanded' => 'false',
+                            'escape'        => false
+                        ]
+                    ) ?>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                        <?= $this->Html->link('ストリートダンサー',       ['controller' => 'Pages', 'action' => 'dancer'],   ['class' => 'dropdown-item']) ?>
+                        <?= $this->Html->link('ダンススタジオ・スクール',  ['controller' => 'Pages', 'action' => 'studio'],   ['class' => 'dropdown-item']) ?>
+                        <?= $this->Html->link('オーガナイザー・企業',     ['controller' => 'Pages', 'action' => 'organizer'], ['class' => 'dropdown-item']) ?>
+                        <?= $this->Html->link('一般',                    ['controller' => 'Pages', 'action' => 'general'],   ['class' => 'dropdown-item']) ?>
+                    </div>
                 </li>
             </ul>
 
