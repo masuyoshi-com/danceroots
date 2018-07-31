@@ -32,6 +32,7 @@ use Cake\ORM\Entity;
  * @property string $favorite_artist
  * @property string $plan
  * @property int    $offer_flag
+ * @property int    $public_flag
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
@@ -75,6 +76,7 @@ class Dancer extends Entity
         'favorite_artist' => true,
         'plan'            => true,
         'offer_flag'      => true,
+        'public_flag'     => true,
         'created'         => true,
         'modified'        => true,
         'user'            => true

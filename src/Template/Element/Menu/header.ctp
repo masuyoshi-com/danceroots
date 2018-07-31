@@ -29,6 +29,9 @@
                     <?= $this->Html->link('General', '/#general', ['class' => 'nav-link']) ?>
                 </li>
                 <li class="nav-item">
+                    <?= $this->Html->link('ダンサー検索', ['controller' => 'Dancers', 'action' => 'public'], ['class' => 'nav-link']) ?>
+                </li>
+                <li class="nav-item">
                     <?= $this->Html->link('Webダンス講座', ['controller' => 'Lectures', 'action' => 'index'], ['class' => 'nav-link']) ?>
                 </li>
             </ul>

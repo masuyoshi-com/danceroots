@@ -1,7 +1,10 @@
 <?php $this->assign('title', h($dancer->user->username) . 'プロフィール'); ?>
 
+<div class="row mt-5">
+</div>
+
 <?php if (AD === 0) : ?>
-<div class="row">
+<div class="row mt-3">
     <div class="col-lg-12 text-center">
         <section id="dynamicContentWrapper-docsPanel" class="mb-4">
             <div class="card border border-danger z-depth-0" style="height: 200px;">
@@ -16,15 +19,9 @@
 </div>
 <?php endif; ?>
 
-<div class="row">
-    <div class="col-lg-12">
-        <?= $this->Flash->render() ?>
-    </div>
-</div>
-
 <hr class="none mb-4">
 
-<div class="row">
+<div class="row mt-3">
     <div class="col-lg-4 col-md-12 mt-4">
         <section class="card card-cascade card-avatar mb-3 mt-5">
 
@@ -105,38 +102,46 @@
                     <?= h($dancer->self_intro) ?>
                 </p>
 
-                <?php if ($logins['id'] === $dancer->user_id) : ?>
-                    <div class="dropdown">
-                        <?= $this->Form->button('メインメニュー ',
-                            [
-                                'class'         => 'btn btn-primary btn-rounded dropdown-toggle',
-                                'data-toggle'   => 'dropdown',
-                                'aria-haspopup' => 'true',
-                                'area-expanded' => 'false'
-                            ]
-                        ) ?>
-                        <div class="dropdown-menu dropdown-primary">
-                            <?= $this->Html->link('ホーム', $homes, ['class' => 'dropdown-item']) ?>
-                            <?= $this->Html->link('プロフィール編集', ['controller' => 'Dancers',  'action' => 'edit', $logins['id']], ['class' => 'dropdown-item']) ?>
-                            <?= $this->Html->link('メッセージ',   ['controller' => 'Messages',    'action' => 'index', $logins['id']], ['class' => 'dropdown-item']) ?>
-                            <!--
-                            <?= $this->Html->link('チーム',       ['controller' => 'Teams',       'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
-                            -->
-                            <?= $this->Html->link('サークル',     ['controller' => 'Circles',     'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
-                            <?= $this->Html->link('イベント',     ['controller' => 'Events',      'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
-                            <?= $this->Html->link('ダンス動画',   ['controller' => 'DanceVideos', 'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
-                            <?= $this->Html->link('ミュージック', ['controller' => 'DanceMusics', 'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
+                <?php if (isset($logins)) : ?>
+                    <?php if ($logins['id'] === $dancer->user_id) : ?>
+                        <div class="dropdown">
+                            <?= $this->Form->button('メインメニュー ',
+                                [
+                                    'class'         => 'btn btn-primary btn-rounded dropdown-toggle',
+                                    'data-toggle'   => 'dropdown',
+                                    'aria-haspopup' => 'true',
+                                    'area-expanded' => 'false'
+                                ]
+                            ) ?>
+                            <div class="dropdown-menu dropdown-primary">
+                                <?= $this->Html->link('ホーム', $homes, ['class' => 'dropdown-item']) ?>
+                                <?= $this->Html->link('プロフィール編集', ['controller' => 'Dancers',  'action' => 'edit', $logins['id']], ['class' => 'dropdown-item']) ?>
+                                <?= $this->Html->link('メッセージ',   ['controller' => 'Messages',    'action' => 'index', $logins['id']], ['class' => 'dropdown-item']) ?>
+                                <!--
+                                <?= $this->Html->link('チーム',       ['controller' => 'Teams',       'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
+                                -->
+                                <?= $this->Html->link('サークル',     ['controller' => 'Circles',     'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
+                                <?= $this->Html->link('イベント',     ['controller' => 'Events',      'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
+                                <?= $this->Html->link('ダンス動画',   ['controller' => 'DanceVideos', 'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
+                                <?= $this->Html->link('ミュージック', ['controller' => 'DanceMusics', 'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
+                            </div>
                         </div>
-                    </div>
-                <?php else : ?>
+                    <?php else : ?>
+                        <div>
+                            <?= $this->Html->link('<i class="fa fa-paper-plane-o"></i> メッセージ',
+                                ['controller' => 'Messages', 'action' => 'add', $dancer->user_id],
+                                ['class' => 'btn blue-gradient btn-rounded', 'escape' => false]
+                            ) ?>
+                        </div>
+                    <?php endif; ?>
+                <?php else: ?>
                     <div>
-                        <?= $this->Html->link('<i class="fa fa-paper-plane-o"></i> メッセージ',
-                            ['controller' => 'Messages', 'action' => 'add', $dancer->user_id],
-                            ['class' => 'btn blue-gradient btn-rounded', 'escape' => false]
+                        <?= $this->Html->link('ログインでメッセージを送る',
+                            ['controller' => 'Users', 'action' => 'login'],
+                            ['class' => 'btn btn-sm blue-gradient btn-rounded']
                         ) ?>
                     </div>
                 <?php endif; ?>
-
             </div><!-- /.card-body -->
         </section>
     </div><!-- /.col-lg-4 -->
@@ -281,65 +286,123 @@
 <div class="card card-body mb-3">
     <h6><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
     <div class="row">
-        <div class="col-lg-4 col-md-12 mb-3">
-            <?php if ($dancer->youtube1) : ?>
-                <div class="embed-responsive embed-responsive-16by9 z-depth-1">
-                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($dancer->youtube1) ?>?rel=0" style="height: 100%" allowfullscreen></iframe>
+
+        <?php if ($dancer->youtube1) : ?>
+        <div class="modal fade m--youtube" id="m--youtube0" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-body black pt-4 pb-4">
+                        <h6 class="white-text m-3"><i class="fa fa-youtube-play yt-ic"></i> YouTube</h6>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($dancer->youtube1) ?>?rel=0" allowfullscreen></iframe>
+                        </div>
+                    </div>
                 </div>
-            <?php endif; ?>
+            </div>
         </div>
 
         <div class="col-lg-4 col-md-12 mb-3">
-            <?php if ($dancer->youtube2) : ?>
-                <div class="embed-responsive embed-responsive-16by9 z-depth-1">
-                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($dancer->youtube2) ?>?rel=0" style="height: 100%" allowfullscreen></iframe>
+            <div class="embed-responsive embed-responsive-16by9 d-flex justify-content-center zoom" style="cursor: pointer;">
+                <?= $this->Html->image('https://img.youtube.com/vi/' . h($dancer->youtube1) . '/mqdefault.jpg',
+                    [
+                        'class'       => 'img-fluid',
+                        'data-toggle' => 'modal',
+                        'data-target' => '#m--youtube0'
+                    ]
+                ) ?>
+            </div>
+        </div>
+        <?php endif; ?>
+
+        <?php if ($dancer->youtube2) : ?>
+        <div class="modal fade m--youtube" id="m--youtube1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-body black pt-4 pb-4">
+                        <h6 class="white-text m-3"><i class="fa fa-youtube-play yt-ic"></i> YouTube</h6>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($dancer->youtube2) ?>?rel=0" allowfullscreen></iframe>
+                        </div>
+                    </div>
                 </div>
-            <?php endif; ?>
+            </div>
         </div>
 
-        <div class="col-lg-4 col-md-12">
-            <?php if ($dancer->youtube3) : ?>
-                <div class="embed-responsive embed-responsive-16by9 z-depth-1">
-                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($dancer->youtube3) ?>?rel=0" style="height: 100%" allowfullscreen></iframe>
-                </div>
-            <?php endif; ?>
+        <div class="col-lg-4 col-md-12 mb-3">
+            <div class="embed-responsive embed-responsive-16by9 d-flex justify-content-center zoom" style="cursor: pointer;">
+                <?= $this->Html->image('https://img.youtube.com/vi/' . h($dancer->youtube2) . '/mqdefault.jpg',
+                    [
+                        'class'       => 'img-fluid',
+                        'data-toggle' => 'modal',
+                        'data-target' => '#m--youtube1'
+                    ]
+                ) ?>
+            </div>
         </div>
+        <?php endif; ?>
+
+        <?php if ($dancer->youtube3) : ?>
+        <div class="modal fade m--youtube" id="m--youtube2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-body black pt-4 pb-4">
+                        <h6 class="white-text m-3"><i class="fa fa-youtube-play yt-ic"></i> YouTube</h6>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($dancer->youtube3) ?>?rel=0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-12 mb-3">
+            <div class="embed-responsive embed-responsive-16by9 d-flex justify-content-center zoom" style="cursor: pointer;">
+                <?= $this->Html->image('https://img.youtube.com/vi/' . h($dancer->youtube3) . '/mqdefault.jpg',
+                    [
+                        'class'       => 'img-fluid',
+                        'data-toggle' => 'modal',
+                        'data-target' => '#m--youtube2'
+                    ]
+                ) ?>
+            </div>
+        </div>
+        <?php endif; ?>
     </div><!-- /.row -->
 </div><!-- /.card -->
 <?php endif; ?>
 
 <?php if ($dancer->image1 || $dancer->image2 || $dancer->image3) : ?>
-<div class="card card-body mb-5">
+<div class="card card-body mb-3">
     <h6><i class="fa fa-image"></i> Dance Image</h6>
     <div id="mdb-lightbox-ui"></div>
     <div class="mdb-lightbox no-margin">
         <?php
             if ($dancer->image1) {
                 print '<figure class="col-md-4">';
-                print $this->Html->link($this->Html->image($dancer->image1, ['class' => 'img-fluid']),
-                    $dancer->image1,
-                    ['data-size' => '1200x667', 'escape' => false]
-                );
+                    print $this->Html->link($this->Html->image($dancer->image1, ['class' => 'img-fluid']),
+                        $dancer->image1,
+                        ['data-size' => '1200x667', 'escape' => false]
+                    );
                 print '</figure>';
             }
         ?>
         <?php
             if ($dancer->image2) {
                 print '<figure class="col-md-4">';
-                print $this->Html->link($this->Html->image($dancer->image2, ['class' => 'img-fluid']),
-                    $dancer->image2,
-                    ['data-size' => '1200x667', 'escape' => false]
-                );
+                    print $this->Html->link($this->Html->image($dancer->image2, ['class' => 'img-fluid']),
+                        $dancer->image2,
+                        ['data-size' => '1200x667', 'escape' => false]
+                    );
                 print '</figure>';
             }
         ?>
         <?php
             if ($dancer->image3) {
                 print '<figure class="col-md-4">';
-                print $this->Html->link($this->Html->image($dancer->image3, ['class' => 'img-fluid']),
-                    $dancer->image3,
-                    ['data-size' => '1200x667', 'escape' => false]
-                );
+                    print $this->Html->link($this->Html->image($dancer->image3, ['class' => 'img-fluid']),
+                        $dancer->image3,
+                        ['data-size' => '1200x667', 'escape' => false]
+                    );
                 print '</figure>';
             }
         ?>
@@ -348,7 +411,7 @@
 <?php endif; ?>
 
 <?php if ($dancer->facebook || $dancer->twitter) : ?>
-<div class="row">
+<div class="row mb-3">
     <div class="col-lg-6 col-md-6 col-xs-12">
         <?php if ($dancer->facebook) : ?>
             <div class="card card-body mb-3">
@@ -381,22 +444,12 @@
 </div>
 <?php endif; ?>
 
-<div class="card card-body mb-3">
-    <div class="row">
-        <div class="col-lg-12 text-center">
-            <?php
-                if ($dancer->user_id === $logins['id']) {
-                    print $this->Html->link('<i class="fa fa-pencil" aria-hidden="true"></i> プロフィールを編集',
-                        ['action' => 'edit', h($dancer->user_id)],
-                        ['class' => 'btn btn-primary btn-block', 'escape' => false]
-                    );
-                } else {
-                    print $this->Html->link('<i class="fa fa-envelope"></i> メッセージを送る',
-                        ['controller' => 'Messages', 'action' => 'add', $dancer->user_id],
-                        ['class' => 'btn blue-gradient btn-block', 'escape' => false]
-                    );
-                }
-            ?>
-        </div>
-    </div>
-</div>
+<script>
+$(function() {
+    $('.m--youtube').each(function(i, elem) {
+        $('#m--youtube' + i).on('hidden.bs.modal', function (e) {
+          $('#m--youtube' + i + ' iframe').attr("src", $('#m--youtube' + i + ' iframe').attr("src"));
+        });
+    });
+});
+</script>

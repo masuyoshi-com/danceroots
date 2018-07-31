@@ -1,7 +1,10 @@
 <?php $this->assign('title', 'ストリートダンサー検索'); ?>
 
+<div class="row mt-5">
+</div>
+
 <?= $this->Form->create('', ['type' => 'get']) ?>
-<div class="card p-3 mb-3">
+<div class="card p-3 mb-3 mt-3">
     <div class="row">
         <div class="col-lg-3 col-md-6 col-xs-12">
             <?= $this->Form->control('pref',
@@ -65,7 +68,7 @@
             </label>
 
             <div class="avatar mx-auto my-3 mt-0">
-                <a href="<?= $this->Url->build(['action' => 'view', $dancer->user_id]) ?>">
+                <a href="<?= $this->Url->build(['action' => 'publicView', $dancer->user_id]) ?>">
                     <?php
                         if ($dancer->icon) {
                             print $this->Html->image($dancer->icon, ['class' => 'rounded-circle img-fluid']);
@@ -78,7 +81,7 @@
 
             <h5 class="font-weight-bold">
                 <strong>
-                        <?= $this->Html->link($dancer->user->username, ['action' => 'view', $dancer->user_id], ['class' => 'dark-grey-text']) ?>
+                        <?= $this->Html->link($dancer->user->username, ['action' => 'publicView', $dancer->user_id], ['class' => 'dark-grey-text']) ?>
                 </strong>
             </h5>
 
@@ -151,7 +154,7 @@
 
 <?php else : ?>
 <div class="row">
-    <div class="col-lg-12 text-center">
+    <div class="col-lg-12 text-center mt-5 mb-5">
         検索結果はありません。
     </div>
 </div>

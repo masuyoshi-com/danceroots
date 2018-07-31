@@ -88,6 +88,22 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="md-form">
+                            <?= $this->Form->control('public_flag',
+                                [
+                                    'id'      => 'f--public',
+                                    'type'    => 'select',
+                                    'class'   => 'mdb-select colorful-select dropdown-success',
+                                    'options' => ['公開', '会員のみ']
+                                ]
+                            ) ?>
+                            <label for="f--offer">一般公開・会員のみ公開</label>
+                        </div>
+                    </div>
+                </div>
             </div><!-- /.card-body -->
         </section>
     </div><!-- /.col-lg-4 -->

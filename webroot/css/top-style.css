@@ -58,3 +58,30 @@ footer.page-footer .footer-copyright {
         margin-bottom: 2rem!important;
     }
 }
+
+/* public card style */
+.card img.rounded-circle {
+    border-radius: 50%;
+}
+
+.card.card-cascade .view.gradient-card-header {
+    padding: 1.1rem 1rem;
+}
+
+.card.card-cascade.card-avatar img {
+    margin-top: -5rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 160px;
+    border-radius: 50%;
+}
+
+.card.card-cascade.card-avatar img {
+    -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+}
+
+.card.card-cascade.card-avatar {
+    margin-top: 6rem;
+    text-align: center;
+}

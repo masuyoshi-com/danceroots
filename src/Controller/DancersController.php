@@ -21,6 +21,16 @@ class DancersController extends AppController
            'contain' => ['Users']
      ];
 
+     /**
+      * 初期化メソッド - Lecturesは全てパブリック(アクセス許可)
+      *
+      * @return void
+      */
+     public function initialize()
+     {
+         parent::initialize();
+         $this->Auth->allow(['public', 'publicView']);
+     }
 
     /**
      * ホーム - 初期登録時、プロフィール未作成の場合、強制的にaddアクションへ
@@ -102,6 +112,45 @@ class DancersController extends AppController
 
 
     /**
+     * 一般公開用ダンサー検索一覧
+     *
+     * @return \Cake\Http\Response|void
+     */
+    public function public()
+    {
+        $this->viewBuilder()->setLayout('public');
+
+        if ($this->request->query) {
+
+            // 検索クエリがなければfindBySearchで警告でないように空白状態を作成
+            for ($i = 0; $i < count($this->search_keys); $i++) {
+                if (!isset($this->request->query[$this->search_keys[$i]])) {
+                    $this->request->query[$this->search_keys[$i]] = '';
+                }
+            }
+
+            $query   = $this->Dancers->findBySearchForPublic($this->request->query);
+            $dancers = $this->paginate($query);
+
+            // 検索項目状態をセッションに格納
+            $this->Session->write('public_dancer_search_request', $this->request->query);
+
+        } else {
+            $query   = $this->Dancers->findByPublicFlag(0);
+            $dancers = $this->paginate($query);
+        }
+
+        // 検索項目状態があればリード
+        if ($this->Session->check('public_dancer_search_request')) {
+            $this->request->data = $this->Session->read('public_dancer_search_request');
+        }
+
+        $this->set('genres', $this->Common->valueToKey($this->genres));
+        $this->set(compact('dancers'));
+    }
+
+
+    /**
      * プロフィール詳細
      *
      * @param string|null $id ユーザーID
@@ -110,6 +159,34 @@ class DancersController extends AppController
      */
     public function view($id = null)
     {
+        $dancer = $this->Dancers->findByUserId($id)->contain(['Users'])->first();
+
+        if ($dancer) {
+            // Youtube動画IDのみを取得
+            for ($i = 1; $i <= 3; $i++) {
+                $dancer['youtube' . $i] = $this->Common->getYoutubeId($dancer['youtube' . $i]);
+            }
+
+            // ユーザ区分をカテゴリ名で取得
+            $dancer['user']['classification'] = $this->Common->getCategoryName($dancer['user']['classification']);
+            $this->set('dancer', $dancer);
+        } else {
+            throw new NotFoundException(__('404 ページが見つかりません。'));
+        }
+
+    }
+
+
+    /**
+     * 一般公開用プロフィール詳細
+     *
+     * @param string|null $id ユーザーID
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Network\Exception\NotFoundException
+     */
+    public function publicView($id = null)
+    {
+        $this->viewBuilder()->setLayout('public');
         $dancer = $this->Dancers->findByUserId($id)->contain(['Users'])->first();
 
         if ($dancer) {
@@ -166,9 +243,11 @@ class DancersController extends AppController
                 $this->set('user_id', $id);
                 $this->set(compact('dancer'));
             } else {
+                $this->Auth->logout();
                 throw new NotFoundException(__('404 不正なアクセスまたはコンテンツが見つかりません。'));
             }
         } else {
+            $this->Auth->logout();
             throw new NotFoundException(__('404 不正なアクセスまたはコンテンツが見つかりません。'));
         }
     }

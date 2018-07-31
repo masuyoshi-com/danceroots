@@ -20,6 +20,7 @@
     <?= $this->Html->css('/css/bootstrap.min') ?>
     <?= $this->Html->css('/css/mdb.min') ?>
     <?= $this->Html->css('/css/top-style') ?>
+    <?= $this->Html->script('/js/jquery-3.2.1.min') ?>
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
@@ -36,14 +37,15 @@
 
     <?= $this->element('Menu/footer') ?>
 
-    <?= $this->Html->script('/js/jquery-3.2.1.min') ?>
     <!-- Bootstrap dropdown -->
     <?= $this->Html->script('/js/popper.min') ?>
     <?= $this->Html->script('/js/bootstrap.min') ?>
     <?= $this->Html->script('/js/mdb.min') ?>
     <script>
         new WOW().init();
-        $('[data-toggle="tooltip"]').tooltip()
+        $('[data-toggle="tooltip"]').tooltip();
+        $('.mdb-select').material_select();
+        $('#mdb-lightbox-ui').load('<?= $this->Url->build('/mdb-addons/mdb-lightbox-ui.html') ?>');
     </script>
 </body>
 </html>

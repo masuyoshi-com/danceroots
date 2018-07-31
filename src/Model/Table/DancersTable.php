@@ -325,4 +325,23 @@ class DancersTable extends Table
                 ['Dancers.team_name LIKE' => '%' . $requests['word'] . '%']]])
             ;
     }
+
+
+    /**
+    * 一般公開用ダンサー検索 - 都道府県・ジャンル・フリーワード
+    * 0: 一般公開する 1:公開しない
+    *
+    * @param array $requests
+    */
+    public function findBySearchForPublic($requests)
+    {
+        return $this->find('all')
+            ->where(['Dancers.pref LIKE'  => '%' . $requests['pref'] . '%'])
+            ->where(['Dancers.genre LIKE' => '%' . $requests['genre'] . '%'])
+            ->where(['OR' => [
+                ['Users.username LIKE'    => '%' . $requests['word'] . '%'],
+                ['Dancers.team_name LIKE' => '%' . $requests['word'] . '%']]])
+            ->andWhere(['Dancers.public_flag' => 0])
+            ;
+    }
 }

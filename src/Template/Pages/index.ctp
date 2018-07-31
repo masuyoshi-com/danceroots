@@ -19,8 +19,9 @@
                     </li>
                     <li>
                         <?php
+
                             if (isset($logins)) {
-                                print $this->Html->link('My Home', $homes, ['class' => 'btn btn-default btn-lg flex-item']);
+                                print $this->Html->link('Go Home', $homes, ['class' => 'btn btn-default btn-lg flex-item']);
                             } else {
                                 print $this->Html->link('サインアップ', ['controller' => 'Users', 'action' => 'signup'],
                                     ['class' => 'btn btn-primary btn-lg flex-item']
@@ -48,7 +49,7 @@
                     <li>
                         <?php
                             if (isset($logins)) {
-                                print $this->Html->link('My Home', $homes, ['class' => 'btn btn-primary btn-lg']);
+                                print $this->Html->link('Go Home', $homes, ['class' => 'btn btn-primary btn-lg']);
                             } else {
                                 print $this->Html->link('サインアップ', ['controller' => 'Users', 'action' => 'signup'],
                                     ['class' => 'btn btn-primary btn-lg']
@@ -73,7 +74,7 @@
                     <li>
                         <?php
                             if (isset($logins)) {
-                                print $this->Html->link('My Home', $homes, ['class' => 'btn btn-default btn-lg']);
+                                print $this->Html->link('Go Home', $homes, ['class' => 'btn btn-default btn-lg']);
                             } else {
                                 print $this->Html->link('プロフィールを作成', ['controller' => 'Users', 'action' => 'signup'],
                                     ['class' => 'btn btn-default btn-lg']
