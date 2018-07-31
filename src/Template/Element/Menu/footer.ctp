@@ -3,29 +3,65 @@
         <div class="row">
             <div class="col-md-3 col-lg-4 col-xl-3 mb-r">
                 <h6 class="title font-bold">
-                    <strong>Member Menu1</strong>
+                    <strong>Top Menu1</strong>
                 </h6>
                 <hr class="blue mb-4 pb-1 mt-0 d-inline-block mx-auto" style="width: 60px;">
                 <p>
-                    マイプロフィール作成
-                </p>
-                <!--
-                <p>
-                    ダンスチーム登録・検索
-                </p>
-                -->
-                <p>
-                    ダンスサークル作成・検索
+                    <?= $this->Html->link('HOME', '/') ?>
                 </p>
                 <p>
-                    スタジオ検索
+                    <?= $this->Html->link('ストリートダンサー検索', ['controller' => 'Dancers', 'action' => 'public']) ?>
+                </p>
+                <p>
+                    <?= $this->Html->link('スタジオ検索', ['controller' => 'Studios', 'action' => 'public']) ?>
+                </p>
+                <p>
+                    <?= $this->Html->link('イベント検索', ['controller' => 'Events', 'action' => 'public']) ?>
+                </p>
+                <p>
+                    <?= $this->Html->link('Webダンス講座', ['controller' => 'Lectures', 'action' => 'index']) ?>
                 </p>
             </div>
             <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-r">
                 <h6 class="title font-bold">
-                    <strong>Member Menu2</strong>
+                    <strong>Top Menu2</strong>
                 </h6>
                 <hr class="blue mb-4 pb-1 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p>
+                    ユーザー機能紹介
+                </p>
+                <p>
+                    <?= $this->Html->link('ストリートダンサー', ['controller' => 'Pages', 'action' => 'dancer']) ?>
+                </p>
+                <p>
+                    <?= $this->Html->link('ダンススタジオ・スクール', ['controller' => 'Pages', 'action' => 'studio']) ?>
+                </p>
+                <p>
+                    <?= $this->Html->link('オーガナイザー・企業', ['controller' => 'Pages', 'action' => 'organizer']) ?>
+                </p>
+                <p>
+                    <?= $this->Html->link('一般', ['controller' => 'Pages', 'action' => 'general']) ?>
+                </p>
+            </div>
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-r">
+                <h6 class="title font-bold">
+                    <strong>Member Menu</strong>
+                </h6>
+                <hr class="blue mb-4 pb-1 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p>
+                    マイプロフィール
+                </p>
+                <!--
+                <p>
+                    ダンスチーム
+                </p>
+                -->
+                <p>
+                    ダンスサークル
+                </p>
+                <p>
+                    メッセージ
+                </p>
                 <p>
                     ダンス動画
                 </p>
@@ -33,34 +69,10 @@
                     ミュージック
                 </p>
                 <p>
-                    イベント登録・検索
+                    イベント管理
                 </p>
                 <p>
                     ダンス関連求人
-                </p>
-            </div>
-            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-r">
-                <h6 class="title font-bold">
-                    <strong>Top Menu</strong>
-                </h6>
-                <hr class="blue mb-4 pb-1 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                <p>
-                    <?= $this->Html->link('HOME', '/') ?>
-                </p>
-                <p>
-                    <?= $this->Html->link('Dancer', ['controller' => 'Pages', 'action' => 'dancer']) ?>
-                </p>
-                <p>
-                    <?= $this->Html->link('Studio', ['controller' => 'Pages', 'action' => 'studio']) ?>
-                </p>
-                <p>
-                    <?= $this->Html->link('Organaizer', ['controller' => 'Pages', 'action' => 'organizer']) ?>
-                </p>
-                <p>
-                    <?= $this->Html->link('General', ['controller' => 'Pages', 'action' => 'general']) ?>
-                </p>
-                <p>
-                    <?= $this->Html->link('Webダンス講座', ['controller' => 'Lectures', 'action' => 'index']) ?>
                 </p>
             </div>
             <div class="col-md-4 col-lg-3 col-xl-3">
