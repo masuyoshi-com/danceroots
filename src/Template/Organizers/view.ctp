@@ -3,7 +3,7 @@
 <?php if (AD === 0) : ?>
 <div class="row">
     <div class="col-lg-12 text-center">
-        <section id="dynamicContentWrapper-docsPanel" class="mb-4">
+        <section id="dynamicContentWrapper-docsPanel" class="mb-2">
             <div class="card border border-danger z-depth-0" style="height: 200px;">
                 <div class="card-body text-center">
                     <p>
@@ -13,7 +13,7 @@
             </div>
         </section>
     </div>
-</div
+</div>
 <?php endif; ?>
 
 <div class="row">
@@ -25,28 +25,16 @@
 <hr class="none mb-4">
 
 <div class="row">
-    <div class="col-lg-8 col-md-12 mb-4">
+    <div class="col-lg-8 col-md-12 mb-3">
         <div class="card card-cascade narrower mb-3">
             <div class="card-body mb-3">
-
-                <?php if ($organizer->youtube) : ?>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h6><i class="fa fa-youtube-play yt-ic"></i> Event Video</h6>
-                            <div class="embed-responsive embed-responsive-16by9 z-depth-1">
-                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($organizer->youtube) ?>?rel=0" style="height: 100%" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                    </div>
-                <?php endif; ?>
-
-                <hr>
 
                 <?php if ($organizer->image1 || $organizer->image2 || $organizer->image3) : ?>
 
                 <div class="row">
-                    <div class="col-lg-12">
-                        <h6><i class="fa fa-image"></i> Event Image</h6>
+                    <div class="col-lg-1">
+                    </div>
+                    <div class="col-lg-10">
                         <div id="carousel-studio" class="carousel slide carousel-fade" data-ride="carousel">
 
                             <ol class="carousel-indicators">
@@ -94,7 +82,9 @@
                                 <span class="sr-only">Next</span>
                             </a>
                         </div><!-- /.carouse-studio -->
-                    </div><!-- /.col-lg-12 -->
+                    </div><!-- /.col-lg-10 -->
+                    <div class="col-lg-1">
+                    </div>
                 </div><!-- /.row -->
 
                 <hr>
@@ -133,12 +123,28 @@
                         </div>
                     </div>
                 <?php endif; ?>
+
+                <?php if ($organizer->youtube) : ?>
+                    <div class="row mt-3">
+                        <div class="col-lg-1">
+                        </div>
+                        <div class="col-lg-10">
+                            <h6 class="dark-grey-text"><i class="fa fa-youtube-play yt-ic"></i> Event Video</h6>
+                            <div class="embed-responsive embed-responsive-16by9 z-depth-1">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($organizer->youtube) ?>?rel=0" style="height: 100%" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="col-lg-1">
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <hr>
             </div><!-- /.card-body -->
         </div><!-- /.card -->
     </div><!-- /.col-lg-8 -->
 
-    <div class="col-lg-4 col-md-12 mt-4">
-        <section class="card card-cascade card-avatar mb-4 mt-5">
+    <div class="col-lg-4 col-md-12">
+        <section class="card card-cascade card-avatar mb-4">
 
             <?php
                 if ($organizer->icon) {
