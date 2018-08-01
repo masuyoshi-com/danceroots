@@ -19,6 +19,9 @@
                     <?= $this->Html->link('イベント検索', ['controller' => 'Events', 'action' => 'public']) ?>
                 </p>
                 <p>
+                    <?= $this->Html->link('おすすめミュージック', ['controller' => 'RecommendMusics', 'action' => 'public']) ?>
+                </p>
+                <p>
                     <?= $this->Html->link('Webダンス講座', ['controller' => 'Lectures', 'action' => 'index']) ?>
                 </p>
             </div>

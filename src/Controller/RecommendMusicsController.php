@@ -28,6 +28,18 @@ class RecommendMusicsController extends AppController
 
 
     /**
+     * 初期化メソッド
+     *
+     * @return void
+     */
+    public function initialize()
+    {
+        parent::initialize();
+        $this->Auth->allow(['public']);
+    }
+
+
+    /**
      * おすすめミュージック検索・一覧
      *
      * @return \Cake\Http\Response|void
@@ -53,6 +65,41 @@ class RecommendMusicsController extends AppController
 
         if ($this->Session->check('reco_music_search_request')) {
             $this->request->data = $this->Session->read('reco_music_search_request');
+        }
+
+        $this->set('genres', $this->Common->valueToKey($this->genres));
+        $this->set(compact('recommendMusics'));
+    }
+
+
+    /**
+     * 一般公開おすすめミュージック検索・一覧
+     *
+     * @return \Cake\Http\Response|void
+     */
+    public function public()
+    {
+        $this->viewBuilder()->setLayout('public');
+
+        if ($this->request->query) {
+
+            for ($i = 0; $i < count($this->search_keys); $i++) {
+                if (!isset($this->request->query[$this->search_keys[$i]])) {
+                    $this->request->query[$this->search_keys[$i]] = '';
+                }
+            }
+
+            $query           = $this->RecommendMusics->findBySearch($this->request->query);
+            $recommendMusics = $this->paginate($query)->toArray();
+
+            $this->Session->write('public_reco_music_search', $this->request->query);
+
+        } else {
+            $recommendMusics = $this->paginate($this->RecommendMusics)->toArray();
+        }
+
+        if ($this->Session->check('public_reco_music_search')) {
+            $this->request->data = $this->Session->read('public_reco_music_search');
         }
 
         $this->set('genres', $this->Common->valueToKey($this->genres));
