@@ -238,4 +238,26 @@ class EventsTable extends Table
             ;
     }
 
+
+    /**
+    * 一般公開イベント検索 - 都道府県・カテゴリ・フリーワード
+    *
+    * @param array $requests
+    */
+    public function findBySearchForPublic($requests)
+    {
+        return $this->find('all')
+            ->where(['Events.pref LIKE'     => '%' . $requests['pref'] . '%'])
+            ->where(['Events.category LIKE' => '%' . $requests['category'] . '%'])
+            ->where(['OR' => [
+                ['Users.username LIKE'      => '%' . $requests['word'] . '%'],
+                ['Events.event_name LIKE'   => '%' . $requests['word'] . '%'],
+                ['Events.address LIKE'      => '%' . $requests['word'] . '%'],
+                ['Events.place LIKE'        => '%' . $requests['word'] . '%'],
+                ['Events.guest LIKE'        => '%' . $requests['word'] . '%'],
+                ['Events.event_detail LIKE' => '%' . $requests['word'] . '%']]])
+            ->andWhere(['Events.delete_flag' => 0])
+            ->andWhere(['Events.public_flag' => 0])
+            ;
+    }
 }

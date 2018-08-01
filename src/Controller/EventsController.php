@@ -25,6 +25,18 @@ class EventsController extends AppController
 
 
     /**
+     * 初期化メソッド
+     *
+     * @return void
+     */
+    public function initialize()
+    {
+        parent::initialize();
+        $this->Auth->allow(['public', 'publicView']);
+    }
+
+
+    /**
      * 各アクション前に発動
      *
      * @param object Event $event
@@ -65,7 +77,6 @@ class EventsController extends AppController
      * イベント検索一覧
      *
      * @return \Cake\Http\Response|void
-     * @todo 現在日時より過去のイベントは呼び出さない
      */
     public function index()
     {
@@ -101,6 +112,44 @@ class EventsController extends AppController
 
 
     /**
+     * 一般公開イベント検索一覧
+     *
+     * @return \Cake\Http\Response|void
+     */
+    public function public()
+    {
+        $this->viewBuilder()->setLayout('public');
+        if ($this->request->query) {
+
+            // 検索クエリがなければfindBySearchで警告でないように空白状態を作成
+            for ($i = 0; $i < count($this->search_keys); $i++) {
+                if (!isset($this->request->query[$this->search_keys[$i]])) {
+                    $this->request->query[$this->search_keys[$i]] = '';
+                }
+            }
+
+            $query = $this->Events->findBySearchForPublic($this->request->query);
+            $events = $this->paginate($query);
+
+            // 検索項目状態をセッションに格納
+            $this->Session->write('public_event_search_request', $this->request->query);
+
+        } else {
+            $query  = $this->Events->findByDeleteFlagAndPublicFlag(0, 0);
+            $events = $this->paginate($query);
+        }
+
+        // 検索項目状態があればリード
+        if ($this->Session->check('public_event_search_request')) {
+            $this->request->data = $this->Session->read('public_event_search_request');
+        }
+
+        $this->set('categories', $this->Common->valueToKey($this->categories));
+        $this->set(compact('events'));
+    }
+
+
+    /**
      * イベント詳細
      *
      * @param string|null $id イベントID
@@ -109,6 +158,36 @@ class EventsController extends AppController
      */
     public function view($id = null)
     {
+        $event = $this->Events->get($id, ['contain' => ['Users']]);
+
+        if ($event) {
+            $event['youtube'] = $this->Common->getYoutubeId($event['youtube']);
+            // オーナー検索
+            $event['owner'] = $this->Common->getUsersByClassification($event['user']['classification'], $event->user_id);
+            // 区分リンク取得
+            $profile_links = $this->Common->linkSwitch($event['user']['classification'], 'view', $event->user_id);
+            // 区分カテゴリ名取得
+            $event['user']['classification'] = $this->Common->getCategoryName($event['user']['classification']);
+
+            $this->set(compact('profile_links'));
+            $this->set('event', $event);
+        } else {
+            throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
+        }
+
+    }
+
+
+    /**
+     * 一般公開イベント詳細
+     *
+     * @param string|null $id イベントID
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException
+     */
+    public function publicView($id = null)
+    {
+        $this->viewBuilder()->setLayout('public');
         $event = $this->Events->get($id, ['contain' => ['Users']]);
 
         if ($event) {
@@ -146,7 +225,7 @@ class EventsController extends AppController
 
                 $this->Flash->success(__('イベント登録しました。'));
                 return $this->redirect(['action' => 'view', $event->id]);
-                
+
             }
 
             $this->Flash->error(__('エラーがありました。'));

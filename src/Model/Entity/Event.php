@@ -26,6 +26,7 @@ use Cake\ORM\Entity;
  * @property string $event_detail
  * @property int    $delete_flag
  * @property string $delete_reason
+ * @property int    $public_flag
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
@@ -60,6 +61,7 @@ class Event extends Entity
         'event_detail'  => true,
         'delete_flag'   => true,
         'delete_reason' => true,
+        'public_flag'   => true,
         'created'       => true,
         'modified'      => true,
         'user'          => true,

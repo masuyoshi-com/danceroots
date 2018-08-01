@@ -1,11 +1,8 @@
-<?php $this->assign('title', h($event->event_name) . ' - イベント詳細'); ?>
+<?php $this->assign('title', h($event->event_name) . '公開イベント詳細'); ?>
 
 <?= $this->element('Modal/event_delete') ?>
 
-<div class="row">
-    <div class="col-lg-12">
-        <?= $this->Flash->render() ?>
-    </div>
+<div class="row mt-5">
 </div>
 
 <div class="row">
@@ -29,10 +26,12 @@
                         </h5>
                     </div>
                     <div class="col-lg-6 col-md-6 col-xs-12">
-                        <?php if ($logins['id'] === $event->user_id) : ?>
-                        <h5 class="text-right mb-0">
-                            <span class="badge badge-warning">イベント所有者</span>
-                        </h5>
+                        <?php if (isset($logins)) : ?>
+                            <?php if ($logins['id'] === $event->user_id) : ?>
+                            <h5 class="text-right">
+                                <span class="badge badge-warning">イベント所有者</span>
+                            </h5>
+                            <?php endif; ?>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -43,21 +42,16 @@
                         <div class="md-form text-center">
                             <h2 class="h2-responsive"><?= h($event->event_name) ?></h2>
                         </div>
-                        <hr class="mb-0">
+                        <hr>
                     </div>
                 </div>
 
                 <?php if ($event->image) : ?>
                 <div class="row mt-3 mb-3">
-                    <div class="col-lg-1">
-                    </div>
-                    <div class="col-lg-10">
+                    <div class="col-lg-12">
                         <?= $this->Html->image($event->image, ['class' => 'd-block w-100']) ?>
                     </div>
-                    <div class="col-lg-1">
-                    </div>
                 </div>
-                <hr>
                 <?php endif; ?>
 
                 <div class="row">
@@ -112,18 +106,13 @@
 
                 <?php if ($event->youtube) : ?>
                 <div class="row">
-                    <div class="col-lg-1">
-                    </div>
-                    <div class="col-lg-10 mt-3 mb-3">
+                    <div class="col-lg-12 mt-3 mb-2">
                         <h6 class="dark-grey-text"><i class="fa fa-youtube-play yt-ic"></i> Event Video</h6>
                         <div class="embed-responsive embed-responsive-16by9 z-depth-1">
                             <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($event->youtube) ?>?rel=0" style="height: 100%" allowfullscreen></iframe>
                         </div>
                     </div>
-                    <div class="col-lg-1">
-                    </div>
                 </div>
-                <hr>
                 <?php endif; ?>
 
                 <div class="row">
@@ -155,7 +144,7 @@
                 </div>
                 <?php endif; ?>
 
-                <div class="row mt-3 mb-3">
+                <div class="row mt-3">
                     <div class="col-lg-12 text-left">
                         <label class="dark-gray-text w-100"><small>イベント説明</small></label>
                         <div class="md-form mt-0">
@@ -165,7 +154,7 @@
                     </div>
                 </div>
 
-                <div class="row mb-4">
+                <div class="row mt-2">
                     <div class="col-lg-12">
                         <div class="d-flex">
                             <h6 class="dark-grey-text"><i class="fa fa-map-marker"></i> GoogleMap</h6>
@@ -174,44 +163,23 @@
                         <div id="map" class="rounded z-depth-1-half map-container" style="height: 300px"></div>
                     </div>
                 </div>
-                <hr class="mb-4">
 
-                <?php if ($logins['id'] !== $event->user_id) : ?>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="md-form">
-                            <?= $this->Html->link('<i class="fa fa-envelope"></i> このイベントに問い合わせる',
+                <?php if (isset($logins)) : ?>
+                    <?php if ($logins['id'] !== $event->user_id) : ?>
+                    <hr>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <?= $this->Html->link('<i class="fa fa-envelope"></i> イベントの問い合わせ',
                                 ['controller' => 'Messages', 'action' => 'add', $event->user_id],
                                 ['class' => 'btn btn-primary btn-block', 'escape' => false]
                             ) ?>
                         </div>
                     </div>
-                </div>
-                <?php else : ?>
-                <div class="row">
-                    <div class="col-lg-6 mb-2">
-                        <?= $this->Html->link('<i class="fa fa-edit"></i> このイベントを編集する',
-                            ['action' => 'edit', h($event->id)],
-                            ['class' => 'btn btn-success btn-block', 'escape' => false]
-                        ) ?>
-                    </div>
-                    <div class="col-lg-6">
-                        <?= $this->Html->link('<i class="fa fa-trash fa-lg" aria-hidden="true"></i> イベント削除', 'javascript:void(0)',
-                            [
-                                'class'       => 'btn btn-danger btn-block',
-                                'escape'      => false,
-                                'data-toggle' => 'modal',
-                                'data-target' => '#modalEventDeleteForm'
-                            ]
-                        ) ?>
-                    </div>
-                </div>
+                    <?php endif; ?>
                 <?php endif; ?>
-
             </div><!-- /.card-body -->
         </div><!-- /.card -->
     </div><!-- /.col-lg-8 -->
-
 
     <div class="col-lg-4 col-md-12">
         <section class="card card-cascade card-avatar mb-4">
@@ -293,28 +261,36 @@
                     <?= h($event->intro) ?>
                 </p>
 
-                <?php if ($logins['id'] === $event->user_id) : ?>
-                    <div class="md-form">
-                        <?= $this->Html->link('<i class="fa fa-calendar"></i> マイイベント ',
-                            ['action' => 'list', $event->user_id],
-                            ['class'  => 'btn purple-gradient btn-rounded', 'escape' => false]
-                        ) ?>
-                    </div>
+                <?php if (isset($logins)) : ?>
+                    <?php if ($logins['id'] === $event->user_id) : ?>
+                        <div class="md-form">
+                            <?= $this->Html->link('<i class="fa fa-calendar"></i> マイイベント ',
+                                ['action' => 'list', $event->user_id],
+                                ['class'  => 'btn purple-gradient btn-rounded', 'escape' => false]
+                            ) ?>
+                        </div>
+                    <?php else : ?>
+                        <div class="md-form">
+                            <?= $this->Html->link('<i class="fa fa-paper-plane-o"></i> メッセージ ',
+                                ['controller' => 'Messages', 'action' => 'add', $event->user_id],
+                                ['class'  => 'btn blue-gradient btn-rounded', 'escape' => false]
+                            ) ?>
+                        </div>
+                    <?php endif; ?>
                 <?php else : ?>
                     <div class="md-form">
-                        <?= $this->Html->link('<i class="fa fa-paper-plane-o"></i> メッセージ ',
-                            ['controller' => 'Messages', 'action' => 'add', $event->user_id],
-                            ['class'  => 'btn blue-gradient btn-rounded', 'escape' => false]
+                        <?= $this->Html->link('ログインしてメッセージ送る',
+                            ['controller' => 'Users', 'action' => 'login'],
+                            ['class'  => 'btn btn-sm blue-gradient btn-rounded']
                         ) ?>
                     </div>
                 <?php endif; ?>
-
             </div><!-- /.card-body -->
         </section>
 
-        <?php if (AD === 1) : ?>
+        <?php if (AD === 0) : ?>
         <div class="card card-body mb-3">
-            <div class="row">
+            <div class="row mt-3">
                 <div class="col-lg-12 text-center">
                     <section id="dynamicContentWrapper-docsPanel" class="mb-4">
                         <div class="card border border-danger z-depth-0" style="height: 600px;">
