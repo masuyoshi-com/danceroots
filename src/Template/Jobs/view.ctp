@@ -2,24 +2,21 @@
 
 <?= $this->element('Modal/job_delete') ?>
 
+<?php if (AD === 0) : ?>
 <div class="row">
-    <?php if (AD === 0) : ?>
-        <div class="col-lg-12 text-center">
-            <section id="dynamicContentWrapper-docsPanel" class="mb-4">
-                <div class="card border border-danger z-depth-0" style="height: 200px;">
-                    <div class="card-body text-center">
-                        <p>
-                            <strong>広告枠</strong>
-                        </p>
-                    </div>
+    <div class="col-lg-12 text-center">
+        <section id="dynamicContentWrapper-docsPanel" class="mb-4">
+            <div class="card border border-danger z-depth-0" style="height: 200px;">
+                <div class="card-body text-center">
+                    <p>
+                        <strong>広告枠</strong>
+                    </p>
                 </div>
-            </section>
-        </div>
-    <?php else : ?>
-        <div class="row mb-2">
-        </div>
-    <?php endif; ?>
+            </div>
+        </section>
+    </div>
 </div>
+<?php endif; ?>
 
 <div class="row">
     <div class="col-lg-12">
@@ -60,16 +57,21 @@
                             <h2 class="h2-responsive"><?= h($job->title) ?></h2>
                         </div>
 
-                        <hr>
+                        <hr class="mb-0">
                     </div>
                 </div>
 
                 <?php if ($job->image) : ?>
-                <div class="row mt-3 mb-3">
-                    <div class="col-lg-12">
+                <div class="row mb-3">
+                    <div class="col-lg-1">
+                    </div>
+                    <div class="col-lg-10">
                         <?= $this->Html->image($job->image, ['class' => 'd-block w-100']) ?>
                     </div>
+                    <div class="col-lg-1">
+                    </div>
                 </div>
+                <hr>
                 <?php endif; ?>
 
                 <div class="row">
@@ -218,8 +220,8 @@
                 </div>
                 <?php else : ?>
 
-                <div class="row">
-                    <div class="col-lg-6">
+                <div class="row mt-4">
+                    <div class="col-lg-6 mb-2">
                         <?= $this->Html->link('<i class="fa fa-edit"></i> この求人を編集する',
                             ['action' => 'edit', $job->id],
                             ['class' => 'btn btn-success btn-block', 'escape' => false]
@@ -243,8 +245,8 @@
     </div><!-- /.col-lg-8 -->
 
 
-    <div class="col-lg-4 col-md-12 mt-4">
-        <section class="card card-cascade card-avatar mb-4 mt-5">
+    <div class="col-lg-4 col-md-12">
+        <section class="card card-cascade card-avatar mb-4">
 
             <?php
                 if ($job->owner->icon) {
