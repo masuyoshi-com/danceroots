@@ -106,7 +106,7 @@
                     </p>
                 <?php endif; ?>
                 <hr>
-                
+
                 <p class="card-text mt-3">
                     <?= h($studio->self_intro); ?>
                 </p>
@@ -261,7 +261,7 @@
                     <h5 class="card-title dark-grey-text"><strong><i class="fa fa-music pink-text"></i> ミュージック管理</strong></h5>
                     <hr>
                     <p class="card-text">
-                        良い音楽を知ることは、センスを高めるために欠かせません。
+                        音楽を知ることは、センスを高めるために欠かせません。
                         ぜひ、好きな音楽を教えてください。
                     </p>
                     <p class="card-text text-right">

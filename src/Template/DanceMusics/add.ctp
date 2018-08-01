@@ -1,19 +1,19 @@
-<?php $this->assign('title', 'ミュージック共有登録') ?>
+<?php $this->assign('title', 'ミュージック共有登録'); ?>
 
 <div class="row">
-    <div class="col-lg-12">
-        <div class="jumbotron text-center pt-4 pb-4">
-            <h2 class="h2-responsive"><i class="fa fa-music pink-text"></i> お気に入りミュージック
-                <small><i class="fa fa-plus pink-text"></i></small>
-            </h2>
-            <hr class="my-2">
-            <p class="lead grey-text">
+    <div class="col-lg-12 col-md-12">
+        <div class="d-flex">
+            <h5 class="h5-responsive">
+                <i class="fa fa-music pink-text"></i> お気に入りミュージック
+                    <small><i class="fa fa-plus pink-text"></i></small>
+            </h5>
+            <p class="none ml-auto dark-grey-text mb-0">
                 <small>まずは音楽を検索しましょう。音楽を選択して登録してください。</small>
             </p>
-            <hr class="my-2">
         </div>
+        <hr class="mt-0">
     </div>
-</div>
+</div><!-- /.row -->
 
 <div class="card card-body mb-3 none">
     <div class="d-flex">

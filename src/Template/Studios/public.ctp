@@ -3,8 +3,26 @@
 <div class="row mt-5">
 </div>
 
+<div class="row">
+    <div class="col-lg-12 col-md-12 pt-3 pb-3">
+        <div class="d-flex">
+            <h6 class="h6-responsive font-weight-bold mb-0">
+                <i class="fa fa-building dark-grey-text" aria-hidden="true"></i>  ダンススタジオ・スクール検索
+            </h6>
+            <?php if (!isset($logins)) : ?>
+                <p class="ml-auto mb-0">
+                    <small>
+                        <?= $this->Html->link('スタジオ登録', ['controller' => 'Users', 'action' => 'signup']) ?>
+                    </small>
+                </p>
+            <?php endif; ?>
+        </div>
+        <hr class="my-2">
+    </div><!-- /.col-lg-12 -->
+</div><!-- /.row -->
+
 <?= $this->Form->create('', ['type' => 'get']) ?>
-<div class="card p-3 mb-3 mt-3">
+<div class="card p-3 mb-3">
     <div class="row">
         <div class="col-lg-3 col-md-6 col-xs-12">
             <?= $this->Form->control('pref',

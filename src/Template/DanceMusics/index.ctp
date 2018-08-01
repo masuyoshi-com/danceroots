@@ -1,39 +1,30 @@
-<?php $this->assign('title', 'ダンスミュージック検索'); ?>
+<?php $this->assign('title', 'ストリートダンスミュージック共有検索'); ?>
 
+<?php if (AD === 0) : ?>
 <div class="row">
-    <?php if (AD === 0) : ?>
-        <div class="col-lg-6 col-md-12">
-    <?php else : ?>
-        <div class="col-lg-12 col-md-12">
-    <?php endif; ?>
-        <div class="jumbotron text-center pt-4 pb-4">
-            <h2 class="h2-responsive">
-                <i class="fa fa-music pink-text"></i> Favorite Dance Music
-            </h2>
-            <hr class="my-2">
-            <p class="lead grey-text">
-                <small><i class="fa fa-info-circle" aria-hidden="true"></i> お気に入りの音楽を皆で共有しましょう。</small>
-            </p>
-            <hr class="my-2">
-            <div class="row">
-                <div class="col-lg-12">
-                    <?= $this->Html->link('<i class="fa fa-plus"></i> ミュージック登録', ['action' => 'add'],
-                        ['class' => 'btn btn-info btn-block', 'escape' => false]
-                    ) ?>
+    <div class="col-lg-12 text-center">
+        <section id="dynamicContentWrapper-docsPanel" class="mb-4">
+            <div class="card border border-danger z-depth-0" style="height: 200px;">
+                <div class="card-body text-center">
+                    <p>
+                        <strong>広告枠</strong>
+                    </p>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
-    <?php if (AD === 0) : ?>
-        <div class="col-lg-6 col-md-12">
-            <div class="text-center jumbotron">
-                <p>
-                    <strong>広告枠</strong>
-                </p>
-            </div>
-        </div>
-    <?php endif; ?>
 </div>
+<?php endif; ?>
+
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+        <h5 class="h5-responsive font-weight-bold">
+            <i class="fa fa-music pink-text"></i> Favorite Dance Music
+        </h5>
+        <hr>
+    </div><!-- /.col-lg-12 -->
+</div><!-- /.row -->
+
 
 <?= $this->Form->create('', ['type' => 'get']) ?>
 <div class="card card-body p-3 mb-3">
@@ -70,17 +61,23 @@
     </div>
 </div>
 
-
 <?php if (count($danceMusics) !== 0) : ?>
 
 <div class="row">
     <div class="col-lg-12">
-        <p class="dark-gray-text text-right">
-            <small>
-                <?= $this->Paginator->counter('{{page}} / {{pages}} ページ &nbsp; 全 {{count}} 件') ?>
-            </small>
-        </p>
-        <hr>
+        <div class="d-flex">
+            <p class="mb-0">
+                <?= $this->Html->link('<i class="fa fa-plus"></i> ミュージック登録', ['controller' => 'DanceMusics', 'action' => 'add'],
+                    ['class' => 'btn btn-sm btn-info', 'escape' => false]
+                ) ?>
+            </p>
+            <p class="ml-auto dark-gray-text pt-2">
+                <small>
+                    <?= $this->Paginator->counter('{{page}} / {{pages}} ページ &nbsp; 全 {{count}} 件') ?>
+                </small>
+            </p>
+        </div>
+        <hr class="mt-0">
     </div>
 </div>
 
@@ -246,13 +243,20 @@
     </div>
 </div>
 
-<?php elseif (count($danceMusics) === 0) : ?>
+<?php else : ?>
 <div class="card card-body">
     <div class="row">
         <div class="col-lg-12">
+            <p>
+                <?= $this->Html->link('<i class="fa fa-plus"></i> ミュージック登録', ['controller' => 'DanceMusics', 'action' => 'add'],
+                    ['class' => 'btn btn-sm btn-info', 'escape' => false]
+                ) ?>
+            </p>
+            <hr>
             <p class="dark-grey-text text-center mt-3">
                 音楽が見つかりませんでした。
             </p>
+            <hr>
         </div>
     </div>
 </div>

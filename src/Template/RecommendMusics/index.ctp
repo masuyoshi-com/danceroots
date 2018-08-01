@@ -1,17 +1,27 @@
 <?php $this->assign('title', 'おすすめミュージック検索・一覧'); ?>
 
+<?php if (AD === 0) : ?>
 <div class="row">
-    <div class="col-lg-12 col-md-12">
-        <div class="jumbotron text-center pt-4 pb-4">
-            <h2 class="h2-responsive">
-                <i class="fa fa-music pink-text"></i> おすすめミュージック
-            </h2>
-            <hr class="my-2">
-            <p class="lead grey-text">
-                <small>Dancerootsのおすすめミュージック</small>
-            </p>
-            <hr class="my-2">
-        </div><!-- /.jumbotron -->
+    <div class="col-lg-12 text-center">
+        <section id="dynamicContentWrapper-docsPanel" class="mb-4">
+            <div class="card border border-danger z-depth-0" style="height: 200px;">
+                <div class="card-body text-center">
+                    <p>
+                        <strong>広告枠</strong>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<?php endif; ?>
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 pb-2">
+        <h5 class="h5-responsive">
+            <i class="fa fa-music pink-text"></i> おすすめミュージック
+        </h5>
+        <hr class="my-2">
     </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
 

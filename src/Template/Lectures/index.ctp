@@ -3,10 +3,10 @@
     $this->assign('title', 'ストリートダンス初心者のための読んで学ぶWebダンス講座');
 ?>
 
-<section class="magazine-section my-4 pt-5">
-    <h2 class="h2-responsive font-weight-bold text-center my-4">
+<section class="magazine-section my-4 pt-4">
+    <h3 class="h3-responsive font-weight-bold text-center my-4">
         <i class="fa fa-book" aria-hidden="true"></i> 読んで学ぶWebストリートダンス講座
-    </h2>
+    </h3>
     <h6 class="text-center">はじめに</h6>
     <hr>
     <p class="w-responsive mx-auto">

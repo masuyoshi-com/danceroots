@@ -63,7 +63,7 @@
     <div class="col-lg-12">
         <div class="view gradient-card-header purple-gradient">
             <h3 class="h3-responsive mb-0">
-                公開イベント
+                イベント情報
             </h3>
             <p class="mb-0 none">
                 <small>
@@ -77,11 +77,20 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <p class="dark-gray-text text-right">
-                    <small>
-                        <?= $this->Paginator->counter('{{page}} / {{pages}} ページ &nbsp; 全 {{count}} 件') ?>
-                    </small>
-                </p>
+                <div class="d-flex">
+                    <?php if (!isset($logins)) : ?>
+                        <p class="mb-0">
+                            <small>
+                                <?= $this->Html->link('もっとイベントを見る', ['controller' => 'Users', 'action' => 'signup']) ?>
+                            </small>
+                        </p>
+                    <?php endif; ?>
+                    <p class="ml-auto dark-gray-text mb-0">
+                        <small>
+                            <?= $this->Paginator->counter('{{page}} / {{pages}} ページ &nbsp; 全 {{count}} 件') ?>
+                        </small>
+                    </p>
+                </div>
                 <hr>
             </div>
         </div>

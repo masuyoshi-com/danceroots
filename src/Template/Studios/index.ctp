@@ -1,5 +1,14 @@
 <?php $this->assign('title', 'スタジオ検索'); ?>
 
+<div class="row">
+    <div class="col-lg-12 col-md-12 mb-2">
+        <h6 class="h6-responsive font-weight-bold mb-0">
+            <i class="fa fa-building dark-grey-text" aria-hidden="true"></i>  ダンススタジオ・スクール検索
+        </h6>
+        <hr class="my-2">
+    </div><!-- /.col-lg-12 -->
+</div><!-- /.row -->
+
 <?= $this->Form->create('', ['type' => 'get']) ?>
 <div class="card p-3 mb-3">
     <div class="row">

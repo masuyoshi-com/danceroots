@@ -1,55 +1,52 @@
 <?php $this->assign('title', 'マイダンス動画リスト'); ?>
 
+<?php if (AD === 0) : ?>
 <div class="row">
-    <?php if (AD === 0) : ?>
-        <div class="col-lg-6 col-md-12">
-    <?php else : ?>
-        <div class="col-lg-12 col-md-12">
-    <?php endif; ?>
-        <div class="jumbotron text-center pt-4 pb-4">
-            <h2 class="h2-responsive">
-                <i class="fa fa-youtube-play yt-ic"></i> マイ ダンス動画
-            </h2>
-            <hr class="my-2">
-            <p class="lead grey-text">
-                <small><i class="fa fa-info-circle" aria-hidden="true"></i> お気に入りのダンス動画を共有しましょう。</small>
-            </p>
-            <hr class="my-2">
-            <div class="row">
-                <div class="col-lg-12">
-                    <?= $this->Html->link('<i class="fa fa-plus"></i> ダンス動画登録', ['action' => 'add'],
-                        ['class' => 'btn btn-info btn-block', 'escape' => false]
-                    ) ?>
+    <div class="col-lg-12 text-center">
+        <section id="dynamicContentWrapper-docsPanel" class="mb-4">
+            <div class="card border border-danger z-depth-0" style="height: 200px;">
+                <div class="card-body text-center">
+                    <p>
+                        <strong>広告枠</strong>
+                    </p>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
-    <?php if (AD === 0) : ?>
-        <div class="col-lg-6 col-md-12">
-            <div class="text-center jumbotron">
-                <p>
-                    <strong>広告枠</strong>
-                </p>
-            </div>
+</div>
+<?php endif; ?>
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 pb-2">
+        <h5 class="h5-responsive">
+            <i class="fa fa-youtube-play yt-ic"></i> マイ ダンス動画
+        </h5>
+        <hr class="mb-0">
+    </div>
+</div><!-- /.row -->
+
+<?php if (count($videos) !== 0) : ?>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="d-flex">
+            <p class="mb-0">
+                <?= $this->Html->link('<i class="fa fa-plus"></i> ダンス動画登録', ['action' => 'add'],
+                    ['class' => 'btn btn-sm btn-default', 'escape' => false]
+                ) ?>
+            </p>
+            <p class="ml-auto dark-gray-text pt-2">
+                <small>
+                    <?= $this->Paginator->counter('{{page}} / {{pages}} ページ &nbsp; 全 {{count}} 件') ?>
+                </small>
+            </p>
         </div>
-    <?php endif; ?>
+        <hr class="mt-0">
+    </div>
 </div>
 
 <div class="row">
     <div class="col-lg-12">
         <?= $this->Flash->render() ?>
-    </div>
-</div>
-
-<?php if (count($videos) !== 0) : ?>
-<div class="row">
-    <div class="col-lg-12">
-        <p class="dark-gray-text text-right">
-            <small>
-                <?= $this->Paginator->counter('{{page}} / {{pages}} ページ &nbsp; 全 {{count}} 件') ?>
-            </small>
-        </p>
-        <hr>
     </div>
 </div>
 
@@ -184,10 +181,16 @@
 <?php else : ?>
 <div class="card card-body">
     <div class="row">
-        <div class="col-lg-12 text-center">
-            <h5 class="dark-gray-text mt-3">
+        <div class="col-lg-12">
+            <p>
+                <?= $this->Html->link('<i class="fa fa-plus"></i> ダンス動画登録', ['controller' => 'DanceVideos', 'action' => 'add'],
+                    ['class' => 'btn btn-sm btn-default', 'escape' => false]
+                ) ?>
+            </p>
+            <hr>
+            <p class="dark-gray-text text-center">
                 登録済みダンス動画はありません。
-            </h5>
+            </p>
             <hr>
         </div>
     </div>

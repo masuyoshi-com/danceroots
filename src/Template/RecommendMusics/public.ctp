@@ -6,12 +6,14 @@
 <div class="row">
     <div class="col-lg-12 col-md-12 pt-3 pb-3">
         <div class="d-flex">
-            <h5 class="h5-responsive mb-0">
-                <i class="fa fa-music pink-text"></i> <span class="none">Danceroots おすすめ</span>ミュージック
-            </h5>
+            <h6 class="h6-responsive font-weight-bold mb-0">
+                <i class="fa fa-music pink-text"></i> おすすめミュージック
+            </h6>
             <?php if (!isset($logins)) : ?>
                 <p class="ml-auto mb-0">
-                    <?= $this->Html->link('もっと機能を使う', ['controller' => 'Users', 'action' => 'login']) ?>
+                    <small>
+                        <?= $this->Html->link('もっと機能を使う', ['controller' => 'Users', 'action' => 'login']) ?>
+                    </small>
                 </p>
             <?php endif; ?>
         </div>
