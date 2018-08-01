@@ -144,7 +144,7 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-    <div class="col-lg-2 col-md-3 col-xs-6 mb-3">
+    <div class="col-lg-3 col-md-3 col-xs-6 mb-3">
         <div class="card card-body text-center pb-0">
             <p class="grey-text text-left mb-1">
                 <small>

@@ -188,12 +188,12 @@
 <?php else : ?>
 
 
-<div class="row mb-3">
+<div class="row mb-5">
     <div class="col-lg-12 text-center">
         <hr>
-        <h5 class="dark-gray-text mt-5 mb-5">
+        <p class="dark-gray-text mt-5 mb-5">
             検索結果はありません。
-        </h5>
+        </p>
         <hr>
     </div>
 </div>
