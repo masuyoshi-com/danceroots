@@ -8,17 +8,27 @@
   <changefreq>weekly</changefreq>
 </url>
 <url>
+  <loc>https://danceroots.net/dancers/public</loc>
+  <priority>0.8</priority>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>https://danceroots.net/studios/public</loc>
+  <priority>0.8</priority>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>https://danceroots.net/events/public</loc>
+  <priority>0.8</priority>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>https://danceroots.net/recommend-musics/public</loc>
+  <priority>0.8</priority>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
   <loc>https://danceroots.net/lectures</loc>
-  <priority>0.8</priority>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>https://danceroots.net/users/login</loc>
-  <priority>0.8</priority>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>https://danceroots.net/users/signup</loc>
   <priority>0.8</priority>
   <changefreq>weekly</changefreq>
 </url>
@@ -43,12 +53,27 @@
   <changefreq>weekly</changefreq>
 </url>
 <url>
+  <loc>https://danceroots.net/users/login</loc>
+  <priority>0.8</priority>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>https://danceroots.net/users/signup</loc>
+  <priority>0.8</priority>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
   <loc>https://danceroots.net/contract</loc>
   <priority>0.8</priority>
   <changefreq>weekly</changefreq>
 </url>
 <url>
   <loc>https://danceroots.net/privacy</loc>
+  <priority>0.8</priority>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>https://danceroots.net/sitemap</loc>
   <priority>0.8</priority>
   <changefreq>weekly</changefreq>
 </url>
@@ -108,7 +133,7 @@
   <changefreq>weekly</changefreq>
 </url>
 <url>
-  <loc>https://danceroots.net/lectures/validation</loc>
+  <loc>https://danceroots.net/lectures/variation</loc>
   <priority>0.7</priority>
   <changefreq>weekly</changefreq>
 </url>
@@ -184,11 +209,6 @@
 </url>
 <url>
   <loc>https://danceroots.net/lectures/have-weapon</loc>
-  <priority>0.7</priority>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>https://danceroots.net/lectures/contract</loc>
   <priority>0.7</priority>
   <changefreq>weekly</changefreq>
 </url>
