@@ -2,9 +2,9 @@
 
 <div class="row">
     <div class="col-lg-12 col-md-12 mb-2">
-        <h6 class="h6-responsive font-weight-bold mb-0">
+        <h5 class="h5-responsive mb-0">
             <i class="fa fa-universal-access indigo-text" aria-hidden="true"></i>  ストリートダンサー検索
-        </h6>
+        </h5>
         <hr class="my-2">
     </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
