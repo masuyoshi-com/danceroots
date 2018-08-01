@@ -53,7 +53,7 @@
             ) ?>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                 <?= $this->Html->link('ホーム', $homes, ['class' => 'dropdown-item']) ?>
-                <?= $this->Html->link('マイアカウント',  ['controller' => 'Users', 'action' => 'edit', $logins['id']]) ?>
+                <?= $this->Html->link('マイアカウント',  ['controller' => 'Users', 'action' => 'edit', $logins['id']], ['class' => 'dropdown-item']) ?>
                 <?= $this->Html->link('マイプロフィール', $views, ['class' => 'dropdown-item']) ?>
                 <?= $this->Html->link('ログアウト',      ['controller' => 'Users', 'action' => 'logout'], ['class' => 'dropdown-item']) ?>
             </div>
