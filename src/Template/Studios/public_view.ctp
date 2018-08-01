@@ -141,7 +141,7 @@
                     <?php endif; ?>
                 <?php else : ?>
                     <div>
-                        <?= $this->Html->link('ログインでメッセージを送る',
+                        <?= $this->Html->link('ログインしてメッセージ送る',
                             ['controller' => 'Users', 'action' => 'login'],
                             ['class' => 'btn btn-sm blue-gradient btn-rounded']
                         ) ?>

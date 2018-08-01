@@ -18,9 +18,9 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-5544353-4"></script>
     <?= $this->Html->script('gtag') ?>
     <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') ?>
-    <?= $this->Html->css('/css/bootstrap.min') ?>
-    <?= $this->Html->css('/css/mdb.min') ?>
-    <?= $this->Html->css('/css/top-style') ?>
+    <?= $this->Html->css('bootstrap.min') ?>
+    <?= $this->Html->css('top-mdb.min') ?>
+    <?= $this->Html->css('top-style') ?>
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
@@ -93,13 +93,6 @@
             }
         }
 
-        .navbar .btn-group .dropdown-menu a:hover {
-            color: #000 !important;
-        }
-
-        .navbar .btn-group .dropdown-menu a:active {
-            color: #fff !important;
-        }
     </style>
 </head>
 

@@ -85,3 +85,42 @@ footer.page-footer .footer-copyright {
     margin-top: 6rem;
     text-align: center;
 }
+
+/* mdb-pro dropdown style */
+.dropdown .dropdown-menu {
+    padding: 0.5rem;
+}
+
+.dropdown .dropdown-menu .dropdown-item {
+    padding: 0.5rem;
+    margin-left: 0;
+    font-size: 0.9rem;
+}
+
+.dropdown .dropdown-menu .dropdown-item.disabled {
+    color: #868e96;
+}
+
+.dropdown .dropdown-menu .dropdown-item.disabled:hover,
+.dropdown .dropdown-menu .dropdown-item.disabled:active,
+.dropdown .dropdown-menu .dropdown-item.disabled:focus {
+    box-shadow: none;
+    color: #868e96 !important;
+    background-color: transparent !important;
+}
+
+.dropdown .dropdown-menu .dropdown-item:hover,
+.dropdown .dropdown-menu .dropdown-item:active {
+    border-radius: 2px;
+    -webkit-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+    background-color: #4285f4;
+}
+
+.dropdown-menu.animated {
+    /* Speed up animations */
+    -webkit-animation-duration: 0.55s;
+    animation-duration: 0.55s;
+    -webkit-animation-timing-function: ease;
+    animation-timing-function: ease;
+}

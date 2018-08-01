@@ -19,7 +19,6 @@
                     </li>
                     <li>
                         <?php
-
                             if (isset($logins)) {
                                 print $this->Html->link('Go Home', $homes, ['class' => 'btn btn-primary btn-lg flex-item']);
                             } else {

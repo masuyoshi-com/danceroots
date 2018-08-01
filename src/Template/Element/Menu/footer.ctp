@@ -34,7 +34,7 @@
                     <?= $this->Html->link('ストリートダンサー', ['controller' => 'Pages', 'action' => 'dancer']) ?>
                 </p>
                 <p>
-                    <?= $this->Html->link('ダンススタジオ・スクール', ['controller' => 'Pages', 'action' => 'studio']) ?>
+                    <?= $this->Html->link('ダンススタジオ', ['controller' => 'Pages', 'action' => 'studio']) ?>
                 </p>
                 <p>
                     <?= $this->Html->link('オーガナイザー・企業', ['controller' => 'Pages', 'action' => 'organizer']) ?>
