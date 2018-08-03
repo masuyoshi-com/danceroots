@@ -220,7 +220,7 @@
     </div>
 </div>
 
-<?php elseif (count($recommendMusics) === 0) : ?>
+<?php else : ?>
 <div class="card card-body">
     <div class="row">
         <div class="col-lg-12">

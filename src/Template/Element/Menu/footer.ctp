@@ -22,6 +22,9 @@
                     <?= $this->Html->link('おすすめミュージック', ['controller' => 'RecommendMusics', 'action' => 'public']) ?>
                 </p>
                 <p>
+                    <?= $this->Html->link('おすすめダンス動画', ['controller' => 'RecommendVideos', 'action' => 'public']) ?>
+                </p>
+                <p>
                     <?= $this->Html->link('Webダンス講座', ['controller' => 'Lectures', 'action' => 'index']) ?>
                 </p>
             </div>

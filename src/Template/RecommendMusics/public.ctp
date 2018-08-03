@@ -3,6 +3,22 @@
 <div class="row mt-5">
 </div>
 
+<?php if (AD === 0) : ?>
+<div class="row mt-3">
+    <div class="col-lg-12 text-center">
+        <section id="dynamicContentWrapper-docsPanel" class="mb-4">
+            <div class="card border border-danger z-depth-0" style="height: 200px;">
+                <div class="card-body text-center">
+                    <p>
+                        <strong>広告枠</strong>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<?php endif; ?>
+
 <div class="row">
     <div class="col-lg-12 col-md-12 pt-3 pb-3">
         <div class="d-flex">
@@ -210,10 +226,10 @@
     </div>
 </div>
 
-<?php elseif (count($recommendMusics) === 0) : ?>
-<div class="card card-body">
+<?php else : ?>
+<div class="card card-body mb-3">
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12 mt-4 mb-4">
             <p class="dark-grey-text text-center mt-3">
                 音楽が見つかりませんでした。
             </p>

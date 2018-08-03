@@ -29,6 +29,9 @@
                     <?= $this->Html->link('Music', ['controller' => 'RecommendMusics', 'action' => 'public'], ['class' => 'nav-link']) ?>
                 </li>
                 <li class="nav-item">
+                    <?= $this->Html->link('DanceVideo', ['controller' => 'RecommendVideos', 'action' => 'public'], ['class' => 'nav-link']) ?>
+                </li>
+                <li class="nav-item">
                     <?= $this->Html->link('Webダンス講座', ['controller' => 'Lectures', 'action' => 'index'], ['class' => 'nav-link']) ?>
                 </li>
                 <li class="nav-item dropdown">
