@@ -9,23 +9,24 @@ use Cake\Validation\Validator;
 /**
  * ユーザーモデル
  *
- * @property \App\Model\Table\CircleGroupsTable|\Cake\ORM\Association\HasMany   $CircleGroups
- * @property \App\Model\Table\CircleMessagesTable|\Cake\ORM\Association\HasMany $CircleMessages
- * @property \App\Model\Table\CirclesTable|\Cake\ORM\Association\HasMany        $Circles
- * @property \App\Model\Table\DanceMusicsTable|\Cake\ORM\Association\HasMany    $DanceMusics
- * @property \App\Model\Table\DanceVideosTable|\Cake\ORM\Association\HasMany    $DanceVideos
- * @property \App\Model\Table\DancersTable|\Cake\ORM\Association\HasMany        $Dancers
- * @property \App\Model\Table\EventEntriesTable|\Cake\ORM\Association\HasMany   $EventEntries
- * @property \App\Model\Table\EventsTable|\Cake\ORM\Association\HasMany         $Events
- * @property \App\Model\Table\FeedbacksTable|\Cake\ORM\Association\HasMany      $Feedbacks
- * @property \App\Model\Table\GeneralsTable|\Cake\ORM\Association\HasMany       $Generals
- * @property \App\Model\Table\JobsTable|\Cake\ORM\Association\HasMany           $Jobs
- * @property \App\Model\Table\MessagesTable|\Cake\ORM\Association\HasMany       $Messages
- * @property \App\Model\Table\OrganizersTable|\Cake\ORM\Association\HasMany     $Organizers
- * @property \App\Model\Table\StudiosTable|\Cake\ORM\Association\HasMany        $Studios
- * @property \App\Model\Table\TeamGroupsTable|\Cake\ORM\Association\HasMany     $TeamGroups
- * @property \App\Model\Table\TeamsTable|\Cake\ORM\Association\HasMany          $Teams
- * @property \App\Model\Table\GroupsTable|\Cake\ORM\Association\BelongsTo       $Groups
+ * @property \App\Model\Table\CircleGroupsTable|\Cake\ORM\Association\HasMany    $CircleGroups
+ * @property \App\Model\Table\CircleMessagesTable|\Cake\ORM\Association\HasMany  $CircleMessages
+ * @property \App\Model\Table\CirclesTable|\Cake\ORM\Association\HasMany         $Circles
+ * @property \App\Model\Table\DanceMusicsTable|\Cake\ORM\Association\HasMany     $DanceMusics
+ * @property \App\Model\Table\DanceVideosTable|\Cake\ORM\Association\HasMany     $DanceVideos
+ * @property \App\Model\Table\DancersTable|\Cake\ORM\Association\HasMany         $Dancers
+ * @property \App\Model\Table\EventEntriesTable|\Cake\ORM\Association\HasMany    $EventEntries
+ * @property \App\Model\Table\EventsTable|\Cake\ORM\Association\HasMany          $Events
+ * @property \App\Model\Table\FeedbacksTable|\Cake\ORM\Association\HasMany       $Feedbacks
+ * @property \App\Model\Table\GeneralsTable|\Cake\ORM\Association\HasMany        $Generals
+ * @property \App\Model\Table\JobsTable|\Cake\ORM\Association\HasMany            $Jobs
+ * @property \App\Model\Table\MessagesTable|\Cake\ORM\Association\HasMany        $Messages
+ * @property \App\Model\Table\OrganizersTable|\Cake\ORM\Association\HasMany      $Organizers
+ * @property \App\Model\Table\StudiosTable|\Cake\ORM\Association\HasMany         $Studios
+ * @property \App\Model\Table\StudioSchedulesTable|\Cake\ORM\Association\HasMany $StudioSchedules
+ * @property \App\Model\Table\TeamGroupsTable|\Cake\ORM\Association\HasMany      $TeamGroups
+ * @property \App\Model\Table\TeamsTable|\Cake\ORM\Association\HasMany           $Teams
+ * @property \App\Model\Table\GroupsTable|\Cake\ORM\Association\BelongsTo        $Groups
  *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
  * @method \App\Model\Entity\User newEntity($data = null, array $options = [])
@@ -104,6 +105,9 @@ class UsersTable extends Table
             'foreignKey' => 'user_id'
         ]);
         $this->hasMany('Studios', [
+            'foreignKey' => 'user_id'
+        ]);
+        $this->hasMany('StudioSchedules', [
             'foreignKey' => 'user_id'
         ]);
         $this->hasMany('TeamGroups', [

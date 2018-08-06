@@ -80,6 +80,7 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.2 controllers/DanceMusics',
             'bin/cake acl grant Groups.2 controllers/RecommendMusics',
             'bin/cake acl grant Groups.2 controllers/RecommendVideos',
+            'bin/cake acl grant Groups.2 controllers/StudioSchedules',
 
             // Organizers
             'bin/cake acl deny Groups.3 controllers',
