@@ -182,7 +182,7 @@ class StudiosController extends AppController
     public function publicView($id = null)
     {
         $this->viewBuilder()->setLayout('public');
-        $studio = $this->Studios->findByUserId($id)->contain(['Users'])->first();
+        $studio = $this->Studios->findByUserIdAndPublicFlag($id, 0)->contain(['Users'])->first();
 
         if ($studio) {
             $studio['youtube'] = $this->Common->getYoutubeId($studio['youtube']);
