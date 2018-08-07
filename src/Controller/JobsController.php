@@ -105,7 +105,7 @@ class JobsController extends AppController
      */
     public function view($id = null)
     {
-        $job = $this->Jobs->get($id, ['contain' => ['Users']]);
+        $job = $this->Jobs->findByIdAndDeleteFlag($id, 0)->contain(['Users'])->first();
 
         if ($job) {
             // オーナー検索
