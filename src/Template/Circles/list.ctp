@@ -125,32 +125,42 @@
                             ?>
                         </div>
                         <div class="col-lg-9 col-md-12 col-xs-12">
-                            <?= $this->Html->link($group->circle->name,
-                                ['action' => 'view', h($group->circle_id)],
-                                [
-                                    'data-toggle'    => 'tooltip',
-                                    'data-placement' => 'bottom',
-                                    'title'          => 'サークル詳細',
-                                ]
-                            ) ?>
+                            <?php
+                                if ($group->circle->delete_flag === 1) {
+                                    print h($group->circle->name) . 'は削除されました。';
+                                } else {
+                                    print $this->Html->link($group->circle->name,
+                                        ['action' => 'view', h($group->circle_id)],
+                                        [
+                                            'data-toggle'    => 'tooltip',
+                                            'data-placement' => 'bottom',
+                                            'title'          => 'サークル詳細',
+                                        ]
+                                    );
+                                }
+                            ?>
                         </div>
                     </div>
                 </td>
                 <td><?= h($group->created) ?></td>
                 <td>
                     <div class="row text-center">
-                        <div class="col-lg-6 col-md-6 col-xs-12">
-                            <?= $this->Html->link('<i class="fa fa-home fa-lg" aria-hidden="true"></i>',
-                                ['action' => 'home', h($group->circle_id)],
-                                [
-                                    'data-toggle'    => 'tooltip',
-                                    'data-placement' => 'bottom',
-                                    'title'          => 'サークルホーム',
-                                    'escape' => false
-                                ]
-                            ) ?>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-xs-12">
+                        <?php if ($group->circle->delete_flag !== 1) : ?>
+                            <div class="col-lg-6 col-md-6 col-xs-12">
+                                <?= $this->Html->link('<i class="fa fa-home fa-lg" aria-hidden="true"></i>',
+                                    ['action' => 'home', h($group->circle_id)],
+                                    [
+                                        'data-toggle'    => 'tooltip',
+                                        'data-placement' => 'bottom',
+                                        'title'          => 'サークルホーム',
+                                        'escape' => false
+                                    ]
+                                ) ?>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-xs-12">
+                        <?php else : ?>
+                            <div class="col-lg-12">
+                        <?php endif; ?>
                             <?= $this->Form->postLink('<i class="fa fa-close fa-lg" aria-hidden="true"></i>',
                                 ['controller' => 'CircleGroups', 'action' => 'delete', h($group->id)],
                                 [

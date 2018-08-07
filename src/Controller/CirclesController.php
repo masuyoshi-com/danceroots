@@ -59,10 +59,8 @@ class CirclesController extends AppController
             // 登録済みサークル
             $circles = $this->Circles->findByUserIdAndDeleteFlag($id, 0)->all();
 
-            // 参加済みサークル
-            $circle_groups = $this->Circles->CircleGroups->findByUserId($id)->contain('Circles', function ($q) {
-                    return $q->where(['Circles.delete_flag' => 0]);
-            })->all();
+            // 参加済みサークルはサークルが削除されていた場合、サークルを抜けるよう指示。グループ削除促す。
+            $circle_groups = $this->Circles->CircleGroups->findByUserId($id)->contain('Circles')->all();
 
             $this->set(compact('circles', 'circle_groups'));
             $this->set('id', $id);
@@ -81,7 +79,7 @@ class CirclesController extends AppController
      */
     public function home($circle_id = null)
     {
-        $circle = $this->Circles->get($circle_id, ['contain' => ['Users']]);
+        $circle = $this->Circles->findByIdAndDeleteFlag($circle_id, 0)->contain(['Users'])->first();
 
         if ($circle) {
 
@@ -178,7 +176,7 @@ class CirclesController extends AppController
      */
     public function view($id = null)
     {
-        $circle = $this->Circles->get($id, ['contain' => ['Users']]);
+        $circle = $this->Circles->findByIdAndDeleteFlag($id, 0)->contain(['Users'])->first();
 
         if ($circle) {
 

@@ -33,7 +33,7 @@ class CircleMessagesController extends AppController
      */
     public function index($circle_id = null)
     {
-        $circle = $this->CircleMessages->Circles->get($circle_id);
+        $circle = $this->CircleMessages->Circles->findByIdAndDeleteFlag($circle_id, 0)->first();
 
         if ($circle) {
 
