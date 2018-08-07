@@ -187,7 +187,7 @@ class DancersController extends AppController
     public function publicView($id = null)
     {
         $this->viewBuilder()->setLayout('public');
-        $dancer = $this->Dancers->findByUserId($id)->contain(['Users'])->first();
+        $dancer = $this->Dancers->findByUserIdAndPublicFlag($id, 0)->contain(['Users'])->first();
 
         if ($dancer) {
             // Youtube動画IDのみを取得
