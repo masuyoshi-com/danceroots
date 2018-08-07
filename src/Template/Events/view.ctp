@@ -312,7 +312,7 @@
             </div><!-- /.card-body -->
         </section>
 
-        <?php if (AD === 1) : ?>
+        <?php if (AD === 0) : ?>
         <div class="card card-body mb-3">
             <div class="row">
                 <div class="col-lg-12 text-center">

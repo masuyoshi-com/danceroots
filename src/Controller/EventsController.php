@@ -158,7 +158,7 @@ class EventsController extends AppController
      */
     public function view($id = null)
     {
-        $event = $this->Events->get($id, ['contain' => ['Users']]);
+        $event = $this->Events->findByIdAndDeleteFlag($id, 0)->contain(['Users'])->first();
 
         if ($event) {
             $event['youtube'] = $this->Common->getYoutubeId($event['youtube']);
@@ -188,7 +188,7 @@ class EventsController extends AppController
     public function publicView($id = null)
     {
         $this->viewBuilder()->setLayout('public');
-        $event = $this->Events->get($id, ['contain' => ['Users']]);
+        $event = $this->Events->findByIdAndDeleteFlagAndPublicFlag($id, 0, 0)->contain(['Users'])->first();
 
         if ($event) {
             $event['youtube'] = $this->Common->getYoutubeId($event['youtube']);
