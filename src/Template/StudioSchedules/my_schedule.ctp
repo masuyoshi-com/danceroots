@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'スタジオレッスンスケジュール一覧'); ?>
+<?php $this->assign('title', 'マイ レッスンスケジュール一覧'); ?>
 
 <div class="row">
     <div class="col-lg-12 col-md-12 mb-2">
@@ -8,6 +8,16 @@
         <hr class="my-2">
     </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
+
+<div class="row">
+    <div class="col-lg-12">
+        <p>
+            <?= $this->Html->link('<i class="fa fa-plus"></i> スケジュール登録', ['controller' => 'StudioSchedules', 'action' => 'add'],
+                ['class' => 'btn btn-sm btn-primary', 'escape' => false]
+            ) ?>
+        </p>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-lg-12">
@@ -172,6 +182,36 @@
                                         <hr>
                                         <p class="font-weight-bold m-0"><?= h($suns[$times[$i]]['start']) ?> ～ <?= h($suns[$times[$i]]['end']) ?></p>
                                         <p class="m-0"><?= h($suns[$times[$i]]['difficulty']) ?></p>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-lx-6 col-md-6 col-xs-12">
+                                                <p class="m-0">
+                                                    <?= $this->Html->link('<i class="fa fa-lg fa-edit indigo-text" aria-hidden="true"></i>',
+                                                        ['controller' => 'StudioSchedules', 'action' => 'edit', $suns[$times[$i]]['id']],
+                                                        [
+                                                            'data-toggle'    => 'tooltip',
+                                                            'data-placement' => 'bottom',
+                                                            'title'          => '編集',
+                                                            'escape'         => false
+                                                        ])
+                                                    ?>
+                                                </p>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-xs-12">
+                                                <p class="m-0">
+                                                    <?= $this->Form->postLink('<i class="fa fa-lg fa-trash red-text" aria-hidden="true"></i>',
+                                                        ['controller' => 'StudioSchedules', 'action' => 'delete', $suns[$times[$i]]['id']],
+                                                        [
+                                                            'data-toggle'    => 'tooltip',
+                                                            'data-placement' => 'bottom',
+                                                            'title'          => '削除',
+                                                            'escape'         => false,
+                                                            'confirm'        => 'スケジュールを削除します。よろしいですか？'
+                                                        ])
+                                                    ?>
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </td>
                             <?php elseif ($suns[$times[$i]] !== 1) : ?>
@@ -310,7 +350,37 @@
                                         <hr>
                                         <p class="font-weight-bold m-0"><?= h($mons[$times[$i]]['start']) ?> ～ <?= h($mons[$times[$i]]['end']) ?></p>
                                         <p class="m-0"><?= h($mons[$times[$i]]['difficulty']) ?></p>
-                                    </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-lx-6 col-md-6 col-xs-12">
+                                                <p class="m-0">
+                                                    <?= $this->Html->link('<i class="fa fa-lg fa-edit indigo-text" aria-hidden="true"></i>',
+                                                        ['controller' => 'StudioSchedules', 'action' => 'edit', $mons[$times[$i]]['id']],
+                                                        [
+                                                            'data-toggle'    => 'tooltip',
+                                                            'data-placement' => 'bottom',
+                                                            'title'          => '編集',
+                                                            'escape'         => false
+                                                        ])
+                                                    ?>
+                                                </p>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-xs-12">
+                                                <p class="m-0">
+                                                    <?= $this->Form->postLink('<i class="fa fa-lg fa-trash red-text" aria-hidden="true"></i>',
+                                                        ['controller' => 'StudioSchedules', 'action' => 'delete', $mons[$times[$i]]['id']],
+                                                        [
+                                                            'data-toggle'    => 'tooltip',
+                                                            'data-placement' => 'bottom',
+                                                            'title'          => '削除',
+                                                            'escape'         => false,
+                                                            'confirm'        => 'スケジュールを削除します。よろしいですか？'
+                                                        ])
+                                                    ?>
+                                                </p>
+                                            </div>
+                                        </div><!-- /.row -->
+                                    </div><!-- /.card -->
                                 </td>
                             <?php elseif ($mons[$times[$i]] !== 1) : ?>
                                 <td></td>
@@ -448,7 +518,37 @@
                                         <hr>
                                         <p class="font-weight-bold m-0"><?= h($tues[$times[$i]]['start']) ?> ～ <?= h($tues[$times[$i]]['end']) ?></p>
                                         <p class="m-0"><?= h($tues[$times[$i]]['difficulty']) ?></p>
-                                    </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-lx-6 col-md-6 col-xs-12">
+                                                <p class="m-0">
+                                                    <?= $this->Html->link('<i class="fa fa-lg fa-edit indigo-text" aria-hidden="true"></i>',
+                                                        ['controller' => 'StudioSchedules', 'action' => 'edit', $tues[$times[$i]]['id']],
+                                                        [
+                                                            'data-toggle'    => 'tooltip',
+                                                            'data-placement' => 'bottom',
+                                                            'title'          => '編集',
+                                                            'escape'         => false
+                                                        ])
+                                                    ?>
+                                                </p>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-xs-12">
+                                                <p class="m-0">
+                                                    <?= $this->Form->postLink('<i class="fa fa-lg fa-trash red-text" aria-hidden="true"></i>',
+                                                        ['controller' => 'StudioSchedules', 'action' => 'delete', $tues[$times[$i]]['id']],
+                                                        [
+                                                            'data-toggle'    => 'tooltip',
+                                                            'data-placement' => 'bottom',
+                                                            'title'          => '削除',
+                                                            'escape'         => false,
+                                                            'confirm'        => 'スケジュールを削除します。よろしいですか？'
+                                                        ])
+                                                    ?>
+                                                </p>
+                                            </div>
+                                        </div><!-- /.row -->
+                                    </div><!-- /.card -->
                                 </td>
                             <?php elseif ($tues[$times[$i]] !== 1) : ?>
                                 <td></td>
@@ -586,7 +686,37 @@
                                         <hr>
                                         <p class="font-weight-bold m-0"><?= h($weds[$times[$i]]['start']) ?> ～ <?= h($weds[$times[$i]]['end']) ?></p>
                                         <p class="m-0"><?= h($weds[$times[$i]]['difficulty']) ?></p>
-                                    </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-lx-6 col-md-6 col-xs-12">
+                                                <p class="m-0">
+                                                    <?= $this->Html->link('<i class="fa fa-lg fa-edit indigo-text" aria-hidden="true"></i>',
+                                                        ['controller' => 'StudioSchedules', 'action' => 'edit', $weds[$times[$i]]['id']],
+                                                        [
+                                                            'data-toggle'    => 'tooltip',
+                                                            'data-placement' => 'bottom',
+                                                            'title'          => '編集',
+                                                            'escape'         => false
+                                                        ])
+                                                    ?>
+                                                </p>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-xs-12">
+                                                <p class="m-0">
+                                                    <?= $this->Form->postLink('<i class="fa fa-lg fa-trash red-text" aria-hidden="true"></i>',
+                                                        ['controller' => 'StudioSchedules', 'action' => 'delete', $weds[$times[$i]]['id']],
+                                                        [
+                                                            'data-toggle'    => 'tooltip',
+                                                            'data-placement' => 'bottom',
+                                                            'title'          => '削除',
+                                                            'escape'         => false,
+                                                            'confirm'        => 'スケジュールを削除します。よろしいですか？'
+                                                        ])
+                                                    ?>
+                                                </p>
+                                            </div>
+                                        </div><!-- /.row -->
+                                    </div><!-- /.card -->
                                 </td>
                             <?php elseif ($weds[$times[$i]] !== 1) : ?>
                                 <td></td>
@@ -724,7 +854,37 @@
                                         <hr>
                                         <p class="font-weight-bold m-0"><?= h($thus[$times[$i]]['start']) ?> ～ <?= h($thus[$times[$i]]['end']) ?></p>
                                         <p class="m-0"><?= h($thus[$times[$i]]['difficulty']) ?></p>
-                                    </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-lx-6 col-md-6 col-xs-12">
+                                                <p class="m-0">
+                                                    <?= $this->Html->link('<i class="fa fa-lg fa-edit indigo-text" aria-hidden="true"></i>',
+                                                        ['controller' => 'StudioSchedules', 'action' => 'edit', $thus[$times[$i]]['id']],
+                                                        [
+                                                            'data-toggle'    => 'tooltip',
+                                                            'data-placement' => 'bottom',
+                                                            'title'          => '編集',
+                                                            'escape'         => false
+                                                        ])
+                                                    ?>
+                                                </p>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-xs-12">
+                                                <p class="m-0">
+                                                    <?= $this->Form->postLink('<i class="fa fa-lg fa-trash red-text" aria-hidden="true"></i>',
+                                                        ['controller' => 'StudioSchedules', 'action' => 'delete', $thus[$times[$i]]['id']],
+                                                        [
+                                                            'data-toggle'    => 'tooltip',
+                                                            'data-placement' => 'bottom',
+                                                            'title'          => '削除',
+                                                            'escape'         => false,
+                                                            'confirm'        => 'スケジュールを削除します。よろしいですか？'
+                                                        ])
+                                                    ?>
+                                                </p>
+                                            </div>
+                                        </div><!-- /.row -->
+                                    </div><!-- /.card -->
                                 </td>
                             <?php elseif ($thus[$times[$i]] !== 1) : ?>
                                 <td></td>
@@ -862,7 +1022,37 @@
                                         <hr>
                                         <p class="font-weight-bold m-0"><?= h($fris[$times[$i]]['start']) ?> ～ <?= h($fris[$times[$i]]['end']) ?></p>
                                         <p class="m-0"><?= h($fris[$times[$i]]['difficulty']) ?></p>
-                                    </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-lx-6 col-md-6 col-xs-12">
+                                                <p class="m-0">
+                                                    <?= $this->Html->link('<i class="fa fa-lg fa-edit indigo-text" aria-hidden="true"></i>',
+                                                        ['controller' => 'StudioSchedules', 'action' => 'edit', $fris[$times[$i]]['id']],
+                                                        [
+                                                            'data-toggle'    => 'tooltip',
+                                                            'data-placement' => 'bottom',
+                                                            'title'          => '編集',
+                                                            'escape'         => false
+                                                        ])
+                                                    ?>
+                                                </p>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-xs-12">
+                                                <p class="m-0">
+                                                    <?= $this->Form->postLink('<i class="fa fa-lg fa-trash red-text" aria-hidden="true"></i>',
+                                                        ['controller' => 'StudioSchedules', 'action' => 'delete', $fris[$times[$i]]['id']],
+                                                        [
+                                                            'data-toggle'    => 'tooltip',
+                                                            'data-placement' => 'bottom',
+                                                            'title'          => '削除',
+                                                            'escape'         => false,
+                                                            'confirm'        => 'スケジュールを削除します。よろしいですか？'
+                                                        ])
+                                                    ?>
+                                                </p>
+                                            </div>
+                                        </div><!-- /.row -->
+                                    </div><!-- /.card -->
                                 </td>
                             <?php elseif ($fris[$times[$i]] !== 1) : ?>
                                 <td></td>
@@ -1000,7 +1190,37 @@
                                         <hr>
                                         <p class="font-weight-bold m-0"><?= h($sats[$times[$i]]['start']) ?> ～ <?= h($sats[$times[$i]]['end']) ?></p>
                                         <p class="m-0"><?= h($sats[$times[$i]]['difficulty']) ?></p>
-                                    </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-lx-6 col-md-6 col-xs-12">
+                                                <p class="m-0">
+                                                    <?= $this->Html->link('<i class="fa fa-lg fa-edit indigo-text" aria-hidden="true"></i>',
+                                                        ['controller' => 'StudioSchedules', 'action' => 'edit', $sats[$times[$i]]['id']],
+                                                        [
+                                                            'data-toggle'    => 'tooltip',
+                                                            'data-placement' => 'bottom',
+                                                            'title'          => '編集',
+                                                            'escape'         => false
+                                                        ])
+                                                    ?>
+                                                </p>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-xs-12">
+                                                <p class="m-0">
+                                                    <?= $this->Form->postLink('<i class="fa fa-lg fa-trash red-text" aria-hidden="true"></i>',
+                                                        ['controller' => 'StudioSchedules', 'action' => 'delete', $sats[$times[$i]]['id']],
+                                                        [
+                                                            'data-toggle'    => 'tooltip',
+                                                            'data-placement' => 'bottom',
+                                                            'title'          => '削除',
+                                                            'escape'         => false,
+                                                            'confirm'        => 'スケジュールを削除します。よろしいですか？'
+                                                        ])
+                                                    ?>
+                                                </p>
+                                            </div>
+                                        </div><!-- /.row -->
+                                    </div><!-- /.card -->
                                 </td>
                             <?php elseif ($sats[$times[$i]] !== 1) : ?>
                                 <td></td>

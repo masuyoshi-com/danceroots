@@ -93,4 +93,19 @@ class CustomValidation extends Validation
          }
      }
 
+
+     /**
+      * URL内にDanceroots文字列があるか
+      *
+      * @param string $value
+      * @return bool
+      */
+      public static function isDanceroots($value)
+      {
+          if (strpos($value, 'danceroots') !== false) {
+              return true;
+          } else {
+              return false;
+          }
+      }
 }

@@ -24,11 +24,12 @@ class StudioSchedulesFixture extends TestFixture
         'week' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '曜日 0:日', 'precision' => null, 'autoIncrement' => null],
         'start' => ['type' => 'string', 'length' => 30, 'null' => false, 'default' => null, 'collate' => 'utf8mb4_general_ci', 'comment' => '開始時間', 'precision' => null, 'fixed' => null],
         'end' => ['type' => 'string', 'length' => 30, 'null' => false, 'default' => null, 'collate' => 'utf8mb4_general_ci', 'comment' => '終了時間', 'precision' => null, 'fixed' => null],
-        'image' => ['type' => 'string', 'length' => 150, 'null' => false, 'default' => null, 'collate' => 'utf8mb4_general_ci', 'comment' => 'インストラクター画像', 'precision' => null, 'fixed' => null],
-        'youtube' => ['type' => 'string', 'length' => 100, 'null' => false, 'default' => null, 'collate' => 'utf8mb4_general_ci', 'comment' => 'youtube動画', 'precision' => null, 'fixed' => null],
-        'profile' => ['type' => 'string', 'length' => 100, 'null' => false, 'default' => null, 'collate' => 'utf8mb4_general_ci', 'comment' => 'dancerootsプロフィールURL', 'precision' => null, 'fixed' => null],
-        'created' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '登録日', 'precision' => null],
-        'modified' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '更新日', 'precision' => null],
+        'image' => ['type' => 'string', 'length' => 150, 'null' => true, 'default' => null, 'collate' => 'utf8mb4_general_ci', 'comment' => 'インストラクター画像', 'precision' => null, 'fixed' => null],
+        'youtube' => ['type' => 'string', 'length' => 100, 'null' => true, 'default' => null, 'collate' => 'utf8mb4_general_ci', 'comment' => 'youtube動画', 'precision' => null, 'fixed' => null],
+        'profile' => ['type' => 'string', 'length' => 100, 'null' => true, 'default' => null, 'collate' => 'utf8mb4_general_ci', 'comment' => 'dancerootsプロフィールURL', 'precision' => null, 'fixed' => null],
+        'comment' => ['type' => 'string', 'length' => 255, 'null' => true, 'default' => null, 'collate' => 'utf8mb4_general_ci', 'comment' => 'コメント', 'precision' => null, 'fixed' => null],
+        'created' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '登録日', 'precision' => null],
+        'modified' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '更新日', 'precision' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
         ],
@@ -58,8 +59,9 @@ class StudioSchedulesFixture extends TestFixture
                 'image' => 'Lorem ipsum dolor sit amet',
                 'youtube' => 'Lorem ipsum dolor sit amet',
                 'profile' => 'Lorem ipsum dolor sit amet',
-                'created' => '2018-08-06 14:45:43',
-                'modified' => '2018-08-06 14:45:43'
+                'comment' => 'Lorem ipsum dolor sit amet',
+                'created' => '2018-08-07 11:31:21',
+                'modified' => '2018-08-07 11:31:21'
             ],
         ];
         parent::init();
