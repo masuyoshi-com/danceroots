@@ -60,23 +60,26 @@
             <div class="view overlay">
                 <?php
                     if ($studio->image1) {
-                        print $this->Html->image($studio->image1, ['class' => 'img-fluid']);
+                        print $this->Html->link($this->Html->image($studio->image1, ['class' => 'img-fluid']),
+                            ['controller' => 'Studios', 'action' => 'view', $studio->user_id],
+                            ['escape' => false]
+                        );
                     } elseif ($studio->icon) {
                         print '
                             <div class="card-up indigo lighten-1">
                             </div>
                             <!-- Avatar -->
                             <div class="avatar mx-auto white">
-                                ' . $this->Html->image(h($studio->icon), ['class' => 'rounded-circle']) . '
+                                ' . $this->Html->link($this->Html->image($studio->icon, ['class' => 'rounded-circle']),
+                                    ['controller' => 'Studios', 'action' => 'view', $studio->user_id],
+                                    ['escape' => false]
+                                ) . '
                             </div>
                         ';
                     } else {
                         print $this->Html->image('/img/sample/noimage-600x360.jpg', ['class' => 'img-fluid']);
                     }
                 ?>
-                <a>
-                    <div class="mask rgba-white-slight"></div>
-                </a>
             </div>
             <div class="card-body">
                 <p>
