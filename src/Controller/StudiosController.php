@@ -193,6 +193,11 @@ class StudiosController extends AppController
 
             // ユーザ区分をカテゴリ名で取得
             $studio['user']['classification'] = $this->Common->getCategoryName($studio['user']['classification']);
+            // スタジオスケジュールが存在するか
+            $this->loadModel('StudioSchedules');
+            $schedule_count = $this->StudioSchedules->findByUserId($studio->user_id)->count();
+
+            $this->set('schedule', $schedule_count);
             $this->set('studio', $studio);
         } else {
             throw new NotFoundException(__('404 ページが見つかりません。'));

@@ -35,6 +35,18 @@ class StudioSchedulesController extends AppController
 
 
     /**
+     * 初期化メソッド
+     *
+     * @return void
+     */
+    public function initialize()
+    {
+        parent::initialize();
+        $this->Auth->allow(['public']);
+    }
+
+
+    /**
      * スタジオレッスンスケジュール一覧
      * @todo 曜日全体のクエリ処理が重ければ、最初にカウントがあるものだけをループすることを検討する
      *
@@ -47,6 +59,51 @@ class StudioSchedulesController extends AppController
         // スタジオプロフィール取得
         $this->loadModel('Studios');
         $studio = $this->Studios->findByUserId($id)->contain(['Users'])->first();
+
+        if ($studio) {
+            // 各曜日スケジュールをセレクト。$times配列の時間系列にスケジュールの開始時間を合わせる
+            for ($i = 0; $i < count($this->times); $i++) {
+
+                for ($j = 0; $j < count($this->val_weeks); $j++) {
+                    ${$this->val_weeks[$j]}[$this->times[$i]] = $this->StudioSchedules->findByUserIdAndWeekAndStart($id, $j, $this->times[$i])->first();
+
+                    if (is_null(${$this->val_weeks[$j]}[$this->times[$i]])) {
+                        ${$this->val_weeks[$j]}[$this->times[$i]] = $this->StudioSchedules->findByUserIdAndWeek($id, $j)
+                            ->where(function (QueryExpression $exp, Query $q) use ($i) {
+                                return $exp->like('zone', '%' . $this->times[$i] . '%');
+                            })
+                            ->count();
+                    } else {
+                        // YouTubeID取得
+                        ${$this->val_weeks[$j]}[$this->times[$i]]['youtube'] = $this->Common->getYoutubeId(${$this->val_weeks[$j]}[$this->times[$i]]['youtube']);
+                    }
+                }
+            }
+
+            $this->set('studio', $studio);
+            $this->set(compact('suns', 'mons', 'tues', 'weds', 'thus', 'fris', 'sats'));
+            $this->set('times', $this->times);
+        } else {
+            throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
+        }
+    }
+
+
+    /**
+     * 一般公開スタジオレッスンスケジュール一覧
+     *
+     * @param string $id ユーザーID
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Network\Exception\NotFoundException スタジオが存在しない場合
+     */
+    public function public($id)
+    {
+        $this->viewBuilder()->setLayout('public');
+
+        // スタジオプロフィール取得
+        $this->loadModel('Studios');
+        // 一般公開を許可しているスタジオのみ検索
+        $studio = $this->Studios->findByUserIdAndPublicFlag($id, 0)->contain(['Users'])->first();
 
         if ($studio) {
             // 各曜日スケジュールをセレクト。$times配列の時間系列にスケジュールの開始時間を合わせる

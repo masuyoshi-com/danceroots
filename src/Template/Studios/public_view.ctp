@@ -149,6 +149,23 @@
                 <?php endif; ?>
             </div><!-- /.card-body -->
         </section>
+        <?php if ($schedule !== 0) : ?>
+            <div class="card card-image mb-3" style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
+                <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+                    <div>
+                        <h5 class="pink-text"><i class="fa fa-calendar" aria-hidden="true"></i> LessonSchedule</h5>
+                        <h3 class="card-title pt-2"><strong>レッスンスケジュール</strong></h3>
+                        <p>
+                            レッスンスケジュールを確認しましょう。各ダンスインストラクターの簡易プロフィールも参照できます。
+                        </p>
+                        <?= $this->Html->link('<i class="fa fa-clone left"></i> View Schedule',
+                            ['controller' => 'StudioSchedules', 'action' => 'public', $studio->user_id],
+                            ['class' => 'btn btn-pink', 'escape' => false]
+                        ) ?>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
     </div><!-- /.col-lg-4 -->
 
     <div class="col-lg-8 col-md-12 mb-3">
