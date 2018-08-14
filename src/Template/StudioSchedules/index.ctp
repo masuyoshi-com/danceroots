@@ -1,25 +1,99 @@
 <?php $this->assign('title', 'スタジオレッスンスケジュール一覧'); ?>
 
 <div class="row">
-    <div class="col-lg-12 col-md-12 mb-2">
-        <h5 class="h5-responsive font-weight-bold mb-0">
-            <i class="fa fa-calendar" aria-hidden="true"></i>  Lesson Schedules
-        </h5>
-        <hr class="my-2">
+    <div class="col-lg-12">
+        <div class="jumbotron p-5 text-center text-md-left author-box">
+            <h3 class="h3-responsive text-center font-weight-bold dark-grey-text">
+                <?= h($studio->studio_name) ?>
+            </h3>
+            <p class="text-center m-0">
+                <i class="fa fa-calendar" aria-hidden="true"></i>  LessonSchedule
+            </p>
+            <hr>
+            <div class="row">
+                <div class="col-12 col-md-2 mb-md-0 mb-4">
+                    <?php
+                        if ($studio->icon) {
+                            print $this->Html->image($studio->icon, ['class' => 'img-fluid rounded-circle z-depth-2 avatar']);
+                        } else {
+                            print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'img-fluid rounded-circle z-depth-2 avatar']);
+                        }
+                    ?>
+                </div>
+                <div class="col-12 col-md-10">
+                    <h5 class="font-weight-bold mb-3">
+                        <strong>
+                            <?= h($studio->username) ?>
+                        </strong>
+                    </h5>
+
+                    <?php if ($studio->facebook || $studio->twitter || $studio->instagram) : ?>
+                        <div class="personal-sm pb-3">
+                            <?php
+                                if ($studio->facebook) {
+                                    print $this->Html->link('<i class="fa fa-facebook pr-2 mr-2 fb-ic fa-lg" area-hidden="true"></i>',
+                                        h($studio->facebook),
+                                            [
+                                                'data-toggle'    => 'tooltip',
+                                                'data-placement' => 'bottom',
+                                                'title'          => 'Facebook',
+                                                'target'         => '_blank',
+                                                'escape'         => false
+                                            ]
+                                    );
+                                }
+                            ?>
+                            <?php
+                                if ($studio->twitter) {
+                                    print $this->Html->link('<i class="fa fa-twitter pr-2 mr-2 tw-ic fa-lg" area-hidden="true"></i>',
+                                        h($studio->twitter),
+                                            [
+                                                'data-toggle'    => 'tooltip',
+                                                'data-placement' => 'bottom',
+                                                'title'          => 'Twitter',
+                                                'target'         => '_blank',
+                                                'escape'         => false
+                                            ]
+                                    );
+                                }
+                            ?>
+                            <?php
+                                if ($studio->instagram) {
+                                    print $this->Html->link('<i class="fa fa-instagram pr-2 mr-2 ins-ic fa-lg" area-hidden="true"></i>',
+                                        h($studio->instagram),
+                                            [
+                                                'data-toggle'    => 'tooltip',
+                                                'data-placement' => 'bottom',
+                                                'title'          => 'Instagram',
+                                                'target'         => '_blank',
+                                                'escape'         => false
+                                            ]
+                                    );
+                                }
+                            ?>
+                        </div>
+                        <hr>
+                    <?php endif; ?>
+                    <p>
+                        <?= h($studio->self_intro) ?>
+                    </p>
+                    <p class="mb-0">
+                        <?= $this->Html->link('プロフィール',
+                            ['controller' => 'Studios', 'action' => 'view', $studio->user_id],
+                            ['class' => 'btn btn-pink btn-sm']
+                        ) ?>
+                    </p>
+                </div><!-- /.col-12 -->
+            </div><!-- /.row -->
+        </div><!-- /.jumbotron -->
     </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
 
-<div class="row">
-    <div class="col-lg-12">
-        <?= $this->Flash->render() ?>
-    </div>
-</div>
-
-<div class="card card-body mb-3">
+<div class="card card-body mb-3 none">
     <div class="row">
         <div class="col-lg-12">
             <table class="table table-bordered">
-                <thead>
+                <thead class="blue-gradient white-text">
                     <tr class="text-center">
                         <th style="width: 5.5%;"></th>
                         <th class="font-weight-bold" style="width: 13.5%;">SUN</th>
@@ -36,7 +110,7 @@
                     <?php for ($i = 0; $i < count($times); $i++) : ?>
                         <tr>
                             <!-- 時刻 -->
-                            <td class="font-weight-bold"><?= $times[$i] ?></td>
+                            <td class="font-weight-bold grey lighten-5"><?= $times[$i] ?></td>
 
                             <!-- 日 -->
                             <!-- 指定時間に登録があるか -->
@@ -1012,6 +1086,1003 @@
         </div><!-- /.col-lg-12 -->
     </div><!-- /.row -->
 </div><!-- /.card -->
+
+<div class="xs-show">
+    <div class="card card-body">
+        <ul class="nav md-pills nav-justified pills-secondary">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#panel1" role="tab">日</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#panel2" role="tab">月</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#panel3" role="tab">火</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#panel4" role="tab">水</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#panel5" role="tab">木</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#panel6" role="tab">金</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#panel7" role="tab">土</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="tab-content">
+        <!-- 日 -->
+        <div class="tab-pane fade in show active" id="panel1" role="tabpanel">
+            <?php for ($i = 0; $i < count($times); $i++) : ?>
+                <?php if (isset($suns[$times[$i]]['id'])) : ?>
+                    <!-- modal -->
+                    <div class="modal fade instructor" id="xs--sun--instructor<?= $i ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body pt-4 pb-4">
+
+                                    <div class="d-flex">
+                                        <div class="p-0">
+                                            <h6 class="font-weight-bold m-3">
+                                                <i class="fa fa-universal-access indigo-text" aria-hidden="true"></i> Instructor Information
+                                            </h6>
+                                        </div>
+                                        <div class="ml-auto pt-3 pr-2">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <hr class="mt-0">
+                                    <div class="row">
+                                        <div class="col-lg-5 text-center">
+                                            <h3>
+                                                <?php
+                                                    if ($suns[$times[$i]]['image']) {
+                                                        print $this->Html->image($suns[$times[$i]]['image'], ['class' => 'img-fluid z-depth-2']);
+                                                    } else {
+                                                        print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'img-fluid']);
+                                                    }
+                                                ?>
+                                            </h3>
+                                        </div>
+                                        <div class="col-lg-7 text-center">
+                                            <h2 class="h2-responsive product-name mt-3">
+                                              <strong><?= h($suns[$times[$i]]['name']) ?></strong>
+                                            </h2>
+                                            <?php if ($suns[$times[$i]]['team']) : ?>
+                                                <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($suns[$times[$i]]['team']) ?></h3>
+                                            <?php endif; ?>
+                                            <p>
+                                                <small>ジャンル: <strong><?= h($suns[$times[$i]]['genre']) ?></strong></small>
+                                            </p>
+                                            <p class="font-weight-bold">
+                                                <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($suns[$times[$i]]['start']) ?> ～ <?= h($suns[$times[$i]]['end']) ?>
+                                            </p>
+                                            <p>
+                                                <small><?= h($suns[$times[$i]]['difficulty']) ?></small>
+                                            </p>
+                                            <?php if ($suns[$times[$i]]['comment'] || $suns[$times[$i]]['profile']) : ?>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <?php if ($suns[$times[$i]]['comment']) : ?>
+                                                            <p class="dark-grey-text">
+                                                                <small>
+                                                                    <?= h($suns[$times[$i]]['comment']) ?>
+                                                                </small>
+                                                            </p>
+                                                        <?php endif; ?>
+                                                        <?php if ($suns[$times[$i]]['profile']) : ?>
+                                                            <p>
+                                                                <?= $this->Html->link('プロフィール詳細', $suns[$times[$i]]['profile'],
+                                                                    ['class' => 'btn btn-sm btn-rounded btn-default waves-effect', 'target' => '_blank', 'escape' => false]
+                                                                ) ?>
+                                                            </p>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                </div><!-- /.row -->
+                                            <?php endif; ?>
+                                        </div><!-- /.col-lg-7 -->
+                                    </div><!-- /.row -->
+                                    <?php if ($suns[$times[$i]]['youtube']) : ?>
+                                        <hr class="m-0">
+                                        <div class="row">
+                                            <div class="col-lg-12 p-4">
+                                                <h6 class="font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
+                                                <div class="embed-responsive embed-responsive-16by9">
+                                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($suns[$times[$i]]['youtube']) ?>?rel=0" allowfullscreen></iframe>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
+                                </div><!-- /.modal-body -->
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+
+                        <div class="row mb-2 p-2" style="background-color: white;">
+                            <div class="col-md-12 col-xs-12 text-center">
+                                <p class="mb-1">
+                                    <span class="badge <?= getBadgeColor($suns[$times[$i]]['genre']) ?>"><?= h($suns[$times[$i]]['genre']) ?></span>
+                                </p>
+                                <div class="avatar mx-auto m-2">
+                                    <?php
+                                        if ($suns[$times[$i]]['image']) {
+                                            print $this->Html->link($this->Html->image($suns[$times[$i]]['image'], ['class' => 'img-fluid']), 'javascript:void(0)',
+                                                [
+                                                    'data-toggle' => 'modal',
+                                                    'data-target' => '#xs--sun--instructor' . $i,
+                                                    'escape'      => false
+                                                ]
+                                            );
+                                        } else {
+                                            print $this->Html->link($this->Html->image('/img/sample/no_icon.jpg', ['class' => 'img-fluid']), 'javascript:void(0)',
+                                                [
+                                                    'data-toggle' => 'modal',
+                                                    'data-target' => '#xs--sun--instructor' . $i,
+                                                    'escape'      => false
+                                                ]
+                                            );
+                                        }
+                                    ?>
+                                </div><!-- /.avatar -->
+                                <h6>
+                                    <?= $this->Html->link($suns[$times[$i]]['name'], 'javascript:void(0)',
+                                        [
+                                            'class'       => 'dark-grey-text',
+                                            'data-toggle' => 'modal',
+                                            'data-target' => '#xs--sun--instructor' . $i
+                                        ]
+                                    ) ?>
+
+                                </h6>
+                                <?php if ($suns[$times[$i]]['team']) : ?>
+                                    <p class="dark-grey-text mb-0"><small>team:</small> <?= h($suns[$times[$i]]['team']) ?></p>
+                                <?php endif; ?>
+                                <hr class="m-2">
+                                <p class="font-weight-bold m-0"><?= h($suns[$times[$i]]['start']) ?> ～ <?= h($suns[$times[$i]]['end']) ?></p>
+                                <p class="m-0"><?= h($suns[$times[$i]]['difficulty']) ?></p>
+                            </div><!-- /.col-md-12 -->
+                        </div><!-- /.row -->
+                    <?php endif; ?>
+                <?php endfor; ?>
+            </div><!-- /.tab-pane -->
+
+            <!-- 月 -->
+            <div class="tab-pane fade" id="panel2" role="tabpanel">
+                <?php for ($i = 0; $i < count($times); $i++) : ?>
+                    <?php if (isset($mons[$times[$i]]['id'])) : ?>
+                        <!-- modal -->
+                        <div class="modal fade instructor" id="xs--mon--instructor<?= $i ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body pt-4 pb-4">
+
+                                        <div class="d-flex">
+                                            <div class="p-0">
+                                                <h6 class="font-weight-bold m-3">
+                                                    <i class="fa fa-universal-access indigo-text" aria-hidden="true"></i> Instructor Information
+                                                </h6>
+                                            </div>
+                                            <div class="ml-auto pt-3 pr-2">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <hr class="mt-0">
+                                        <div class="row">
+                                            <div class="col-lg-5 text-center">
+                                                <h3>
+                                                    <?php
+                                                        if ($mons[$times[$i]]['image']) {
+                                                            print $this->Html->image($mons[$times[$i]]['image'], ['class' => 'img-fluid z-depth-2']);
+                                                        } else {
+                                                            print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'img-fluid']);
+                                                        }
+                                                    ?>
+                                                </h3>
+                                            </div>
+                                            <div class="col-lg-7 text-center">
+                                                <h2 class="h2-responsive product-name mt-3">
+                                                  <strong><?= h($mons[$times[$i]]['name']) ?></strong>
+                                                </h2>
+                                                <?php if ($mons[$times[$i]]['team']) : ?>
+                                                    <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($mons[$times[$i]]['team']) ?></h3>
+                                                <?php endif; ?>
+                                                <p>
+                                                    <small>ジャンル: <strong><?= h($mons[$times[$i]]['genre']) ?></strong></small>
+                                                </p>
+                                                <p class="font-weight-bold">
+                                                    <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($mons[$times[$i]]['start']) ?> ～ <?= h($mons[$times[$i]]['end']) ?>
+                                                </p>
+                                                <p>
+                                                    <small><?= h($mons[$times[$i]]['difficulty']) ?></small>
+                                                </p>
+                                                <?php if ($mons[$times[$i]]['comment'] || $mons[$times[$i]]['profile']) : ?>
+                                                    <hr>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <?php if ($mons[$times[$i]]['comment']) : ?>
+                                                                <p class="dark-grey-text">
+                                                                    <small>
+                                                                        <?= h($mons[$times[$i]]['comment']) ?>
+                                                                    </small>
+                                                                </p>
+                                                            <?php endif; ?>
+                                                            <?php if ($mons[$times[$i]]['profile']) : ?>
+                                                                <p>
+                                                                    <?= $this->Html->link('プロフィール詳細', $mons[$times[$i]]['profile'],
+                                                                        ['class' => 'btn btn-sm btn-rounded btn-default waves-effect', 'target' => '_blank', 'escape' => false]
+                                                                    ) ?>
+                                                                </p>
+                                                            <?php endif; ?>
+                                                        </div>
+                                                    </div><!-- /.row -->
+                                                <?php endif; ?>
+                                            </div><!-- /.col-lg-7 -->
+                                        </div><!-- /.row -->
+                                        <?php if ($mons[$times[$i]]['youtube']) : ?>
+                                            <hr class="m-0">
+                                            <div class="row">
+                                                <div class="col-lg-12 p-4">
+                                                    <h6 class="font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
+                                                    <div class="embed-responsive embed-responsive-16by9">
+                                                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($mons[$times[$i]]['youtube']) ?>?rel=0" allowfullscreen></iframe>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div><!-- /.modal-body -->
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+
+                        <div class="row mb-2 p-2" style="background-color: white;">
+                            <div class="col-md-12 col-xs-12 text-center">
+                                <p class="mb-1">
+                                    <span class="badge <?= getBadgeColor($mons[$times[$i]]['genre']) ?>"><?= h($mons[$times[$i]]['genre']) ?></span>
+                                </p>
+                                <div class="avatar mx-auto m-2">
+                                    <?php
+                                        if ($mons[$times[$i]]['image']) {
+                                            print $this->Html->link($this->Html->image($mons[$times[$i]]['image'], ['class' => 'img-fluid']), 'javascript:void(0)',
+                                                [
+                                                    'data-toggle' => 'modal',
+                                                    'data-target' => '#xs--mon--instructor' . $i,
+                                                    'escape'      => false
+                                                ]
+                                            );
+                                        } else {
+                                            print $this->Html->link($this->Html->image('/img/sample/no_icon.jpg', ['class' => 'img-fluid']), 'javascript:void(0)',
+                                                [
+                                                    'data-toggle' => 'modal',
+                                                    'data-target' => '#xs--mon--instructor' . $i,
+                                                    'escape'      => false
+                                                ]
+                                            );
+                                        }
+                                    ?>
+                                </div><!-- /.avatar -->
+                                <h6>
+                                    <?= $this->Html->link($mons[$times[$i]]['name'], 'javascript:void(0)',
+                                        [
+                                            'class'       => 'dark-grey-text',
+                                            'data-toggle' => 'modal',
+                                            'data-target' => '#xs--mon--instructor' . $i
+                                        ]
+                                    ) ?>
+
+                                </h6>
+                                <?php if ($mons[$times[$i]]['team']) : ?>
+                                    <p class="dark-grey-text mb-0"><small>team:</small> <?= h($mons[$times[$i]]['team']) ?></p>
+                                <?php endif; ?>
+                                <hr class="m-2">
+                                <p class="font-weight-bold m-0"><?= h($mons[$times[$i]]['start']) ?> ～ <?= h($mons[$times[$i]]['end']) ?></p>
+                                <p class="m-0"><?= h($mons[$times[$i]]['difficulty']) ?></p>
+                            </div><!-- /.col-md-12 -->
+                        </div><!-- /.row -->
+                    <?php endif; ?>
+                <?php endfor; ?>
+            </div><!-- /.tab-pane -->
+
+            <!-- 火 -->
+            <div class="tab-pane fade" id="panel3" role="tabpanel">
+                <?php for ($i = 0; $i < count($times); $i++) : ?>
+                    <?php if (isset($tues[$times[$i]]['id'])) : ?>
+                        <!-- modal -->
+                        <div class="modal fade instructor" id="xs--tue--instructor<?= $i ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body pt-4 pb-4">
+
+                                        <div class="d-flex">
+                                            <div class="p-0">
+                                                <h6 class="font-weight-bold m-3">
+                                                    <i class="fa fa-universal-access indigo-text" aria-hidden="true"></i> Instructor Information
+                                                </h6>
+                                            </div>
+                                            <div class="ml-auto pt-3 pr-2">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <hr class="mt-0">
+                                        <div class="row">
+                                            <div class="col-lg-5 text-center">
+                                                <h3>
+                                                    <?php
+                                                        if ($tues[$times[$i]]['image']) {
+                                                            print $this->Html->image($tues[$times[$i]]['image'], ['class' => 'img-fluid z-depth-2']);
+                                                        } else {
+                                                            print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'img-fluid']);
+                                                        }
+                                                    ?>
+                                                </h3>
+                                            </div>
+                                            <div class="col-lg-7 text-center">
+                                                <h2 class="h2-responsive product-name mt-3">
+                                                  <strong><?= h($tues[$times[$i]]['name']) ?></strong>
+                                                </h2>
+                                                <?php if ($tues[$times[$i]]['team']) : ?>
+                                                    <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($tues[$times[$i]]['team']) ?></h3>
+                                                <?php endif; ?>
+                                                <p>
+                                                    <small>ジャンル: <strong><?= h($tues[$times[$i]]['genre']) ?></strong></small>
+                                                </p>
+                                                <p class="font-weight-bold">
+                                                    <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($tues[$times[$i]]['start']) ?> ～ <?= h($tues[$times[$i]]['end']) ?>
+                                                </p>
+                                                <p>
+                                                    <small><?= h($tues[$times[$i]]['difficulty']) ?></small>
+                                                </p>
+                                                <?php if ($tues[$times[$i]]['comment'] || $tues[$times[$i]]['profile']) : ?>
+                                                    <hr>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <?php if ($tues[$times[$i]]['comment']) : ?>
+                                                                <p class="dark-grey-text">
+                                                                    <small>
+                                                                        <?= h($tues[$times[$i]]['comment']) ?>
+                                                                    </small>
+                                                                </p>
+                                                            <?php endif; ?>
+                                                            <?php if ($tues[$times[$i]]['profile']) : ?>
+                                                                <p>
+                                                                    <?= $this->Html->link('プロフィール詳細', $tues[$times[$i]]['profile'],
+                                                                        ['class' => 'btn btn-sm btn-rounded btn-default waves-effect', 'target' => '_blank', 'escape' => false]
+                                                                    ) ?>
+                                                                </p>
+                                                            <?php endif; ?>
+                                                        </div>
+                                                    </div><!-- /.row -->
+                                                <?php endif; ?>
+                                            </div><!-- /.col-lg-7 -->
+                                        </div><!-- /.row -->
+                                        <?php if ($tues[$times[$i]]['youtube']) : ?>
+                                            <hr class="m-0">
+                                            <div class="row">
+                                                <div class="col-lg-12 p-4">
+                                                    <h6 class="font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
+                                                    <div class="embed-responsive embed-responsive-16by9">
+                                                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($tues[$times[$i]]['youtube']) ?>?rel=0" allowfullscreen></iframe>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div><!-- /.modal-body -->
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+
+                        <div class="row mb-2 p-2" style="background-color: white;">
+                            <div class="col-md-12 col-xs-12 text-center">
+                                <p class="mb-1">
+                                    <span class="badge <?= getBadgeColor($tues[$times[$i]]['genre']) ?>"><?= h($tues[$times[$i]]['genre']) ?></span>
+                                </p>
+                                <div class="avatar mx-auto m-2">
+                                    <?php
+                                        if ($tues[$times[$i]]['image']) {
+                                            print $this->Html->link($this->Html->image($tues[$times[$i]]['image'], ['class' => 'img-fluid']), 'javascript:void(0)',
+                                                [
+                                                    'data-toggle' => 'modal',
+                                                    'data-target' => '#xs--tue--instructor' . $i,
+                                                    'escape'      => false
+                                                ]
+                                            );
+                                        } else {
+                                            print $this->Html->link($this->Html->image('/img/sample/no_icon.jpg', ['class' => 'img-fluid']), 'javascript:void(0)',
+                                                [
+                                                    'data-toggle' => 'modal',
+                                                    'data-target' => '#xs--tue--instructor' . $i,
+                                                    'escape'      => false
+                                                ]
+                                            );
+                                        }
+                                    ?>
+                                </div><!-- /.avatar -->
+                                <h6>
+                                    <?= $this->Html->link($tues[$times[$i]]['name'], 'javascript:void(0)',
+                                        [
+                                            'class'       => 'dark-grey-text',
+                                            'data-toggle' => 'modal',
+                                            'data-target' => '#xs--tue--instructor' . $i
+                                        ]
+                                    ) ?>
+
+                                </h6>
+                                <?php if ($tues[$times[$i]]['team']) : ?>
+                                    <p class="dark-grey-text mb-0"><small>team:</small> <?= h($tues[$times[$i]]['team']) ?></p>
+                                <?php endif; ?>
+                                <hr class="m-2">
+                                <p class="font-weight-bold m-0"><?= h($tues[$times[$i]]['start']) ?> ～ <?= h($tues[$times[$i]]['end']) ?></p>
+                                <p class="m-0"><?= h($tues[$times[$i]]['difficulty']) ?></p>
+                            </div><!-- /.col-md-12 -->
+                        </div><!-- /.row -->
+                    <?php endif; ?>
+                <?php endfor; ?>
+            </div><!-- /.tab-pane -->
+
+            <!-- 水 -->
+            <div class="tab-pane fade" id="panel4" role="tabpanel">
+                <?php for ($i = 0; $i < count($times); $i++) : ?>
+                    <?php if (isset($weds[$times[$i]]['id'])) : ?>
+                        <!-- modal -->
+                        <div class="modal fade instructor" id="xs--wed--instructor<?= $i ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body pt-4 pb-4">
+
+                                        <div class="d-flex">
+                                            <div class="p-0">
+                                                <h6 class="font-weight-bold m-3">
+                                                    <i class="fa fa-universal-access indigo-text" aria-hidden="true"></i> Instructor Information
+                                                </h6>
+                                            </div>
+                                            <div class="ml-auto pt-3 pr-2">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <hr class="mt-0">
+                                        <div class="row">
+                                            <div class="col-lg-5 text-center">
+                                                <h3>
+                                                    <?php
+                                                        if ($weds[$times[$i]]['image']) {
+                                                            print $this->Html->image($weds[$times[$i]]['image'], ['class' => 'img-fluid z-depth-2']);
+                                                        } else {
+                                                            print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'img-fluid']);
+                                                        }
+                                                    ?>
+                                                </h3>
+                                            </div>
+                                            <div class="col-lg-7 text-center">
+                                                <h2 class="h2-responsive product-name mt-3">
+                                                  <strong><?= h($weds[$times[$i]]['name']) ?></strong>
+                                                </h2>
+                                                <?php if ($weds[$times[$i]]['team']) : ?>
+                                                    <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($weds[$times[$i]]['team']) ?></h3>
+                                                <?php endif; ?>
+                                                <p>
+                                                    <small>ジャンル: <strong><?= h($weds[$times[$i]]['genre']) ?></strong></small>
+                                                </p>
+                                                <p class="font-weight-bold">
+                                                    <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($weds[$times[$i]]['start']) ?> ～ <?= h($weds[$times[$i]]['end']) ?>
+                                                </p>
+                                                <p>
+                                                    <small><?= h($weds[$times[$i]]['difficulty']) ?></small>
+                                                </p>
+                                                <?php if ($weds[$times[$i]]['comment'] || $weds[$times[$i]]['profile']) : ?>
+                                                    <hr>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <?php if ($weds[$times[$i]]['comment']) : ?>
+                                                                <p class="dark-grey-text">
+                                                                    <small>
+                                                                        <?= h($weds[$times[$i]]['comment']) ?>
+                                                                    </small>
+                                                                </p>
+                                                            <?php endif; ?>
+                                                            <?php if ($weds[$times[$i]]['profile']) : ?>
+                                                                <p>
+                                                                    <?= $this->Html->link('プロフィール詳細', $weds[$times[$i]]['profile'],
+                                                                        ['class' => 'btn btn-sm btn-rounded btn-default waves-effect', 'target' => '_blank', 'escape' => false]
+                                                                    ) ?>
+                                                                </p>
+                                                            <?php endif; ?>
+                                                        </div>
+                                                    </div><!-- /.row -->
+                                                <?php endif; ?>
+                                            </div><!-- /.col-lg-7 -->
+                                        </div><!-- /.row -->
+                                        <?php if ($weds[$times[$i]]['youtube']) : ?>
+                                            <hr class="m-0">
+                                            <div class="row">
+                                                <div class="col-lg-12 p-4">
+                                                    <h6 class="font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
+                                                    <div class="embed-responsive embed-responsive-16by9">
+                                                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($weds[$times[$i]]['youtube']) ?>?rel=0" allowfullscreen></iframe>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div><!-- /.modal-body -->
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+
+                        <div class="row mb-2 p-2" style="background-color: white;">
+                            <div class="col-md-12 col-xs-12 text-center">
+                                <p class="mb-1">
+                                    <span class="badge <?= getBadgeColor($weds[$times[$i]]['genre']) ?>"><?= h($weds[$times[$i]]['genre']) ?></span>
+                                </p>
+                                <div class="avatar mx-auto m-2">
+                                    <?php
+                                        if ($weds[$times[$i]]['image']) {
+                                            print $this->Html->link($this->Html->image($weds[$times[$i]]['image'], ['class' => 'img-fluid']), 'javascript:void(0)',
+                                                [
+                                                    'data-toggle' => 'modal',
+                                                    'data-target' => '#xs--wed--instructor' . $i,
+                                                    'escape'      => false
+                                                ]
+                                            );
+                                        } else {
+                                            print $this->Html->link($this->Html->image('/img/sample/no_icon.jpg', ['class' => 'img-fluid']), 'javascript:void(0)',
+                                                [
+                                                    'data-toggle' => 'modal',
+                                                    'data-target' => '#xs--wed--instructor' . $i,
+                                                    'escape'      => false
+                                                ]
+                                            );
+                                        }
+                                    ?>
+                                </div><!-- /.avatar -->
+                                <h6>
+                                    <?= $this->Html->link($weds[$times[$i]]['name'], 'javascript:void(0)',
+                                        [
+                                            'class'       => 'dark-grey-text',
+                                            'data-toggle' => 'modal',
+                                            'data-target' => '#xs--wed--instructor' . $i
+                                        ]
+                                    ) ?>
+
+                                </h6>
+                                <?php if ($weds[$times[$i]]['team']) : ?>
+                                    <p class="dark-grey-text mb-0"><small>team:</small> <?= h($weds[$times[$i]]['team']) ?></p>
+                                <?php endif; ?>
+                                <hr class="m-2">
+                                <p class="font-weight-bold m-0"><?= h($weds[$times[$i]]['start']) ?> ～ <?= h($weds[$times[$i]]['end']) ?></p>
+                                <p class="m-0"><?= h($weds[$times[$i]]['difficulty']) ?></p>
+                            </div><!-- /.col-md-12 -->
+                        </div><!-- /.row -->
+                    <?php endif; ?>
+                <?php endfor; ?>
+            </div><!-- /.tab-pane -->
+
+            <!-- 木 -->
+            <div class="tab-pane fade" id="panel5" role="tabpanel">
+                <?php for ($i = 0; $i < count($times); $i++) : ?>
+                    <?php if (isset($thus[$times[$i]]['id'])) : ?>
+                        <!-- modal -->
+                        <div class="modal fade instructor" id="xs--thu--instructor<?= $i ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body pt-4 pb-4">
+
+                                        <div class="d-flex">
+                                            <div class="p-0">
+                                                <h6 class="font-weight-bold m-3">
+                                                    <i class="fa fa-universal-access indigo-text" aria-hidden="true"></i> Instructor Information
+                                                </h6>
+                                            </div>
+                                            <div class="ml-auto pt-3 pr-2">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <hr class="mt-0">
+                                        <div class="row">
+                                            <div class="col-lg-5 text-center">
+                                                <h3>
+                                                    <?php
+                                                        if ($thus[$times[$i]]['image']) {
+                                                            print $this->Html->image($thus[$times[$i]]['image'], ['class' => 'img-fluid z-depth-2']);
+                                                        } else {
+                                                            print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'img-fluid']);
+                                                        }
+                                                    ?>
+                                                </h3>
+                                            </div>
+                                            <div class="col-lg-7 text-center">
+                                                <h2 class="h2-responsive product-name mt-3">
+                                                  <strong><?= h($thus[$times[$i]]['name']) ?></strong>
+                                                </h2>
+                                                <?php if ($thus[$times[$i]]['team']) : ?>
+                                                    <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($thus[$times[$i]]['team']) ?></h3>
+                                                <?php endif; ?>
+                                                <p>
+                                                    <small>ジャンル: <strong><?= h($thus[$times[$i]]['genre']) ?></strong></small>
+                                                </p>
+                                                <p class="font-weight-bold">
+                                                    <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($thus[$times[$i]]['start']) ?> ～ <?= h($thus[$times[$i]]['end']) ?>
+                                                </p>
+                                                <p>
+                                                    <small><?= h($thus[$times[$i]]['difficulty']) ?></small>
+                                                </p>
+                                                <?php if ($thus[$times[$i]]['comment'] || $thus[$times[$i]]['profile']) : ?>
+                                                    <hr>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <?php if ($thus[$times[$i]]['comment']) : ?>
+                                                                <p class="dark-grey-text">
+                                                                    <small>
+                                                                        <?= h($thus[$times[$i]]['comment']) ?>
+                                                                    </small>
+                                                                </p>
+                                                            <?php endif; ?>
+                                                            <?php if ($thus[$times[$i]]['profile']) : ?>
+                                                                <p>
+                                                                    <?= $this->Html->link('プロフィール詳細', $thus[$times[$i]]['profile'],
+                                                                        ['class' => 'btn btn-sm btn-rounded btn-default waves-effect', 'target' => '_blank', 'escape' => false]
+                                                                    ) ?>
+                                                                </p>
+                                                            <?php endif; ?>
+                                                        </div>
+                                                    </div><!-- /.row -->
+                                                <?php endif; ?>
+                                            </div><!-- /.col-lg-7 -->
+                                        </div><!-- /.row -->
+                                        <?php if ($thus[$times[$i]]['youtube']) : ?>
+                                            <hr class="m-0">
+                                            <div class="row">
+                                                <div class="col-lg-12 p-4">
+                                                    <h6 class="font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
+                                                    <div class="embed-responsive embed-responsive-16by9">
+                                                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($thus[$times[$i]]['youtube']) ?>?rel=0" allowfullscreen></iframe>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div><!-- /.modal-body -->
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+
+                        <div class="row mb-2 p-2" style="background-color: white;">
+                            <div class="col-md-12 col-xs-12 text-center">
+                                <p class="mb-1">
+                                    <span class="badge <?= getBadgeColor($thus[$times[$i]]['genre']) ?>"><?= h($thus[$times[$i]]['genre']) ?></span>
+                                </p>
+                                <div class="avatar mx-auto m-2">
+                                    <?php
+                                        if ($thus[$times[$i]]['image']) {
+                                            print $this->Html->link($this->Html->image($thus[$times[$i]]['image'], ['class' => 'img-fluid']), 'javascript:void(0)',
+                                                [
+                                                    'data-toggle' => 'modal',
+                                                    'data-target' => '#xs--thu--instructor' . $i,
+                                                    'escape'      => false
+                                                ]
+                                            );
+                                        } else {
+                                            print $this->Html->link($this->Html->image('/img/sample/no_icon.jpg', ['class' => 'img-fluid']), 'javascript:void(0)',
+                                                [
+                                                    'data-toggle' => 'modal',
+                                                    'data-target' => '#xs--thu--instructor' . $i,
+                                                    'escape'      => false
+                                                ]
+                                            );
+                                        }
+                                    ?>
+                                </div><!-- /.avatar -->
+                                <h6>
+                                    <?= $this->Html->link($thus[$times[$i]]['name'], 'javascript:void(0)',
+                                        [
+                                            'class'       => 'dark-grey-text',
+                                            'data-toggle' => 'modal',
+                                            'data-target' => '#xs--thu--instructor' . $i
+                                        ]
+                                    ) ?>
+
+                                </h6>
+                                <?php if ($thus[$times[$i]]['team']) : ?>
+                                    <p class="dark-grey-text mb-0"><small>team:</small> <?= h($thus[$times[$i]]['team']) ?></p>
+                                <?php endif; ?>
+                                <hr class="m-2">
+                                <p class="font-weight-bold m-0"><?= h($thus[$times[$i]]['start']) ?> ～ <?= h($thus[$times[$i]]['end']) ?></p>
+                                <p class="m-0"><?= h($thus[$times[$i]]['difficulty']) ?></p>
+                            </div><!-- /.col-md-12 -->
+                        </div><!-- /.row -->
+                    <?php endif; ?>
+                <?php endfor; ?>
+            </div><!-- /.tab-pane -->
+
+            <!--金 -->
+            <div class="tab-pane fade" id="panel6" role="tabpanel">
+                <?php for ($i = 0; $i < count($times); $i++) : ?>
+                    <?php if (isset($fris[$times[$i]]['id'])) : ?>
+                        <!-- modal -->
+                        <div class="modal fade instructor" id="xs--fri--instructor<?= $i ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body pt-4 pb-4">
+
+                                        <div class="d-flex">
+                                            <div class="p-0">
+                                                <h6 class="font-weight-bold m-3">
+                                                    <i class="fa fa-universal-access indigo-text" aria-hidden="true"></i> Instructor Information
+                                                </h6>
+                                            </div>
+                                            <div class="ml-auto pt-3 pr-2">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <hr class="mt-0">
+                                        <div class="row">
+                                            <div class="col-lg-5 text-center">
+                                                <h3>
+                                                    <?php
+                                                        if ($fris[$times[$i]]['image']) {
+                                                            print $this->Html->image($fris[$times[$i]]['image'], ['class' => 'img-fluid z-depth-2']);
+                                                        } else {
+                                                            print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'img-fluid']);
+                                                        }
+                                                    ?>
+                                                </h3>
+                                            </div>
+                                            <div class="col-lg-7 text-center">
+                                                <h2 class="h2-responsive product-name mt-3">
+                                                  <strong><?= h($fris[$times[$i]]['name']) ?></strong>
+                                                </h2>
+                                                <?php if ($fris[$times[$i]]['team']) : ?>
+                                                    <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($fris[$times[$i]]['team']) ?></h3>
+                                                <?php endif; ?>
+                                                <p>
+                                                    <small>ジャンル: <strong><?= h($fris[$times[$i]]['genre']) ?></strong></small>
+                                                </p>
+                                                <p class="font-weight-bold">
+                                                    <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($fris[$times[$i]]['start']) ?> ～ <?= h($fris[$times[$i]]['end']) ?>
+                                                </p>
+                                                <p>
+                                                    <small><?= h($fris[$times[$i]]['difficulty']) ?></small>
+                                                </p>
+                                                <?php if ($fris[$times[$i]]['comment'] || $fris[$times[$i]]['profile']) : ?>
+                                                    <hr>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <?php if ($fris[$times[$i]]['comment']) : ?>
+                                                                <p class="dark-grey-text">
+                                                                    <small>
+                                                                        <?= h($fris[$times[$i]]['comment']) ?>
+                                                                    </small>
+                                                                </p>
+                                                            <?php endif; ?>
+                                                            <?php if ($fris[$times[$i]]['profile']) : ?>
+                                                                <p>
+                                                                    <?= $this->Html->link('プロフィール詳細', $fris[$times[$i]]['profile'],
+                                                                        ['class' => 'btn btn-sm btn-rounded btn-default waves-effect', 'target' => '_blank', 'escape' => false]
+                                                                    ) ?>
+                                                                </p>
+                                                            <?php endif; ?>
+                                                        </div>
+                                                    </div><!-- /.row -->
+                                                <?php endif; ?>
+                                            </div><!-- /.col-lg-7 -->
+                                        </div><!-- /.row -->
+                                        <?php if ($fris[$times[$i]]['youtube']) : ?>
+                                            <hr class="m-0">
+                                            <div class="row">
+                                                <div class="col-lg-12 p-4">
+                                                    <h6 class="font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
+                                                    <div class="embed-responsive embed-responsive-16by9">
+                                                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($fris[$times[$i]]['youtube']) ?>?rel=0" allowfullscreen></iframe>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div><!-- /.modal-body -->
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+
+                        <div class="row mb-2 p-2" style="background-color: white;">
+                            <div class="col-md-12 col-xs-12 text-center">
+                                <p class="mb-1">
+                                    <span class="badge <?= getBadgeColor($fris[$times[$i]]['genre']) ?>"><?= h($fris[$times[$i]]['genre']) ?></span>
+                                </p>
+                                <div class="avatar mx-auto m-2">
+                                    <?php
+                                        if ($fris[$times[$i]]['image']) {
+                                            print $this->Html->link($this->Html->image($fris[$times[$i]]['image'], ['class' => 'img-fluid']), 'javascript:void(0)',
+                                                [
+                                                    'data-toggle' => 'modal',
+                                                    'data-target' => '#xs--fri--instructor' . $i,
+                                                    'escape'      => false
+                                                ]
+                                            );
+                                        } else {
+                                            print $this->Html->link($this->Html->image('/img/sample/no_icon.jpg', ['class' => 'img-fluid']), 'javascript:void(0)',
+                                                [
+                                                    'data-toggle' => 'modal',
+                                                    'data-target' => '#xs--fri--instructor' . $i,
+                                                    'escape'      => false
+                                                ]
+                                            );
+                                        }
+                                    ?>
+                                </div><!-- /.avatar -->
+                                <h6>
+                                    <?= $this->Html->link($fris[$times[$i]]['name'], 'javascript:void(0)',
+                                        [
+                                            'class'       => 'dark-grey-text',
+                                            'data-toggle' => 'modal',
+                                            'data-target' => '#xs--fri--instructor' . $i
+                                        ]
+                                    ) ?>
+
+                                </h6>
+                                <?php if ($fris[$times[$i]]['team']) : ?>
+                                    <p class="dark-grey-text mb-0"><small>team:</small> <?= h($fris[$times[$i]]['team']) ?></p>
+                                <?php endif; ?>
+                                <hr class="m-2">
+                                <p class="font-weight-bold m-0"><?= h($fris[$times[$i]]['start']) ?> ～ <?= h($fris[$times[$i]]['end']) ?></p>
+                                <p class="m-0"><?= h($fris[$times[$i]]['difficulty']) ?></p>
+                            </div><!-- /.col-md-12 -->
+                        </div><!-- /.row -->
+                    <?php endif; ?>
+                <?php endfor; ?>
+            </div><!-- /.tab-pane -->
+
+            <!-- 土 -->
+            <div class="tab-pane fade" id="panel7" role="tabpanel">
+                <?php for ($i = 0; $i < count($times); $i++) : ?>
+                    <?php if (isset($sats[$times[$i]]['id'])) : ?>
+                        <!-- modal -->
+                        <div class="modal fade instructor" id="xs--sat--instructor<?= $i ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body pt-4 pb-4">
+
+                                        <div class="d-flex">
+                                            <div class="p-0">
+                                                <h6 class="font-weight-bold m-3">
+                                                    <i class="fa fa-universal-access indigo-text" aria-hidden="true"></i> Instructor Information
+                                                </h6>
+                                            </div>
+                                            <div class="ml-auto pt-3 pr-2">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <hr class="mt-0">
+                                        <div class="row">
+                                            <div class="col-lg-5 text-center">
+                                                <h3>
+                                                    <?php
+                                                        if ($sats[$times[$i]]['image']) {
+                                                            print $this->Html->image($sats[$times[$i]]['image'], ['class' => 'img-fluid z-depth-2']);
+                                                        } else {
+                                                            print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'img-fluid']);
+                                                        }
+                                                    ?>
+                                                </h3>
+                                            </div>
+                                            <div class="col-lg-7 text-center">
+                                                <h2 class="h2-responsive product-name mt-3">
+                                                  <strong><?= h($sats[$times[$i]]['name']) ?></strong>
+                                                </h2>
+                                                <?php if ($sats[$times[$i]]['team']) : ?>
+                                                    <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($sats[$times[$i]]['team']) ?></h3>
+                                                <?php endif; ?>
+                                                <p>
+                                                    <small>ジャンル: <strong><?= h($sats[$times[$i]]['genre']) ?></strong></small>
+                                                </p>
+                                                <p class="font-weight-bold">
+                                                    <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($sats[$times[$i]]['start']) ?> ～ <?= h($sats[$times[$i]]['end']) ?>
+                                                </p>
+                                                <p>
+                                                    <small><?= h($sats[$times[$i]]['difficulty']) ?></small>
+                                                </p>
+                                                <?php if ($sats[$times[$i]]['comment'] || $sats[$times[$i]]['profile']) : ?>
+                                                    <hr>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <?php if ($sats[$times[$i]]['comment']) : ?>
+                                                                <p class="dark-grey-text">
+                                                                    <small>
+                                                                        <?= h($sats[$times[$i]]['comment']) ?>
+                                                                    </small>
+                                                                </p>
+                                                            <?php endif; ?>
+                                                            <?php if ($sats[$times[$i]]['profile']) : ?>
+                                                                <p>
+                                                                    <?= $this->Html->link('プロフィール詳細', $sats[$times[$i]]['profile'],
+                                                                        ['class' => 'btn btn-sm btn-rounded btn-default waves-effect', 'target' => '_blank', 'escape' => false]
+                                                                    ) ?>
+                                                                </p>
+                                                            <?php endif; ?>
+                                                        </div>
+                                                    </div><!-- /.row -->
+                                                <?php endif; ?>
+                                            </div><!-- /.col-lg-7 -->
+                                        </div><!-- /.row -->
+                                        <?php if ($sats[$times[$i]]['youtube']) : ?>
+                                            <hr class="m-0">
+                                            <div class="row">
+                                                <div class="col-lg-12 p-4">
+                                                    <h6 class="font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
+                                                    <div class="embed-responsive embed-responsive-16by9">
+                                                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($sats[$times[$i]]['youtube']) ?>?rel=0" allowfullscreen></iframe>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div><!-- /.modal-body -->
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+
+                        <div class="row mb-2 p-2" style="background-color: white;">
+                            <div class="col-md-12 col-xs-12 text-center">
+                                <p class="mb-1">
+                                    <span class="badge <?= getBadgeColor($sats[$times[$i]]['genre']) ?>"><?= h($sats[$times[$i]]['genre']) ?></span>
+                                </p>
+                                <div class="avatar mx-auto m-2">
+                                    <?php
+                                        if ($sats[$times[$i]]['image']) {
+                                            print $this->Html->link($this->Html->image($sats[$times[$i]]['image'], ['class' => 'img-fluid']), 'javascript:void(0)',
+                                                [
+                                                    'data-toggle' => 'modal',
+                                                    'data-target' => '#xs--sat--instructor' . $i,
+                                                    'escape'      => false
+                                                ]
+                                            );
+                                        } else {
+                                            print $this->Html->link($this->Html->image('/img/sample/no_icon.jpg', ['class' => 'img-fluid']), 'javascript:void(0)',
+                                                [
+                                                    'data-toggle' => 'modal',
+                                                    'data-target' => '#xs--sat--instructor' . $i,
+                                                    'escape'      => false
+                                                ]
+                                            );
+                                        }
+                                    ?>
+                                </div><!-- /.avatar -->
+                                <h6>
+                                    <?= $this->Html->link($sats[$times[$i]]['name'], 'javascript:void(0)',
+                                        [
+                                            'class'       => 'dark-grey-text',
+                                            'data-toggle' => 'modal',
+                                            'data-target' => '#xs--sat--instructor' . $i
+                                        ]
+                                    ) ?>
+
+                                </h6>
+                                <?php if ($sats[$times[$i]]['team']) : ?>
+                                    <p class="dark-grey-text mb-0"><small>team:</small> <?= h($sats[$times[$i]]['team']) ?></p>
+                                <?php endif; ?>
+                                <hr class="m-2">
+                                <p class="font-weight-bold m-0"><?= h($sats[$times[$i]]['start']) ?> ～ <?= h($sats[$times[$i]]['end']) ?></p>
+                                <p class="m-0"><?= h($sats[$times[$i]]['difficulty']) ?></p>
+                            </div><!-- /.col-md-12 -->
+                        </div><!-- /.row -->
+                    <?php endif; ?>
+                <?php endfor; ?>
+            </div><!-- /.tab-pane -->
+    </div><!-- /.tab-content -->
+</div><!-- /.xs-show -->
+
 <script>
 $(function() {
     $('.instructor').each(function(i, elem) {

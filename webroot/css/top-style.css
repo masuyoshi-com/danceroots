@@ -124,3 +124,18 @@ footer.page-footer .footer-copyright {
     -webkit-animation-timing-function: ease;
     animation-timing-function: ease;
 }
+
+@media screen and (max-width: 1024px) {
+    .none {
+        display: none;
+    }
+    .xs-show {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .xs-show {
+        display: none;
+    }
+}

@@ -136,3 +136,18 @@ section.team-section .avatar img {
         display: none;
     }
 }
+
+@media screen and (max-width: 1024px) {
+    .none {
+        display: none;
+    }
+    .xs-show {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .xs-show {
+        display: none;
+    }
+}

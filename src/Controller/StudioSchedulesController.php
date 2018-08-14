@@ -42,6 +42,10 @@ class StudioSchedulesController extends AppController
      */
     public function index($id)
     {
+        // スタジオプロフィール取得
+        $this->loadModel('Studios');
+        $studio = $this->Studios->findByUserId($id)->contain(['Users'])->first();
+
         // 各曜日スケジュールをセレクト。$times配列の時間系列にスケジュールの開始時間を合わせる
         for ($i = 0; $i < count($this->times); $i++) {
 
@@ -61,6 +65,7 @@ class StudioSchedulesController extends AppController
             }
         }
 
+        $this->set('studio', $studio);
         $this->set(compact('suns', 'mons', 'tues', 'weds', 'thus', 'fris', 'sats'));
         $this->set('times', $this->times);
     }
@@ -104,6 +109,7 @@ class StudioSchedulesController extends AppController
      */
     public function add()
     {
+        $this->Common->referer();
         $studioSchedule = $this->StudioSchedules->newEntity();
 
         if ($this->request->is('post')) {
@@ -145,6 +151,7 @@ class StudioSchedulesController extends AppController
      */
     public function edit($id = null)
     {
+        $this->Common->referer();
         $studioSchedule = $this->StudioSchedules->get($id);
         if ($this->request->is(['patch', 'post', 'put'])) {
 
@@ -184,6 +191,7 @@ class StudioSchedulesController extends AppController
      */
     public function delete($id = null)
     {
+        $this->Common->referer();
         $this->request->allowMethod(['post', 'delete']);
         $studioSchedule = $this->StudioSchedules->get($id);
         if ($this->StudioSchedules->delete($studioSchedule)) {

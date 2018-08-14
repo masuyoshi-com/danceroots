@@ -122,6 +122,7 @@
                     ) ?>
                     <div class="dropdown-menu dropdown-primary">
                         <?= $this->Html->link('マイプロフィール', ['controller' => 'Studios',    'action' => 'view',  $logins['id']], ['class' => 'dropdown-item']) ?>
+                        <?= $this->Html->link('レッスンスケジュール', ['controller' => 'StudioSchedules', 'action' => 'mySchedule'], ['class' => 'dropdown-item']) ?>
                         <?= $this->Html->link('メッセージ',      ['controller' => 'Messages',    'action' => 'index', $logins['id']], ['class' => 'dropdown-item']) ?>
                         <?= $this->Html->link('イベント',        ['controller' => 'Events',      'action' => 'list',  $logins['id']], ['class' => 'dropdown-item']) ?>
                         <?= $this->Html->link('ダンス関連求人',  ['controller' => 'Jobs',        'action' => 'list',  $logins['id']], ['class' => 'dropdown-item']) ?>
