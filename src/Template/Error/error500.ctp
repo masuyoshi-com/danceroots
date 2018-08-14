@@ -2,11 +2,11 @@
 use Cake\Core\Configure;
 use Cake\Error\Debugger;
 
-$this->layout = 'my_error';
+$this->layout = 'simple';
 $this->assign('title', $message);
 
 if (Configure::read('debug')) :
-    $this->layout = 'my_error';
+    $this->layout = 'simple';
 
     $this->assign('templateName', 'error500.ctp');
     $this->start('file');
@@ -35,16 +35,20 @@ if (Configure::read('debug')) :
     $this->end();
 endif;
 ?>
-<div class="card card-body">
-    <div class="row">
-        <div class="col-lg-12 text-center">
-            <h3 class="h3-responsive dark-grey-text"><i class="fa fa-warning orange-text" aria-hidden="true"></i> <?= __d('cake', '内部エラーが起きました') ?></h3>
-            <p class="error">
-                <strong><?= __d('cake', 'Error') ?>: </strong>
-                <?= h($message) ?>
-            </p>
-            <hr>
-            <?= $this->Html->link('最初からやり直す', '/', ['class' => 'btn btn-default']) ?>
+<div class="row mt-5">
+</div>
+<div class="container">
+    <div class="card card-body mt-5">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h3 class="h3-responsive dark-grey-text"><i class="fa fa-warning orange-text" aria-hidden="true"></i> <?= __d('cake', '内部エラーが起きました') ?></h3>
+                <p class="error">
+                    <strong><?= __d('cake', 'Error') ?>: </strong>
+                    <?= h($message) ?>
+                </p>
+                <hr>
+                <?= $this->Html->link('最初からやり直す', '/', ['class' => 'btn btn-default']) ?>
+            </div>
         </div>
     </div>
 </div>

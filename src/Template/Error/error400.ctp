@@ -2,11 +2,11 @@
 use Cake\Core\Configure;
 use Cake\Error\Debugger;
 
-$this->layout = 'my_error';
+$this->layout = 'simple';
 $this->assign('title', $message);
 
 if (Configure::read('debug')) :
-    $this->layout = 'my_error';
+    $this->layout = 'simple';
 
     $this->assign('templateName', 'error400.ctp');
 
@@ -31,16 +31,20 @@ endif;
 $this->end();
 endif;
 ?>
-<div class="card card-body">
-    <div class="row">
-        <div class="col-lg-12 text-center">
-            <h3 class="h3-responsive dark-grey-text"><i class="fa fa-warning orange-text" aria-hidden="true"></i> <?= h($message) ?></h3>
-            <p class="error">
-                <strong><?= __d('cake', 'Error') ?>: </strong>
-                <?= __d('cake', 'The requested address {0} was not found on this server.', "<strong>'{$url}'</strong>") ?>
-            </p>
-            <hr>
-            <?= $this->Html->link('最初からやり直す', '/', ['class' => 'btn btn-default']) ?>
+<div class="row mt-5">
+</div>
+<div class="container">
+    <div class="card card-body mt-5">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h3 class="h3-responsive dark-grey-text"><i class="fa fa-warning orange-text" aria-hidden="true"></i> <?= h($message) ?></h3>
+                <p class="error">
+                    <strong><?= __d('cake', 'Error') ?>: </strong>
+                    <?= __d('cake', 'The requested address {0} was not found on this server.', "<strong>'{$url}'</strong>") ?>
+                </p>
+                <hr>
+                <?= $this->Html->link('最初からやり直す', '/', ['class' => 'btn btn-default']) ?>
+            </div>
         </div>
     </div>
 </div>
