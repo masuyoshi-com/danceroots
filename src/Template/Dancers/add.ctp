@@ -7,7 +7,7 @@
 </div>
 
 <?= $this->Form->create($dancer, ['type' => 'file']) ?>
-<?= $this->Form->hidden('user_id', ['value' => $user_id]) ?>
+<?= $this->Form->hidden('user_id', ['value' => $logins['id']]) ?>
 <div class="row">
 
     <div class="col-lg-4 col-md-12 mt-5">

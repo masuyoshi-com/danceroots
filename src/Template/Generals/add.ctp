@@ -7,7 +7,7 @@
 </div>
 
 <?= $this->Form->create($general, ['type' => 'file']); ?>
-<?= $this->Form->hidden('user_id', ['value' => h($user_id)]) ?>
+<?= $this->Form->hidden('user_id', ['value' => $logins['id']]) ?>
 
 <div class="row mb-3">
 

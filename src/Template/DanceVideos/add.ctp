@@ -24,7 +24,7 @@
         </div>
 
         <?= $this->Form->create($danceVideo) ?>
-        <?= $this->Form->hidden('user_id', ['value' => h($user_id)]) ?>
+        <?= $this->Form->hidden('user_id', ['value' => $logins['id']]) ?>
 
         <div class="card card-body mb-3">
             <div class="row">

@@ -115,15 +115,15 @@
                             ) ?>
                             <div class="dropdown-menu dropdown-primary">
                                 <?= $this->Html->link('ホーム', $homes, ['class' => 'dropdown-item']) ?>
-                                <?= $this->Html->link('プロフィール編集', ['controller' => 'Dancers',  'action' => 'edit', $logins['id']], ['class' => 'dropdown-item']) ?>
-                                <?= $this->Html->link('メッセージ',   ['controller' => 'Messages',    'action' => 'index', $logins['id']], ['class' => 'dropdown-item']) ?>
+                                <?= $this->Html->link('プロフィール編集', ['controller' => 'Dancers', 'action' => 'edit'], ['class' => 'dropdown-item']) ?>
+                                <?= $this->Html->link('メッセージ',   ['controller' => 'Messages',    'action' => 'index'], ['class' => 'dropdown-item']) ?>
                                 <!--
-                                <?= $this->Html->link('チーム',       ['controller' => 'Teams',       'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
+                                <?= $this->Html->link('チーム',       ['controller' => 'Teams',       'action' => 'list'], ['class' => 'dropdown-item']) ?>
                                 -->
-                                <?= $this->Html->link('サークル',     ['controller' => 'Circles',     'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
-                                <?= $this->Html->link('イベント',     ['controller' => 'Events',      'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
-                                <?= $this->Html->link('ダンス動画',   ['controller' => 'DanceVideos', 'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
-                                <?= $this->Html->link('ミュージック', ['controller' => 'DanceMusics', 'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
+                                <?= $this->Html->link('サークル',     ['controller' => 'Circles',     'action' => 'list'], ['class' => 'dropdown-item']) ?>
+                                <?= $this->Html->link('イベント',     ['controller' => 'Events',      'action' => 'list'], ['class' => 'dropdown-item']) ?>
+                                <?= $this->Html->link('ダンス動画',   ['controller' => 'DanceVideos', 'action' => 'list'], ['class' => 'dropdown-item']) ?>
+                                <?= $this->Html->link('ミュージック', ['controller' => 'DanceMusics', 'action' => 'list'], ['class' => 'dropdown-item']) ?>
                             </div>
                         </div>
                     <?php else : ?>

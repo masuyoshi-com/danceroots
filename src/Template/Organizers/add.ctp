@@ -7,7 +7,7 @@
 </div>
 
 <?= $this->Form->create($organizer, ['type' => 'file']); ?>
-<?= $this->Form->hidden('user_id', ['value' => h($user_id)]) ?>
+<?= $this->Form->hidden('user_id', ['value' => $logins['id']]) ?>
 <div class="row">
 
     <div class="col-lg-8 col-md-12">

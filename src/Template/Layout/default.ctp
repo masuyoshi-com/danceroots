@@ -73,20 +73,20 @@
 
         initRun.circleDelete(
             '<?= $this->Url->build(['controller' => 'Circles', 'action' => 'delete']) ?>',
-            '<?= $this->Url->build(['controller' => 'Circles', 'action' => 'list', $logins['id']]) ?>'
+            '<?= $this->Url->build(['controller' => 'Circles', 'action' => 'list']) ?>'
         );
 
         <?php if (strstr($url, 'events/view')) : ?>
             initRun.eventDelete(
                 '<?= $this->Url->build(['controller' => 'Events', 'action' => 'delete']) ?>',
-                '<?= $this->Url->build(['controller' => 'Events', 'action' => 'list', $logins['id']]) ?>'
+                '<?= $this->Url->build(['controller' => 'Events', 'action' => 'list']) ?>'
             );
         <?php endif;?>
 
         <?php if (strstr($url, 'jobs/view')) : ?>
             initRun.jobDelete(
                 '<?= $this->Url->build(['controller' => 'Jobs', 'action' => 'delete']) ?>',
-                '<?= $this->Url->build(['controller' => 'Jobs', 'action' => 'list', $logins['id']]) ?>'
+                '<?= $this->Url->build(['controller' => 'Jobs', 'action' => 'list']) ?>'
             );
         <?php endif;?>
 

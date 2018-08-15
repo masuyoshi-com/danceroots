@@ -16,13 +16,13 @@
             <ul class="nav nav-tabs nav-justified blue-gradient" role="tablist">
                 <li class="nav-item">
                     <?= $this->Html->link('<i class="fa fa-inbox"></i> 受信箱',
-                            ['action' => 'index', $logins['id']],
+                            ['action' => 'index'],
                             ['class'  => 'nav-link active', 'escape' => false]
                     ) ?>
                 </li>
                 <li class="nav-item">
                     <?= $this->Html->link('<i class="fa fa-send"></i> 送信箱',
-                            ['action' => 'outbox', $logins['id']],
+                            ['action' => 'outbox'],
                             ['class'  => 'nav-link', 'escape' => false]
                     ) ?>
                 </li>

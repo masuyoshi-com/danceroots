@@ -7,7 +7,7 @@
 </div>
 
 <?= $this->Form->create($studio, ['type' => 'file']) ?>
-<?= $this->Form->hidden('user_id', ['value' => h($user_id)]) ?>
+<?= $this->Form->hidden('user_id', ['value' => $logins['id']]) ?>
 <div class="row mb-3">
 
     <div class="col-lg-4 col-md-12 mt-5">
@@ -92,7 +92,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div><!-- /.card-body -->
         </section>
     </div><!-- /.col-lg-4 -->

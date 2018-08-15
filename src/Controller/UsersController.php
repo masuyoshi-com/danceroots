@@ -157,16 +157,16 @@ class UsersController extends AppController
 
                     switch ($user['classification']) {
                         case 0:
-                            return $this->redirect(['controller' => 'dancers', 'action' => 'home', $user['id']]);
+                            return $this->redirect(['controller' => 'dancers', 'action' => 'home']);
                             break;
                         case 1:
-                            return $this->redirect(['controller' => 'studios', 'action' => 'home', $user['id']]);
+                            return $this->redirect(['controller' => 'studios', 'action' => 'home']);
                             break;
                         case 2:
-                            return $this->redirect(['controller' => 'organizers', 'action' => 'home', $user['id']]);
+                            return $this->redirect(['controller' => 'organizers', 'action' => 'home']);
                             break;
                         case 3:
-                            return $this->redirect(['controller' => 'generals', 'action' => 'home', $user['id']]);
+                            return $this->redirect(['controller' => 'generals', 'action' => 'home']);
                             break;
                         default:
                             return false;
@@ -277,13 +277,12 @@ class UsersController extends AppController
      * パスワード変更はなりすましの可能性もあるため、完了後にメールを送る。心当たりがない場合は問い合わせを促すため
      * fieldListを使用して3つの処理に分ける。ユーザー名変更処理、メール変更処理、パスワード変更処理
      *
-     * @param string|null $id ユーザーID
      * @return \Cake\Http\Response|null
      * @throws \Cake\Network\Exception\NotFoundException レコードが存在しない場合
      */
-    public function edit($id = null)
+    public function edit()
     {
-        $user = $this->Users->get($id);
+        $user = $this->Users->get($this->Auth->user('id'));
 
         if ($this->request->is(['patch', 'post', 'put'])) {
 
@@ -374,14 +373,7 @@ class UsersController extends AppController
                 }
             }
         }
-
-        // 取得したユーザーが現在ログインしているユーザIDと同じか
-        if ($user->id === $this->Auth->user('id')) {
-            $this->set(compact('user'));
-        } else {
-            throw new NotFoundException(__('404 ページが見つかりません。'));
-        }
-
+        $this->set(compact('user'));
     }
 
 

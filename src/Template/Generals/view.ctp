@@ -113,11 +113,11 @@
                         ) ?>
                         <div class="dropdown-menu dropdown-primary">
                             <?= $this->Html->link('ホーム', $homes, ['class' => 'dropdown-item']) ?>
-                            <?= $this->Html->link('プロフィール編集', ['controller' => 'Generals',    'action' => 'edit', $logins['id']], ['class' => 'dropdown-item']) ?>
-                            <?= $this->Html->link('メッセージ',      ['controller' => 'Messages',    'action' => 'index', $logins['id']], ['class' => 'dropdown-item']) ?>
-                            <?= $this->Html->link('イベント',        ['controller' => 'Events',      'action' => 'list',  $logins['id']], ['class' => 'dropdown-item']) ?>
-                            <?= $this->Html->link('ダンス動画',      ['controller' => 'DanceVideos', 'action' => 'list',  $logins['id']], ['class' => 'dropdown-item']) ?>
-                            <?= $this->Html->link('ミュージック',    ['controller' => 'DanceMusics', 'action' => 'list',  $logins['id']], ['class' => 'dropdown-item']) ?>
+                            <?= $this->Html->link('プロフィール編集', ['controller' => 'Generals', 'action' => 'edit'], ['class' => 'dropdown-item']) ?>
+                            <?= $this->Html->link('メッセージ',      ['controller' => 'Messages',    'action' => 'index'], ['class' => 'dropdown-item']) ?>
+                            <?= $this->Html->link('イベント',        ['controller' => 'Events',      'action' => 'list'], ['class' => 'dropdown-item']) ?>
+                            <?= $this->Html->link('ダンス動画',      ['controller' => 'DanceVideos', 'action' => 'list'], ['class' => 'dropdown-item']) ?>
+                            <?= $this->Html->link('ミュージック',    ['controller' => 'DanceMusics', 'action' => 'list'], ['class' => 'dropdown-item']) ?>
                         </div>
                     </div>
                 <?php else : ?>
@@ -225,7 +225,7 @@
             <?php
                 if ($general->user_id === $logins['id']) {
                     print $this->Html->link('<i class="fa fa-edit" aria-hidden="true"></i> プロフィールを編集',
-                        ['action' => 'edit', $general->user_id],
+                        ['action' => 'edit'],
                         ['class' => 'btn btn-primary', 'escape' => false]
                     );
                 } else {

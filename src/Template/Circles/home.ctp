@@ -1,4 +1,4 @@
-<?php $this->assign('title', h($circle->name) . 'ホーム'); ?>
+<?php $this->assign('title', h($circle->name) . ' - サークルホーム'); ?>
 
 <div class="row">
     <div class="col-lg-12">
@@ -167,7 +167,7 @@
                     </div><!-- /.table-wrapper -->
                 <?php else : ?>
                     <p class="text-center">
-                        メンバーはいません。詳細にサークル情報を作成しましょう。
+                        メンバーはいません。
                     </p>
                 <?php endif; ?>
             </div><!-- /.px-4 -->
@@ -382,7 +382,7 @@
                             ]
                         ) ?>
                         <div class="dropdown-menu dropdown-primary">
-                            <?= $this->Html->link('マイサークル',      ['action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
+                            <?= $this->Html->link('マイサークル',      ['action' => 'list'], ['class' => 'dropdown-item']) ?>
                             <?= $this->Html->link('サークル詳細',      ['action' => 'view', $circle->id], ['class' => 'dropdown-item']) ?>
                             <?= $this->Html->link('サークル編集',      ['action' => 'edit', $circle->id], ['class' => 'dropdown-item']) ?>
                             <?= $this->Html->link('サークルメッセージ', ['controller' => 'CircleMessages', 'action' => 'index', $circle->id], ['class' => 'dropdown-item']) ?>

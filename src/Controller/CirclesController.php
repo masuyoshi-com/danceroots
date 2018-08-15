@@ -50,23 +50,17 @@ class CirclesController extends AppController
     /**
      * マイサークル (所属しているサークル一覧表示)
      *
-     * @param string|null $id ユーザーID
      * @throws \Cake\Network\Exception\NotFoundException
      */
-    public function list($id = null)
+    public function list()
     {
-        if ((int)$id === $this->Auth->user('id')) {
-            // 登録済みサークル
-            $circles = $this->Circles->findByUserIdAndDeleteFlag($id, 0)->all();
+        // 登録済みサークル
+        $circles = $this->Circles->findByUserIdAndDeleteFlag($this->Auth->user('id'), 0)->all();
 
-            // 参加済みサークルはサークルが削除されていた場合、サークルを抜けるよう指示。グループ削除促す。
-            $circle_groups = $this->Circles->CircleGroups->findByUserId($id)->contain('Circles')->all();
+        // 参加済みサークルはサークルが削除されていた場合、サークルを抜けるよう指示。グループ削除促す。
+        $circle_groups = $this->Circles->CircleGroups->findByUserId($this->Auth->user('id'))->contain('Circles')->all();
 
-            $this->set(compact('circles', 'circle_groups'));
-            $this->set('id', $id);
-        } else {
-            throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
-        }
+        $this->set(compact('circles', 'circle_groups'));
     }
 
 
@@ -170,18 +164,18 @@ class CirclesController extends AppController
     /**
      * サークル詳細
      *
-     * @param string|null $id サークルID
+     * @param string|null $circle_id サークルID
      * @return \Cake\Http\Response|void
      * @throws \Cake\Network\Exception\NotFoundException レコードが存在しない場合
      */
-    public function view($id = null)
+    public function view($circle_id = null)
     {
-        $circle = $this->Circles->findByIdAndDeleteFlag($id, 0)->contain(['Users'])->first();
+        $circle = $this->Circles->findByIdAndDeleteFlag($circle_id, 0)->contain(['Users'])->first();
 
         if ($circle) {
 
             // 既にイベント参加依頼しているか検索
-            $join_flag = $this->Circles->CircleGroups->findByCircleIdAndUserId($id, $this->Auth->user('id'))->count();
+            $join_flag = $this->Circles->CircleGroups->findByCircleIdAndUserId($circle_id, $this->Auth->user('id'))->count();
             // オーナー検索
             $circle['owner'] = $this->Common->getUsersByClassification($circle['user']['classification'], $circle->user_id);
             // 区分リンク取得
@@ -190,7 +184,7 @@ class CirclesController extends AppController
             $circle['user']['classification'] = $this->Common->getCategoryName($circle['user']['classification']);
 
             // サークルメンバー呼び出し
-            $circle_members = $this->Circles->CircleGroups->findByCircleId($id)
+            $circle_members = $this->Circles->CircleGroups->findByCircleId($circle_id)
                 ->contain(['Users'])
                 ->order(['CircleGroups.created' => 'DESC'])
                 ->limit(10)
@@ -215,10 +209,9 @@ class CirclesController extends AppController
     /**
      * サークル登録
      *
-     * @param string|null $id ユーザーID
      * @return \Cake\Http\Response|null
      */
-    public function add($id = null)
+    public function add()
     {
         $this->Common->referer();
 
@@ -247,7 +240,7 @@ class CirclesController extends AppController
         $this->set('distinctions', $this->Common->valueToKey($this->distinctions));
         $this->set('ages',         $this->Common->valueToKey($this->ages));
         $this->set('genres',       $this->Common->valueToKey($this->genres));
-        $this->set('user_id', $id);
+        $this->set('user_id',      $this->Auth->user('id'));
         $this->set(compact('circle'));
     }
 
@@ -255,16 +248,16 @@ class CirclesController extends AppController
     /**
      * サークル編集
      *
-     * @param string|null $id サークルID
+     * @param string|null $circle_id サークルID
      * @return \Cake\Http\Response|null
      * @throws \Cake\Network\Exception\NotFoundException
      *  レコードが存在しない場合、ログインユーザーとサークルユーザーIDが異なる場合
      */
-    public function edit($id = null)
+    public function edit($circle_id = null)
     {
         $this->Common->referer();
 
-        $circle = $this->Circles->get($id);
+        $circle = $this->Circles->get($circle_id);
 
         if ($this->request->is(['patch', 'post', 'put'])) {
 
@@ -272,7 +265,7 @@ class CirclesController extends AppController
 
             if ($this->Circles->save($circle)) {
                 $this->Flash->success(__('サークルを編集しました。'));
-                return $this->redirect(['action' => 'view', $id, $circle->user_id]);
+                return $this->redirect(['action' => 'view', $circle_id]);
             }
             $this->Flash->error(__('エラーがあります。再度確認してください。'));
         }

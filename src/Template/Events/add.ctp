@@ -23,7 +23,7 @@
         </div>
 
         <?= $this->Form->create($event, ['type' => 'file']) ?>
-        <?= $this->Form->hidden('user_id', ['value' => $user_id]) ?>
+        <?= $this->Form->hidden('user_id', ['value' => $logins['id']]) ?>
 
         <div class="row">
             <div class="col-lg-6 col-md-12">

@@ -18,41 +18,26 @@ class GeneralsController extends AppController
     /**
      * ホーム - 初期登録時、プロフィール未作成の場合、強制的にaddアクションへ
      *
-     * @param string|null $id ユーザーID
      * @return redirect add 初期登録の場合のみ
      *
      */
-    public function home($id = null)
+    public function home()
     {
-        if ($id) {
+        $general = $this->Generals->findByUserId($this->Auth->user('id'))->contain(['Users'])->first();
 
-            if ((int)$id === $this->Auth->user('id')) {
-
-                $general = $this->Generals->findByUserId($id)->contain(['Users'])->first();
-
-                if (!$general) {
-                    $this->Flash->default(__('最初にプロフィールを作成しましょう。'));
-                    $this->redirect(['action' => 'add', $id]);
-                }
-
-                $general['user']['classification'] = $this->Common->getCategoryName($general['user']['classification']);
-                // メッセージ未読数取得
-                $message_number = $this->Generals->Users->Messages->findByToUserIdAndReadFlag($id, 0)->count();
-                // お知らせ最新1か月以内を3件のみ取得
-                $this->loadModel('Informations');
-                $informations = $this->Informations->find()->where(['Informations.created >' => new \DateTime('-1 months')])->limit(3)->all();
-
-                $this->set(compact('general', 'message_number', 'informations'));
-
-            } else {
-                throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
-            }
-
-        } else {
-            // 強制ログアウト → 最初から操作させる
-            $this->Flash->error(__('ユーザー情報を取得できません。最初からやり直してください。'));
-            return $this->redirect($this->Auth->logout());
+        if (!$general) {
+            $this->Flash->default(__('最初にプロフィールを作成しましょう。'));
+            $this->redirect(['action' => 'add']);
         }
+
+        $general['user']['classification'] = $this->Common->getCategoryName($general['user']['classification']);
+        // メッセージ未読数取得
+        $message_number = $this->Generals->Users->Messages->findByToUserIdAndReadFlag($this->Auth->user('id'), 0)->count();
+        // お知らせ最新1か月以内を3件のみ取得
+        $this->loadModel('Informations');
+        $informations = $this->Informations->find()->where(['Informations.created >' => new \DateTime('-1 months')])->limit(3)->all();
+
+        $this->set(compact('general', 'message_number', 'informations'));
     }
 
 
@@ -81,23 +66,22 @@ class GeneralsController extends AppController
     /**
      * プロフィール登録
      *
-     * @param string|null $id ユーザーID
      * @return \Cake\Http\Response|null 登録成功の場合はviewへ
      */
-    public function add($id = null)
+    public function add()
     {
         $this->Common->referer();
 
         $this->viewBuilder()->setLayout('add');
 
         // 区分ユーザーが存在し、本登録済みか
-        $user = $this->Generals->Users->findByIdAndRegisterFlagAndClassification($id, 1, 3)->first();
+        $user = $this->Generals->Users->findByIdAndRegisterFlagAndClassification($this->Auth->user('id'), 1, 3)->first();
 
         if ($user) {
             // そのユーザーは既に一度プロフィール登録しているか
             $profile = $this->Generals->findByUserId($user->id)->first();
 
-            if (!$profile && $user->id === $this->Auth->user('id')) {
+            if (!$profile) {
 
                 $general = $this->Generals->newEntity();
 
@@ -114,12 +98,13 @@ class GeneralsController extends AppController
                 }
 
                 $this->set('genres', $this->Common->valueToKey($this->genres));
-                $this->set('user_id', $id);
                 $this->set(compact('general'));
             } else {
+                $this->Auth->logout();
                 throw new NotFoundException(__('404 不正なアクセスまたはコンテンツが見つかりません。'));
             }
         } else {
+            $this->Auth->logout();
             throw new NotFoundException(__('404 不正なアクセスまたはコンテンツが見つかりません。'));
         }
     }
@@ -128,15 +113,14 @@ class GeneralsController extends AppController
     /**
      * 一般ユーザー編集
      *
-     * @param string|null $id ユーザID
      * @return \Cake\Http\Response|null
      * @throws \Cake\Network\Exception\NotFoundException - レコードが存在しない場合
      */
-    public function edit($id = null)
+    public function edit()
     {
         $this->Common->referer();
 
-        $general = $this->Generals->findByUserId($id)->contain(['Users'])->first();
+        $general = $this->Generals->findByUserId($this->Auth->user('id'))->contain(['Users'])->first();
 
         if ($this->request->is(['patch', 'post', 'put'])) {
 
@@ -148,7 +132,7 @@ class GeneralsController extends AppController
             $this->Flash->error(__('プロフィール編集できません。解決しない場合はフィードバックより報告してください。'));
         }
 
-        if ($general && (int)$general->user_id === $this->Auth->user('id')) {
+        if ($general) {
 
             $this->set('genres', $this->Common->valueToKey($this->genres));
             $this->set(compact('general'));

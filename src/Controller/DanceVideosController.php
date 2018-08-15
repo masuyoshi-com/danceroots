@@ -25,33 +25,24 @@ class DanceVideosController extends AppController
      * マイYoutube動画一覧
      * ※ オブジェクト箇所を任意に要素追加する場合はページネート時にtoArray()で一旦配列として処理する
      *
-     * @param string|null $id ユーザーID
      * @throws \Cake\Network\Exception\NotFoundException
      */
-    public function list($id = null)
+    public function list()
     {
-        // GETリクエストとAUTHを認証する
-        if ((int)$id === $this->Auth->user('id')) {
+        $query  = $this->DanceVideos->findByUserId($this->Auth->user('id'));
+        $videos = $this->paginate($query)->toArray();
 
-            $query  = $this->DanceVideos->findByUserId($id);
-            $videos = $this->paginate($query)->toArray();
-
-            if ($videos) {
-                for ($i = 0; $i < count($videos); $i++) {
-                    $videos[$i]['youtube'] = $this->Common->getYoutubeId($videos[$i]['youtube']);
-                }
-
-                // ユーザー区分プロフィール取得(ICON使用目的)
-                $profiles = $this->Common->getUsersByClassification($videos[0]['user']['classification'], $videos[0]['user']['id']);
-                $this->set('icon', $profiles->icon);
+        if ($videos) {
+            for ($i = 0; $i < count($videos); $i++) {
+                $videos[$i]['youtube'] = $this->Common->getYoutubeId($videos[$i]['youtube']);
             }
-            $this->set('id', $id);
-            $this->set('videos', $videos);
-            $this->set('genres', $this->Common->valueToKey($this->genres));
-        } else {
-            throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
-        }
 
+            // ユーザー区分プロフィール取得(ICON使用目的)
+            $profiles = $this->Common->getUsersByClassification($videos[0]['user']['classification'], $videos[0]['user']['id']);
+            $this->set('icon', $profiles->icon);
+        }
+        $this->set('videos', $videos);
+        $this->set('genres', $this->Common->valueToKey($this->genres));
     }
 
 
@@ -113,12 +104,11 @@ class DanceVideosController extends AppController
             if ($this->DanceVideos->save($danceVideo)) {
 
                 $this->Flash->success(__('ダンス動画を登録しました。'));
-                return $this->redirect(['action' => 'list', $this->request->data['user_id']]);
+                return $this->redirect(['action' => 'list']);
             }
             $this->Flash->error(__('エラーがありました。再度確認してください。'));
         }
 
-        $this->set('user_id', $this->Auth->user('id'));
         $this->set('genres',  $this->Common->valueToKey($this->genres));
         $this->set('years',   $this->Common->getSelectYears());
         $this->set(compact('danceVideo'));
@@ -144,7 +134,7 @@ class DanceVideosController extends AppController
             if ($this->DanceVideos->save($danceVideo)) {
 
                 $this->Flash->success(__('ダンス動画を編集しました。'));
-                return $this->redirect(['action' => 'list', $danceVideo->user_id]);
+                return $this->redirect(['action' => 'list']);
             }
             $this->Flash->error(__('エラーがありました。再度確認してください。'));
         }
@@ -174,6 +164,6 @@ class DanceVideosController extends AppController
             $this->Flash->error(__('削除できません。問題が解決しなければサポートに連絡してください。'));
         }
 
-        return $this->redirect(['action' => 'list', $this->Auth->user('id')]);
+        return $this->redirect(['action' => 'list']);
     }
 }

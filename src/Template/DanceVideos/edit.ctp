@@ -16,7 +16,7 @@
             <hr class="my-2">
             <p class="text-left">
                 <?= $this->Html->link('<i class="fa fa-arrow-circle-left" aria-hidden="true"></i> マイ動画一覧',
-                    ['action' => 'list', $logins['id']],
+                    ['action' => 'list'],
                     ['class' => 'btn btn-sm btn-warning', 'escape' => false]
                 ) ?>
             </p>

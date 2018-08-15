@@ -222,13 +222,13 @@
 
                 <div class="row mt-4">
                     <div class="col-lg-6 mb-2">
-                        <?= $this->Html->link('<i class="fa fa-edit"></i> この求人を編集する',
+                        <?= $this->Html->link('<i class="fa fa-edit"></i> 編集',
                             ['action' => 'edit', $job->id],
                             ['class' => 'btn btn-success btn-block', 'escape' => false]
                         ) ?>
                     </div>
                     <div class="col-lg-6">
-                        <?= $this->Html->link('<i class="fa fa-trash fa-lg" aria-hidden="true"></i> この求人を削除する', 'javascript:void(0)',
+                        <?= $this->Html->link('<i class="fa fa-trash fa-lg" aria-hidden="true"></i> 削除', 'javascript:void(0)',
                             [
                                 'class'       => 'btn btn-danger btn-block',
                                 'escape'      => false,

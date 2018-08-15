@@ -1,6 +1,6 @@
 <?php $this->assign('title', $circle->name . '編集'); ?>
 
-<div class="card card-cascade narrower">
+<div class="card card-cascade narrower mb-3">
 
     <div class="col-lg-12">
         <div class="view gradient-card-header aqua-gradient">

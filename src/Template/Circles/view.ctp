@@ -212,13 +212,13 @@
                     <?php elseif ($logins['id'] === $circle->user_id) : ?>
                         <div class="row">
                             <div class="col-lg-6 mb-2">
-                                <?= $this->Html->link('<i class="fa fa-edit"></i> このサークルを編集する',
+                                <?= $this->Html->link('<i class="fa fa-edit"></i> 編集',
                                     ['action' => 'edit', h($circle->id)],
                                     ['class' => 'btn btn-success btn-block', 'escape' => false]
                                 ) ?>
                             </div>
                             <div class="col-lg-6">
-                                <?= $this->Html->link('<i class="fa fa-trash fa-lg" aria-hidden="true"></i> サークル削除', 'javascript:void(0)',
+                                <?= $this->Html->link('<i class="fa fa-trash fa-lg" aria-hidden="true"></i> 削除', 'javascript:void(0)',
                                     [
                                         'class'       => 'btn btn-danger btn-block',
                                         'escape'      => false,
@@ -340,7 +340,7 @@
                 <?php else : ?>
                 <div class="md-form">
                     <?= $this->Html->link('マイダンスサークル',
-                        ['action' => 'list', $circle->user_id],
+                        ['action' => 'list'],
                         ['class'  => 'btn aqua-gradient btn-rounded', 'escape' => false]
                     ) ?>
                 </div>

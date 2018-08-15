@@ -10,11 +10,12 @@ class CommonComponent extends Component
     /**
      * 区分によってリンク先を切り替える
      *
-     * @param array $classification ユーザー区分
-     * @param string $action アクション名
+     * @param array  $classification ユーザー区分
+     * @param string $action         アクション名
+     * @param int    $id             ユーザーID
      * @return array コントローラ名とアクション名配列
      */
-    public function linkSwitch($classification, $action, $id)
+    public function linkSwitch($classification, $action, $id = null)
     {
         switch ($classification) {
             case 0:

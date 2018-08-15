@@ -16,7 +16,7 @@
             <div class="d-flex mb-2">
                 <div class="p-2">
                     <?= $this->Html->link('<i class="fa fa-home"></i> サークルホーム',
-                            ['controller' => 'Circles', 'action' => 'home', h($circle->id), $logins['id']],
+                            ['controller' => 'Circles', 'action' => 'home', $circle->id],
                             ['class' => 'btn btn-sm btn-warning', 'escape' => false]
                     )?>
                 </div>

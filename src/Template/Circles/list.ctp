@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <?= $this->Html->link('<i class="fa fa-plus"></i> ダンスサークル登録',
-                    ['controller' => 'Circles', 'action' => 'add', h($id)],
+                    ['controller' => 'Circles', 'action' => 'add'],
                     ['class' => 'btn btn-outline-primary waves-effect btn-block', 'escape' => false]
                 ) ?>
             </div>

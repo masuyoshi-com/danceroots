@@ -22,62 +22,48 @@ class MessagesController extends AppController
 
     /**
      * メッセージ受信箱 送られてきたのでToとする
-     *
-     * @param string|null $id ユーザーID
-     * @return \Cake\Http\Response|void
      */
-    public function index($id = null)
+    public function index()
     {
-        if ((int)$id === $this->Auth->user('id')) {
-            // 受信箱データ
-            $to_query    = $this->Messages->findAllByToUserIdAndToDelFlag($id, 0);
-            $to_messages = $this->paginate($to_query)->toArray();
+        // 受信箱データ
+        $to_query    = $this->Messages->findAllByToUserIdAndToDelFlag($this->Auth->user('id'), 0);
+        $to_messages = $this->paginate($to_query)->toArray();
 
-            // Fromユーザ取得
-            if ($to_messages) {
-                $j = 0;
-                foreach ($to_messages as $to) {
-                    $to_messages[$j]['from_username'] = $this->Messages->Users
-                        ->findById($to->user_id)
-                        ->select(['Users.id', 'Users.username'])->toArray();
-                    $j++;
-                }
+        // Fromユーザ取得
+        if ($to_messages) {
+            $j = 0;
+            foreach ($to_messages as $to) {
+                $to_messages[$j]['from_username'] = $this->Messages->Users
+                    ->findById($to->user_id)
+                    ->select(['Users.id', 'Users.username'])->toArray();
+                $j++;
             }
-
-            $this->set('to_messages',   $to_messages);
-        } else {
-            throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
         }
+
+        $this->set('to_messages',   $to_messages);
     }
 
 
     /**
      * 送信箱 差出人になったのでFromとする
-     *
-     * @param string|null $id ユーザーID
-     * @return \Cake\Http\Response|void
      */
-    public function outbox($id = null)
+    public function outbox()
     {
-        if ((int)$id === $this->Auth->user('id')) {
-            // 送信箱データ
-            $from_query    = $this->Messages->findAllByUserIdAndFromDelFlag($id, 0);
-            $from_messages = $this->paginate($from_query)->toArray();
+        // 送信箱データ
+        $from_query    = $this->Messages->findAllByUserIdAndFromDelFlag($this->Auth->user('id'), 0);
+        $from_messages = $this->paginate($from_query)->toArray();
 
-            // Toユーザー取得
-            if ($from_messages) {
-                $i = 0;
-                foreach ($from_messages as $from) {
-                    $from_messages[$i]['to_username'] = $this->Messages->Users
-                        ->findById($from->to_user_id)
-                        ->select(['Users.id', 'Users.username'])->toArray();
-                    $i++;
-                }
+        // Toユーザー取得
+        if ($from_messages) {
+            $i = 0;
+            foreach ($from_messages as $from) {
+                $from_messages[$i]['to_username'] = $this->Messages->Users
+                    ->findById($from->to_user_id)
+                    ->select(['Users.id', 'Users.username'])->toArray();
+                $i++;
             }
-            $this->set('from_messages', $from_messages);
-        } else {
-            throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
         }
+        $this->set('from_messages', $from_messages);
     }
 
 
@@ -182,7 +168,6 @@ class MessagesController extends AppController
             $url = null;
         }
 
-        $this->set('user_id',    $this->Auth->user('id'));
         $this->set('to_user_id', $to_id);
         $this->set(compact('message', 'to_user', 'url'));
     }
@@ -207,10 +192,10 @@ class MessagesController extends AppController
         if ($this->Messages->save($message)) {
             $this->Flash->success(__('メッセージを削除しました。'));
         } else {
-            $this->Flash->error(__('削除できません。解決しない場合はフィードバックより受け付けています。'));
+            $this->Flash->error(__('削除できません。解決しない場合はフィードバックよりお問い合わせください。'));
         }
 
-        return $this->redirect(['action' => 'index', $message->to_user_id]);
+        return $this->redirect(['action' => 'index']);
     }
 
 
@@ -218,7 +203,7 @@ class MessagesController extends AppController
      * 送信メッセージ削除 - 削除はフラグを変更するのみ
      *
      * @param string|null $id メッセージID
-     * @return \Cake\Http\Response|null indexリダイレクト
+     * @return \Cake\Http\Response|null outboxへリダイレクト
      * @throws \Cake\Datasource\Exception\RecordNotFoundException レコードがない場合
      */
     public function fromDelete($id = null)
@@ -232,9 +217,9 @@ class MessagesController extends AppController
         if ($this->Messages->save($message)) {
             $this->Flash->success(__('メッセージを削除しました。'));
         } else {
-            $this->Flash->error(__('削除できません。解決しない場合はフィードバックより受け付けています。'));
+            $this->Flash->error(__('削除できません。解決しない場合はフィードバックよりお問い合わせください。'));
         }
 
-        return $this->redirect(['action' => 'outbox', $message->user_id]);
+        return $this->redirect(['action' => 'outbox']);
     }
 }

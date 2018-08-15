@@ -110,11 +110,11 @@
                         ]
                     ) ?>
                     <div class="dropdown-menu dropdown-primary">
-                        <?= $this->Html->link('マイプロフィール', ['controller' => 'Generals',   'action' => 'view',  $logins['id']], ['class' => 'dropdown-item']) ?>
-                        <?= $this->Html->link('メッセージ',      ['controller' => 'Messages',    'action' => 'index', $logins['id']], ['class' => 'dropdown-item']) ?>
-                        <?= $this->Html->link('イベント',        ['controller' => 'Events',      'action' => 'list',  $logins['id']], ['class' => 'dropdown-item']) ?>
-                        <?= $this->Html->link('ダンス動画',      ['controller' => 'DanceVideos', 'action' => 'list',  $logins['id']], ['class' => 'dropdown-item']) ?>
-                        <?= $this->Html->link('ミュージック',    ['controller' => 'DanceMusics', 'action' => 'list',  $logins['id']], ['class' => 'dropdown-item']) ?>
+                        <?= $this->Html->link('マイプロフィール', $views, ['class' => 'dropdown-item']) ?>
+                        <?= $this->Html->link('メッセージ',      ['controller' => 'Messages',    'action' => 'index'], ['class' => 'dropdown-item']) ?>
+                        <?= $this->Html->link('イベント',        ['controller' => 'Events',      'action' => 'list'], ['class' => 'dropdown-item']) ?>
+                        <?= $this->Html->link('ダンス動画',      ['controller' => 'DanceVideos', 'action' => 'list'], ['class' => 'dropdown-item']) ?>
+                        <?= $this->Html->link('ミュージック',    ['controller' => 'DanceMusics', 'action' => 'list'], ['class' => 'dropdown-item']) ?>
                     </div>
                 </div>
             </div><!-- /.card-body -->
@@ -141,7 +141,7 @@
                                 イベント一覧に表示され、皆に告知することが可能です。
                             </p>
                             <?= $this->Html->link('イベント管理',
-                                ['controller' => 'Events', 'action' => 'list', $logins['id']],
+                                ['controller' => 'Events', 'action' => 'list'],
                                 ['class' => 'btn btn-pink btn-rounded btn-md']
                             ) ?>
                         </div>
@@ -165,7 +165,7 @@
                                 ぜひ、あなたも協力してください。
                             </p>
                             <?= $this->Html->link('<i class="fa fa-plus left"></i> DanceVideo 登録',
-                                ['controller' => 'DanceMusics', 'action' => 'list', $logins['id']],
+                                ['controller' => 'DanceMusics', 'action' => 'list'],
                                 [
                                     'class' => 'btn btn-success btn-rounded btn-md',
                                     'escape' => false,
@@ -213,7 +213,7 @@
         <?php endif; ?>
 
         <?php if ($message_number > 0) : ?>
-        <a href="<?= $this->Url->build(['controller' => 'Messages', 'action' => 'index', $logins['id']]) ?>">
+        <a href="<?= $this->Url->build(['controller' => 'Messages', 'action' => 'index']) ?>">
             <div class="card mb-4 text-center py-3 red accent-2 white-text">
                 <i class="fa fa-envelope fa-3x mb-3"></i>
                 <h4 class="h4-responsive"><?= h($message_number) ?> メッセージがあります。</h4>
@@ -227,7 +227,7 @@
 
 <div class="row mb-3">
     <div class="col-lg-6 col-md-12 mb-3">
-        <a href="<?= $this->Url->build(['controller' => 'DanceVideos', 'action' => 'list', $logins['id']]) ?>">
+        <a href="<?= $this->Url->build(['controller' => 'DanceVideos', 'action' => 'list']) ?>">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title dark-grey-text"><strong><i class="fa fa-youtube-play yt-ic"></i> ダンス動画管理</strong></h5>
@@ -243,7 +243,7 @@
         </a>
     </div>
     <div class="col-lg-6 col-md-12">
-        <a href="<?= $this->Url->build(['controller' => 'DanceMusics', 'action' => 'list', $logins['id']]) ?>">
+        <a href="<?= $this->Url->build(['controller' => 'DanceMusics', 'action' => 'list']) ?>">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title dark-grey-text"><strong><i class="fa fa-music pink-text"></i> ミュージック管理</strong></h5>

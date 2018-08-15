@@ -43,7 +43,7 @@
                         <div class="md-form text-center">
                             <h2 class="h2-responsive"><?= h($event->event_name) ?></h2>
                         </div>
-                        <hr class="mb-0">
+                        <hr>
                     </div>
                 </div>
 
@@ -190,13 +190,13 @@
                 <?php else : ?>
                 <div class="row">
                     <div class="col-lg-6 mb-2">
-                        <?= $this->Html->link('<i class="fa fa-edit"></i> このイベントを編集する',
+                        <?= $this->Html->link('<i class="fa fa-edit"></i> 編集',
                             ['action' => 'edit', h($event->id)],
                             ['class' => 'btn btn-success btn-block', 'escape' => false]
                         ) ?>
                     </div>
                     <div class="col-lg-6">
-                        <?= $this->Html->link('<i class="fa fa-trash fa-lg" aria-hidden="true"></i> イベント削除', 'javascript:void(0)',
+                        <?= $this->Html->link('<i class="fa fa-trash fa-lg" aria-hidden="true"></i> 削除', 'javascript:void(0)',
                             [
                                 'class'       => 'btn btn-danger btn-block',
                                 'escape'      => false,
@@ -296,7 +296,7 @@
                 <?php if ($logins['id'] === $event->user_id) : ?>
                     <div class="md-form">
                         <?= $this->Html->link('<i class="fa fa-calendar"></i> マイイベント ',
-                            ['action' => 'list', $event->user_id],
+                            ['action' => 'list'],
                             ['class'  => 'btn purple-gradient btn-rounded', 'escape' => false]
                         ) ?>
                     </div>

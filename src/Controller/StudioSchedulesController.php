@@ -54,7 +54,7 @@ class StudioSchedulesController extends AppController
      * @return \Cake\Http\Response|void
      * @throws \Cake\Network\Exception\NotFoundException スタジオが存在しない場合
      */
-    public function index($id)
+    public function index($id = null)
     {
         // スタジオプロフィール取得
         $this->loadModel('Studios');
@@ -96,7 +96,7 @@ class StudioSchedulesController extends AppController
      * @return \Cake\Http\Response|void
      * @throws \Cake\Network\Exception\NotFoundException スタジオが存在しない場合
      */
-    public function public($id)
+    public function public($id = null)
     {
         $this->viewBuilder()->setLayout('public');
 

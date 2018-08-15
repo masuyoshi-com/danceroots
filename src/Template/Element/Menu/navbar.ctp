@@ -6,7 +6,7 @@
     <ul class="nav navbar-nav nav-flex-icons ml-auto">
         <li class="nav-item">
             <?= $this->Html->link('<i class="fa fa-envelope"></i><span class="clearfix d-none d-sm-inline-block">メッセージ</span>',
-                ['controller' => 'Messages', 'action' => 'index', $logins['id']],
+                ['controller' => 'Messages', 'action' => 'index'],
                 [
                     'class'          => 'nav-link',
                     'escape'         => false,
@@ -53,7 +53,7 @@
             ) ?>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                 <?= $this->Html->link('ホーム', $homes, ['class' => 'dropdown-item']) ?>
-                <?= $this->Html->link('マイアカウント',  ['controller' => 'Users', 'action' => 'edit', $logins['id']], ['class' => 'dropdown-item']) ?>
+                <?= $this->Html->link('マイアカウント',  ['controller' => 'Users', 'action' => 'edit'], ['class' => 'dropdown-item']) ?>
                 <?= $this->Html->link('マイプロフィール', $views, ['class' => 'dropdown-item']) ?>
                 <?= $this->Html->link('ログアウト',      ['controller' => 'Users', 'action' => 'logout'], ['class' => 'dropdown-item']) ?>
             </div>

@@ -57,19 +57,11 @@ class EventsController extends AppController
 
     /**
      * マイリスト - 登録済みイベント一覧
-     *
-     * @param string|null $id ユーザーID
-     * @throws \Cake\Network\Exception\NotFoundException
      */
-    public function list($id = null)
+    public function list()
     {
-        if ((int)$id === $this->Auth->user('id')) {
-            $events = $this->paginate($this->Events->findByUserIdAndDeleteFlag($id, 0));
-            $this->set(compact('events'));
-            $this->set('id', $id);
-        } else {
-            throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
-        }
+        $events = $this->paginate($this->Events->findByUserIdAndDeleteFlag($this->Auth->user('id'), 0));
+        $this->set(compact('events'));
     }
 
 
@@ -152,13 +144,13 @@ class EventsController extends AppController
     /**
      * イベント詳細
      *
-     * @param string|null $id イベントID
+     * @param string|null $event_id イベントID
      * @return \Cake\Http\Response|void
      * @throws \Cake\Datasource\Exception\RecordNotFoundException
      */
-    public function view($id = null)
+    public function view($event_id = null)
     {
-        $event = $this->Events->findByIdAndDeleteFlag($id, 0)->contain(['Users'])->first();
+        $event = $this->Events->findByIdAndDeleteFlag($event_id, 0)->contain(['Users'])->first();
 
         if ($event) {
             $event['youtube'] = $this->Common->getYoutubeId($event['youtube']);
@@ -181,14 +173,14 @@ class EventsController extends AppController
     /**
      * 一般公開イベント詳細
      *
-     * @param string|null $id イベントID
+     * @param string|null $event_id イベントID
      * @return \Cake\Http\Response|void
      * @throws \Cake\Datasource\Exception\RecordNotFoundException
      */
-    public function publicView($id = null)
+    public function publicView($event_id = null)
     {
         $this->viewBuilder()->setLayout('public');
-        $event = $this->Events->findByIdAndDeleteFlagAndPublicFlag($id, 0, 0)->contain(['Users'])->first();
+        $event = $this->Events->findByIdAndDeleteFlagAndPublicFlag($event_id, 0, 0)->contain(['Users'])->first();
 
         if ($event) {
             $event['youtube'] = $this->Common->getYoutubeId($event['youtube']);
@@ -228,9 +220,8 @@ class EventsController extends AppController
 
             }
 
-            $this->Flash->error(__('エラーがありました。'));
+            $this->Flash->error(__('エラーがあります。再度確認してください。'));
         }
-        $this->set('user_id',    $this->Auth->user('id'));
         $this->set('categories', $this->Common->valueToKey($this->categories));
         $this->set(compact('event'));
     }
@@ -239,15 +230,15 @@ class EventsController extends AppController
     /**
      * イベント編集
      *
-     * @param string|null $id イベントID
+     * @param string|null $event_id イベントID
      * @return \Cake\Http\Response|null
      * @throws \Cake\Network\Exception\NotFoundException レコードが存在しない場合
      */
-    public function edit($id = null)
+    public function edit($event_id = null)
     {
         $this->Common->referer();
 
-        $event = $this->Events->get($id, ['contain' => ['Users']]);
+        $event = $this->Events->get($event_id, ['contain' => ['Users']]);
 
         if ($this->request->is(['patch', 'post', 'put'])) {
             $event = $this->Events->patchEntity($event, $this->request->getData());
@@ -257,7 +248,7 @@ class EventsController extends AppController
 
                 return $this->redirect(['action' => 'view', $event->id]);
             }
-            $this->Flash->error(__('エラーがありました。'));
+            $this->Flash->error(__('エラーがあります。再度確認してください。'));
         }
 
         // イベントが存在し、なおかつリファラーを抜けてもユーザーIDを認証する

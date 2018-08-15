@@ -111,14 +111,14 @@
                     ) ?>
                     <div class="dropdown-menu dropdown-primary">
                         <?= $this->Html->link('マイプロフィール', $views, ['class' => 'dropdown-item']) ?>
-                        <?= $this->Html->link('メッセージ',  ['controller' => 'Messages',    'action' => 'index', $logins['id']], ['class' => 'dropdown-item']) ?>
+                        <?= $this->Html->link('メッセージ',  ['controller' => 'Messages',    'action' => 'index'], ['class' => 'dropdown-item']) ?>
                         <!--
-                        <?= $this->Html->link('チーム',      ['controller' => 'Teams',       'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
+                        <?= $this->Html->link('チーム',      ['controller' => 'Teams',       'action' => 'list'], ['class' => 'dropdown-item']) ?>
                         -->
-                        <?= $this->Html->link('サークル',    ['controller' => 'Circles',     'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
-                        <?= $this->Html->link('イベント',    ['controller' => 'Events',      'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
-                        <?= $this->Html->link('ダンス動画',  ['controller' => 'DanceVideos', 'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
-                        <?= $this->Html->link('ミュージック', ['controller' => 'DanceMusics', 'action' => 'list', $logins['id']], ['class' => 'dropdown-item']) ?>
+                        <?= $this->Html->link('サークル',    ['controller' => 'Circles',     'action' => 'list'], ['class' => 'dropdown-item']) ?>
+                        <?= $this->Html->link('イベント',    ['controller' => 'Events',      'action' => 'list'], ['class' => 'dropdown-item']) ?>
+                        <?= $this->Html->link('ダンス動画',   ['controller' => 'DanceVideos', 'action' => 'list'], ['class' => 'dropdown-item']) ?>
+                        <?= $this->Html->link('ミュージック', ['controller' => 'DanceMusics', 'action' => 'list'], ['class' => 'dropdown-item']) ?>
                     </div>
                 </div>
             </div><!-- /.card-body -->
@@ -144,7 +144,7 @@
                                 今後の活動の可能性が広がります。利用は無料です。是非登録しておきましょう。
                             </p>
                             <?= $this->Html->link('ダンスチーム管理',
-                                ['controller' => 'Teams', 'action' => 'list', $logins['id']],
+                                ['controller' => 'Teams', 'action' => 'list'],
                                 ['class' => 'btn btn-pink btn-rounded btn-md']
                             ) ?>
                         </div>
@@ -168,7 +168,7 @@
                                 全国のダンサー仲間とつながる事が可能です。積極的に利用しましょう。
                             </p>
                             <?= $this->Html->link('ダンスサークル管理',
-                                ['controller' => 'Circles', 'action' => 'list', $logins['id']],
+                                ['controller' => 'Circles', 'action' => 'list'],
                                 ['class' => 'btn btn-success btn-rounded btn-md']
                             ) ?>
                         </div>
@@ -212,7 +212,7 @@
         <?php endif; ?>
 
         <?php if ($message_number > 0) : ?>
-        <a href="<?= $this->Url->build(['controller' => 'Messages', 'action' => 'index', $logins['id']]) ?>">
+        <a href="<?= $this->Url->build(['controller' => 'Messages', 'action' => 'index']) ?>">
             <div class="card mb-4 text-center py-3 red accent-2 white-text">
                 <i class="fa fa-envelope fa-3x mb-3"></i>
                 <h4 class="h4-responsive"><?= h($message_number) ?> メッセージがあります。</h4>
@@ -226,7 +226,7 @@
 
 <div class="row mb-3">
     <div class="col-lg-4 col-md-12 mb-3">
-        <a href="<?= $this->Url->build(['controller' => 'Events', 'action' => 'list', $logins['id']]) ?>">
+        <a href="<?= $this->Url->build(['controller' => 'Events', 'action' => 'list']) ?>">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title dark-grey-text"><strong><i class="fa fa-calendar"></i> イベント管理</strong></h5>
@@ -244,7 +244,7 @@
         </a>
     </div>
     <div class="col-lg-4 col-md-12 mb-3">
-        <a href="<?= $this->Url->build(['controller' => 'DanceVideos', 'action' => 'list', $logins['id']]) ?>">
+        <a href="<?= $this->Url->build(['controller' => 'DanceVideos', 'action' => 'list']) ?>">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title dark-grey-text"><strong><i class="fa fa-youtube-play yt-ic"></i> ダンス動画管理</strong></h5>
@@ -261,7 +261,7 @@
         </a>
     </div>
     <div class="col-lg-4 col-md-12">
-        <a href="<?= $this->Url->build(['controller' => 'DanceMusics', 'action' => 'list', $logins['id']]) ?>">
+        <a href="<?= $this->Url->build(['controller' => 'DanceMusics', 'action' => 'list']) ?>">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title dark-grey-text"><strong><i class="fa fa-music pink-text"></i> ミュージック管理</strong></h5>

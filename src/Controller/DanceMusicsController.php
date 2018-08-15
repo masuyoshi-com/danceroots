@@ -187,7 +187,7 @@ class DanceMusicsController extends AppController
                 }
 
                 $this->Flash->success(__('ミュージックを登録しました。'));
-                return $this->redirect(['action' => 'list', $this->Auth->user('id')]);
+                return $this->redirect(['action' => 'list']);
             } else {
                 $this->Flash->error(__('未選択または登録できるレコードがありませんでした。'));
             }
@@ -233,23 +233,13 @@ class DanceMusicsController extends AppController
 
     /**
      * マイ ミュージック
-     *
-     * @param string|null $id ユーザーID
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Network\Exception\NotFoundException
      */
-    public function list($id = null)
+    public function list()
     {
-        if ((int)$id === $this->Auth->user('id')) {
+        $query       = $this->DanceMusics->findByUserId($this->Auth->user('id'));
+        $danceMusics = $this->paginate($query);
 
-            $query       = $this->DanceMusics->findByUserId($id);
-            $danceMusics = $this->paginate($query);
-
-            $this->set(compact('danceMusics'));
-
-        } else {
-            throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
-        }
+        $this->set(compact('danceMusics'));
     }
 
 
@@ -334,6 +324,6 @@ class DanceMusicsController extends AppController
             $this->Flash->error(__('削除できません。問題が解決しなければサポートに連絡してください。'));
         }
 
-        return $this->redirect(['action' => 'list', $this->Auth->user('id')]);
+        return $this->redirect(['action' => 'list']);
     }
 }

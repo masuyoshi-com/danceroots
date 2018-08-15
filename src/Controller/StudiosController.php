@@ -38,41 +38,27 @@ class StudiosController extends AppController
     /**
      * ホーム - 初期登録時、プロフィール未作成の場合、強制的にaddアクションへ
      *
-     * @param string|null $id ユーザーID
      * @return redirect add 初期登録の場合のみ
      *
      */
-    public function home($id = null)
+    public function home()
     {
-        if ($id) {
+        $query = $this->Studios->findByUserId($this->Auth->user('id'))->contain(['Users']);
+        $studio = $query->first();
 
-            // ユーザーIDとログインIDが一致している場合のみ
-            if ((int)$id === $this->Auth->user('id')) {
-
-                $query = $this->Studios->findByUserId($id)->contain(['Users']);
-                $studio = $query->first();
-
-                if (!$studio) {
-                    $this->Flash->default(__('最初にプロフィールを作成しましょう。'));
-                    $this->redirect(['action' => 'add', $id]);
-                }
-
-                $studio['user']['classification'] = $this->Common->getCategoryName($studio['user']['classification']);
-                // メッセージ未読数取得
-                $message_number = $this->Studios->Users->Messages->findByToUserIdAndReadFlag($id, 0)->count();
-                // お知らせ最新1か月以内を3件のみ取得
-                $this->loadModel('Informations');
-                $informations = $this->Informations->find()->where(['Informations.created >' => new \DateTime('-1 months')])->limit(3)->all();
-
-                $this->set(compact('studio', 'message_number', 'informations'));
-            } else {
-                throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
-            }
-        } else {
-            // 強制ログアウト → 最初から操作させる
-            $this->Flash->error(__('ユーザー情報を取得できません。最初からやり直してください。'));
-            return $this->redirect($this->Auth->logout());
+        if (!$studio) {
+            $this->Flash->default(__('最初にプロフィールを作成しましょう。'));
+            $this->redirect(['action' => 'add']);
         }
+
+        $studio['user']['classification'] = $this->Common->getCategoryName($studio['user']['classification']);
+        // メッセージ未読数取得
+        $message_number = $this->Studios->Users->Messages->findByToUserIdAndReadFlag($this->Auth->user('id'), 0)->count();
+        // お知らせ最新1か月以内を3件のみ取得
+        $this->loadModel('Informations');
+        $informations = $this->Informations->find()->where(['Informations.created >' => new \DateTime('-1 months')])->limit(3)->all();
+
+        $this->set(compact('studio', 'message_number', 'informations'));
     }
 
 
@@ -208,24 +194,23 @@ class StudiosController extends AppController
     /**
      * スタジオプロフィール登録
      *
-     * @param string|null $id ユーザーID
      * @return \Cake\Http\Response|null 登録成功の場合はviewへ
      * @throws \Cake\Network\Exception\NotFoundException
      */
-    public function add($id = null)
+    public function add()
     {
         $this->Common->referer();
 
         $this->viewBuilder()->setLayout('add');
 
-        $user = $this->Studios->Users->findByIdAndRegisterFlagAndClassification($id, 1, 1)->first();
+        $user = $this->Studios->Users->findByIdAndRegisterFlagAndClassification($this->Auth->user('id'), 1, 1)->first();
 
         if ($user) {
             // 既に区分プロフィール作成済みか
             $profile = $this->Studios->findByUserId($user->id)->first();
 
-            // プロフィール未作成で、取得ユーザーIDがログインユーザーIDと一致すれば許可
-            if (!$profile && $user->id === $this->Auth->user('id')) {
+            // プロフィール未作成で許可
+            if (!$profile) {
                 $studio = $this->Studios->newEntity();
 
                 if ($this->request->is('post')) {
@@ -241,13 +226,13 @@ class StudiosController extends AppController
                 }
 
                 $this->set('genres', $this->Common->valueToKey($this->genres));
-                $this->set('user_id', $id);
                 $this->set(compact('studio'));
             } else {
+                $this->Auth->logout();
                 throw new NotFoundException(__('404 不正なアクセスまたはコンテンツが見つかりません。'));
             }
-
         } else {
+            $this->Auth->logout();
             throw new NotFoundException(__('404 不正なアクセスまたはコンテンツが見つかりません。'));
         }
 
@@ -257,15 +242,14 @@ class StudiosController extends AppController
     /**
      * スタジオ編集
      *
-     * @param string|null $id ユーザID
      * @return \Cake\Http\Response|null
      * @throws \Cake\Network\Exception\NotFoundException - レコードが存在しない場合
      */
-    public function edit($id = null)
+    public function edit()
     {
         $this->Common->referer();
 
-        $studio = $this->Studios->findByUserId($id)->contain(['Users'])->first();
+        $studio = $this->Studios->findByUserId($this->Auth->user('id'))->contain(['Users'])->first();
 
         if ($this->request->is(['patch', 'post', 'put'])) {
 
@@ -279,7 +263,7 @@ class StudiosController extends AppController
             $this->Flash->error(__('エラーがあります。解決しない場合はフィードバックよりお問い合わせください。'));
         }
 
-        if ($studio && (int)$studio->user_id === $this->Auth->user('id')) {
+        if ($studio) {
 
             $videos = '';
             $videos = $this->Common->getYoutubeId($studio['youtube']);

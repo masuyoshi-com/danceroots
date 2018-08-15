@@ -25,7 +25,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <?= $this->Html->link('<i class="fa fa-arrow-circle-left" aria-hidden="true"></i> 戻る',
-                                ['action' => 'outbox', $logins['id']],
+                                ['action' => 'outbox'],
                                 ['class' => 'btn btn-sm btn-warning', 'escape' => false]
                         ) ?>
                         <?= $this->Form->postLink('<i class="fa fa-trash" aria-hidden="true"></i> メッセージ削除',

@@ -43,19 +43,11 @@ class JobsController extends AppController
 
     /**
      * マイリスト - 登録済み求人一覧
-     *
-     * @param string|null $id ユーザーID
-     * @return void
      */
-    public function list($id = null)
+    public function list()
     {
-        if ((int)$id === $this->Auth->user('id')) {
-            $jobs = $this->paginate($this->Jobs->findByUserIdAndDeleteFlag($id, 0));
-            $this->set(compact('jobs'));
-            $this->set('id', $id);
-        } else {
-            throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
-        }
+        $jobs = $this->paginate($this->Jobs->findByUserIdAndDeleteFlag($this->Auth->user('id'), 0));
+        $this->set(compact('jobs'));
     }
 
 
@@ -147,7 +139,6 @@ class JobsController extends AppController
 
         $this->set('categories', $this->Common->valueToKey($this->categories));
         $this->set('genres',     $this->Common->valueToKey($this->genres));
-        $this->set('user_id',    $this->Auth->user('id'));
         $this->set(compact('job'));
     }
 
@@ -212,6 +203,5 @@ class JobsController extends AppController
             return false;
         }
     }
-
 
 }
