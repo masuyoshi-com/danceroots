@@ -24,8 +24,6 @@ class DanceVideosController extends AppController
     /**
      * マイYoutube動画一覧
      * ※ オブジェクト箇所を任意に要素追加する場合はページネート時にtoArray()で一旦配列として処理する
-     *
-     * @throws \Cake\Network\Exception\NotFoundException
      */
     public function list()
     {
@@ -50,7 +48,6 @@ class DanceVideosController extends AppController
      * ダンス動画検索
      *
      * @return \Cake\Http\Response|void
-     * @throws \Cake\Network\Exception\NotFoundException
      */
     public function index()
     {
@@ -86,6 +83,35 @@ class DanceVideosController extends AppController
 
         $this->set('genres', $this->Common->valueToKey($this->genres));
         $this->set(compact('videos'));
+    }
+
+
+    /**
+     * ユーザー別お気に入り動画
+     *
+     * @param string $id ユーザーID
+     * @throws \Cake\Network\Exception\NotFoundException
+     */
+    public function detail($id)
+    {
+        $this->paginate = ['contain' => ''];
+
+        $query  = $this->DanceVideos->findByUserId($id);
+        $videos = $this->paginate($query)->toArray();
+
+        if ($videos) {
+            for ($i = 0; $i < count($videos); $i++) {
+                $videos[$i]['youtube'] = $this->Common->getYoutubeId($videos[$i]['youtube']);
+            }
+            // ユーザー情報取得
+            $user = $this->DanceVideos->Users->findById($id)->first();
+            $user->profile = $this->Common->getUsersByClassification($user->classification, $user->id);
+            $user->link    = $this->Common->linkSwitch($user->classification, 'view', $user->id);
+
+            $this->set(compact('videos', 'user'));
+        } else {
+            throw new NotFoundException(__('動画が見つかりませんでした。'));
+        }
     }
 
 

@@ -82,7 +82,7 @@ class DanceMusicsController extends AppController
 
 
     /**
-     * ユーザーごとのお気に入りミュージック
+     * ユーザー別お気に入りミュージック
      *
      * @param string $id ユーザーID
      * @return [type] [description]

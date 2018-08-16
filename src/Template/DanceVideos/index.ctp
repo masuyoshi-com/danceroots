@@ -110,7 +110,15 @@
                                         }
                                     ?>
                                     <small>
-                                        <?= h($video->user->username) ?>
+                                        <?= $this->Html->link($video->user->username,
+                                            ['controller' => 'DanceVideos', 'action' => 'detail', $video->user->id],
+                                            [
+                                                'class'          => 'grey-text',
+                                                'data-toggle'    => 'tooltip',
+                                                'data-placement' => 'bottom',
+                                                'title'          => 'お気に入り動画を見る'
+                                            ]
+                                        ) ?>
                                     </small>
                                 </a>
                             </div>
