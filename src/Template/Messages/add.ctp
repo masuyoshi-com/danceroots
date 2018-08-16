@@ -24,7 +24,7 @@
 
                 <?= $this->Form->create($message) ?>
                 <?= $this->Form->hidden('url',        ['value' => h($url)]) ?>
-                <?= $this->Form->hidden('user_id',    ['value' => h($user_id)]) ?>
+                <?= $this->Form->hidden('user_id',    ['value' => $logins['id']]) ?>
                 <?= $this->Form->hidden('to_user',    ['value' => h($to_user->username)]) ?>
                 <?= $this->Form->hidden('to_user_id', ['value' => h($to_user_id)]) ?>
 

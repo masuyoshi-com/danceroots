@@ -77,6 +77,11 @@ body {
     border-radius: 50%;
 }
 
+.card-img-100 {
+    width: 100px;
+    height: 100px;
+}
+
 .table-wrapper {
     display: block;
     max-height: 300px;

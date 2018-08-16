@@ -55,12 +55,6 @@
 </div><!-- /.card -->
 <?= $this->Form->end() ?>
 
-<div class="row">
-    <div class="col-lg-12">
-        <?= $this->Flash->render() ?>
-    </div>
-</div>
-
 <?php if (count($danceMusics) !== 0) : ?>
 
 <div class="row">
@@ -181,7 +175,17 @@
                                 ]);
                         }
                     ?>
-                    <?= $this->Html->link($music->user->username, $music->link, ['class' => 'grey-text', 'target' => '_blank']) ?>
+
+                    <?= $this->Html->link($music->user->username,
+                        ['controller' => 'DanceMusics', 'action' => 'detail', $music->user->id],
+                        [
+                            'class'          => 'grey-text',
+                            'data-toggle'    => 'tooltip',
+                            'data-placement' => 'bottom',
+                            'title'          => 'お気に入り音楽を見る'
+                        ]
+                    ) ?>
+
                 </small>
             </p>
             <hr class="mt-1">

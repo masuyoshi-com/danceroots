@@ -68,7 +68,7 @@ class DanceMusicsController extends AppController
             $this->request->data = $this->Session->read('music_search_request');
         }
 
-        // 登録者区分プロフィールを取得 / YoutubeIDのみに変更 / 区分リンク取得
+        // 登録者区分プロフィールを取得 / 区分リンク取得
         if ($danceMusics) {
             for ($i = 0; $i < count($danceMusics); $i++) {
                 $danceMusics[$i]['profile'] = $this->Common->getUsersByClassification($danceMusics[$i]['user']['classification'], $danceMusics[$i]['user']['id']);
@@ -78,7 +78,30 @@ class DanceMusicsController extends AppController
 
         $this->set('genres', $this->Common->valueToKey($this->genres));
         $this->set(compact('danceMusics'));
+    }
 
+
+    /**
+     * ユーザーごとのお気に入りミュージック
+     *
+     * @param string $id ユーザーID
+     * @return [type] [description]
+     */
+    public function detail($id = null)
+    {
+        $query       = $this->DanceMusics->findByUserId($id);
+        $danceMusics = $this->paginate($query);
+
+        if (count($danceMusics) !== 0) {
+            // ユーザー情報取得
+            $user = $this->DanceMusics->Users->findById($id)->first();
+            $user->profile = $this->Common->getUsersByClassification($user->classification, $user->id);
+            $user->link    = $this->Common->linkSwitch($user->classification, 'view', $user->id);
+
+            $this->set(compact('danceMusics', 'user'));
+        } else {
+            throw new NotFoundException(__('音楽データが見つかりませんでした。'));
+        }
     }
 
 

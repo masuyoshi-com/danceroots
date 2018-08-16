@@ -251,7 +251,7 @@
                     <div>
                         <?= $this->Html->link('<i class="fa fa-paper-plane-o"></i> メッセージ',
                             ['controller' => 'Messages', 'action' => 'add', $organizer->user_id],
-                            ['class' => 'btn purple-gradient btn-rounded', 'escape' => false]
+                            ['class' => 'btn blue-gradient btn-rounded', 'escape' => false]
                         ) ?>
                     </div>
                 <?php endif; ?>
@@ -306,7 +306,7 @@
                 } else {
                     print $this->Html->link('<i class="fa fa-envelope"></i> メッセージを送る',
                         ['controller' => 'Messages', 'action' => 'add', $organizer->user_id],
-                        ['class' => 'btn purple-gradient btn-block', 'escape' => false]
+                        ['class' => 'btn blue-gradient btn-block', 'escape' => false]
                     );
                 }
             ?>
