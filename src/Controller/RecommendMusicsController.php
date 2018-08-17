@@ -21,6 +21,13 @@ class RecommendMusicsController extends AppController
         'レゲエ', 'エレクトロニック', 'オルタナティブ', 'ポップ', 'ロック', 'J-Pop',
     ];
 
+    // 年代別
+    public $years = [
+        '1980,1990' => '1980 ～ 1990', '1990,2000' => '1990 ～ 2000',
+        '2000,2010' => '2000 ～ 2010', '2010,2050' => '2010 ～ 現在'
+    ];
+
+
     public $paginate = [
            'limit' => 50,
            'order' => ['RecommendMusics.created' => 'desc'],
@@ -67,6 +74,7 @@ class RecommendMusicsController extends AppController
             $this->request->data = $this->Session->read('reco_music_search_request');
         }
 
+        $this->set('years', $this->years);
         $this->set('genres', $this->Common->valueToKey($this->genres));
         $this->set(compact('recommendMusics'));
     }
@@ -79,7 +87,7 @@ class RecommendMusicsController extends AppController
      */
     public function public()
     {
-        $this->viewBuilder()->setLayout('public');
+        $this->viewBuilder()->setLayout('public_fluid');
 
         if ($this->request->query) {
 
@@ -102,6 +110,7 @@ class RecommendMusicsController extends AppController
             $this->request->data = $this->Session->read('public_reco_music_search');
         }
 
+        $this->set('years', $this->years);
         $this->set('genres', $this->Common->valueToKey($this->genres));
         $this->set(compact('recommendMusics'));
     }

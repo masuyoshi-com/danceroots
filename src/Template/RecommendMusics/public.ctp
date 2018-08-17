@@ -40,7 +40,7 @@
 <?= $this->Form->create('', ['type' => 'get']) ?>
 <div class="card card-body p-3 mb-3">
     <div class="row">
-        <div class="col-lg-3 col-md-5 col-xs-12 mt-3">
+        <div class="col-lg-3 col-md-6 col-xs-12 mt-3">
             <?= $this->Form->control('genre',
                 [
                     'id'      => 'f--genre',
@@ -51,7 +51,18 @@
                 ]
             ) ?>
         </div>
-        <div class="col-lg-9 col-md-7 col-xs-12">
+        <div class="col-lg-3 col-md-6 col-xs-12 mt-3">
+            <?= $this->Form->control('year',
+                [
+                    'id'      => 'f--year',
+                    'type'    => 'select',
+                    'class'   => 'mdb-select colorful-select dropdown-primary',
+                    'options' => $years,
+                    'empty'   => '年代を選択'
+                ]
+            ) ?>
+        </div>
+        <div class="col-lg-6 col-md-12 col-xs-12">
             <div class="form-inline md-form input-group mt-2 mb-2">
                 <?= $this->Form->control('word', ['class' => 'form-control my-0', 'placeholder' => '検索']) ?>
                 <?= $this->Form->button('<i class="fa fa-search"></i>',
@@ -160,7 +171,7 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-    <div class="col-lg-3 col-md-3 col-xs-6 mb-3">
+    <div class="col-lg-2 col-md-3 col-xs-6 mb-3">
         <div class="card card-body text-center pb-0">
             <p class="grey-text text-left mb-1">
                 <small>

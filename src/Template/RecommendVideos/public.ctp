@@ -105,7 +105,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-3 col-md-4 col-xs-12 mb-3">
+            <div class="col-lg-2 col-md-4 col-xs-12 mb-3">
                 <div class="card news-card">
 
                     <div class="embed-responsive embed-responsive-16by9 d-flex justify-content-center zoom">

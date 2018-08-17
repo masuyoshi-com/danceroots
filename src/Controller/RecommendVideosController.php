@@ -79,8 +79,8 @@ class RecommendVideosController extends AppController
      */
     public function public()
     {
-        $this->viewBuilder()->setLayout('public');
-        
+        $this->viewBuilder()->setLayout('public_fluid');
+
         if ($this->request->query) {
 
             for ($i = 0; $i < count($this->search_keys); $i++) {

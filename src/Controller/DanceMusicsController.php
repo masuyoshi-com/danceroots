@@ -26,6 +26,12 @@ class DanceMusicsController extends AppController
         'レゲエ', 'エレクトロニック', 'オルタナティブ', 'ポップ', 'ロック', 'J-Pop',
     ];
 
+    // 年代別
+    public $years = [
+        '1980,1990' => '1980 ～ 1990', '1990,2000' => '1990 ～ 2000',
+        '2000,2010' => '2000 ～ 2010', '2010,2050' => '2010 ～ 現在'
+    ];
+
     // アルファベット検索用配列
     public $alphabets = [
         '0-9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
@@ -76,6 +82,7 @@ class DanceMusicsController extends AppController
             }
         }
 
+        $this->set('years', $this->years);
         $this->set('genres', $this->Common->valueToKey($this->genres));
         $this->set(compact('danceMusics'));
     }

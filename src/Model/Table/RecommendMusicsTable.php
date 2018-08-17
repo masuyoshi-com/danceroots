@@ -5,6 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Database\Expression\QueryExpression;
 
 /**
  * RecommendMusics Model
@@ -48,13 +49,31 @@ class RecommendMusicsTable extends Table
     */
     public function findBySearch($requests)
     {
-        return $this->find('all')
-            ->where(['RecommendMusics.primary_genre_name LIKE' => '%' . $requests['genre'] . '%'])
-            ->where(['OR' => [
-                ['RecommendMusics.artist_name LIKE'            => '%' . $requests['word'] . '%'],
-                ['RecommendMusics.collection_name LIKE'        => '%' . $requests['word'] . '%'],
-                ['RecommendMusics.track_name LIKE'             => '%' . $requests['word'] . '%'],
-                ['RecommendMusics.collection_artist_name LIKE' => '%' . $requests['word'] . '%']]])
-            ;
+        if ($requests['year']) {
+            $years = explode(',', $requests['year']);
+            $start = date('Y-m-d', strtotime($years[0] . '/01/01'));
+            $end   = date('Y-m-d', strtotime($years[1] . '/01/01'));
+
+            return $this->find('all')
+                ->where(['RecommendMusics.primary_genre_name LIKE' => '%' . $requests['genre'] . '%'])
+                ->where(function (QueryExpression $exp, Query $q) use ($start, $end) {
+                    return $exp->between('release_date', $start, $end);
+                })
+                ->where(['OR' => [
+                    ['RecommendMusics.artist_name LIKE'            => '%' . $requests['word'] . '%'],
+                    ['RecommendMusics.collection_name LIKE'        => '%' . $requests['word'] . '%'],
+                    ['RecommendMusics.track_name LIKE'             => '%' . $requests['word'] . '%'],
+                    ['RecommendMusics.collection_artist_name LIKE' => '%' . $requests['word'] . '%']]])
+                ;
+        } else {
+            return $this->find('all')
+                ->where(['RecommendMusics.primary_genre_name LIKE' => '%' . $requests['genre'] . '%'])
+                ->where(['OR' => [
+                    ['RecommendMusics.artist_name LIKE'            => '%' . $requests['word'] . '%'],
+                    ['RecommendMusics.collection_name LIKE'        => '%' . $requests['word'] . '%'],
+                    ['RecommendMusics.track_name LIKE'             => '%' . $requests['word'] . '%'],
+                    ['RecommendMusics.collection_artist_name LIKE' => '%' . $requests['word'] . '%']]])
+                ;
+        }
     }
 }
