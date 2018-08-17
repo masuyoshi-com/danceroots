@@ -135,9 +135,20 @@
                     <?php else : ?>
                         <div>
                             <?= $this->Html->link('<i class="fa fa-paper-plane-o"></i> メッセージ',
+                                'javascript:void(0)',
+                                [
+                                    'class'       => 'btn blue-gradient btn-rounded',
+                                    'escape'      => false,
+                                    'data-toggle' => 'modal',
+                                    'data-target' => '#modalMessageForm'
+                                ]
+                            ) ?>
+                            <!--
+                            <?= $this->Html->link('<i class="fa fa-paper-plane-o"></i> メッセージ',
                                 ['controller' => 'Messages', 'action' => 'add', $studio->user_id],
                                 ['class' => 'btn blue-gradient btn-rounded', 'escape' => false]
                             ) ?>
+                            -->
                         </div>
                     <?php endif; ?>
                 <?php else : ?>

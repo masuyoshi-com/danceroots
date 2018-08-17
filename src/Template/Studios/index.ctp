@@ -12,7 +12,7 @@
 <?= $this->Form->create('', ['type' => 'get']) ?>
 <div class="card p-3 mb-3">
     <div class="row">
-        <div class="col-lg-3 col-md-6 col-xs-12">
+        <div class="col-lg-3 col-md-6 col-xs-12 mt-2">
             <?= $this->Form->control('pref',
                 [
                     'id'      => 'f--genre',
@@ -24,7 +24,7 @@
             ) ?>
         </div>
         <div class="col-lg-9 col-md-12">
-            <div class="form-inline md-form input-group mt-2 mb-2">
+            <div class="form-inline md-form input-group mt-1 mb-2">
                 <?= $this->Form->control('word', ['class' => 'form-control my-0', 'placeholder' => '検索']) ?>
                 <?= $this->Form->button('<i class="fa fa-search"></i>',
                     [
