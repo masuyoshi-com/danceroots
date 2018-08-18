@@ -10,9 +10,9 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-5544353-4"></script>
     <?= $this->Html->script('gtag') ?>
     <?= $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css') ?>
-    <?= $this->Html->css('/css/bootstrap.min') ?>
-    <?= $this->Html->css('/css/mdb.min') ?>
-    <?= $this->Html->css('/css/style') ?>
+    <?= $this->Html->css('bootstrap.min') ?>
+    <?= $this->Html->css('mdb.min') ?>
+    <?= $this->Html->css('style') ?>
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
@@ -31,10 +31,10 @@
         </div>
     </main>
 
-    <?= $this->Html->script('/js/jquery-3.2.1.min') ?>
-    <?= $this->Html->script('/js/popper.min') ?>
-    <?= $this->Html->script('/js/bootstrap.min') ?>
-    <?= $this->Html->script('/js/mdb.min') ?>
+    <?= $this->Html->script('jquery-3.2.1.min') ?>
+    <?= $this->Html->script('popper.min') ?>
+    <?= $this->Html->script('bootstrap.min') ?>
+    <?= $this->Html->script('mdb.min') ?>
     <script>
     $(function () {
         // 各init

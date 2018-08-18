@@ -122,9 +122,14 @@
                     </div>
                 <?php else : ?>
                     <div>
-                        <?= $this->Html->link('<i class="fa fa-paper-plane-o"></i> メッセージ',
-                            ['controller' => 'Messages', 'action' => 'add', $general->user_id],
-                            ['class' => 'btn blue-gradient btn-rounded', 'escape' => false]
+                        <?= $this->Html->link('<i class="fa fa-paper-plane-o" aria-hidden="true"></i> メッセージ',
+                            'javascript:void(0)',
+                            [
+                                'class'       => 'btn blue-gradient btn-rounded',
+                                'escape'      => false,
+                                'data-toggle' => 'modal',
+                                'data-target' => '#modalMessageForm'
+                            ]
                         ) ?>
                     </div>
                 <?php endif; ?>
@@ -219,9 +224,9 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row mb-3">
     <div class="col-lg-12">
-        <div class="card card-body mb-3">
+        <div class="card card-body">
             <?php
                 if ($general->user_id === $logins['id']) {
                     print $this->Html->link('<i class="fa fa-edit" aria-hidden="true"></i> プロフィールを編集',
@@ -229,9 +234,14 @@
                         ['class' => 'btn btn-primary', 'escape' => false]
                     );
                 } else {
-                    print $this->Html->link('<i class="fa fa-envelope"></i> メッセージを送る',
-                        ['controller' => 'Messages', 'action' => 'add', $general->user_id],
-                        ['class' => 'btn blue-gradient', 'escape' => false]
+                    print $this->Html->link('<i class="fa fa-envelope" aria-hidden="true"></i> メッセージを送る',
+                        'javascript:void(0)',
+                        [
+                            'class'       => 'btn blue-gradient btn-block',
+                            'escape'      => false,
+                            'data-toggle' => 'modal',
+                            'data-target' => '#modalMessageForm'
+                        ]
                     );
                 }
             ?>

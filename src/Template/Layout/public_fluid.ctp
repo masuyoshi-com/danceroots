@@ -17,10 +17,10 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-5544353-4"></script>
     <?= $this->Html->script('gtag') ?>
     <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') ?>
-    <?= $this->Html->css('/css/bootstrap.min') ?>
-    <?= $this->Html->css('/css/mdb.min') ?>
-    <?= $this->Html->css('/css/top-style') ?>
-    <?= $this->Html->script('/js/jquery-3.2.1.min') ?>
+    <?= $this->Html->css('bootstrap.min') ?>
+    <?= $this->Html->css('mdb.min') ?>
+    <?= $this->Html->css('top-style') ?>
+    <?= $this->Html->script('jquery-3.2.1.min') ?>
 
     <?php if (strstr($url, 'studios/public-view') || strstr($url, 'events/public-view')) : ?>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgKCqD5RxbGvn317awtqsiexBBd5wJRPo" type="text/javascript"></script>
@@ -44,9 +44,9 @@
     <?= $this->element('Menu/footer') ?>
 
     <!-- Bootstrap dropdown -->
-    <?= $this->Html->script('/js/popper.min') ?>
-    <?= $this->Html->script('/js/bootstrap.min') ?>
-    <?= $this->Html->script('/js/mdb.min') ?>
+    <?= $this->Html->script('popper.min') ?>
+    <?= $this->Html->script('bootstrap.min') ?>
+    <?= $this->Html->script('mdb.min') ?>
     <script>
         new WOW().init();
         $('[data-toggle="tooltip"]').tooltip();

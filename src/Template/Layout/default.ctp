@@ -42,6 +42,11 @@
 
     <main>
         <div class="container-fluid">
+            <?php
+                if (isset($to_user_id)) {
+                    print $this->element('Modal/message', ['to_user_id' => $to_user_id, 'to_user_name' => $to_username]);
+                }
+            ?>
             <?= $this->element('Modal/feedback') ?>
             <?= $this->fetch('content') ?>
         </div>
@@ -70,6 +75,7 @@
         $('#mdb-lightbox-ui').load('<?= $this->Url->build('/mdb-addons/mdb-lightbox-ui.html') ?>');
 
         initRun.feedback('<?= $this->Url->build(['controller' => 'Feedbacks', 'action' => 'add']) ?>');
+        initRun.message('<?= $this->Url->build(['controller' => 'Messages', 'action' => 'add']) ?>');
 
         initRun.circleDelete(
             '<?= $this->Url->build(['controller' => 'Circles', 'action' => 'delete']) ?>',

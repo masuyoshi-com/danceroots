@@ -56,6 +56,9 @@ class GeneralsController extends AppController
             // ユーザ区分をカテゴリ名で取得
             $general['user']['classification'] = $this->Common->getCategoryName($general['user']['classification']);
             $this->set('general', $general);
+            // メッセージ用変数
+            $this->set('to_user_id',  $general->user_id);
+            $this->set('to_username', $general->user->username);
         } else {
             throw new NotFoundException(__('404 ページが見つかりません。'));
         }

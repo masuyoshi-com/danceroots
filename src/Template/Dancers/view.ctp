@@ -131,8 +131,13 @@
                 <?php else : ?>
                     <div>
                         <?= $this->Html->link('<i class="fa fa-paper-plane-o"></i> メッセージ',
-                            ['controller' => 'Messages', 'action' => 'add', $dancer->user_id],
-                            ['class' => 'btn blue-gradient btn-rounded', 'escape' => false]
+                            'javascript:void(0)',
+                            [
+                                'class'       => 'btn blue-gradient btn-rounded',
+                                'escape'      => false,
+                                'data-toggle' => 'modal',
+                                'data-target' => '#modalMessageForm'
+                            ]
                         ) ?>
                     </div>
                 <?php endif; ?>
@@ -391,9 +396,14 @@
                         ['class' => 'btn btn-primary btn-block', 'escape' => false]
                     );
                 } else {
-                    print $this->Html->link('<i class="fa fa-envelope"></i> メッセージを送る',
-                        ['controller' => 'Messages', 'action' => 'add', $dancer->user_id],
-                        ['class' => 'btn blue-gradient btn-block', 'escape' => false]
+                    print $this->Html->link('<i class="fa fa-envelope" aria-hidden="true"></i> メッセージを送る',
+                        'javascript:void(0)',
+                        [
+                            'class'       => 'btn blue-gradient btn-block',
+                            'escape'      => false,
+                            'data-toggle' => 'modal',
+                            'data-target' => '#modalMessageForm'
+                        ]
                     );
                 }
             ?>

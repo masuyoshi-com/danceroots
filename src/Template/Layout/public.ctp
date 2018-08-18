@@ -17,10 +17,10 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-5544353-4"></script>
     <?= $this->Html->script('gtag') ?>
     <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') ?>
-    <?= $this->Html->css('/css/bootstrap.min') ?>
-    <?= $this->Html->css('/css/mdb.min') ?>
-    <?= $this->Html->css('/css/top-style') ?>
-    <?= $this->Html->script('/js/jquery-3.2.1.min') ?>
+    <?= $this->Html->css('bootstrap.min') ?>
+    <?= $this->Html->css('mdb.min') ?>
+    <?= $this->Html->css('top-style') ?>
+    <?= $this->Html->script('jquery-3.2.1.min') ?>
 
     <?php if (strstr($url, 'studios/public-view') || strstr($url, 'events/public-view')) : ?>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgKCqD5RxbGvn317awtqsiexBBd5wJRPo" type="text/javascript"></script>
@@ -37,6 +37,15 @@
     <?= $this->element('Menu/header') ?>
     <main class="pt-4">
         <div class="container">
+            <?php
+                if (isset($to_user_id)) {
+                    if (isset($message_id)) {
+                        print $this->element('Modal/message', ['to_user_id' => $to_user_id, 'to_user_name' => $to_username, 'message_id' => $message_id] );
+                    } else {
+                        print $this->element('Modal/message', ['to_user_id' => $to_user_id, 'to_user_name' => $to_username]);
+                    }
+                }
+            ?>
             <?= $this->fetch('content') ?>
         </div>
     </main>
@@ -44,14 +53,16 @@
     <?= $this->element('Menu/footer') ?>
 
     <!-- Bootstrap dropdown -->
-    <?= $this->Html->script('/js/popper.min') ?>
-    <?= $this->Html->script('/js/bootstrap.min') ?>
-    <?= $this->Html->script('/js/mdb.min') ?>
+    <?= $this->Html->script('popper.min') ?>
+    <?= $this->Html->script('bootstrap.min') ?>
+    <?= $this->Html->script('mdb.min') ?>
+    <?= $this->Html->script('script') ?>
     <script>
         new WOW().init();
         $('[data-toggle="tooltip"]').tooltip();
-        $('.mdb-select').material_select();
         $('#mdb-lightbox-ui').load('<?= $this->Url->build('/mdb-addons/mdb-lightbox-ui.html') ?>');
+
+        initRun.message('<?= $this->Url->build(['controller' => 'Messages', 'action' => 'add']) ?>');
     </script>
 </body>
 </html>

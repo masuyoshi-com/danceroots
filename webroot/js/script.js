@@ -72,6 +72,48 @@ var initRun = (function( $ ) {
 
 
     /**
+    * Message 送信・登録
+    *
+    * @param  {string} url PHP側urlBuilderヘルパーのURL文字列
+    * @return {json} response
+    */
+    var message = function ( url ) {
+
+        $('#message-submit').click(function() {
+
+            var to_user_id  = $('#to-user-id').val();
+            var to_username = $('#to-username').val();
+            var title       = $('#f--title').val();
+            var body        = $('#f--body').val();
+            var message_id  = $('#message-id').val();
+
+            if (to_user_id !== '' && title !== '' && body !== '') {
+                $.ajax({
+                    url: url,
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        to_user_id: to_user_id,
+                        message_id: message_id,
+                        title: title,
+                        body:  body
+                    }
+                }).done(function ( response ) {
+                    $('#modalMessageForm').modal('hide');
+                    $('#f--title').val('');
+                    $('#f--body').val('');
+                    toastr.success(to_username + 'さんにメッセージを送信しました');
+                }).fail(function () {
+                    toastr.error('再度確認してください。', '送信できません');
+                });
+            } else {
+                toastr.error('再度確認してください。', 'データ未入力です');
+            }
+        });
+    };
+
+
+    /**
      * サークル削除
      *
      * @param {string} url PHP側urlBuilderヘルパーのURL文字列
@@ -233,6 +275,7 @@ var initRun = (function( $ ) {
 
     return {
         feedback     : feedback,
+        message      : message,
         circleDelete : circleDelete,
         eventDelete  : eventDelete,
         jobDelete    : jobDelete,

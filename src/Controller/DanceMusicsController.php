@@ -106,6 +106,9 @@ class DanceMusicsController extends AppController
             $user->link    = $this->Common->linkSwitch($user->classification, 'view', $user->id);
 
             $this->set(compact('danceMusics', 'user'));
+            // メッセージ用変数
+            $this->set('to_user_id',  $user->id);
+            $this->set('to_username', $user->username);
         } else {
             throw new NotFoundException(__('音楽データが見つかりませんでした。'));
         }

@@ -163,6 +163,9 @@ class EventsController extends AppController
 
             $this->set(compact('profile_links'));
             $this->set('event', $event);
+            // メッセージ用変数
+            $this->set('to_user_id',  $event->user_id);
+            $this->set('to_username', $event->user->username);
         } else {
             throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
         }
@@ -193,6 +196,9 @@ class EventsController extends AppController
 
             $this->set(compact('profile_links'));
             $this->set('event', $event);
+            // メッセージ用変数
+            $this->set('to_user_id',  $event->user_id);
+            $this->set('to_username', $event->user->username);
         } else {
             throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
         }

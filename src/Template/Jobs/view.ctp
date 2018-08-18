@@ -211,9 +211,14 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="md-form">
-                            <?= $this->Html->link('<i class="fa fa-envelope"></i> この求人を問い合わせる',
-                                ['controller' => 'Messages', 'action' => 'add', $job->user_id],
-                                ['class' => 'btn btn-primary btn-block', 'escape' => false]
+                            <?= $this->Html->link('<i class="fa fa-envelope" aria-hidden="true"></i> この求人を問い合わせる',
+                                'javascript:void(0)',
+                                [
+                                    'class'       => 'btn btn-primary btn-block',
+                                    'escape'      => false,
+                                    'data-toggle' => 'modal',
+                                    'data-target' => '#modalMessageForm'
+                                ]
                             ) ?>
                         </div>
                     </div>
@@ -334,9 +339,14 @@
                     </div>
                 <?php else : ?>
                     <div class="md-form">
-                        <?= $this->Html->link('<i class="fa fa-envelope" aria-hidden="true"></i> この求人に関してお問い合わせ ',
-                            ['controller' => 'Messages', 'action' => 'add', $job->user_id],
-                            ['class'  => 'btn blue-gradient btn-rounded', 'escape' => false]
+                        <?= $this->Html->link('<i class="fa fa-paper-plane-o"></i> メッセージ',
+                            'javascript:void(0)',
+                            [
+                                'class'       => 'btn blue-gradient btn-rounded',
+                                'escape'      => false,
+                                'data-toggle' => 'modal',
+                                'data-target' => '#modalMessageForm'
+                            ]
                         ) ?>
                     </div>
                 <?php endif; ?>

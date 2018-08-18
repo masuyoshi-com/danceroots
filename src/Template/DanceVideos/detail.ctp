@@ -32,12 +32,11 @@
             <?php if ($user->id !== $logins['id']) : ?>
                 <li class="list-inline-item mr-3">
                     <?= $this->Html->link('<i class="fa fa-envelope mr-1"></i> <small>メッセージ</small>',
-                        ['controller' => 'Messages', 'action' => 'add', $user->id],
+                        'javascript:void(0)',
                         [
-                            'data-toggle'    => 'tooltip',
-                            'data-placement' => 'bottom',
-                            'title'          => 'メッセージを送る',
-                            'escape'         => false
+                            'escape'      => false,
+                            'data-toggle' => 'modal',
+                            'data-target' => '#modalMessageForm'
                         ]
                     ) ?>
                 </li>
@@ -45,15 +44,8 @@
             <li class="list-inline-item mr-3">
                 <?= $this->Html->link('<i class="fa fa-user mr-1"></i> <small>プロフィール</small>',
                     $user->link,
-                    [
-                        'target'         => '_blank',
-                        'data-toggle'    => 'tooltip',
-                        'data-placement' => 'bottom',
-                        'title'          => 'プロフィールを見る',
-                        'escape'         => false
-                    ]
+                    ['target' => '_blank', 'escape' => false]
                 ) ?>
-
             </li>
         </ul>
     </div>

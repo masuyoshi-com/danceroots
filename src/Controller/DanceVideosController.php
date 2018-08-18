@@ -109,6 +109,9 @@ class DanceVideosController extends AppController
             $user->link    = $this->Common->linkSwitch($user->classification, 'view', $user->id);
 
             $this->set(compact('videos', 'user'));
+            // メッセージ用変数
+            $this->set('to_user_id',  $user->id);
+            $this->set('to_username', $user->username);
         } else {
             throw new NotFoundException(__('動画が見つかりませんでした。'));
         }

@@ -101,6 +101,9 @@ class CircleMessagesController extends AppController
 
         $this->set('profile_links',  $profile_links);
         $this->set('circle_message', $circle_message);
+        // メッセージ用変数
+        $this->set('to_user_id',  $circle_message->user_id);
+        $this->set('to_username', $circle_message->user->username);
     }
 
 

@@ -156,6 +156,9 @@ class StudiosController extends AppController
 
             $this->set('schedule', $schedule_count);
             $this->set('studio', $studio);
+            // メッセージ用変数
+            $this->set('to_user_id',  $studio->user_id);
+            $this->set('to_username', $studio->user->username);
         } else {
             throw new NotFoundException(__('404 ページが見つかりません。'));
         }
@@ -185,6 +188,9 @@ class StudiosController extends AppController
 
             $this->set('schedule', $schedule_count);
             $this->set('studio', $studio);
+            // メッセージ用変数
+            $this->set('to_user_id',  $studio->user_id);
+            $this->set('to_username', $studio->user->username);
         } else {
             throw new NotFoundException(__('404 ページが見つかりません。'));
         }

@@ -65,10 +65,10 @@
                                     <td>
                                         <?php
                                             if ($to->read_flag === 0) {
-                                                print '<span class="badge pink">未読</span>';
+                                                print '<span class="badge pink">未読</span> ';
                                             }
                                             if ($to->reply_flag === 1) {
-                                                print '<span class="badge badge-success">返信済</span>';
+                                                print '<i class="fa fa-mail-reply cyan-text" aria-hidden="true"></i> ';
                                             }
                                         ?>
                                         <?= $this->Html->link(h($to->title), ['action' => 'view', h($to->id)],

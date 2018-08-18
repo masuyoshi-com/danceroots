@@ -109,6 +109,9 @@ class JobsController extends AppController
 
             $this->set(compact('profile_links'));
             $this->set('job', $job);
+            // メッセージ用変数
+            $this->set('to_user_id',  $job->user_id);
+            $this->set('to_username', $job->user->username);
         } else {
             throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
         }

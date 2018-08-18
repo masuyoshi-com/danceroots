@@ -9,9 +9,9 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-5544353-4"></script>
     <?= $this->Html->script('gtag') ?>
     <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') ?>
-    <?= $this->Html->css('/css/bootstrap.min') ?>
-    <?= $this->Html->css('/css/top-mdb.min') ?>
-    <?= $this->Html->css('/css/top-style') ?>
+    <?= $this->Html->css('bootstrap.min') ?>
+    <?= $this->Html->css('top-mdb.min') ?>
+    <?= $this->Html->css('top-style') ?>
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
@@ -26,11 +26,11 @@
 
     <?= $this->fetch('content') ?>
 
-    <?= $this->Html->script('/js/jquery-3.2.1.min') ?>
+    <?= $this->Html->script('jquery-3.2.1.min') ?>
     <!-- Bootstrap dropdown -->
-    <?= $this->Html->script('/js/popper.min') ?>
-    <?= $this->Html->script('/js/bootstrap.min') ?>
-    <?= $this->Html->script('/js/mdb.min') ?>
+    <?= $this->Html->script('popper.min') ?>
+    <?= $this->Html->script('bootstrap.min') ?>
+    <?= $this->Html->script('mdb.min') ?>
     <script>
         new WOW().init();
     </script>

@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 use Cake\Mailer\MailerAwareTrait;
 use Cake\Network\Exception\NotFoundException;
 
@@ -19,6 +20,26 @@ class MessagesController extends AppController
            'limit' => 20,
            'order' => ['Messages.created' => 'desc']
      ];
+
+
+     /**
+      * 各アクション前に発動
+      *
+      * @param object Event $event
+      * @return void
+      */
+     public function beforeFilter(Event $event)
+     {
+         parent::beforeFilter($event);
+
+         $this->Security->config('unlockedActions', ['add']);
+
+         // 特定のアクションのみCSRF無効化
+         if (in_array($this->request->action, ['add'])) {
+             $this->eventManager()->off($this->Csrf);
+         }
+     }
+
 
     /**
      * メッセージ受信箱 送られてきたのでToとする
@@ -90,6 +111,10 @@ class MessagesController extends AppController
         $message['link']    = $this->Common->linkSwitch($message['user']['classification'], 'view', $message->user_id);
 
         $this->set('message', $message);
+        // メッセージ用変数
+        $this->set('message_id',  $message->id);
+        $this->set('to_user_id',  $message->user_id);
+        $this->set('to_username', $message->user->username);
     }
 
 
@@ -117,59 +142,48 @@ class MessagesController extends AppController
     /**
      * メッセージ作成
      *
-     * @param string|null $to_id    送信先ユーザーID
-     * @param string|null $reply_id 基のメッセージID
+     * @param string|null $this->request->data['to_user_id']  送信先ユーザーID
      * @return \Cake\Http\Response|null
      */
-    public function add($to_id = null, $reply_id = null)
+    public function add()
     {
         $this->Common->referer();
-        // 送信先ユーザー取得
-        $to_user = $this->Messages->Users->findById($to_id)->first();
-        $message = $this->Messages->newEntity();
+        $this->autoRender = false;
 
-        if ($this->request->is('post')) {
+        if ($this->request->is('ajax')) {
+
+            $message = $this->Messages->newEntity();
 
             // 返信の場合はどのメッセージに対してかわかるようにメッセージIDを登録
-            if ($reply_id) {
-
-                $this->request->data['reply_id'] = $reply_id;
+            if (isset($this->request->data['message_id'])) {
                 // 親(基)となるメッセージのrepley_flagを更新
-                $parent_message = $this->Messages->get($reply_id);
+                $parent_message = $this->Messages->get($this->request->data['message_id']);
                 // メッセージが未読の場合、既読フラグアップデート
                 if ($parent_message->reply_flag === 0) {
                     $parent_message->reply_flag = 1;
                     $this->Messages->save($parent_message);
                 }
             }
-
-            $message = $this->Messages->patchEntity($message, $this->request->getData());
+            
+            // 差出人user_idをセット
+            $this->request->data['user_id'] = $this->Auth->user('id');
+            $message = $this->Messages->patchEntity($message, $this->request->getData(), ['validate' => false]);
 
             if ($this->Messages->save($message)) {
 
                 // メール機能がONの場合
                 if (SEND_MAIL_FUNCTION === 0) {
+                    // 送信先ユーザー取得
+                    $to_user = $this->Messages->Users->findById($this->request->data['to_user_id'])->first();
                     // 差出人ユーザー取得
-                    $from_user = $this->Messages->Users->findById($this->request->data['user_id'])->first();
+                    $from_user = $this->Messages->Users->findById($this->Auth->user('id'))->first();
                     $this->getMailer('Message')->send('message', [$to_user, $from_user, $message]);
                 }
-
-                $this->Flash->success(__($this->request->data['to_user'] . 'さんにメッセージ送信しました。'));
-                return $this->redirect($this->request->data['url']);
+                $this->response->body(json_encode($this->request->data));
+                return $this->response;
             }
-
-            $this->Flash->error(__('送信できません。再度確認してください。'));
+            return false;
         }
-
-        // 一つ前のページをセットしておく
-        if ($this->referer() !== '/') {
-            $url = $this->referer();
-        } else {
-            $url = null;
-        }
-
-        $this->set('to_user_id', $to_id);
-        $this->set(compact('message', 'to_user', 'url'));
     }
 
 

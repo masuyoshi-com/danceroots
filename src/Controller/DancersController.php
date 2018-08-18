@@ -153,6 +153,9 @@ class DancersController extends AppController
             // ユーザ区分をカテゴリ名で取得
             $dancer['user']['classification'] = $this->Common->getCategoryName($dancer['user']['classification']);
             $this->set('dancer', $dancer);
+            // メッセージ用変数
+            $this->set('to_user_id',  $dancer->user_id);
+            $this->set('to_username', $dancer->user->username);
         } else {
             throw new NotFoundException(__('404 ページが見つかりません。'));
         }
@@ -180,7 +183,11 @@ class DancersController extends AppController
 
             // ユーザ区分をカテゴリ名で取得
             $dancer['user']['classification'] = $this->Common->getCategoryName($dancer['user']['classification']);
+
             $this->set('dancer', $dancer);
+            // メッセージ用変数
+            $this->set('to_user_id',  $dancer->user_id);
+            $this->set('to_username', $dancer->user->username);
         } else {
             throw new NotFoundException(__('404 ページが見つかりません。'));
         }

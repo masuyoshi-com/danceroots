@@ -143,12 +143,6 @@
                                     'data-target' => '#modalMessageForm'
                                 ]
                             ) ?>
-                            <!--
-                            <?= $this->Html->link('<i class="fa fa-paper-plane-o"></i> メッセージ',
-                                ['controller' => 'Messages', 'action' => 'add', $studio->user_id],
-                                ['class' => 'btn blue-gradient btn-rounded', 'escape' => false]
-                            ) ?>
-                            -->
                         </div>
                     <?php endif; ?>
                 <?php else : ?>

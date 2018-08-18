@@ -112,7 +112,9 @@ class CirclesController extends AppController
                 }
 
                 $this->set(compact('circle', 'circle_messages', 'circle_members', 'profile_links'));
-
+                // メッセージ用変数
+                $this->set('to_user_id',  $circle->user_id);
+                $this->set('to_username', $circle->user->username);
             } else {
                 throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
             }
@@ -199,7 +201,9 @@ class CirclesController extends AppController
 
             $this->set(compact('circle', 'circle_members', 'profile_links', 'join_flag'));
             $this->set('genres', $this->Common->valueToKey($this->genres));
-
+            // メッセージ用変数
+            $this->set('to_user_id',  $circle->user_id);
+            $this->set('to_username', $circle->user->username);
         } else {
             throw new NotFoundException(__('404 不正なアクセスまたはページが見つかりません。'));
         }

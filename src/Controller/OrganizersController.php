@@ -57,7 +57,9 @@ class OrganizersController extends AppController
             // ユーザ区分をカテゴリ名で取得
             $organizer['user']['classification'] = $this->Common->getCategoryName($organizer['user']['classification']);
             $this->set('organizer', $organizer);
-
+            // メッセージ用変数
+            $this->set('to_user_id',  $organizer->user->id);
+            $this->set('to_username', $organizer->user->username);
         } else {
             throw new NotFoundException(__('404 ページが見つかりません。'));
         }

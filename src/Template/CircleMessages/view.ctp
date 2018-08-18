@@ -86,9 +86,14 @@
                     </p>
                     <?php if ($circle_message->user_id !== $logins['id']) : ?>
                         <p>
-                            <?= $this->Html->link('<i class="fa fa-paper-plane-o"></i> メッセージ',
-                                ['controller' => 'Messages', 'action' => 'add', $logins['id'], h($circle_message->user_id)],
-                                ['class' => 'btn btn-primary btn-sm', 'escape' => false]
+                            <?= $this->Html->link('<i class="fa fa-paper-plane-o" aria-hidden="true"></i> メッセージ',
+                                'javascript:void(0)',
+                                [
+                                    'class'       => 'btn btn-primary btn-sm',
+                                    'escape'      => false,
+                                    'data-toggle' => 'modal',
+                                    'data-target' => '#modalMessageForm'
+                                ]
                             ) ?>
                         </p>
                     <?php endif; ?>

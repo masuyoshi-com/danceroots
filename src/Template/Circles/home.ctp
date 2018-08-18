@@ -391,9 +391,14 @@
                     </div>
                 <?php else : ?>
                     <div>
-                        <?= $this->Html->link('<i class="fa fa-paper-plane-o"></i> メッセージ',
-                            ['controller' => 'Messages', 'action' => 'add', $circle->user_id],
-                            ['class' => 'btn aqua-gradient btn-rounded', 'escape' => false]
+                        <?= $this->Html->link('<i class="fa fa-paper-plane-o" aria-hidden="true"></i> メッセージ',
+                            'javascript:void(0)',
+                            [
+                                'class'       => 'btn aqua-gradient btn-rounded',
+                                'escape'      => false,
+                                'data-toggle' => 'modal',
+                                'data-target' => '#modalMessageForm'
+                            ]
                         ) ?>
                     </div>
                 <?php endif; ?>
