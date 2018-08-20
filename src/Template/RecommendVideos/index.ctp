@@ -88,6 +88,12 @@
                             <div class="embed-responsive embed-responsive-16by9">
                                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($video->youtube) ?>?rel=0" allowfullscreen></iframe>
                             </div>
+                            <?php if ($video->comment) : ?>
+                            <h6 class="white-text m-3 "><i class="fa fa-comment"></i> Comment</h6>
+                            <p class="grey-text font-weight-bold p-2">
+                                <?= nl2br(h($video->comment)) ?>
+                            </p>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
