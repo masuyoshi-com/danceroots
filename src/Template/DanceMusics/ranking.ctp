@@ -194,7 +194,7 @@
 
         <div class="row">
         <?php for($i = 0; $i < count($songs3); $i++) : ?>
-            <div class="col-lg-2 col-md-3 col-xs-6 mb-3">
+            <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6 mb-3">
                 <div class="card card-body text-center pb-0">
 
                     <p class="grey-text text-left mb-0">

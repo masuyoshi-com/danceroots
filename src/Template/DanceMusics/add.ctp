@@ -185,7 +185,7 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-    <div class="col-lg-2 col-md-3 col-xs-6 mb-3">
+    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6 mb-3">
         <div class="card card-body text-center pb-0">
             <p>
                 <?= $this->Html->link($this->Html->image($songs[$i]['artworkUrl100'], ['class' => 'img-fluid z-depth-2']),
