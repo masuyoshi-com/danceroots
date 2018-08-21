@@ -100,13 +100,13 @@
 <div class="container">
     <section class="section pb-3 text-center text-lg-left">
 
-        <h1 class="section-heading h1 dark-grey-text text-center mt-5 pt-lg-3">
+        <h1 class="section-heading h1 h1-responsive dark-grey-text text-center mt-5 pt-lg-3">
             dancer<span class="font-blue">oo</span>ts<span class="none">.net</span>の利用は全て無料です。
         </h1>
         <hr>
 
         <p class="section-description mb-5 mt-lg-5 mx-lg-5 text-center">
-            Webを通してストリートダンサーの活躍の場を広げ、全国のダンサーとつながる。ストリートダンス文化、歴史の共有。ストリートダンスビジネスの社会的地位向上を目指すことを目的としたストリートダンサーのための総合プラットフォームです。<br>
+            Webを通してストリートダンサーの活躍の場を広げ、全国のダンサーとつながる。ストリートダンス文化、歴史/知識の共有。ストリートダンスビジネスの向上を目指すことを目的としたストリートダンサーのための総合プラットフォームです。<br>
             ストリートダンスに関する情報を皆で共有し、個人としての活動はもちろん、ダンスチームとしての活動、サークル作成なども行えます。<br>また、スタジオや各種イベントとダンサーのマッチングを素早く行うことができます。
         </p>
 
@@ -119,7 +119,7 @@
 
             <div class="col-lg-7 col-xl-7">
                 <h6 class="font-bold pb-1 cyan-text">StreetDancer</h6>
-                <h4 class="mb-4 font-bold dark-grey-text">
+                <h4 class="h4-responsive mb-4 font-bold dark-grey-text">
                     <strong>ダンサープロフィールを作成し、活躍の場を広げよう。</strong>
                 </h4>
                 <p class="dark-grey-text">
@@ -139,7 +139,7 @@
         <div class="row">
             <div class="col-lg-7 col-xl-7 pb-3">
                 <h6 class="font-bold pb-1 orange-text">Studio/School</h6>
-                <h4 class="mb-4 font-bold dark-grey-text">
+                <h4 class="h4-responsive mb-4 font-bold dark-grey-text">
                     <strong>ダンススタジオを全国のダンサーにアピールしませんか？</strong>
                 </h4>
                 <p class="dark-grey-text">
@@ -166,7 +166,7 @@
             </div>
             <div class="col-lg-7 mr-auto col-xl-7">
                 <h6 class="font-bold pb-1 purple-text">Organaizer/Company</h6>
-                <h4 class="mb-4 font-bold dark-grey-text">
+                <h4 class="h4-responsive mb-4 font-bold dark-grey-text">
                     <strong>ダンス・クラブイベントを効率的に告知できます。</strong>
                 </h4>
                 <p class="dark-grey-text">
@@ -186,7 +186,7 @@
         <div class="row">
             <div class="col-lg-12 col-xl-12 pb-3">
                 <h6 class="font-bold pb-1 text-center green-text">General</h6>
-                <h4 class="mb-4 font-bold dark-grey-text text-center">
+                <h4 class="h4-responsive mb-4 font-bold dark-grey-text text-center">
                     <strong>ダンスに興味がある。イベントを知りたい。誰でも利用できます。</strong>
                 </h4>
                 <p class="dark-grey-text">
