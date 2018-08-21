@@ -10,6 +10,7 @@ use Cake\ORM\Entity;
  * @property int    $user_id
  * @property string $title
  * @property string $youtube
+ * @property string $comment
  * @property string $genre
  * @property string $tag
  * @property string $show_year
@@ -28,6 +29,7 @@ class DanceVideo extends Entity
         'user_id'   => true,
         'title'     => true,
         'youtube'   => true,
+        'comment'   => true,
         'genre'     => true,
         'tag'       => true,
         'show_year' => true,

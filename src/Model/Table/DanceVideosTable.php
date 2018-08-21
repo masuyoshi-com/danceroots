@@ -86,6 +86,16 @@ class DanceVideosTable extends Table
             ]);
 
         $validator
+            ->scalar('comment')
+            ->requirePresence('comment', 'create')
+            ->allowEmpty('comment')
+            ->add('comment', 'custom', [
+                'rule'     => 'isSpace',
+                'provider' => 'custom',
+                'message'  => '空白のみは受け付けません。'
+            ]);
+
+        $validator
             ->scalar('genre')
             ->maxLength('genre', 50)
             ->requirePresence('genre', 'create')

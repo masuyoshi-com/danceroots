@@ -89,6 +89,15 @@
                 </div>
             </div>
 
+            <div class="row mt-2">
+                <div class="col-lg-12">
+                    <label class="dark-gray-text w-100 text-left"><small>コメント</small>
+                    <div class="md-form mt-0">
+                        <?= $this->Form->textarea('comment', ['class' => 'form-control md-textarea']) ?>
+                    </div>
+                </div>
+            </div>
+
             <div class="row mt-3">
                 <div class="col-lg-12">
                     <?= $this->Form->button('<i class="fa fa-plus"></i> 登録',

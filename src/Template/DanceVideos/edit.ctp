@@ -59,6 +59,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="row">
                 <div class="col-lg-12">
                     <div class="md-form">
@@ -73,6 +74,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-lg-12">
                     <label class="dark-gray-text w-100 text-left"><small>タイトル</small></label>
@@ -81,11 +83,21 @@
                     </div>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-lg-12">
                     <label class="dark-gray-text w-100 text-left"><small>Youtube</small> <span class="badge badge-info">動画URLをコピペ</span></label>
                     <div class="md-form mt-0">
                         <?= $this->Form->control('youtube', ['class' => 'form-control']) ?>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-lg-12">
+                    <label class="dark-gray-text w-100 text-left"><small>コメント</small>
+                    <div class="md-form mt-0">
+                        <?= $this->Form->textarea('comment', ['class' => 'form-control md-textarea']) ?>
                     </div>
                 </div>
             </div>
