@@ -269,7 +269,7 @@
                     <div class="col-lg-12">
                         <h6><i class="fa fa-facebook fb-ic"></i> Facebook</h6>
                         <hr>
-                        <div class="md-form text-center mt-0">
+                        <div class="md-form text-center mt-0 w-100">
                             <div class="fb-page" data-href="<?= h($organizer->facebook) ?>" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
                                 <blockquote cite="<?= h($organizer->facebook) ?>" class="fb-xfbml-parse-ignore">
                                     <a href="https://www.facebook.com/facebook">Facebook</a>

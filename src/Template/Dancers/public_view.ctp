@@ -380,7 +380,7 @@
 <div class="card card-body mb-3">
     <h6><i class="fa fa-image"></i> Dance Image</h6>
     <div id="mdb-lightbox-ui"></div>
-    <div class="mdb-lightbox no-margin">
+    <div class="mdb-lightbox">
         <?php
             if ($dancer->image1) {
                 print '<figure class="col-md-4">';
@@ -422,7 +422,7 @@
             <div class="card card-body mb-3">
                 <h6><i class="fa fa-facebook fb-ic"></i> Facebook</h6>
                 <hr class="mt-0">
-                <div class="text-center">
+                <div class="text-center w-100">
                     <div class="fb-page" data-href="<?= h($dancer->facebook) ?>" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
                         <blockquote cite="<?= h($dancer->facebook) ?>" class="fb-xfbml-parse-ignore">
                             <a href="https://www.facebook.com/facebook">Facebook</a>
