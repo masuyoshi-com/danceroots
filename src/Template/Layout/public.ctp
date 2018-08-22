@@ -57,6 +57,13 @@
     <?= $this->Html->script('bootstrap.min') ?>
     <?= $this->Html->script('mdb.min') ?>
     <?= $this->Html->script('script') ?>
+
+    <?php
+        if (strstr($url, 'public-view')) {
+            print $this->Html->script('facebook');
+        }
+    ?>
+
     <script>
         new WOW().init();
         $('[data-toggle="tooltip"]').tooltip();

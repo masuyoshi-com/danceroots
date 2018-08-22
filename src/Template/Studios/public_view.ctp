@@ -344,7 +344,7 @@
                 <div class="text-center">
                     <div class="fb-page" data-href="<?= h($studio->facebook) ?>" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
                         <blockquote cite="<?= h($studio->facebook) ?>" class="fb-xfbml-parse-ignore">
-                            <a href="https://www.facebook.com/facebook">Facebook</a>
+                            <a href="<?= h($studio->facebook) ?>">Facebook</a>
                         </blockquote>
                     </div>
                 </div>

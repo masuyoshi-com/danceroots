@@ -58,7 +58,7 @@
     <?= $this->Html->script('script') ?>
 
     <?php
-        if (strstr($url, 'dance-musics')) {
+        if (strstr($url, 'dance-musics') || strstr($url, 'recommend-musics')) {
             print $this->Html->script('autolink');
         }
     ?>

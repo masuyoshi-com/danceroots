@@ -47,6 +47,13 @@
     <?= $this->Html->script('popper.min') ?>
     <?= $this->Html->script('bootstrap.min') ?>
     <?= $this->Html->script('mdb.min') ?>
+
+    <?php
+        if (strstr($url, 'recommend-musics')) {
+            print $this->Html->script('autolink');
+        }
+    ?>
+    
     <script>
         new WOW().init();
         $('[data-toggle="tooltip"]').tooltip();
