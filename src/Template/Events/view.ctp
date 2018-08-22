@@ -169,7 +169,9 @@
                     <div class="col-lg-12">
                         <div class="d-flex">
                             <h6 class="dark-grey-text"><i class="fa fa-map-marker"></i> GoogleMap</h6>
-                            <p class="ml-auto mb-0"><small>表示されない場合は <i id="map-refresh" class="fa fa-refresh indigo-text" style="cursor: pointer;"></i></small></p>
+                            <p class="ml-auto mb-0 blue-text" data-toggle="tooltip" data-placement="bottom" title="ブラウザをリロードしてください。">
+                                <small>表示されない場合</small>
+                            </p>
                         </div>
                         <div id="map" class="rounded z-depth-1-half map-container" style="height: 300px"></div>
                     </div>
@@ -345,7 +347,4 @@
 
 <script>
     initGoogle.initMap('<?= h($event->address) ?>');
-    $('#map-refresh').click(function(){
-        location.reload();
-    });
 </script>

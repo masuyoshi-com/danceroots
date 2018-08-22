@@ -326,7 +326,9 @@
         <?php endif; ?>
             <div class="d-flex">
                 <h6><i class="fa fa-map-marker"></i> GoogleMap </h6>
-                <p class="ml-auto mb-0"><small>表示されない場合は <i id="map-refresh" class="fa fa-refresh indigo-text" style="cursor: pointer;"></i></small></p>
+                <p class="ml-auto mb-0 blue-text" data-toggle="tooltip" data-placement="bottom" title="ブラウザをリロードしてください。">
+                    <small>表示されない場合</small>
+                </p>
             </div>
             <!--Google map-->
             <div id="map" class="rounded z-depth-1 map-container" style="height: 375px"></div>
@@ -393,7 +395,4 @@
 
 <script>
     initGoogle.initMap('<?= $studio->address ?>');
-    $('#map-refresh').click(function(){
-        location.reload();
-    });
 </script>
