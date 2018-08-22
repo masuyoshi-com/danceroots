@@ -154,7 +154,7 @@
                                                             <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($suns[$times[$i]]['team']) ?></h3>
                                                         <?php endif; ?>
                                                         <p>
-                                                            <small>ジャンル: <strong><?= h($suns[$times[$i]]['genre']) ?></strong></small>
+                                                            <small>ジャンル: </small><span class="badge <?= getBadgeColor($suns[$times[$i]]['genre']) ?>"><?= h($suns[$times[$i]]['genre']) ?></span>
                                                         </p>
                                                         <p class="font-weight-bold">
                                                             <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($suns[$times[$i]]['start']) ?> ～ <?= h($suns[$times[$i]]['end']) ?>
@@ -293,7 +293,7 @@
                                                             <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($mons[$times[$i]]['team']) ?></h3>
                                                         <?php endif; ?>
                                                         <p>
-                                                            <small>ジャンル: <strong><?= h($mons[$times[$i]]['genre']) ?></strong></small>
+                                                            <small>ジャンル: </small><span class="badge <?= getBadgeColor($mons[$times[$i]]['genre']) ?>"><?= h($mons[$times[$i]]['genre']) ?></span>
                                                         </p>
                                                         <p class="font-weight-bold">
                                                             <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($mons[$times[$i]]['start']) ?> ～ <?= h($mons[$times[$i]]['end']) ?>
@@ -431,7 +431,7 @@
                                                             <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($tues[$times[$i]]['team']) ?></h3>
                                                         <?php endif; ?>
                                                         <p>
-                                                            <small>ジャンル: <strong><?= h($tues[$times[$i]]['genre']) ?></strong></small>
+                                                            <small>ジャンル: </small><span class="badge <?= getBadgeColor($tues[$times[$i]]['genre']) ?>"><?= h($tues[$times[$i]]['genre']) ?></span>
                                                         </p>
                                                         <p class="font-weight-bold">
                                                             <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($tues[$times[$i]]['start']) ?> ～ <?= h($tues[$times[$i]]['end']) ?>
@@ -569,7 +569,7 @@
                                                             <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($weds[$times[$i]]['team']) ?></h3>
                                                         <?php endif; ?>
                                                         <p>
-                                                            <small>ジャンル: <strong><?= h($weds[$times[$i]]['genre']) ?></strong></small>
+                                                            <small>ジャンル: </small><span class="badge <?= getBadgeColor($weds[$times[$i]]['genre']) ?>"><?= h($weds[$times[$i]]['genre']) ?></span>
                                                         </p>
                                                         <p class="font-weight-bold">
                                                             <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($weds[$times[$i]]['start']) ?> ～ <?= h($weds[$times[$i]]['end']) ?>
@@ -707,7 +707,7 @@
                                                             <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($thus[$times[$i]]['team']) ?></h3>
                                                         <?php endif; ?>
                                                         <p>
-                                                            <small>ジャンル: <strong><?= h($thus[$times[$i]]['genre']) ?></strong></small>
+                                                            <small>ジャンル: </small><span class="badge <?= getBadgeColor($thus[$times[$i]]['genre']) ?>"><?= h($thus[$times[$i]]['genre']) ?></span>
                                                         </p>
                                                         <p class="font-weight-bold">
                                                             <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($thus[$times[$i]]['start']) ?> ～ <?= h($thus[$times[$i]]['end']) ?>
@@ -845,7 +845,7 @@
                                                             <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($fris[$times[$i]]['team']) ?></h3>
                                                         <?php endif; ?>
                                                         <p>
-                                                            <small>ジャンル: <strong><?= h($fris[$times[$i]]['genre']) ?></strong></small>
+                                                            <small>ジャンル: </small><span class="badge <?= getBadgeColor($fris[$times[$i]]['genre']) ?>"><?= h($fris[$times[$i]]['genre']) ?></span>
                                                         </p>
                                                         <p class="font-weight-bold">
                                                             <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($fris[$times[$i]]['start']) ?> ～ <?= h($fris[$times[$i]]['end']) ?>
@@ -983,7 +983,7 @@
                                                             <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($sats[$times[$i]]['team']) ?></h3>
                                                         <?php endif; ?>
                                                         <p>
-                                                            <small>ジャンル: <strong><?= h($sats[$times[$i]]['genre']) ?></strong></small>
+                                                            <small>ジャンル: </small><span class="badge <?= getBadgeColor($sats[$times[$i]]['genre']) ?>"><?= h($sats[$times[$i]]['genre']) ?></span>
                                                         </p>
                                                         <p class="font-weight-bold">
                                                             <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($sats[$times[$i]]['start']) ?> ～ <?= h($sats[$times[$i]]['end']) ?>
