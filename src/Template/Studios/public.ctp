@@ -97,7 +97,6 @@
                 <a href="<?= $this->Url->build(['controller' => 'Studios', 'action' => 'publicView', h($studio->user_id)],
                     ['class' => 'dark-grey-text']) ?>">
                     <h5 class="card-title mb-1 dark-grey-text">
-                        <small>スタジオ名:</small>
                         <strong>
                             <?= h($studio->studio_name) ?>
                         </strong>
