@@ -85,7 +85,16 @@
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-body black pt-4 pb-4">
-                            <h6 class="white-text m-3"><i class="fa fa-youtube-play yt-ic"></i> YouTube</h6>
+                            <div class="d-flex">
+                                <div class="p-0">
+                                    <h6 class="white-text m-3"><i class="fa fa-youtube-play yt-ic"></i> YouTube</h6>
+                                </div>
+                                <div class="ml-auto pt-3 pr-2">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span class="white-text" aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
                             <div class="embed-responsive embed-responsive-16by9">
                                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($video->youtube) ?>?rel=0" allowfullscreen></iframe>
                             </div>

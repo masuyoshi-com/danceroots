@@ -104,7 +104,7 @@
                 <?php
                     if ($user->profile->instagram) {
                         print $this->Html->link('<i class="fa fa-instagram"> </i>',
-                            $user->profile->instagra,
+                            $user->profile->instagram,
                             [
                                 'class'          => 'icons-sm ins-ic',
                                 'escape'         => false,
