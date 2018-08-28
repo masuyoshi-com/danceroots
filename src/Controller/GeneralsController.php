@@ -98,7 +98,7 @@ class GeneralsController extends AppController
 
                     if ($this->Generals->save($general)) {
                         $this->Flash->success(__('プロフィール作成しました。メニューが使用できるようになりました。'));
-                        return $this->redirect(['action' => 'view', $general->user_id]);
+                        return $this->redirect(['action' => 'view', $user->username]);
                     }
 
                     $this->Flash->error(__('プロフィール作成できません。解決しない場合はフィードバックより報告してください。'));
@@ -134,7 +134,7 @@ class GeneralsController extends AppController
             $general = $this->Generals->patchEntity($general, $this->request->getData());
             if ($this->Generals->save($general)) {
                 $this->Flash->success(__('プロフィールを更新しました。'));
-                return $this->redirect(['action' => 'view', $general->user_id]);
+                return $this->redirect(['action' => 'view', $general->user->username]);
             }
             $this->Flash->error(__('プロフィール編集できません。解決しない場合はフィードバックより報告してください。'));
         }

@@ -52,7 +52,7 @@ class OrganizersController extends AppController
         $user = $this->Organizers->Users->findByUsername($username)->first();
 
         if ($user) {
-            
+
             $organizer = $this->Organizers->findByUserId($user->id)->first();
             $organizer->user = $user;
 
@@ -99,7 +99,7 @@ class OrganizersController extends AppController
 
                     if ($this->Organizers->save($organizer)) {
                         $this->Flash->success(__('プロフィール作成しました。メニューが使用できるようになりました。'));
-                        return $this->redirect(['action' => 'view', $organizer->user_id]);
+                        return $this->redirect(['action' => 'view', $user->username]);
                     }
 
                     $this->Flash->error(__('エラーがあります。解決しない場合はフィードバックよりお問い合わせください。'));
@@ -138,7 +138,7 @@ class OrganizersController extends AppController
 
             if ($this->Organizers->save($organizer)) {
                 $this->Flash->success(__('プロフィール更新しました。'));
-                return $this->redirect(['action' => 'view', $organizer->user_id]);
+                return $this->redirect(['action' => 'view', $organizer->user->username]);
             }
 
             $this->Flash->error(__('エラーがあります。解決しない場合はフィードバックよりお問い合わせください。'));

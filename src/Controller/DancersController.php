@@ -202,7 +202,7 @@ class DancersController extends AppController
             } else {
                 throw new NotFoundException(__('404 ページが見つかりません。'));
             }
-            
+
         } else {
             throw new NotFoundException(__('404 ページが見つかりません。'));
         }
@@ -238,7 +238,7 @@ class DancersController extends AppController
 
                     if ($this->Dancers->save($dancer)) {
                         $this->Flash->success(__('プロフィール作成しました。各メニューが使用できるようになりました。'));
-                        return $this->redirect(['action' => 'view', $dancer->user_id]);
+                        return $this->redirect(['action' => 'view', $user->username]);
                     }
 
                     $this->Flash->error(__('プロフィール作成できません。解決しない場合はフィードバックより報告してください。'));
@@ -273,7 +273,7 @@ class DancersController extends AppController
             $dancer = $this->Dancers->patchEntity($dancer, $this->request->getData());
             if ($this->Dancers->save($dancer)) {
                 $this->Flash->success(__('プロフィールを更新しました。'));
-                return $this->redirect(['action' => 'view', $dancer->user_id]);
+                return $this->redirect(['action' => 'view', $dancer->user->username]);
             }
             $this->Flash->error(__('エラーがあります。解決しない場合はフィードバックより報告してください。'));
         }

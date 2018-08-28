@@ -241,7 +241,7 @@ class StudiosController extends AppController
 
                     if ($this->Studios->save($studio)) {
                         $this->Flash->success(__('プロフィール作成しました。メニューが使用できるようになりました。'));
-                        return $this->redirect(['action' => 'view', $studio->user_id]);
+                        return $this->redirect(['action' => 'view', $user->username]);
                     }
 
                     $this->Flash->error(__('エラーがあります。解決しない場合はフィードバックよりお問い合わせください。'));
@@ -279,7 +279,7 @@ class StudiosController extends AppController
 
             if ($this->Studios->save($studio)) {
                 $this->Flash->success(__('プロフィール更新しました。'));
-                return $this->redirect(['action' => 'view', $studio->user_id]);
+                return $this->redirect(['action' => 'view', $studio->user->username]);
             }
 
             $this->Flash->error(__('エラーがあります。解決しない場合はフィードバックよりお問い合わせください。'));
