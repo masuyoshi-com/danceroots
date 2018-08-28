@@ -78,7 +78,7 @@ class DanceMusicsController extends AppController
         if ($danceMusics) {
             for ($i = 0; $i < count($danceMusics); $i++) {
                 $danceMusics[$i]['profile'] = $this->Common->getUsersByClassification($danceMusics[$i]['user']['classification'], $danceMusics[$i]['user']['id']);
-                $danceMusics[$i]['link']    = $this->Common->linkSwitch($danceMusics[$i]['user']['classification'], 'view', $danceMusics[$i]['user']['id']);
+                $danceMusics[$i]['link']    = $this->Common->linkSwitch($danceMusics[$i]['user']['classification'], 'view', $danceMusics[$i]['user']['username']);
             }
         }
 
@@ -91,26 +91,32 @@ class DanceMusicsController extends AppController
     /**
      * ユーザー別お気に入りミュージック
      *
-     * @param string $id ユーザーID
+     * @param string $username ユーザー名
      * @return [type] [description]
      */
-    public function detail($id = null)
+    public function detail($username = null)
     {
-        $query       = $this->DanceMusics->findByUserId($id);
-        $danceMusics = $this->paginate($query);
+        $user = $this->DanceMusics->Users->findByUsername($username)->first();
 
-        if (count($danceMusics) !== 0) {
-            // ユーザー情報取得
-            $user = $this->DanceMusics->Users->findById($id)->first();
-            $user->profile = $this->Common->getUsersByClassification($user->classification, $user->id);
-            $user->link    = $this->Common->linkSwitch($user->classification, 'view', $user->id);
+        if ($user) {
 
-            $this->set(compact('danceMusics', 'user'));
-            // メッセージ用変数
-            $this->set('to_user_id',  $user->id);
-            $this->set('to_username', $user->username);
+            $query       = $this->DanceMusics->findByUserId($user->id);
+            $danceMusics = $this->paginate($query);
+
+            if (count($danceMusics) !== 0) {
+
+                $user->profile = $this->Common->getUsersByClassification($user->classification, $user->id);
+                $user->link    = $this->Common->linkSwitch($user->classification, 'view', $user->username);
+
+                $this->set(compact('danceMusics', 'user'));
+                // メッセージ用変数
+                $this->set('to_user_id',  $user->id);
+                $this->set('to_username', $user->username);
+            } else {
+                throw new NotFoundException(__('音楽データが見つかりませんでした。'));
+            }
         } else {
-            throw new NotFoundException(__('音楽データが見つかりませんでした。'));
+            throw new NotFoundException(__('ユーザーが見つかりませんでした。'));
         }
     }
 

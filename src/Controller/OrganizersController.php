@@ -43,15 +43,18 @@ class OrganizersController extends AppController
     /**
      * プロフィール詳細
      *
-     * @param string|null $id ユーザーID
+     * @param string|null $username ユーザー名
      * @return \Cake\Http\Response|void
      * @throws \Cake\Network\Exception\NotFoundException
      */
-    public function view($id = null)
+    public function view($username = null)
     {
-        $organizer = $this->Organizers->findByUserId($id)->contain(['Users'])->first();
+        $user = $this->Organizers->Users->findByUsername($username)->first();
 
-        if ($organizer) {
+        if ($user) {
+            
+            $organizer = $this->Organizers->findByUserId($user->id)->first();
+            $organizer->user = $user;
 
             $organizer['youtube'] = $this->Common->getYoutubeId($organizer['youtube']);
             // ユーザ区分をカテゴリ名で取得
@@ -63,6 +66,7 @@ class OrganizersController extends AppController
         } else {
             throw new NotFoundException(__('404 ページが見つかりません。'));
         }
+
     }
 
 

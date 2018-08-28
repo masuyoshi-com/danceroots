@@ -44,25 +44,29 @@ class GeneralsController extends AppController
     /**
      * 一般プロフィール詳細
      *
-     * @param string|null $id ユーザーID
+     * @param string|null $username ユーザー名
      * @return \Cake\Http\Response|void
      * @throws \Cake\Network\Exception\NotFoundException
      */
-    public function view($id = null)
+    public function view($username = null)
     {
-        $general = $this->Generals->findByUserId($id)->contain(['Users'])->first();
+        $user = $this->Generals->Users->findByUsername($username)->first();
 
-        if ($general) {
+        if ($user) {
+
+            $general = $this->Generals->findByUserId($user->id)->first();
+            $general->user = $user;
+
             // ユーザ区分をカテゴリ名で取得
             $general['user']['classification'] = $this->Common->getCategoryName($general['user']['classification']);
             $this->set('general', $general);
             // メッセージ用変数
             $this->set('to_user_id',  $general->user_id);
             $this->set('to_username', $general->user->username);
+
         } else {
             throw new NotFoundException(__('404 ページが見つかりません。'));
         }
-
     }
 
 

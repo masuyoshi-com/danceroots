@@ -126,7 +126,7 @@
                                     ?>
                                     <small>
                                         <?= $this->Html->link($video->user->username,
-                                            ['controller' => 'DanceVideos', 'action' => 'detail', $video->user->id],
+                                            ['controller' => 'DanceVideos', 'action' => 'detail', $video->user->username],
                                             [
                                                 'class'          => 'grey-text',
                                                 'data-toggle'    => 'tooltip',

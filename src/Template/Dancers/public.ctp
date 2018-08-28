@@ -86,7 +86,7 @@
             </label>
 
             <div class="avatar mx-auto my-3 mt-0">
-                <a href="<?= $this->Url->build(['action' => 'publicView', $dancer->user_id]) ?>">
+                <a href="<?= $this->Url->build(['action' => 'publicView', $dancer->user->username]) ?>">
                     <?php
                         if ($dancer->icon) {
                             print $this->Html->image($dancer->icon, ['class' => 'rounded-circle img-fluid']);
@@ -99,7 +99,7 @@
 
             <h5 class="font-weight-bold">
                 <strong>
-                        <?= $this->Html->link($dancer->user->username, ['action' => 'publicView', $dancer->user_id], ['class' => 'dark-grey-text']) ?>
+                        <?= $this->Html->link($dancer->user->username, ['action' => 'publicView', $dancer->user->username], ['class' => 'dark-grey-text']) ?>
                 </strong>
             </h5>
 

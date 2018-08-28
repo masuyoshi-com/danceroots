@@ -136,15 +136,18 @@ class DancersController extends AppController
     /**
      * プロフィール詳細
      *
-     * @param string|null $id ユーザーID
+     * @param string|null $usename ユーザ名
      * @return \Cake\Http\Response|void
      * @throws \Cake\Network\Exception\NotFoundException
      */
-    public function view($id = null)
+    public function view($username = null)
     {
-        $dancer = $this->Dancers->findByUserId($id)->contain(['Users'])->first();
+        $user = $this->Dancers->Users->findByUsername($username)->first();
 
-        if ($dancer) {
+        if ($user) {
+            $dancer = $this->Dancers->findByUserId($user->id)->first();
+            $dancer->user = $user;
+
             // Youtube動画IDのみを取得
             for ($i = 1; $i <= 3; $i++) {
                 $dancer['youtube' . $i] = $this->Common->getYoutubeId($dancer['youtube' . $i]);
@@ -166,28 +169,40 @@ class DancersController extends AppController
     /**
      * 一般公開用プロフィール詳細
      *
-     * @param string|null $id ユーザーID
+     * @param string|null $usename ユーザ名
      * @return \Cake\Http\Response|void
      * @throws \Cake\Network\Exception\NotFoundException
      */
-    public function publicView($id = null)
+    public function publicView($username = null)
     {
         $this->viewBuilder()->setLayout('public');
-        $dancer = $this->Dancers->findByUserIdAndPublicFlag($id, 0)->contain(['Users'])->first();
 
-        if ($dancer) {
-            // Youtube動画IDのみを取得
-            for ($i = 1; $i <= 3; $i++) {
-                $dancer['youtube' . $i] = $this->Common->getYoutubeId($dancer['youtube' . $i]);
+        $user = $this->Dancers->Users->findByUsername($username)->first();
+
+        if ($user) {
+
+            $dancer = $this->Dancers->findByUserIdAndPublicFlag($user->id, 0)->first();
+
+            if ($dancer) {
+                $dancer->user = $user;
+
+                // Youtube動画IDのみを取得
+                for ($i = 1; $i <= 3; $i++) {
+                    $dancer['youtube' . $i] = $this->Common->getYoutubeId($dancer['youtube' . $i]);
+                }
+
+                // ユーザ区分をカテゴリ名で取得
+                $dancer['user']['classification'] = $this->Common->getCategoryName($dancer['user']['classification']);
+
+                $this->set('dancer', $dancer);
+                // メッセージ用変数
+                $this->set('to_user_id',  $dancer->user_id);
+                $this->set('to_username', $dancer->user->username);
+
+            } else {
+                throw new NotFoundException(__('404 ページが見つかりません。'));
             }
-
-            // ユーザ区分をカテゴリ名で取得
-            $dancer['user']['classification'] = $this->Common->getCategoryName($dancer['user']['classification']);
-
-            $this->set('dancer', $dancer);
-            // メッセージ用変数
-            $this->set('to_user_id',  $dancer->user_id);
-            $this->set('to_username', $dancer->user->username);
+            
         } else {
             throw new NotFoundException(__('404 ページが見つかりません。'));
         }

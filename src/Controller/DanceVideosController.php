@@ -77,7 +77,7 @@ class DanceVideosController extends AppController
             for ($i = 0; $i < count($videos); $i++) {
                 $videos[$i]['profile'] = $this->Common->getUsersByClassification($videos[$i]['user']['classification'], $videos[$i]['user']['id']);
                 $videos[$i]['youtube'] = $this->Common->getYoutubeId($videos[$i]['youtube']);
-                $videos[$i]['link']    = $this->Common->linkSwitch($videos[$i]['user']['classification'], 'view', $videos[$i]['user']['id']);
+                $videos[$i]['link']    = $this->Common->linkSwitch($videos[$i]['user']['classification'], 'view', $videos[$i]['user']['username']);
             }
         }
 
@@ -89,32 +89,38 @@ class DanceVideosController extends AppController
     /**
      * ユーザー別お気に入り動画
      *
-     * @param string $id ユーザーID
+     * @param string $username ユーザー名
      * @throws \Cake\Network\Exception\NotFoundException
      */
-    public function detail($id)
+    public function detail($username)
     {
         $this->paginate = ['contain' => ''];
 
-        $query  = $this->DanceVideos->findByUserId($id);
-        $videos = $this->paginate($query)->toArray();
+        $user = $this->DanceVideos->Users->findByUsername($username)->first();
+        
+        if ($user) {
+            $query  = $this->DanceVideos->findByUserId($user->id);
+            $videos = $this->paginate($query)->toArray();
 
-        if ($videos) {
-            for ($i = 0; $i < count($videos); $i++) {
-                $videos[$i]['youtube'] = $this->Common->getYoutubeId($videos[$i]['youtube']);
+            if ($videos) {
+                for ($i = 0; $i < count($videos); $i++) {
+                    $videos[$i]['youtube'] = $this->Common->getYoutubeId($videos[$i]['youtube']);
+                }
+
+                $user->profile = $this->Common->getUsersByClassification($user->classification, $user->id);
+                $user->link    = $this->Common->linkSwitch($user->classification, 'view', $user->username);
+
+                $this->set(compact('videos', 'user'));
+                // メッセージ用変数
+                $this->set('to_user_id',  $user->id);
+                $this->set('to_username', $user->username);
+            } else {
+                throw new NotFoundException(__('動画が見つかりませんでした。'));
             }
-            // ユーザー情報取得
-            $user = $this->DanceVideos->Users->findById($id)->first();
-            $user->profile = $this->Common->getUsersByClassification($user->classification, $user->id);
-            $user->link    = $this->Common->linkSwitch($user->classification, 'view', $user->id);
-
-            $this->set(compact('videos', 'user'));
-            // メッセージ用変数
-            $this->set('to_user_id',  $user->id);
-            $this->set('to_username', $user->username);
         } else {
-            throw new NotFoundException(__('動画が見つかりませんでした。'));
+            throw new NotFoundException(__('ユーザーが見つかりませんでした。'));
         }
+
     }
 
 

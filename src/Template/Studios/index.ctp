@@ -61,7 +61,7 @@
                 <?php
                     if ($studio->image1) {
                         print $this->Html->link($this->Html->image($studio->image1, ['class' => 'img-fluid']),
-                            ['controller' => 'Studios', 'action' => 'view', $studio->user_id],
+                            ['controller' => 'Studios', 'action' => 'view', $studio->user->username],
                             ['escape' => false]
                         );
                     } elseif ($studio->icon) {
@@ -71,7 +71,7 @@
                             <!-- Avatar -->
                             <div class="avatar mx-auto white">
                                 ' . $this->Html->link($this->Html->image($studio->icon, ['class' => 'rounded-circle']),
-                                    ['controller' => 'Studios', 'action' => 'view', $studio->user_id],
+                                    ['controller' => 'Studios', 'action' => 'view', $studio->user->username],
                                     ['escape' => false]
                                 ) . '
                             </div>
@@ -87,7 +87,7 @@
                     <span class="badge badge-info">Studio</span>
                 </p>
 
-                <a href="<?= $this->Url->build(['action' => 'view', h($studio->user_id)], ['class' => 'dark-grey-text']) ?>">
+                <a href="<?= $this->Url->build(['action' => 'view', h($studio->user->username)], ['class' => 'dark-grey-text']) ?>">
                     <h6 class="dark-grey-text"><?= h($studio->user->username) ?></h6>
                     <h5 class="card-title mb-1 dark-grey-text">
                         <small>スタジオ名:</small>

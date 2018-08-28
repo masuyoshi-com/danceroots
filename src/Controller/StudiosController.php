@@ -138,15 +138,19 @@ class StudiosController extends AppController
     /**
      * スタジオプロフィール詳細
      *
-     * @param string|null $id ユーザーID
+     * @param string|null $username ユーザー名
      * @return \Cake\Http\Response|void
      * @throws \Cake\Network\Exception\NotFoundException
      */
-    public function view($id = null)
+    public function view($username = null)
     {
-        $studio = $this->Studios->findByUserId($id)->contain(['Users'])->first();
+        $user = $this->Studios->Users->findByUsername($username)->first();
 
-        if ($studio) {
+        if ($user) {
+
+            $studio = $this->Studios->findByUserId($user->id)->first();
+            $studio->user = $user;
+
             $studio['youtube'] = $this->Common->getYoutubeId($studio['youtube']);
             // ユーザ区分をカテゴリ名で取得
             $studio['user']['classification'] = $this->Common->getCategoryName($studio['user']['classification']);
@@ -159,38 +163,50 @@ class StudiosController extends AppController
             // メッセージ用変数
             $this->set('to_user_id',  $studio->user_id);
             $this->set('to_username', $studio->user->username);
+
         } else {
             throw new NotFoundException(__('404 ページが見つかりません。'));
         }
+
+
     }
 
 
     /**
      * 一般公開スタジオプロフィール詳細
      *
-     * @param string|null $id ユーザーID
+     * @param string|null $username ユーザー名
      * @return \Cake\Http\Response|void
      * @throws \Cake\Network\Exception\NotFoundException
      */
-    public function publicView($id = null)
+    public function publicView($username = null)
     {
         $this->viewBuilder()->setLayout('public');
-        $studio = $this->Studios->findByUserIdAndPublicFlag($id, 0)->contain(['Users'])->first();
 
-        if ($studio) {
-            $studio['youtube'] = $this->Common->getYoutubeId($studio['youtube']);
+        $user = $this->Studios->Users->findByUsername($username)->first();
 
-            // ユーザ区分をカテゴリ名で取得
-            $studio['user']['classification'] = $this->Common->getCategoryName($studio['user']['classification']);
-            // スタジオスケジュールが存在するか
-            $this->loadModel('StudioSchedules');
-            $schedule_count = $this->StudioSchedules->findByUserId($studio->user_id)->count();
+        if ($user) {
+            // 公開済みであること
+            $studio = $this->Studios->findByUserIdAndPublicFlag($user->id, 0)->first();
+            if ($studio) {
+                $studio->user = $user;
 
-            $this->set('schedule', $schedule_count);
-            $this->set('studio', $studio);
-            // メッセージ用変数
-            $this->set('to_user_id',  $studio->user_id);
-            $this->set('to_username', $studio->user->username);
+                $studio['youtube'] = $this->Common->getYoutubeId($studio['youtube']);
+
+                // ユーザ区分をカテゴリ名で取得
+                $studio['user']['classification'] = $this->Common->getCategoryName($studio['user']['classification']);
+                // スタジオスケジュールが存在するか
+                $this->loadModel('StudioSchedules');
+                $schedule_count = $this->StudioSchedules->findByUserId($studio->user_id)->count();
+
+                $this->set('schedule', $schedule_count);
+                $this->set('studio', $studio);
+                // メッセージ用変数
+                $this->set('to_user_id',  $studio->user_id);
+                $this->set('to_username', $studio->user->username);
+            } else {
+                throw new NotFoundException(__('404 ページが見つかりません。'));
+            }
         } else {
             throw new NotFoundException(__('404 ページが見つかりません。'));
         }

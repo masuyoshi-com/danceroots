@@ -157,7 +157,7 @@ class EventsController extends AppController
             // オーナー検索
             $event['owner'] = $this->Common->getUsersByClassification($event['user']['classification'], $event->user_id);
             // 区分リンク取得
-            $profile_links = $this->Common->linkSwitch($event['user']['classification'], 'view', $event->user_id);
+            $profile_links = $this->Common->linkSwitch($event['user']['classification'], 'view', $event->user->username);
             // 区分カテゴリ名取得
             $event['user']['classification'] = $this->Common->getCategoryName($event['user']['classification']);
 
@@ -189,8 +189,6 @@ class EventsController extends AppController
             $event['youtube'] = $this->Common->getYoutubeId($event['youtube']);
             // オーナー検索
             $event['owner'] = $this->Common->getUsersByClassification($event['user']['classification'], $event->user_id);
-            // 区分リンク取得
-            $profile_links = $this->Common->linkSwitch($event['user']['classification'], 'view', $event->user_id);
             // 区分カテゴリ名取得
             $event['user']['classification'] = $this->Common->getCategoryName($event['user']['classification']);
 

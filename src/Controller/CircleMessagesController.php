@@ -97,7 +97,7 @@ class CircleMessagesController extends AppController
 
         // オーナー検索
         $circle_message['owner'] = $this->Common->getUsersByClassification($circle_message['user']['classification'], $circle_message->user_id);
-        $profile_links = $this->Common->linkSwitch($circle_message['user']['classification'], 'view', $circle_message->user_id);
+        $profile_links = $this->Common->linkSwitch($circle_message['user']['classification'], 'view', $circle_message->user->username);
 
         $this->set('profile_links',  $profile_links);
         $this->set('circle_message', $circle_message);

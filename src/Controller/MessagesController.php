@@ -108,7 +108,7 @@ class MessagesController extends AppController
 
         // メッセージ差出人プロフィール検索
         $message['profile'] = $this->Common->getUsersByClassification($message['user']['classification'], $message->user_id);
-        $message['link']    = $this->Common->linkSwitch($message['user']['classification'], 'view', $message->user_id);
+        $message['link']    = $this->Common->linkSwitch($message['user']['classification'], 'view', $message->user->username);
 
         $this->set('message', $message);
         // メッセージ用変数
@@ -164,7 +164,7 @@ class MessagesController extends AppController
                     $this->Messages->save($parent_message);
                 }
             }
-            
+
             // 差出人user_idをセット
             $this->request->data['user_id'] = $this->Auth->user('id');
             $message = $this->Messages->patchEntity($message, $this->request->getData(), ['validate' => false]);

@@ -1,4 +1,4 @@
-<?php $this->assign('タイトル', h($general->user->username) . 'プロフィール'); ?>
+<?php $this->assign('title', h($general->user->username) . 'プロフィール'); ?>
 
 <?php if (AD === 0) : ?>
 <div class="row">

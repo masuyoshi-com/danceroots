@@ -12,23 +12,23 @@ class CommonComponent extends Component
      *
      * @param array  $classification ユーザー区分
      * @param string $action         アクション名
-     * @param int    $id             ユーザーID
+     * @param string $username       ユーザー名
      * @return array コントローラ名とアクション名配列
      */
-    public function linkSwitch($classification, $action, $id = null)
+    public function linkSwitch($classification, $action, $username = null)
     {
         switch ($classification) {
             case 0:
-                return ['controller' => 'dancers', 'action' => $action, $id];
+                return ['controller' => 'dancers', 'action' => $action, $username];
                 break;
             case 1:
-                return ['controller' => 'studios', 'action' => $action, $id];
+                return ['controller' => 'studios', 'action' => $action, $username];
                 break;
             case 2:
-                return ['controller' => 'organizers', 'action' => $action, $id];
+                return ['controller' => 'organizers', 'action' => $action, $username];
                 break;
             case 3:
-                return ['controller' => 'generals', 'action' => $action, $id];
+                return ['controller' => 'generals', 'action' => $action, $username];
             default:
                 return false;
                 break;

@@ -208,9 +208,9 @@
 
                 <p class="mb-2 dark-grey-text"><small><i class="fa fa-calendar"></i> イベント登録者</small></p>
 
-                <h4 class="h4-responsive card-title">
+                <h4 class="h4-responsive card-title dark-grey-text">
                     <strong>
-                        <?= $this->Html->link(h($event->user->username), $profile_links, ['class' => 'dark-grey-text', 'target' => '_blank']) ?>
+                        <?= h($event->user->username) ?>
                     </strong>
                 </h4>
 

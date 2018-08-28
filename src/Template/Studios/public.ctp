@@ -70,7 +70,7 @@
 
         <div class="card testimonial-card">
             <div class="view overlay">
-                <a href="<?= $this->Url->build(['controller' => 'Studios', 'action' => 'publicView', h($studio->user_id)]) ?>">
+                <a href="<?= $this->Url->build(['controller' => 'Studios', 'action' => 'publicView', h($studio->user->username)]) ?>">
                 <?php
                     if ($studio->image1) {
                         print $this->Html->image($studio->image1, ['class' => 'img-fluid']);
@@ -94,7 +94,7 @@
                     <span class="badge badge-info">Studio</span>
                 </p>
 
-                <a href="<?= $this->Url->build(['controller' => 'Studios', 'action' => 'publicView', h($studio->user_id)],
+                <a href="<?= $this->Url->build(['controller' => 'Studios', 'action' => 'publicView', h($studio->user->username)],
                     ['class' => 'dark-grey-text']) ?>">
                     <h5 class="card-title mb-1 dark-grey-text">
                         <strong>

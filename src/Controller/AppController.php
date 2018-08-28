@@ -79,7 +79,7 @@ class AppController extends Controller
             $logins = $this->Auth->user();
 
             $homes  = $this->Common->linkSwitch($logins['classification'], 'home');
-            $views  = $this->Common->linkSwitch($logins['classification'], 'view', $logins['id']);
+            $views  = $this->Common->linkSwitch($logins['classification'], 'view', $logins['username']);
 
             $this->set('homes', $homes);
             $this->set('views', $views);

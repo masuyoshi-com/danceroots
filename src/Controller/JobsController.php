@@ -103,7 +103,7 @@ class JobsController extends AppController
             // オーナー検索
             $job['owner'] = $this->Common->getUsersByClassification($job['user']['classification'], $job->user_id);
             // 区分リンク取得
-            $profile_links = $this->Common->linkSwitch($job['user']['classification'], 'view', $job->user_id);
+            $profile_links = $this->Common->linkSwitch($job['user']['classification'], 'view', $job->user->username);
             // 区分カテゴリ名取得
             $job['user']['classification'] = $this->Common->getCategoryName($job['user']['classification']);
 

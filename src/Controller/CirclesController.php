@@ -86,7 +86,7 @@ class CirclesController extends AppController
                 // オーナー検索
                 $circle['owner'] = $this->Common->getUsersByClassification($circle['user']['classification'], $circle->user_id);
                 // 区分リンク取得
-                $profile_links = $this->Common->linkSwitch($circle['user']['classification'], 'view', $circle->user_id);
+                $profile_links = $this->Common->linkSwitch($circle['user']['classification'], 'view', $circle->user->username);
                 // 区分カテゴリ名取得
                 $circle['user']['classification'] = $this->Common->getCategoryName($circle['user']['classification']);
 
@@ -108,7 +108,7 @@ class CirclesController extends AppController
                 for ($i = 0; $i < count($circle_members); $i++) {
                     $circle_members[$i]['profile'] = $this->Common->getUsersByClassification($circle_members[$i]['user']['classification'], $circle_members[$i]['user_id']);
                     $circle_members[$i]['user']['classification'] = $this->Common->getCategoryName($circle_members[$i]['user']['classification']);
-                    $circle_members[$i]['link'] = $this->Common->linkSwitch($circle_members[$i]['user']['classification'], 'view', $circle_members[$i]['user_id']);
+                    $circle_members[$i]['link'] = $this->Common->linkSwitch($circle_members[$i]['user']['classification'], 'view', $circle_members[$i]['user']['username']);
                 }
 
                 $this->set(compact('circle', 'circle_messages', 'circle_members', 'profile_links'));
@@ -181,7 +181,7 @@ class CirclesController extends AppController
             // オーナー検索
             $circle['owner'] = $this->Common->getUsersByClassification($circle['user']['classification'], $circle->user_id);
             // 区分リンク取得
-            $profile_links = $this->Common->linkSwitch($circle['user']['classification'], 'view', $circle->user_id);
+            $profile_links = $this->Common->linkSwitch($circle['user']['classification'], 'view', $circle->user->username);
             // 区分カテゴリ名取得
             $circle['user']['classification'] = $this->Common->getCategoryName($circle['user']['classification']);
 
@@ -196,7 +196,7 @@ class CirclesController extends AppController
             for ($i = 0; $i < count($circle_members); $i++) {
                 $circle_members[$i]['profile'] = $this->Common->getUsersByClassification($circle_members[$i]['user']['classification'], $circle_members[$i]['user_id']);
                 $circle_members[$i]['user']['classification'] = $this->Common->getCategoryName($circle_members[$i]['user']['classification']);
-                $circle_members[$i]['link'] = $this->Common->linkSwitch($circle_members[$i]['user']['classification'], 'view', $circle_members[$i]['user_id']);
+                $circle_members[$i]['link'] = $this->Common->linkSwitch($circle_members[$i]['user']['classification'], 'view', $circle_members[$i]['user']['username']);
             }
 
             $this->set(compact('circle', 'circle_members', 'profile_links', 'join_flag'));

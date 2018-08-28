@@ -159,7 +159,7 @@
                             レッスンスケジュールを確認しましょう。各ダンスインストラクターの簡易プロフィールも参照できます。
                         </p>
                         <?= $this->Html->link('<i class="fa fa-clone left"></i> View Schedule',
-                            ['controller' => 'StudioSchedules', 'action' => 'index', $studio->user_id],
+                            ['controller' => 'StudioSchedules', 'action' => 'index', h($studio->user->username)],
                             ['class' => 'btn btn-pink', 'escape' => false]
                         ) ?>
                     </div>

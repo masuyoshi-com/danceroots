@@ -79,7 +79,7 @@
                     </p>
                     <p class="mb-0">
                         <?= $this->Html->link('プロフィール',
-                            ['controller' => 'Studios', 'action' => 'view', $studio->user_id],
+                            ['controller' => 'Studios', 'action' => 'view', $studio->user->username],
                             ['class' => 'btn btn-pink btn-sm']
                         ) ?>
                     </p>

@@ -188,7 +188,7 @@
                     ?>
 
                     <?= $this->Html->link($music->user->username,
-                        ['controller' => 'DanceMusics', 'action' => 'detail', $music->user->id],
+                        ['controller' => 'DanceMusics', 'action' => 'detail', $music->user->username],
                         [
                             'class'          => 'grey-text',
                             'data-toggle'    => 'tooltip',
