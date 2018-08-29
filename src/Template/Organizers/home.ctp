@@ -123,6 +123,7 @@
                         <?= $this->Html->link('マイプロフィール', $views, ['class' => 'dropdown-item']) ?>
                         <?= $this->Html->link('メッセージ',      ['controller' => 'Messages',    'action' => 'index'], ['class' => 'dropdown-item']) ?>
                         <?= $this->Html->link('イベント',        ['controller' => 'Events',      'action' => 'list'], ['class' => 'dropdown-item']) ?>
+                        <?= $this->Html->link('サークル',        ['controller' => 'Circles',     'action' => 'list'], ['class' => 'dropdown-item']) ?>
                         <?= $this->Html->link('ダンス関連求人',  ['controller' => 'Jobs',        'action' => 'list'], ['class' => 'dropdown-item']) ?>
                         <?= $this->Html->link('ダンス動画',      ['controller' => 'DanceVideos', 'action' => 'list'], ['class' => 'dropdown-item']) ?>
                         <?= $this->Html->link('ミュージック',    ['controller' => 'DanceMusics', 'action' => 'list'], ['class' => 'dropdown-item']) ?>
@@ -135,9 +136,8 @@
     <div class="col-lg-8 col-md-12">
 
         <div class="row mb-3">
-
-            <div class="col-lg-6 col-md-12">
-                <div class="card card-image mb-3" style="background-color: #0d47a1;">
+            <div class="col-lg-12">
+                <div class="card card-image" style="background-color: #0d47a1;">
                     <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
                         <div>
                             <h6 class="pink-text">
@@ -148,10 +148,9 @@
                                 <strong>Event</strong>
                             </h3>
                             <p class="pb-3">
-                                イベント主催や、コンテストなど予定のイベントの登録を行いましょう。
-                                効率良く告知することが可能です。
+                                イベント主催や、コンテストなど予定の登録を行いましょう。募集か告知のみかも選択できます。詳細に入力することで人が集まりやすくなります。効率良く皆にお知らせしましょう。
                             </p>
-                            <?= $this->Html->link('イベント管理',
+                            <?= $this->Html->link('イベント',
                                 ['controller' => 'Events', 'action' => 'list'],
                                 ['class' => 'btn btn-pink btn-rounded btn-md']
                             ) ?>
@@ -159,9 +158,11 @@
                     </div>
                 </div>
             </div>
+        </div><!-- /.row -->
 
-            <div class="col-lg-6 col-md-12">
-                <div class="card card-image" style="background-color: #0099CC;">
+        <div class="row mb-3">
+            <div class="col-lg-6 col-md-12 mb-3">
+                <div class="card card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
                     <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
                         <div>
                             <h6 class="green-text">
@@ -175,7 +176,7 @@
                                 ダンサー人材採用を積極的に検討しましょう。
                                 ダンサーに機会を与えることで、更なる発展につながります。
                             </p>
-                            <?= $this->Html->link('ダンサー求人管理',
+                            <?= $this->Html->link('ダンサー求人',
                                 ['controller' => 'Jobs', 'action' => 'list'],
                                 ['class' => 'btn btn-success btn-rounded btn-md']
 
@@ -185,8 +186,32 @@
                 </div>
             </div>
 
-        </div><!-- /.row -->
+            <div class="col-lg-6 col-md-12">
+                <div class="card card-image" style="background-image: url(../img/circle1600x900.jpg);">
+                    <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
+                        <div>
+                            <h6 class="orange-text">
+                                <i class="fa fa-users"></i>
+                                <strong> Circle</strong>
+                            </h6>
+                            <h3 class="py-3 font-weight-bold">
+                                <strong>サークル</strong>
+                            </h3>
+                            <p class="pb-3">
+                                定期的に開催するイベントがあれば、サークルを利用しましょう。
+                                メンバーにグループメッセージを送ることができます。
+                            </p>
+                            <?= $this->Html->link('サークル',
+                                ['controller' => 'Circles', 'action' => 'list'],
+                                ['class' => 'btn btn-orange btn-rounded btn-md']
 
+                            ) ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.row -->
+        
         <?php if (count($informations) !== 0) : ?>
         <div class="card mb-4">
             <div class="card-header white-text mdb-color"><i class="fa fa-globe"></i> Danceroots からのお知らせ</div>
@@ -239,7 +264,7 @@
         <a href="<?= $this->Url->build(['controller' => 'DanceVideos', 'action' => 'list']) ?>">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title dark-grey-text"><strong><i class="fa fa-youtube-play yt-ic"></i> ダンス動画管理</strong></h5>
+                    <h5 class="card-title dark-grey-text"><strong><i class="fa fa-youtube-play yt-ic"></i> ダンス動画</strong></h5>
                     <hr>
                     <p class="card-text">
                         過去に開催したイベント動画や、ダンス動画を共有してください。
@@ -256,7 +281,7 @@
         <a href="<?= $this->Url->build(['controller' => 'DanceMusics', 'action' => 'list']) ?>">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title dark-grey-text"><strong><i class="fa fa-music pink-text"></i> ミュージック管理</strong></h5>
+                    <h5 class="card-title dark-grey-text"><strong><i class="fa fa-music pink-text"></i> ミュージック</strong></h5>
                     <hr>
                     <p class="card-text">
                         良い音楽を皆で共有することでたくさんの人に良い影響を与えます。

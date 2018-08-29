@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-lg-12">
             <p class="dark-grey-text mx-auto">
-                <i class="fa fa-info-circle"></i> <?= h($circle->name) ?>に参加しているメンバーです。プロフィールの参照、メッセージ送信などが行えます。
+                <i class="fa fa-info-circle"></i> <?= h($circle->name) ?>に参加しているメンバーです。<span class="none">プロフィールの参照、メッセージ送信などが行えます。</span>
             </p>
             <hr>
         </div>
@@ -62,21 +62,6 @@
                 <hr>
                 <p class="grey-text"><?= h($group->profile->self_intro) ?></p>
                 <ul class="list-unstyled personal-sm mb-0">
-                    <?php
-                        if ($group->user->id !== $logins['id']) {
-
-                            print $this->Html->link('<i class="fa fa-envelope" area-hidden="true"></i>',
-                                    ['controller' => 'Messages', 'action' => 'add', $group->user->id],
-                                    [
-                                        'class'          => 'p-2 fa-lg email-ic',
-                                        'data-toggle'    => 'tooltip',
-                                        'data-placement' => 'bottom',
-                                        'title'          => 'メッセージ',
-                                        'escape'         => false
-                                    ]
-                            );
-                        }
-                    ?>
                     <?php
                         if ($group->profile->facebook) {
                             print $this->Html->link('<i class="fa fa-facebook" area-hidden="true"></i>',

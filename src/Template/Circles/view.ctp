@@ -73,19 +73,19 @@
                     </div>
                 </div>
 
+                <?php if ($circle->image) : ?>
+                <hr>
                 <div class="row">
                     <div class="col-lg-12 mb-3">
-                        <?php if ($circle->image) : ?>
-                        <div class="row mt-3 mb-3">
+                        <div class="row mb-3">
                             <div class="col-lg-12">
-                                <h6><i class="fa fa-image"></i> Circle Image</h6>
+                                <h6 class="text-right grey-text">Circle Image</h6>
                                 <?= $this->Html->image($circle->image, ['class' => 'd-block w-100']) ?>
                             </div>
                         </div>
-                        <?php endif; ?>
                     </div>
                 </div>
-
+                <?php endif; ?>
 
                 <hr class="mt-0">
 
@@ -193,7 +193,7 @@
                 </div>
 
                 <?php if ($circle->distinction === 'メンバー募集') : ?>
-                    <?php if ($logins['id'] !== $circle->user_id && $join_flag === 0 && $logins['classification'] === 0) : ?>
+                    <?php if ($logins['id'] !== $circle->user_id && $join_flag === 0) : ?>
                         <?= $this->Form->create('', ['url' => ['controller' => 'CircleGroups', 'action' => 'add']]) ?>
                         <?= $this->Form->hidden('circle_id', ['value' => h($circle->id)]) ?>
                         <?= $this->Form->hidden('user_id',   ['value' => $logins['id']]) ?>
@@ -232,7 +232,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <?= $this->Html->link('サークル参加済み。マイサークルへ',
-                                    ['controller' => 'Circles', 'action' => 'list', $logins['id']],
+                                    ['controller' => 'Circles', 'action' => 'list'],
                                     ['class' => 'btn btn-default btn-block']
                                 ) ?>
                             </div>
@@ -242,7 +242,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <?= $this->Html->link('サークル参加済み。マイサークルへ',
-                                ['controller' => 'Circles', 'action' => 'list', $logins['id']],
+                                ['controller' => 'Circles', 'action' => 'list'],
                                 ['class' => 'btn btn-default btn-block']
                             ) ?>
                         </div>
@@ -384,7 +384,9 @@
                                         ?>
                                     </div>
                                     <?= $this->Html->link($member->user->username, $member->link, ['target' => '_blank']) ?>
-                                    <span class="badge badge-primary badge-pill"><?= h($member->user->classification) ?></span>
+                                    <span class="badge badge-pill <?= getBadgeColor($member->user->classification) ?>">
+                                        <?= h($member->user->classification) ?>
+                                    </span>
                                 </li>
                                 <?php endforeach; ?>
                             </ul>

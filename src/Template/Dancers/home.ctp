@@ -112,13 +112,13 @@
                     <div class="dropdown-menu dropdown-primary">
                         <?= $this->Html->link('マイプロフィール', $views, ['class' => 'dropdown-item']) ?>
                         <?= $this->Html->link('メッセージ',  ['controller' => 'Messages',    'action' => 'index'], ['class' => 'dropdown-item']) ?>
-                        <!--
-                        <?= $this->Html->link('チーム',      ['controller' => 'Teams',       'action' => 'list'], ['class' => 'dropdown-item']) ?>
-                        -->
                         <?= $this->Html->link('サークル',    ['controller' => 'Circles',     'action' => 'list'], ['class' => 'dropdown-item']) ?>
                         <?= $this->Html->link('イベント',    ['controller' => 'Events',      'action' => 'list'], ['class' => 'dropdown-item']) ?>
                         <?= $this->Html->link('ダンス動画',   ['controller' => 'DanceVideos', 'action' => 'list'], ['class' => 'dropdown-item']) ?>
                         <?= $this->Html->link('ミュージック', ['controller' => 'DanceMusics', 'action' => 'list'], ['class' => 'dropdown-item']) ?>
+                        <!--
+                        <?= $this->Html->link('チーム',      ['controller' => 'Teams',       'action' => 'list'], ['class' => 'dropdown-item']) ?>
+                        -->
                     </div>
                 </div>
             </div><!-- /.card-body -->
@@ -229,7 +229,7 @@
         <a href="<?= $this->Url->build(['controller' => 'Events', 'action' => 'list']) ?>">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title dark-grey-text"><strong><i class="fa fa-calendar"></i> イベント管理</strong></h5>
+                    <h5 class="card-title dark-grey-text"><strong><i class="fa fa-calendar"></i> イベント</strong></h5>
                     <hr>
                     <p class="card-text">
                         イベント主催や、出演予定のイベントの登録を行いましょう。
@@ -247,7 +247,7 @@
         <a href="<?= $this->Url->build(['controller' => 'DanceVideos', 'action' => 'list']) ?>">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title dark-grey-text"><strong><i class="fa fa-youtube-play yt-ic"></i> ダンス動画管理</strong></h5>
+                    <h5 class="card-title dark-grey-text"><strong><i class="fa fa-youtube-play yt-ic"></i> ダンス動画</strong></h5>
                     <hr>
                     <p class="card-text">
                         あなたがインスパイアを受けたYoutubeダンス動画を共有しましょう。
@@ -264,7 +264,7 @@
         <a href="<?= $this->Url->build(['controller' => 'DanceMusics', 'action' => 'list']) ?>">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title dark-grey-text"><strong><i class="fa fa-music pink-text"></i> ミュージック管理</strong></h5>
+                    <h5 class="card-title dark-grey-text"><strong><i class="fa fa-music pink-text"></i> ミュージック</strong></h5>
                     <hr>
                     <p class="card-text">
                         良い音楽を知ることは、ダンスのセンスを高めるために欠かせません。

@@ -145,6 +145,7 @@ class DancersController extends AppController
         $user = $this->Dancers->Users->findByUsername($username)->first();
 
         if ($user) {
+            
             $dancer = $this->Dancers->findByUserId($user->id)->first();
             $dancer->user = $user;
 

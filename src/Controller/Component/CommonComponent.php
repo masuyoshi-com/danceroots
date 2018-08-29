@@ -19,16 +19,16 @@ class CommonComponent extends Component
     {
         switch ($classification) {
             case 0:
-                return ['controller' => 'dancers', 'action' => $action, $username];
+                return ['controller' => 'Dancers', 'action' => $action, $username];
                 break;
             case 1:
-                return ['controller' => 'studios', 'action' => $action, $username];
+                return ['controller' => 'Studios', 'action' => $action, $username];
                 break;
             case 2:
-                return ['controller' => 'organizers', 'action' => $action, $username];
+                return ['controller' => 'Organizers', 'action' => $action, $username];
                 break;
             case 3:
-                return ['controller' => 'generals', 'action' => $action, $username];
+                return ['controller' => 'Generals', 'action' => $action, $username];
             default:
                 return false;
                 break;

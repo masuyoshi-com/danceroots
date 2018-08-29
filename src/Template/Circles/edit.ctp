@@ -5,11 +5,11 @@
     <div class="col-lg-12">
         <div class="view gradient-card-header aqua-gradient">
             <h2 class="h2-responsive mb-0">
-                <i class="fa fa-pencil"></i> ダンスサークル編集
+                <i class="fa fa-pencil"></i> サークル編集
             </h2>
             <p class="mb-0 none">
                 <small>
-                    <i class="fa fa-info-circle"></i>  サークル情報を詳細に入力しましょう。多くの情報はよりダンサーが集まる可能性が高まります。
+                    <i class="fa fa-info-circle"></i>  サークル情報を詳細に入力しましょう。多くの情報はより人が集まる可能性が高まります。
                 </small>
             </p>
         </div>

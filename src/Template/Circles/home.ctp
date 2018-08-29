@@ -9,14 +9,14 @@
 <div class="row">
     <div class="col-lg-9 col-md-12">
 
-        <div class="row mb-4">
+        <div class="row">
             <div class="col-lg-12">
-                <h5>
+                <h5 class="mb-4">
                     <span class="badge badge-primary"><i class="fa fa-home"></i> <?= h($circle->name) ?> HOME </span>
                 </h5>
-                <h2 class="dark-grey-text font-weight-bold text-center">
+                <h3 class="h3-responsive dark-grey-text font-weight-bold text-center">
                     <?= h($circle->title) ?>
-                </h2>
+                </h3>
                 <hr>
             </div>
         </div>
@@ -35,10 +35,12 @@
                             ]
                     ) ?>
                 </div>
+
                 <strong>
-                    <?= $this->Html->link('メッセージ',
+
+                    <?= $this->Html->link('<i class="fa fa-envelope none"></i> メッセージ',
                             ['controller' => 'CircleMessages', 'action' => 'index', $circle->id],
-                            ['class' => 'white-text mx-3']
+                            ['class' => 'white-text mx-3', 'escape' => false]
                     ) ?>
                 </strong>
                 <div>
@@ -112,9 +114,9 @@
                     ) ?>
                 </div>
                 <strong>
-                    <?= $this->Html->link('メンバー',
+                    <?= $this->Html->link('<i class="fa fa-users none"></i> メンバー',
                             ['controller' => 'CircleGroups', 'action' => 'index', h($circle->id)],
-                            ['class' => 'white-text mx-3']
+                            ['class' => 'white-text mx-3', 'escape' => false]
                     ) ?>
                 </strong>
                 <div>
@@ -158,7 +160,7 @@
                                 </div>
                                 <?= $this->Html->link($member->user->username, h($member->link), ['target' => '_blank']) ?>
 
-                                <span class="badge badge-primary badge-pill">
+                                <span class="badge badge-pill <?= getBadgeColor($member->user->classification) ?>">
                                     <?= h($member->user->classification) ?>
                                 </span>
                             </li>
@@ -305,8 +307,8 @@
                     <spna class="badge purple"><?= h($circle->user->classification) ?></span>
                 </p>
 
-                <h5 class="card-title">
-                    サークル管理者
+                <h5 class="card-title dark-grey-text">
+                    <small><i class="fa fa-users"></i> サークル代表者</small>
                 </h5>
 
                 <h4>

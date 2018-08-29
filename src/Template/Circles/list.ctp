@@ -1,10 +1,10 @@
-<?php $this->assign('title', 'マイ ダンスサークル'); ?>
+<?php $this->assign('title', 'マイ サークル'); ?>
 
 <div class="card card-cascade narrower">
     <div class="col-lg-12 mb-3">
         <div class="view gradient-card-header aqua-gradient">
             <h2 class="h2-responsive mb-0">
-                <i class="fa fa-users" aria-hidden="true"></i> マイ ダンスサークル
+                <i class="fa fa-users" aria-hidden="true"></i> マイ サークル
             </h2>
             <p class="mb-0">
                 <small>
@@ -16,7 +16,7 @@
         <hr>
         <div class="row">
             <div class="col-lg-12">
-                <?= $this->Html->link('<i class="fa fa-plus"></i> ダンスサークル登録',
+                <?= $this->Html->link('<i class="fa fa-plus"></i> サークル登録',
                     ['controller' => 'Circles', 'action' => 'add'],
                     ['class' => 'btn btn-outline-primary waves-effect btn-block', 'escape' => false]
                 ) ?>
@@ -33,7 +33,7 @@
 </div>
 
 <div class="card card-body mt-3 mb-3">
-    <h6 class="font-weight-bold dark-gray-text">所有ダンスサークル</h6>
+    <h6 class="font-weight-bold dark-gray-text">所有サークル</h6>
     <hr class="mt-0">
     <?php if (count($circles) !== 0) : ?>
     <table class="table table-hover table-bordered mb-5">
@@ -99,7 +99,7 @@
     </div>
     <?php endif; ?>
 
-    <h6 class="font-weight-bold dark-gray-text">参加ダンスサークル</h6>
+    <h6 class="font-weight-bold dark-gray-text">参加サークル</h6>
     <hr class="mt-0">
     <?php if (count($circle_groups) !== 0) : ?>
     <table class="table table-hover table-bordered">

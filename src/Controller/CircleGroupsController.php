@@ -46,8 +46,8 @@ class CircleGroupsController extends AppController
                 // サークルグループメンバー各プロフィールリンク取得
                 for ($i = 0; $i < count($circle_groups); $i++) {
                     $circle_groups[$i]['profile'] = $this->Common->getUsersByClassification($circle_groups[$i]['user']['classification'], $circle_groups[$i]['user_id']);
+                    $circle_groups[$i]['link']    = $this->Common->linkSwitch($circle_groups[$i]['user']['classification'], 'view', $circle_groups[$i]['user']['username']);
                     $circle_groups[$i]['user']['classification'] = $this->Common->getCategoryName($circle_groups[$i]['user']['classification']);
-                    $circle_groups[$i]['link'] = $this->Common->linkSwitch($circle_groups[$i]['user']['classification'], 'view', $circle_groups[$i]['user']['username']);
                 }
 
                 $this->set(compact('circle', 'circle_groups'));

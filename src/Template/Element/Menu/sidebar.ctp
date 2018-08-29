@@ -35,7 +35,7 @@
                             </li>
                             -->
                             <li>
-                                <?= $this->Html->link('ダンスサークル検索', ['controller' => 'Circles', 'action' => 'index'], ['class' => 'waves-effect']) ?>
+                                <?= $this->Html->link('サークル検索', ['controller' => 'Circles', 'action' => 'index'], ['class' => 'waves-effect']) ?>
                             </li>
                         </ul>
                     </div>

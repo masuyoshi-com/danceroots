@@ -98,7 +98,7 @@
         <section class="py-4">
             <?php foreach ($circles as $circle) : ?>
             <div class="row mb-3">
-                <div class="col-lg-5 col-xl-4 mb-4">
+                <div class="col-lg-5 col-xl-4 mb-4 mt-3">
                     <div class="view overlay rounded z-depth-1">
 
                         <?php
@@ -141,7 +141,7 @@
                     </div>
                     <div class="row text-center">
                         <div class="col-lg-12">
-                            <p>
+                            <p class="mb-0">
                                 <small><?= h($circle->intro) ?></small>
                             </p>
                         </div>

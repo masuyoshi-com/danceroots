@@ -1,15 +1,15 @@
-<?php $this->assign('title', 'ダンスサークル登録'); ?>
+<?php $this->assign('title', 'サークル登録'); ?>
 
 <div class="card card-cascade narrower mb-3">
 
     <div class="col-lg-12">
         <div class="view gradient-card-header aqua-gradient">
             <h2 class="h2-responsive mb-0">
-                <i class="fa fa-users"></i> ダンスサークル登録
+                <i class="fa fa-users"></i> サークル登録
             </h2>
             <p class="mb-0 none">
                 <small>
-                    <i class="fa fa-info-circle"></i>  サークル情報を詳細に入力しましょう。多くの情報はよりダンサーが集まる可能性が高まります。
+                    <i class="fa fa-info-circle"></i>  サークル情報を詳細に入力しましょう。多くの情報はより人が集まる可能性が高まります。
                 </small>
             </p>
         </div>
