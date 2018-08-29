@@ -34,9 +34,6 @@
                                 <?= $this->Html->link('ダンスチーム検索', ['controller' => 'Teams', 'action' => 'index'], ['class' => 'waves-effect']) ?>
                             </li>
                             -->
-                            <li>
-                                <?= $this->Html->link('サークル検索', ['controller' => 'Circles', 'action' => 'index'], ['class' => 'waves-effect']) ?>
-                            </li>
                         </ul>
                     </div>
                 </li>
@@ -51,6 +48,21 @@
                             </li>
                             <li>
                                 <?= $this->Html->link('ダンス関連求人', ['controller' => 'Jobs', 'action' => 'index'], ['class' => 'waves-effect']) ?>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <?= $this->Html->link('<i class="fa fa-users" aria-hidden="true"></i> サークル<i class="fa fa-angle-down rotate-icon"></i>', 'javascript:void(0)',
+                        ['class' => 'collapsible-header waves-effect arrow-r', 'escape' => false]
+                    ) ?>
+                    <div class="collapsible-body">
+                        <ul class="list-unstyled">
+                            <li>
+                                <?= $this->Html->link('サークル検索', ['controller' => 'Circles', 'action' => 'index'], ['class' => 'waves-effect']) ?>
+                            </li>
+                            <li>
+                                <?= $this->Html->link('サークル登録', ['controller' => 'Circles', 'action' => 'add'], ['class' => 'waves-effect']) ?>
                             </li>
                         </ul>
                     </div>
