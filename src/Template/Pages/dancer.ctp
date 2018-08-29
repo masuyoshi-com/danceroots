@@ -42,7 +42,7 @@
     </div>
     <div class="col-lg-10">
         <h4 class="blockquote bq-primary font-weight-bold dark-grey-text">
-            ダンスサークル
+            サークル
         </h4>
         <p>
             地元での練習や仲間を探すためにサークルを自由に作成し、募集することができます。サークル作成後はサークル検索に表示されるようになり、それを閲覧しているユーザーは自由に参加することができます。

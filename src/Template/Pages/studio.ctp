@@ -60,6 +60,25 @@
     </div>
     <div class="col-lg-10">
         <h4 class="blockquote bq-warning font-weight-bold dark-grey-text">
+            サークル
+        </h4>
+        <p>
+            スタジオに通う生徒や、教室ごとなど、自由にサークルを作成することができます。サークル作成後はサークル検索に表示されるようになり、それを閲覧しているユーザーは自由に参加することができます。
+        </p>
+        <p>
+            サークルに参加することで、サークル内でのメッセージ作成やメンバーのプロフィールに迅速にアクセスできるようになります。メッセージはサークルメンバー全員にメール送信され、効率的にお知らせを届けることが可能になります。
+            <small><span class="red-text">※</span>サークル作成・参加は各5つまで。</small>
+        </p>
+    </div>
+    <div class="col-lg-1">
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-lg-1">
+    </div>
+    <div class="col-lg-10">
+        <h4 class="blockquote bq-warning font-weight-bold dark-grey-text">
             ダンス関連求人
         </h4>
         <p>
