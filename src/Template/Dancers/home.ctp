@@ -127,55 +127,55 @@
 
     <div class="col-lg-8 col-md-12 mt-4">
         <div class="row mb-3">
-            <!--
-            <div class="col-lg-6 col-md-12">
-                <div class="card card-image mb-3" style="background-color: #0d47a1;">
+            <div class="col-lg-6 col-md-12 text-center mb-3">
+                <div class="card card-image" style="background-color: #0d47a1;">
                     <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
                         <div>
                             <h6 class="pink-text">
-                                <i class="fa fa-address-card"></i>
-                                <strong>Dance Team</strong>
+                                <i class="fa fa-calendar-plus-o"></i>
+                                <strong>Event</strong>
                             </h6>
                             <h3 class="py-3 font-weight-bold">
-                                <strong>Dance Team</strong>
+                                <strong>イベント</strong>
                             </h3>
                             <p class="pb-3">
-                                あなたのダンスチームを登録しておけば、チームとしてのプロフィール詳細が作成され、
-                                今後の活動の可能性が広がります。利用は無料です。是非登録しておきましょう。
+                                ダンスショー参加予定のイベントや、コンテストなどの登録を行いましょう。
+                                イベント一覧に表示され、皆に告知することが可能です。
                             </p>
-                            <?= $this->Html->link('ダンスチーム管理',
-                                ['controller' => 'Teams', 'action' => 'list'],
+                            <?= $this->Html->link('イベント',
+                                ['controller' => 'Events', 'action' => 'list'],
                                 ['class' => 'btn btn-pink btn-rounded btn-md']
                             ) ?>
                         </div>
                     </div>
                 </div>
             </div>
-            -->
-            <div class="col-lg-12 col-md-12">
-                <div class="card card-image" style="background-color: #0099CC;">
+            <div class="col-lg-6 col-md-12">
+                <div class="card card-image" style="background-image: url(../img/circle1600x900.jpg);">
                     <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
                         <div>
-                            <h6 class="green-text">
-                                <i class="fa fa-group"></i>
-                                <strong> Dance Circle</strong>
+                            <h6 class="orange-text">
+                                <i class="fa fa-users"></i>
+                                <strong> Circle</strong>
                             </h6>
                             <h3 class="py-3 font-weight-bold">
-                                <strong>Dance Circle</strong>
+                                <strong>サークル</strong>
                             </h3>
                             <p class="pb-3">
                                 新しい仲間をお探しですか？それならサークルに参加、もしくはサークルを作成しましょう。
-                                全国のダンサー仲間とつながる事が可能です。積極的に利用しましょう。
+                                全国のダンサー仲間とつながる事が可能です。
                             </p>
-                            <?= $this->Html->link('ダンスサークル管理',
+                            <?= $this->Html->link('サークル',
                                 ['controller' => 'Circles', 'action' => 'list'],
-                                ['class' => 'btn btn-success btn-rounded btn-md']
+                                ['class' => 'btn btn-orange btn-rounded btn-md']
+
                             ) ?>
                         </div>
                     </div>
-                </div><!-- /.card -->
-            </div><!-- /.col-lg-12 -->
+                </div>
+            </div>
         </div><!-- /.row -->
+
 
         <?php if (count($informations) !== 0) : ?>
         <div class="card mb-4">
@@ -225,25 +225,7 @@
 <hr class="mb-3">
 
 <div class="row mb-3">
-    <div class="col-lg-4 col-md-12 mb-3">
-        <a href="<?= $this->Url->build(['controller' => 'Events', 'action' => 'list']) ?>">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title dark-grey-text"><strong><i class="fa fa-calendar"></i> イベント</strong></h5>
-                    <hr>
-                    <p class="card-text">
-                        イベント主催や、出演予定のイベントの登録を行いましょう。
-                        イベント一覧に表示され、皆に告知することが可能です。
-                        イベント管理では、イベント登録・編集などが行えます。
-                    </p>
-                    <p class="card-text text-right">
-                        <small class="text-muted">イベント管理へ <i class="fa fa-arrow-circle-right blue-text"></i></small>
-                    </p>
-                </div>
-            </div>
-        </a>
-    </div>
-    <div class="col-lg-4 col-md-12 mb-3">
+    <div class="col-lg-6 col-md-12 mb-3">
         <a href="<?= $this->Url->build(['controller' => 'DanceVideos', 'action' => 'list']) ?>">
             <div class="card">
                 <div class="card-body">
@@ -260,7 +242,7 @@
             </div>
         </a>
     </div>
-    <div class="col-lg-4 col-md-12">
+    <div class="col-lg-6 col-md-12">
         <a href="<?= $this->Url->build(['controller' => 'DanceMusics', 'action' => 'list']) ?>">
             <div class="card">
                 <div class="card-body">

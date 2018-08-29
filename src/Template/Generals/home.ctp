@@ -135,13 +135,13 @@
                                 <strong>Event</strong>
                             </h6>
                             <h3 class="py-3 font-weight-bold">
-                                <strong>Event</strong>
+                                <strong>イベント</strong>
                             </h3>
                             <p class="pb-3">
                                 参加予定のイベントや、コンテストなどの登録を行いましょう。
                                 イベント一覧に表示され、皆に告知することが可能です。
                             </p>
-                            <?= $this->Html->link('イベント管理',
+                            <?= $this->Html->link('イベント',
                                 ['controller' => 'Events', 'action' => 'list'],
                                 ['class' => 'btn btn-pink btn-rounded btn-md']
                             ) ?>

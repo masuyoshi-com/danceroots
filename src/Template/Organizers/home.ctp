@@ -145,7 +145,7 @@
                                 <strong>Event</strong>
                             </h6>
                             <h3 class="py-3 font-weight-bold">
-                                <strong>Event</strong>
+                                <strong>イベント</strong>
                             </h3>
                             <p class="pb-3">
                                 イベント主催や、コンテストなど予定の登録を行いましょう。募集か告知のみかも選択できます。詳細に入力することで人が集まりやすくなります。効率良く皆にお知らせしましょう。
@@ -211,7 +211,7 @@
                 </div>
             </div>
         </div><!-- /.row -->
-        
+
         <?php if (count($informations) !== 0) : ?>
         <div class="card mb-4">
             <div class="card-header white-text mdb-color"><i class="fa fa-globe"></i> Danceroots からのお知らせ</div>
@@ -248,7 +248,7 @@
 
         <?php if ($message_number > 0) : ?>
         <a href="<?= $this->Url->build(['controller' => 'Messages', 'action' => 'index']) ?>">
-            <div class="card mb-3 text-center py-3 red accent-2 white-text">
+            <div class="card text-center py-3 red accent-2 white-text">
                 <i class="fa fa-envelope fa-3x mb-3"></i>
                 <h4 class="h4-responsive"><?= h($message_number) ?> メッセージがあります。</h4>
             </div>

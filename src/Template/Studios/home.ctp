@@ -148,14 +148,12 @@
                                 <strong>Event</strong>
                             </h6>
                             <h3 class="py-3 font-weight-bold">
-                                <strong>Event</strong>
+                                <strong>イベント</strong>
                             </h3>
                             <p class="pb-3">
-                                イベント主催や、コンテストなど予定の登録を行いましょう。
-                                イベント一覧に表示され、皆に告知することが可能です。
-                                イベント管理では、イベント登録・編集などが行えます。
+                                イベント主催や、コンテストなど予定の登録を行いましょう。イベント一覧に表示され、皆に告知することが可能です。イベント管理では、イベント登録・編集などが行えます。
                             </p>
-                            <?= $this->Html->link('イベント管理',
+                            <?= $this->Html->link('イベント',
                                 ['controller' => 'Events', 'action' => 'list'],
                                 ['class' => 'btn btn-pink btn-rounded btn-md']
                             ) ?>
@@ -180,7 +178,7 @@
                                 生徒獲得も大切ですが、インストラクターがいなければ始まりません。
                                 ダンサーに機会を与えることで、更なる発展につながります。
                             </p>
-                            <?= $this->Html->link('ダンサー求人管理',
+                            <?= $this->Html->link('ダンサー求人',
                                 ['controller' => 'Jobs', 'action' => 'list'],
                                 ['class' => 'btn btn-success btn-rounded btn-md']
 
@@ -201,7 +199,7 @@
                     <p>
                         ダンススタジオ・スクールに所属するインストラクターのレッスンスケジュールを管理できます。登録したスケジュールはスタジオプロフィールに表示されます。Dancerootsに登録しているダンサーであればプロフィールリンクも可能です。
                     </p>
-                    <?= $this->Html->link('<i class="fa fa-clone left"></i> スケジュール管理</a>',
+                    <?= $this->Html->link('<i class="fa fa-clone left"></i> スケジュール</a>',
                             ['controller' => 'StudioSchedules', 'action' => 'mySchedule'],
                             ['class' => 'btn btn-orange', 'escape' => false]
                     ) ?>
