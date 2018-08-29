@@ -176,7 +176,7 @@ class CirclesController extends AppController
 
         if ($circle) {
 
-            // 既にイベント参加依頼しているか検索
+            // 既にサークル参加しているか
             $join_flag = $this->Circles->CircleGroups->findByCircleIdAndUserId($circle_id, $this->Auth->user('id'))->count();
             // オーナー検索
             $circle['owner'] = $this->Common->getUsersByClassification($circle['user']['classification'], $circle->user_id);

@@ -57,15 +57,15 @@ class CircleMessagesController extends AppController
                     $circle_messages = $this->CircleMessages->findBySearch($circle_id, $this->request->query)->contain(['Users']);
 
                     // 検索項目状態をセッションに格納
-                    $this->Session->write('cirle_messages_search_request', $this->request->query);
+                    $this->Session->write('circle_messages_search', $this->request->query);
 
                 } else {
                     $circle_messages = $this->CircleMessages->findByCircleId($circle_id)->contain(['Users']);
                 }
 
                 // 検索項目状態があればリード
-                if ($this->Session->check('cirle_messages_search_request')) {
-                    $this->request->data = $this->Session->read('cirle_messages_search_request');
+                if ($this->Session->check('circle_messages_search')) {
+                    $this->request->data = $this->Session->read('circle_messages_search');
                 }
 
                 $this->set(compact('circle'));
@@ -214,7 +214,6 @@ class CircleMessagesController extends AppController
                             }
 
                         }
-
                     }
                 }
 
