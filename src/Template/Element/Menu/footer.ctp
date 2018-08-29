@@ -93,6 +93,12 @@
                     <?= $this->Html->link('プライバシーポリシー', ['controller' => 'Pages', 'action' => 'privacy']) ?>
                 </p>
                 <p>
+                    <?= $this->Html->link('<i class="fa fa-building mr-3"></i> 運営会社',
+                        ['controller' => 'Pages', 'action' => 'company'],
+                        ['escape' => false]
+                    ) ?>
+                </p>
+                <p>
                     <?= $this->Html->link('<i class="fa fa-sitemap mr-3"></i> サイトマップ',
                         ['controller' => 'Pages', 'action' => 'sitemap'],
                         ['escape' => false]

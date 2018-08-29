@@ -152,4 +152,12 @@ class PagesController extends AppController
          $this->viewBuilder()->setLayout('public');
      }
 
+
+     /**
+      * 運営会社
+      */
+     public function company()
+     {
+         $this->viewBuilder()->setLayout('public');
+     }
 }
