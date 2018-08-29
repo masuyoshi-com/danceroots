@@ -11,7 +11,10 @@ use Cake\Routing\Router;
 class AppController extends Controller
 {
     // 汎用項目ジャンル
-    public $genres = ['HipHop', 'House', 'Lock', 'Pop', 'Breakin', 'Jazz', 'Reggae', 'FreeStyle'];
+    public $genres = [
+        'HipHop', 'House', 'Lock', 'Poppin', 'Breakin', 'OldScool', 'Girls', 
+        'Jazz', 'BeBop', 'Reggae', 'FreeStyle', 'Berry', 'Salsa', 'Tap', 'Etc',
+    ];
 
     /**
      * 初期化処理
