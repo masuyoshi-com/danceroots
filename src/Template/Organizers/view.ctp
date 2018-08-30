@@ -30,6 +30,7 @@
             <div class="card-body mb-3">
 
                 <?php if ($organizer->image1 || $organizer->image2 || $organizer->image3) : ?>
+                <hr>
 
                 <div class="row">
                     <div class="col-lg-1">
@@ -129,7 +130,7 @@
                         <div class="col-lg-1">
                         </div>
                         <div class="col-lg-10">
-                            <h6 class="dark-grey-text"><i class="fa fa-youtube-play yt-ic"></i> Event Video</h6>
+                            <h6 class="grey-text"><i class="fa fa-youtube-play yt-ic"></i> Event Video</h6>
                             <div class="embed-responsive embed-responsive-16by9 z-depth-1">
                                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($organizer->youtube) ?>?rel=0" style="height: 100%" allowfullscreen></iframe>
                             </div>
@@ -137,7 +138,6 @@
                         <div class="col-lg-1">
                         </div>
                     </div>
-                    <hr>
                 <?php endif; ?>
             </div><!-- /.card-body -->
         </div><!-- /.card -->

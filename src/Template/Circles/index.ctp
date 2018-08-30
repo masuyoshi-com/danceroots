@@ -72,11 +72,11 @@
     <div class="col-lg-12 mb-3">
         <div class="view gradient-card-header aqua-gradient">
             <h2 class="h2-responsive mb-0">
-                ダンスサークル
+                サークル
             </h2>
             <p class="mb-0 none">
                 <small>
-                    ダンスサークルに積極的に参加し、仲間のつながりを広げていきましょう!!
+                    各サークルに積極的に参加し、仲間のつながりを広げましょう。
                 </small>
             </p>
         </div>

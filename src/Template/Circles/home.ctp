@@ -11,178 +11,189 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h5 class="mb-4">
-                    <span class="badge badge-primary"><i class="fa fa-home"></i> <?= h($circle->name) ?> HOME </span>
-                </h5>
-                <h3 class="h3-responsive dark-grey-text font-weight-bold text-center">
-                    <?= h($circle->title) ?>
-                </h3>
-                <hr>
+                <h6 class="dark-grey-text font-weight-bold">
+                    <i class="fa fa-home mr-2" aria-hidden="true"></i><?= h($circle->name) ?></span>
+                </h6>
+                <hr class="mt-0">
             </div>
         </div>
 
-        <div class="card card-cascade narrower mt-3 mb-4">
-            <div class="view gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
-                <div>
-                    <?= $this->Html->link('<i class="fa fa-list mt-0"></i>',
-                            ['controller' => 'CircleMessages', 'action' => 'index', $circle->id],
-                            [
-                                'class'          => 'btn btn-outline-white btn-rounded btn-sm px-2',
-                                'data-toggle'    => 'tooltip',
-                                'data-placement' => 'bottom',
-                                'title'          => 'メッセージ一覧',
-                                'escape'         => false
-                            ]
-                    ) ?>
-                </div>
+        <div class="row">
+            <div class="col-lg-12">
+            </div>
+        </div>
 
-                <strong>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-xs-12">
+                <div class="card card-cascade narrower mb-3">
+                    <div class="view gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+                        <div>
+                            <?= $this->Html->link('<i class="fa fa-list mt-0"></i>',
+                                    ['controller' => 'CircleMessages', 'action' => 'index', $circle->id],
+                                    [
+                                        'class'          => 'btn btn-outline-white btn-rounded btn-sm px-2',
+                                        'data-toggle'    => 'tooltip',
+                                        'data-placement' => 'bottom',
+                                        'title'          => 'メッセージ一覧',
+                                        'escape'         => false
+                                    ]
+                            ) ?>
+                        </div>
+                        <strong>
+                            <?= $this->Html->link('<i class="fa fa-envelope none"></i> メッセージ',
+                                    ['controller' => 'CircleMessages', 'action' => 'index', $circle->id],
+                                    ['class' => 'white-text mx-3', 'escape' => false]
+                            ) ?>
+                        </strong>
+                        <div>
+                            <?= $this->Html->link('<i class="fa fa-pencil mt-0"></i>',
+                                    ['controller' => 'CircleMessages', 'action' => 'add', $circle->id],
+                                    [
+                                        'class'          => 'btn btn-outline-white btn-rounded btn-sm px-2',
+                                        'data-toggle'    => 'tooltip',
+                                        'data-placement' => 'bottom',
+                                        'title'          => 'メッセージ作成',
+                                        'escape'         => false
+                                    ]
+                            ) ?>
+                        </div>
+                    </div><!-- /. gradient-card-header -->
 
-                    <?= $this->Html->link('<i class="fa fa-envelope none"></i> メッセージ',
-                            ['controller' => 'CircleMessages', 'action' => 'index', $circle->id],
-                            ['class' => 'white-text mx-3', 'escape' => false]
-                    ) ?>
-                </strong>
-                <div>
-                    <?= $this->Html->link('<i class="fa fa-pencil mt-0"></i>',
-                            ['controller' => 'CircleMessages', 'action' => 'add', $circle->id],
-                            [
-                                'class'          => 'btn btn-outline-white btn-rounded btn-sm px-2',
-                                'data-toggle'    => 'tooltip',
-                                'data-placement' => 'bottom',
-                                'title'          => 'メッセージ作成',
-                                'escape'         => false
-                            ]
-                    ) ?>
-                </div>
-            </div><!-- /. gradient-card-header -->
+                    <div class="px-4">
+                        <?php if (count($circle_messages) !== 0) : ?>
+                            <div class="table-wrapper">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="th-lg" style="width: 30%;">ユーザー名</th>
+                                            <th class="th-lg" style="width: 70%;">タイトル</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($circle_messages as $message) : ?>
+                                            <tr>
+                                                <td><?= h($message->user->username) ?></td>
+                                                <td>
+                                                    <?= $this->Html->link($message->title,
+                                                        ['controller' => 'CircleMessages', 'action' => 'view', h($message->id)],
+                                                        [
+                                                            'data-toggle'    => 'tooltip',
+                                                            'data-placement' => 'bottom',
+                                                            'title'          => 'メッセージ詳細',
+                                                        ]
+                                                    ) ?>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div><!-- /.table-wrapper -->
+                        <?php else : ?>
+                            <p class="text-center m-4">
+                                メッセージはありません。
+                            </p>
+                        <?php endif; ?>
+                    </div><!-- /.px-4 -->
+                </div><!-- /.card -->
+            </div>
 
-            <div class="px-4">
-                <?php if (count($circle_messages) !== 0) : ?>
-                    <p class="text-right">
-                        <small>最新20件まで</small>
-                    </p>
-                    <hr>
-                    <div class="table-wrapper mt-3 mb-4">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th class="th-lg" style="width: 30%;">ユーザー名</th>
-                                    <th class="th-lg" style="width: 70%;">タイトル</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($circle_messages as $message) : ?>
-                                    <tr>
-                                        <td><?= h($message->user->username) ?></td>
-                                        <td>
-                                            <?= $this->Html->link($message->title,
-                                                ['controller' => 'CircleMessages', 'action' => 'view', h($message->id)],
-                                                [
-                                                    'data-toggle'    => 'tooltip',
-                                                    'data-placement' => 'bottom',
-                                                    'title'          => 'メッセージ詳細',
-                                                ]
-                                            ) ?>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </div><!-- /.table-wrapper -->
-                <?php else : ?>
-                    <p class="text-center m-4">
-                        メッセージはありません。
-                    </p>
-                <?php endif; ?>
-            </div><!-- /.px-4 -->
-        </div><!-- /.card -->
+            <div class="col-lg-6 col-md-12 col-xs-12">
+                <div class="card card-cascade narrower mb-3">
 
-        <div class="card card-cascade narrower mt-5 mb-4">
+                    <div class="view gradient-card-header purple-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+                        <div>
+                            <?= $this->Html->link('<i class="fa fa-list mt-0"></i>',
+                                    ['controller' => 'CircleGroups', 'action' => 'index', h($circle->id)],
+                                    [
+                                        'class'          => 'btn btn-outline-white btn-rounded btn-sm px-2',
+                                        'data-toggle'    => 'tooltip',
+                                        'data-placement' => 'bottom',
+                                        'title'          => 'メンバーリスト',
+                                        'escape'         => false
+                                    ]
+                            ) ?>
+                        </div>
+                        <strong>
+                            <?= $this->Html->link('<i class="fa fa-users none"></i> メンバー',
+                                    ['controller' => 'CircleGroups', 'action' => 'index', h($circle->id)],
+                                    ['class' => 'white-text mx-3', 'escape' => false]
+                            ) ?>
+                        </strong>
+                        <div>
+                            <?= $this->Html->link('<i class="fa fa-list mt-0"></i>',
+                                    ['controller' => 'CircleGroups', 'action' => 'index', h($circle->id)],
+                                    [
+                                        'class'          => 'btn btn-outline-white btn-rounded btn-sm px-2',
+                                        'data-toggle'    => 'tooltip',
+                                        'data-placement' => 'bottom',
+                                        'title'          => 'メンバーリスト',
+                                        'escape'         => false
+                                    ]
+                            ) ?>
+                        </div>
+                    </div><!-- /. gradient-card-header -->
 
-            <div class="view gradient-card-header purple-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
-                <div>
-                    <?= $this->Html->link('<i class="fa fa-list mt-0"></i>',
-                            ['controller' => 'CircleGroups', 'action' => 'index', h($circle->id)],
-                            [
-                                'class'          => 'btn btn-outline-white btn-rounded btn-sm px-2',
-                                'data-toggle'    => 'tooltip',
-                                'data-placement' => 'bottom',
-                                'title'          => 'メンバーリスト',
-                                'escape'         => false
-                            ]
-                    ) ?>
-                </div>
-                <strong>
-                    <?= $this->Html->link('<i class="fa fa-users none"></i> メンバー',
-                            ['controller' => 'CircleGroups', 'action' => 'index', h($circle->id)],
-                            ['class' => 'white-text mx-3', 'escape' => false]
-                    ) ?>
-                </strong>
-                <div>
-                    <?= $this->Html->link('<i class="fa fa-list mt-0"></i>',
-                            ['controller' => 'CircleGroups', 'action' => 'index', h($circle->id)],
-                            [
-                                'class'          => 'btn btn-outline-white btn-rounded btn-sm px-2',
-                                'data-toggle'    => 'tooltip',
-                                'data-placement' => 'bottom',
-                                'title'          => 'メンバーリスト',
-                                'escape'         => false
-                            ]
-                    ) ?>
-                </div>
-            </div><!-- /. gradient-card-header -->
+                    <div class="px-4 mt-3 mb-4">
+                        <?php if (count($circle_members) !== 0) : ?>
+                            <div class="table-wrapper">
+                                <ul class="list-group">
+                                    <?php foreach ($circle_members as $member) : ?>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div class="label">
+                                            <?php
+                                                if ($member->profile->icon) {
+                                                    print $this->Html->image($member->profile->icon,
+                                                        [
+                                                            'class' => 'rounded-circle z-depth-1-half',
+                                                            'style' => 'width: 50px; heidht:50px;'
+                                                        ]
+                                                    );
+                                                } else {
+                                                    print $this->Html->image('/img/sample/no_icon.jpg',
+                                                        [
+                                                            'class' => 'rounded-circle z-depth-1-half',
+                                                            'style' => 'width: 50px; heidht:50px;'
+                                                        ]
+                                                    );
+                                                }
+                                            ?>
+                                        </div>
+                                        <?= $this->Html->link($member->user->username, h($member->link), ['target' => '_blank']) ?>
 
-            <div class="px-4 mt-3 mb-4">
-                <?php if (count($circle_members) !== 0) : ?>
-                    <div class="table-wrapper">
-                        <ul class="list-group">
-                            <?php foreach ($circle_members as $member) : ?>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <div class="label">
-                                    <?php
-                                        if ($member->profile->icon) {
-                                            print $this->Html->image($member->profile->icon,
-                                                [
-                                                    'class' => 'rounded-circle z-depth-1-half',
-                                                    'style' => 'width: 50px; heidht:50px;'
-                                                ]
-                                            );
-                                        } else {
-                                            print $this->Html->image('/img/sample/no_icon.jpg',
-                                                [
-                                                    'class' => 'rounded-circle z-depth-1-half',
-                                                    'style' => 'width: 50px; heidht:50px;'
-                                                ]
-                                            );
-                                        }
-                                    ?>
-                                </div>
-                                <?= $this->Html->link($member->user->username, h($member->link), ['target' => '_blank']) ?>
-
-                                <span class="badge badge-pill <?= getBadgeColor($member->user->classification) ?>">
-                                    <?= h($member->user->classification) ?>
-                                </span>
-                            </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div><!-- /.table-wrapper -->
-                <?php else : ?>
-                    <p class="text-center">
-                        メンバーはいません。
-                    </p>
-                <?php endif; ?>
-            </div><!-- /.px-4 -->
-        </div><!-- /.card -->
-
+                                        <span class="badge badge-pill <?= getBadgeColor($member->user->classification) ?>">
+                                            <?= h($member->user->classification) ?>
+                                        </span>
+                                    </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div><!-- /.table-wrapper -->
+                        <?php else : ?>
+                            <p class="text-center">
+                                メンバーはいません。
+                            </p>
+                        <?php endif; ?>
+                    </div><!-- /.px-4 -->
+                </div><!-- /.card -->
+            </div><!-- /.col-lg-12 -->
+        </div><!-- /.row -->
 
         <div class="card card-body mb-4">
-
+            <h4 class="h4-responsive dark-grey-text font-weight-bold text-center mb-0">
+                <?= h($circle->title) ?>
+            </h4>
+            <hr class="mb-2">
             <?php if ($circle->image) : ?>
-                <div class="text-center">
-                    <?= $this->Html->image($circle->image, ['class' => 'img-fluid']) ?>
+                <div class="row">
+                    <div class="col-lg-1">
+                    </div>
+                    <div class="col-lg-10">
+                        <h6 class="grey-text text-right">Circle Image</h6>
+                        <?= $this->Html->image($circle->image, ['class' => 'd-block w-100']) ?>
+                    </div>
+                    <div class="col-lg-1">
+                    </div>
                 </div>
-                <hr>
+                <hr class="mb-0">
             <?php endif; ?>
 
             <div class="row mt-3">

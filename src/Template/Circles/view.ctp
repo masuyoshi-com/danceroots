@@ -78,9 +78,13 @@
                 <div class="row">
                     <div class="col-lg-12 mb-3">
                         <div class="row mb-3">
-                            <div class="col-lg-12">
+                            <div class="col-lg-1">
+                            </div>
+                            <div class="col-lg-10">
                                 <h6 class="text-right grey-text">Circle Image</h6>
                                 <?= $this->Html->image($circle->image, ['class' => 'd-block w-100']) ?>
+                            </div>
+                            <div class="col-lg-1">
                             </div>
                         </div>
                     </div>
