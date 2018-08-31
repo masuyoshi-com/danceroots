@@ -11,18 +11,42 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h6 class="dark-grey-text font-weight-bold">
-                    <i class="fa fa-home mr-2" aria-hidden="true"></i><?= h($circle->name) ?></span>
-                </h6>
+                <div class="d-flex">
+                    <div>
+                        <h6 class="dark-grey-text font-weight-bold">
+                            <i class="fa fa-home mr-2" aria-hidden="true"></i><?= h($circle->name) ?></span>
+                        </h6>
+                    </div>
+                    <div class="ml-auto none">
+                        <p class="grey-text m-0">
+                            <small>サークルホームで各種メニューを選択します。</small>
+                        </p>
+                    </div>
+                </div>
                 <hr class="mt-0">
             </div>
-        </div>
+        </div><!-- /.row -->
 
+        <!--
         <div class="row">
             <div class="col-lg-12">
+                <div class="card card-image mb-3" style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
+                    <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+                        <div>
+                            <h5 class="pink-text"><i class="fa fa-comments" aria-hidden="true"></i> BBS</h5>
+                            <h3 class="card-title pt-2"><strong>GroupMessage</strong></h3>
+                            <p>
+                                サークルメンバーとスレッド形式でメッセージのやり取りができます。一つのスレッドにつき1000までコメントできます。
+                                メンバーで疑問・質問の解決や、お知らせ、テーマの議論・雑談などに利用しましょう。
+                            </p>
+
+                            <a class="btn btn-pink"><i class="fa fa-clone left"></i> View BBS</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
+        -->
         <div class="row">
             <div class="col-lg-6 col-md-12 col-xs-12">
                 <div class="card card-cascade narrower mb-3">
@@ -62,7 +86,7 @@
                     <div class="px-4">
                         <?php if (count($circle_messages) !== 0) : ?>
                             <div class="table-wrapper">
-                                <table class="table table-hover">
+                                <table class="table table-bordered table-hover mt-3">
                                     <thead>
                                         <tr>
                                             <th class="th-lg" style="width: 30%;">ユーザー名</th>

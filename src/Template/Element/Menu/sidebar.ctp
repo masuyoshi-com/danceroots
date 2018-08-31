@@ -62,6 +62,9 @@
                                 <?= $this->Html->link('サークル検索', ['controller' => 'Circles', 'action' => 'index'], ['class' => 'waves-effect']) ?>
                             </li>
                             <li>
+                                <?= $this->Html->link('マイ サークル', ['controller' => 'Circles', 'action' => 'list'], ['class' => 'waves-effect']) ?>
+                            </li>
+                            <li>
                                 <?= $this->Html->link('サークル登録', ['controller' => 'Circles', 'action' => 'add'], ['class' => 'waves-effect']) ?>
                             </li>
                         </ul>
@@ -114,6 +117,9 @@
                         <ul class="list-unstyled">
                             <li>
                                 <?= $this->Html->link('イベント検索', ['controller' => 'Events', 'action' => 'index'], ['class' => 'waves-effect']) ?>
+                            </li>
+                            <li>
+                                <?= $this->Html->link('マイ イベント', ['controller' => 'Events', 'action' => 'list'], ['class' => 'waves-effect']) ?>
                             </li>
                             <li>
                                 <?= $this->Html->link('イベント登録', ['controller' => 'Events', 'action' => 'add'], ['class' => 'waves-effect']) ?>
