@@ -28,7 +28,9 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <label class="dark-gray-text w-100 text-left"><small>アイコン画像</small></label>
+                            <label class="dark-gray-text w-100 text-left"><small>アイコン画像</small>
+                                <span class="badge badge-info">変更する場合のみ選択</span>
+                            </label>
                             <?= $this->Form->control('icon_file', ['type' => 'file', 'class' => 'form-control']) ?>
                         </div>
                     </div>
@@ -99,7 +101,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div><!-- /.card-body -->
         </section>
     </div><!-- /.col-lg-4 -->
