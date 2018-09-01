@@ -159,7 +159,10 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <label class="dark-gray-text w-100 text-left"><small>アイコン画像</small>  <span class="badge badge-info">正方形サイズ</span></label>
+                            <label class="dark-gray-text w-100 text-left"><small>アイコン画像</small>
+                                <span class="badge badge-info">正方形サイズ</span>
+                                <span class="badge badge-primary">対応拡張子 - jpg png gif</span>
+                            </label>
                             <?= $this->Form->control('icon_file', ['type' => 'file', 'class' => 'form-control']) ?>
                         </div>
                     </div>
