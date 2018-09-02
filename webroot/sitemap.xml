@@ -28,6 +28,11 @@
   <changefreq>weekly</changefreq>
 </url>
 <url>
+  <loc>https://danceroots.net/recommend-videos/public</loc>
+  <priority>0.8</priority>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
   <loc>https://danceroots.net/lectures</loc>
   <priority>0.8</priority>
   <changefreq>weekly</changefreq>
@@ -73,6 +78,11 @@
   <changefreq>weekly</changefreq>
 </url>
 <url>
+  <loc>https://danceroots.net/company</loc>
+  <priority>0.8</priority>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
   <loc>https://danceroots.net/sitemap</loc>
   <priority>0.8</priority>
   <changefreq>weekly</changefreq>
@@ -80,6 +90,36 @@
 <url>
   <loc>https://danceroots.net/inquiries</loc>
   <priority>0.8</priority>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>https://danceroots.net/dancers/public-view/%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC</loc>
+  <priority>0.7</priority>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>https://danceroots.net/studios/public-view/kazuyo_uchida</loc>
+  <priority>0.7</priority>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>https://danceroots.net/studios/public-view/%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB%E3%82%B9%E3%82%BF%E3%82%B8%E3%82%AA%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC</loc>
+  <priority>0.7</priority>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>https://danceroots.net/events/public-view/2</loc>
+  <priority>0.7</priority>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>https://danceroots.net/recommend-musics/public?page=2</loc>
+  <priority>0.7</priority>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>https://danceroots.net/recommend-videos/public?page=2</loc>
+  <priority>0.7</priority>
   <changefreq>weekly</changefreq>
 </url>
 <url>
@@ -215,6 +255,31 @@
 <url>
   <loc>https://danceroots.net/users/forgot</loc>
   <priority>0.7</priority>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>https://danceroots.net/studio-schedules/public/%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB%E3%82%B9%E3%82%BF%E3%82%B8%E3%82%AA%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC</loc>
+  <priority>0.6</priority>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>https://danceroots.net/recommend-musics/public?genre=word=</loc>
+  <priority>0.6</priority>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>https://danceroots.net/recommend-musics/public?genre=word=page=2</loc>
+  <priority>0.6</priority>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>https://danceroots.net/recommend-videos/public?genre=word=</loc>
+  <priority>0.6</priority>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>https://danceroots.net/recommend-videos/public?genre=word=page=2</loc>
+  <priority>0.6</priority>
   <changefreq>weekly</changefreq>
 </url>
 
