@@ -250,7 +250,7 @@
                 <div class="col-lg-12">
                     <div class="md-form">
                         <?= $this->Form->control('address', ['id' => 'f--address', 'class' => 'form-control', 'value' => h($studio->address), 'disabled']) ?>
-                        <label for="f--address">以下住所</label>
+                        <label for="f--address">所在地</label>
                     </div>
                 </div>
             </div>

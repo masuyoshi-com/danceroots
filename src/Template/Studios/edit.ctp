@@ -142,7 +142,7 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <label class="dark-gray-text w-100 text-left"><small>以下住所</small></label>
+                        <label class="dark-gray-text w-100 text-left"><small>所在地</small></label>
                         <div class="md-form mt-0">
                             <?= $this->Form->control('address', ['class' => 'form-control']) ?>
                         </div>
