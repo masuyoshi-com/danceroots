@@ -123,7 +123,7 @@
 
                                                 <div class="d-flex">
                                                     <div class="p-0">
-                                                        <h6 class="font-weight-bold m-3">
+                                                        <h6 class="dark-grey-text font-weight-bold m-3">
                                                             <i class="fa fa-universal-access indigo-text" aria-hidden="true"></i> Instructor Information
                                                         </h6>
                                                     </div>
@@ -187,7 +187,7 @@
                                                     <hr class="m-0">
                                                     <div class="row">
                                                         <div class="col-lg-12 p-4">
-                                                            <h6 class="font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
+                                                            <h6 class="dark-grey-text font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
                                                             <div class="embed-responsive embed-responsive-16by9">
                                                                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($suns[$times[$i]]['youtube']) ?>?rel=0" allowfullscreen></iframe>
                                                             </div>
@@ -262,7 +262,7 @@
 
                                                 <div class="d-flex">
                                                     <div class="p-0">
-                                                        <h6 class="font-weight-bold m-3">
+                                                        <h6 class="dark-grey-text font-weight-bold m-3">
                                                             <i class="fa fa-universal-access indigo-text" aria-hidden="true"></i> Instructor Information
                                                         </h6>
                                                     </div>
@@ -326,7 +326,7 @@
                                                     <hr class="m-0">
                                                     <div class="row">
                                                         <div class="col-lg-12 p-4">
-                                                            <h6 class="font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
+                                                            <h6 class="dark-grey-text font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
                                                             <div class="embed-responsive embed-responsive-16by9">
                                                                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($mons[$times[$i]]['youtube']) ?>?rel=0" allowfullscreen></iframe>
                                                             </div>
@@ -400,7 +400,7 @@
 
                                                 <div class="d-flex">
                                                     <div class="p-0">
-                                                        <h6 class="font-weight-bold m-3">
+                                                        <h6 class="dark-grey-text font-weight-bold m-3">
                                                             <i class="fa fa-universal-access indigo-text" aria-hidden="true"></i> Instructor Information
                                                         </h6>
                                                     </div>
@@ -464,7 +464,7 @@
                                                     <hr class="m-0">
                                                     <div class="row">
                                                         <div class="col-lg-12 p-4">
-                                                            <h6 class="font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
+                                                            <h6 class="dark-grey-text font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
                                                             <div class="embed-responsive embed-responsive-16by9">
                                                                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($tues[$times[$i]]['youtube']) ?>?rel=0" allowfullscreen></iframe>
                                                             </div>
@@ -538,7 +538,7 @@
 
                                                 <div class="d-flex">
                                                     <div class="p-0">
-                                                        <h6 class="font-weight-bold m-3">
+                                                        <h6 class="dark-grey-text font-weight-bold m-3">
                                                             <i class="fa fa-universal-access indigo-text" aria-hidden="true"></i> Instructor Information
                                                         </h6>
                                                     </div>
@@ -602,7 +602,7 @@
                                                     <hr class="m-0">
                                                     <div class="row">
                                                         <div class="col-lg-12 p-4">
-                                                            <h6 class="font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
+                                                            <h6 class="dark-grey-text font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
                                                             <div class="embed-responsive embed-responsive-16by9">
                                                                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($weds[$times[$i]]['youtube']) ?>?rel=0" allowfullscreen></iframe>
                                                             </div>
@@ -676,7 +676,7 @@
 
                                                 <div class="d-flex">
                                                     <div class="p-0">
-                                                        <h6 class="font-weight-bold m-3">
+                                                        <h6 class="dark-grey-text font-weight-bold m-3">
                                                             <i class="fa fa-universal-access indigo-text" aria-hidden="true"></i> Instructor Information
                                                         </h6>
                                                     </div>
@@ -740,7 +740,7 @@
                                                     <hr class="m-0">
                                                     <div class="row">
                                                         <div class="col-lg-12 p-4">
-                                                            <h6 class="font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
+                                                            <h6 class="dark-grey-text font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
                                                             <div class="embed-responsive embed-responsive-16by9">
                                                                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($thus[$times[$i]]['youtube']) ?>?rel=0" allowfullscreen></iframe>
                                                             </div>
@@ -814,7 +814,7 @@
 
                                                 <div class="d-flex">
                                                     <div class="p-0">
-                                                        <h6 class="font-weight-bold m-3">
+                                                        <h6 class="dark-grey-text font-weight-bold m-3">
                                                             <i class="fa fa-universal-access indigo-text" aria-hidden="true"></i> Instructor Information
                                                         </h6>
                                                     </div>
@@ -878,7 +878,7 @@
                                                     <hr class="m-0">
                                                     <div class="row">
                                                         <div class="col-lg-12 p-4">
-                                                            <h6 class="font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
+                                                            <h6 class="dark-grey-text font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
                                                             <div class="embed-responsive embed-responsive-16by9">
                                                                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($fris[$times[$i]]['youtube']) ?>?rel=0" allowfullscreen></iframe>
                                                             </div>
@@ -952,7 +952,7 @@
 
                                                 <div class="d-flex">
                                                     <div class="p-0">
-                                                        <h6 class="font-weight-bold m-3">
+                                                        <h6 class="dark-grey-text font-weight-bold m-3">
                                                             <i class="fa fa-universal-access indigo-text" aria-hidden="true"></i> Instructor Information
                                                         </h6>
                                                     </div>
@@ -1016,7 +1016,7 @@
                                                     <hr class="m-0">
                                                     <div class="row">
                                                         <div class="col-lg-12 p-4">
-                                                            <h6 class="font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
+                                                            <h6 class="dark-grey-text font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
                                                             <div class="embed-responsive embed-responsive-16by9">
                                                                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($sats[$times[$i]]['youtube']) ?>?rel=0" allowfullscreen></iframe>
                                                             </div>
@@ -1127,7 +1127,7 @@
 
                                     <div class="d-flex">
                                         <div class="p-0">
-                                            <h6 class="font-weight-bold m-3">
+                                            <h6 class="dark-grey-text font-weight-bold m-3">
                                                 <i class="fa fa-universal-access indigo-text" aria-hidden="true"></i> Instructor Information
                                             </h6>
                                         </div>
@@ -1193,7 +1193,7 @@
                                         <hr class="m-0">
                                         <div class="row">
                                             <div class="col-lg-12 p-4">
-                                                <h6 class="font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
+                                                <h6 class="dark-grey-text font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
                                                 <div class="embed-responsive embed-responsive-16by9">
                                                     <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($suns[$times[$i]]['youtube']) ?>?rel=0" allowfullscreen></iframe>
                                                 </div>
@@ -1265,7 +1265,7 @@
 
                                         <div class="d-flex">
                                             <div class="p-0">
-                                                <h6 class="font-weight-bold m-3">
+                                                <h6 class="dark-grey-text font-weight-bold m-3">
                                                     <i class="fa fa-universal-access indigo-text" aria-hidden="true"></i> Instructor Information
                                                 </h6>
                                             </div>
@@ -1331,7 +1331,7 @@
                                             <hr class="m-0">
                                             <div class="row">
                                                 <div class="col-lg-12 p-4">
-                                                    <h6 class="font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
+                                                    <h6 class="dark-grey-text font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
                                                     <div class="embed-responsive embed-responsive-16by9">
                                                         <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($mons[$times[$i]]['youtube']) ?>?rel=0" allowfullscreen></iframe>
                                                     </div>
@@ -1403,7 +1403,7 @@
 
                                         <div class="d-flex">
                                             <div class="p-0">
-                                                <h6 class="font-weight-bold m-3">
+                                                <h6 class="dark-grey-text font-weight-bold m-3">
                                                     <i class="fa fa-universal-access indigo-text" aria-hidden="true"></i> Instructor Information
                                                 </h6>
                                             </div>
@@ -1469,7 +1469,7 @@
                                             <hr class="m-0">
                                             <div class="row">
                                                 <div class="col-lg-12 p-4">
-                                                    <h6 class="font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
+                                                    <h6 class="dark-grey-text font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
                                                     <div class="embed-responsive embed-responsive-16by9">
                                                         <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($tues[$times[$i]]['youtube']) ?>?rel=0" allowfullscreen></iframe>
                                                     </div>
@@ -1541,7 +1541,7 @@
 
                                         <div class="d-flex">
                                             <div class="p-0">
-                                                <h6 class="font-weight-bold m-3">
+                                                <h6 class="dark-grey-text font-weight-bold m-3">
                                                     <i class="fa fa-universal-access indigo-text" aria-hidden="true"></i> Instructor Information
                                                 </h6>
                                             </div>
@@ -1607,7 +1607,7 @@
                                             <hr class="m-0">
                                             <div class="row">
                                                 <div class="col-lg-12 p-4">
-                                                    <h6 class="font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
+                                                    <h6 class="dark-grey-text font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
                                                     <div class="embed-responsive embed-responsive-16by9">
                                                         <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($weds[$times[$i]]['youtube']) ?>?rel=0" allowfullscreen></iframe>
                                                     </div>
@@ -1679,7 +1679,7 @@
 
                                         <div class="d-flex">
                                             <div class="p-0">
-                                                <h6 class="font-weight-bold m-3">
+                                                <h6 class="dark-grey-text font-weight-bold m-3">
                                                     <i class="fa fa-universal-access indigo-text" aria-hidden="true"></i> Instructor Information
                                                 </h6>
                                             </div>
@@ -1745,7 +1745,7 @@
                                             <hr class="m-0">
                                             <div class="row">
                                                 <div class="col-lg-12 p-4">
-                                                    <h6 class="font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
+                                                    <h6 class="dark-grey-text font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
                                                     <div class="embed-responsive embed-responsive-16by9">
                                                         <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($thus[$times[$i]]['youtube']) ?>?rel=0" allowfullscreen></iframe>
                                                     </div>
@@ -1817,7 +1817,7 @@
 
                                         <div class="d-flex">
                                             <div class="p-0">
-                                                <h6 class="font-weight-bold m-3">
+                                                <h6 class="dark-grey-text font-weight-bold m-3">
                                                     <i class="fa fa-universal-access indigo-text" aria-hidden="true"></i> Instructor Information
                                                 </h6>
                                             </div>
@@ -1883,7 +1883,7 @@
                                             <hr class="m-0">
                                             <div class="row">
                                                 <div class="col-lg-12 p-4">
-                                                    <h6 class="font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
+                                                    <h6 class="dark-grey-text font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
                                                     <div class="embed-responsive embed-responsive-16by9">
                                                         <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($fris[$times[$i]]['youtube']) ?>?rel=0" allowfullscreen></iframe>
                                                     </div>
@@ -1955,7 +1955,7 @@
 
                                         <div class="d-flex">
                                             <div class="p-0">
-                                                <h6 class="font-weight-bold m-3">
+                                                <h6 class="dark-grey-text font-weight-bold m-3">
                                                     <i class="fa fa-universal-access indigo-text" aria-hidden="true"></i> Instructor Information
                                                 </h6>
                                             </div>
@@ -2021,7 +2021,7 @@
                                             <hr class="m-0">
                                             <div class="row">
                                                 <div class="col-lg-12 p-4">
-                                                    <h6 class="font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
+                                                    <h6 class="dark-grey-text font-weight-bold text-left"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
                                                     <div class="embed-responsive embed-responsive-16by9">
                                                         <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($sats[$times[$i]]['youtube']) ?>?rel=0" allowfullscreen></iframe>
                                                     </div>
