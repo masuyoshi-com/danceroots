@@ -90,7 +90,7 @@
                                                             <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($suns[$times[$i]]['team']) ?></h3>
                                                         <?php endif; ?>
                                                         <p>
-                                                            <small>ジャンル: </small><span class="badge <?= getBadgeColor($suns[$times[$i]]['genre']) ?>"><?= h($suns[$times[$i]]['genre']) ?></span>
+                                                            <small>ジャンル: </small><span class="badge <?= getStudioGenreColor($suns[$times[$i]]['genre']) ?>"><?= h($suns[$times[$i]]['genre']) ?></span>
                                                         </p>
                                                         <p class="font-weight-bold">
                                                             <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($suns[$times[$i]]['start']) ?> ～ <?= h($suns[$times[$i]]['end']) ?>
@@ -142,9 +142,9 @@
                                     <td rowspan="3" class="grey lighten-4">
                                 <?php endif; ?>
                                     <div class="card card-body">
-                                        <label class="mb-0">
-                                            <span class="badge <?= getBadgeColor($suns[$times[$i]]['genre']) ?>"><?= h($suns[$times[$i]]['genre']) ?></span>
-                                        </label>
+                                        <h6 class="mb-0">
+                                            <span class="badge <?= getStudioGenreColor($suns[$times[$i]]['genre']) ?>"><?= h($suns[$times[$i]]['genre']) ?></span>
+                                        </h6>
 
                                         <div class="avatar mx-auto my-3 mt-0">
                                             <?php
@@ -259,7 +259,7 @@
                                                             <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($mons[$times[$i]]['team']) ?></h3>
                                                         <?php endif; ?>
                                                         <p>
-                                                            <small>ジャンル: </small><span class="badge <?= getBadgeColor($mons[$times[$i]]['genre']) ?>"><?= h($mons[$times[$i]]['genre']) ?></span>
+                                                            <small>ジャンル: </small><span class="badge <?= getStudioGenreColor($mons[$times[$i]]['genre']) ?>"><?= h($mons[$times[$i]]['genre']) ?></span>
                                                         </p>
                                                         <p class="font-weight-bold">
                                                             <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($mons[$times[$i]]['start']) ?> ～ <?= h($mons[$times[$i]]['end']) ?>
@@ -310,9 +310,9 @@
                                     <td rowspan="3" class="grey lighten-4">
                                 <?php endif; ?>
                                     <div class="card card-body">
-                                        <label class="mb-0">
-                                            <span class="badge <?= getBadgeColor($mons[$times[$i]]['genre']) ?>"><?= h($mons[$times[$i]]['genre']) ?></span>
-                                        </label>
+                                        <h6 class="mb-0">
+                                            <span class="badge <?= getStudioGenreColor($mons[$times[$i]]['genre']) ?>"><?= h($mons[$times[$i]]['genre']) ?></span>
+                                        </h6>
 
                                         <div class="avatar mx-auto my-3 mt-0">
                                             <?php
@@ -427,7 +427,7 @@
                                                             <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($tues[$times[$i]]['team']) ?></h3>
                                                         <?php endif; ?>
                                                         <p>
-                                                            <small>ジャンル: </small><span class="badge <?= getBadgeColor($tues[$times[$i]]['genre']) ?>"><?= h($tues[$times[$i]]['genre']) ?></span>
+                                                            <small>ジャンル: </small><span class="badge <?= getStudioGenreColor($tues[$times[$i]]['genre']) ?>"><?= h($tues[$times[$i]]['genre']) ?></span>
                                                         </p>
                                                         <p class="font-weight-bold">
                                                             <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($tues[$times[$i]]['start']) ?> ～ <?= h($tues[$times[$i]]['end']) ?>
@@ -478,9 +478,9 @@
                                     <td rowspan="3" class="grey lighten-4">
                                 <?php endif; ?>
                                     <div class="card card-body">
-                                        <label class="mb-0">
-                                            <span class="badge <?= getBadgeColor($tues[$times[$i]]['genre']) ?>"><?= h($tues[$times[$i]]['genre']) ?></span>
-                                        </label>
+                                        <h6 class="mb-0">
+                                            <span class="badge <?= getStudioGenreColor($tues[$times[$i]]['genre']) ?>"><?= h($tues[$times[$i]]['genre']) ?></span>
+                                        </h6>
 
                                         <div class="avatar mx-auto my-3 mt-0">
                                             <?php
@@ -595,7 +595,7 @@
                                                             <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($weds[$times[$i]]['team']) ?></h3>
                                                         <?php endif; ?>
                                                         <p>
-                                                            <small>ジャンル: </small><span class="badge <?= getBadgeColor($weds[$times[$i]]['genre']) ?>"><?= h($weds[$times[$i]]['genre']) ?></span>
+                                                            <small>ジャンル: </small><span class="badge <?= getStudioGenreColor($weds[$times[$i]]['genre']) ?>"><?= h($weds[$times[$i]]['genre']) ?></span>
                                                         </p>
                                                         <p class="font-weight-bold">
                                                             <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($weds[$times[$i]]['start']) ?> ～ <?= h($weds[$times[$i]]['end']) ?>
@@ -646,9 +646,9 @@
                                     <td rowspan="3" class="grey lighten-4">
                                 <?php endif; ?>
                                     <div class="card card-body">
-                                        <label class="mb-0">
-                                            <span class="badge <?= getBadgeColor($weds[$times[$i]]['genre']) ?>"><?= h($weds[$times[$i]]['genre']) ?></span>
-                                        </label>
+                                        <h6 class="mb-0">
+                                            <span class="badge <?= getStudioGenreColor($weds[$times[$i]]['genre']) ?>"><?= h($weds[$times[$i]]['genre']) ?></span>
+                                        </h6>
 
                                         <div class="avatar mx-auto my-3 mt-0">
                                             <?php
@@ -763,7 +763,7 @@
                                                             <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($thus[$times[$i]]['team']) ?></h3>
                                                         <?php endif; ?>
                                                         <p>
-                                                            <small>ジャンル: </small><span class="badge <?= getBadgeColor($thus[$times[$i]]['genre']) ?>"><?= h($thus[$times[$i]]['genre']) ?></span>
+                                                            <small>ジャンル: </small><span class="badge <?= getStudioGenreColor($thus[$times[$i]]['genre']) ?>"><?= h($thus[$times[$i]]['genre']) ?></span>
                                                         </p>
                                                         <p class="font-weight-bold">
                                                             <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($thus[$times[$i]]['start']) ?> ～ <?= h($thus[$times[$i]]['end']) ?>
@@ -814,9 +814,9 @@
                                     <td rowspan="3" class="grey lighten-4">
                                 <?php endif; ?>
                                     <div class="card card-body">
-                                        <label class="mb-0">
-                                            <span class="badge <?= getBadgeColor($thus[$times[$i]]['genre']) ?>"><?= h($thus[$times[$i]]['genre']) ?></span>
-                                        </label>
+                                        <h6 class="mb-0">
+                                            <span class="badge <?= getStudioGenreColor($thus[$times[$i]]['genre']) ?>"><?= h($thus[$times[$i]]['genre']) ?></span>
+                                        </h6>
 
                                         <div class="avatar mx-auto my-3 mt-0">
                                             <?php
@@ -931,7 +931,7 @@
                                                             <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($fris[$times[$i]]['team']) ?></h3>
                                                         <?php endif; ?>
                                                         <p>
-                                                            <small>ジャンル: </small><span class="badge <?= getBadgeColor($fris[$times[$i]]['genre']) ?>"><?= h($fris[$times[$i]]['genre']) ?></span>
+                                                            <small>ジャンル: </small><span class="badge <?= getStudioGenreColor($fris[$times[$i]]['genre']) ?>"><?= h($fris[$times[$i]]['genre']) ?></span>
                                                         </p>
                                                         <p class="font-weight-bold">
                                                             <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($fris[$times[$i]]['start']) ?> ～ <?= h($fris[$times[$i]]['end']) ?>
@@ -982,9 +982,9 @@
                                     <td rowspan="3" class="grey lighten-4">
                                 <?php endif; ?>
                                     <div class="card card-body">
-                                        <label class="mb-0">
-                                            <span class="badge <?= getBadgeColor($fris[$times[$i]]['genre']) ?>"><?= h($fris[$times[$i]]['genre']) ?></span>
-                                        </label>
+                                        <h6 class="mb-0">
+                                            <span class="badge <?= getStudioGenreColor($fris[$times[$i]]['genre']) ?>"><?= h($fris[$times[$i]]['genre']) ?></span>
+                                        </h6>
 
                                         <div class="avatar mx-auto my-3 mt-0">
                                             <?php
@@ -1099,7 +1099,7 @@
                                                             <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($sats[$times[$i]]['team']) ?></h3>
                                                         <?php endif; ?>
                                                         <p>
-                                                            <small>ジャンル: </small><span class="badge <?= getBadgeColor($sats[$times[$i]]['genre']) ?>"><?= h($sats[$times[$i]]['genre']) ?></span>
+                                                            <small>ジャンル: </small><span class="badge <?= getStudioGenreColor($sats[$times[$i]]['genre']) ?>"><?= h($sats[$times[$i]]['genre']) ?></span>
                                                         </p>
                                                         <p class="font-weight-bold">
                                                             <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($sats[$times[$i]]['start']) ?> ～ <?= h($sats[$times[$i]]['end']) ?>
@@ -1150,9 +1150,9 @@
                                     <td rowspan="3" class="grey lighten-4">
                                 <?php endif; ?>
                                     <div class="card card-body">
-                                        <label class="mb-0">
-                                            <span class="badge <?= getBadgeColor($sats[$times[$i]]['genre']) ?>"><?= h($sats[$times[$i]]['genre']) ?></span>
-                                        </label>
+                                        <h6 class="mb-0">
+                                            <span class="badge <?= getStudioGenreColor($sats[$times[$i]]['genre']) ?>"><?= h($sats[$times[$i]]['genre']) ?></span>
+                                        </h6>
 
                                         <div class="avatar mx-auto my-3 mt-0">
                                             <?php
@@ -1360,7 +1360,7 @@
                         <div class="row mb-2 p-2" style="background-color: white;">
                             <div class="col-md-12 col-xs-12 text-center">
                                 <p class="mb-1">
-                                    <span class="badge <?= getBadgeColor($suns[$times[$i]]['genre']) ?>"><?= h($suns[$times[$i]]['genre']) ?></span>
+                                    <span class="badge <?= getStudioGenreColor($suns[$times[$i]]['genre']) ?>"><?= h($suns[$times[$i]]['genre']) ?></span>
                                 </p>
                                 <div class="avatar mx-auto m-2">
                                     <?php
@@ -1512,7 +1512,7 @@
                         <div class="row mb-2 p-2" style="background-color: white;">
                             <div class="col-md-12 col-xs-12 text-center">
                                 <p class="mb-1">
-                                    <span class="badge <?= getBadgeColor($mons[$times[$i]]['genre']) ?>"><?= h($mons[$times[$i]]['genre']) ?></span>
+                                    <span class="badge <?= getStudioGenreColor($mons[$times[$i]]['genre']) ?>"><?= h($mons[$times[$i]]['genre']) ?></span>
                                 </p>
                                 <div class="avatar mx-auto m-2">
                                     <?php
@@ -1664,7 +1664,7 @@
                         <div class="row mb-2 p-2" style="background-color: white;">
                             <div class="col-md-12 col-xs-12 text-center">
                                 <p class="mb-1">
-                                    <span class="badge <?= getBadgeColor($tues[$times[$i]]['genre']) ?>"><?= h($tues[$times[$i]]['genre']) ?></span>
+                                    <span class="badge <?= getStudioGenreColor($tues[$times[$i]]['genre']) ?>"><?= h($tues[$times[$i]]['genre']) ?></span>
                                 </p>
                                 <div class="avatar mx-auto m-2">
                                     <?php
@@ -1816,7 +1816,7 @@
                         <div class="row mb-2 p-2" style="background-color: white;">
                             <div class="col-md-12 col-xs-12 text-center">
                                 <p class="mb-1">
-                                    <span class="badge <?= getBadgeColor($weds[$times[$i]]['genre']) ?>"><?= h($weds[$times[$i]]['genre']) ?></span>
+                                    <span class="badge <?= getStudioGenreColor($weds[$times[$i]]['genre']) ?>"><?= h($weds[$times[$i]]['genre']) ?></span>
                                 </p>
                                 <div class="avatar mx-auto m-2">
                                     <?php
@@ -1968,7 +1968,7 @@
                         <div class="row mb-2 p-2" style="background-color: white;">
                             <div class="col-md-12 col-xs-12 text-center">
                                 <p class="mb-1">
-                                    <span class="badge <?= getBadgeColor($thus[$times[$i]]['genre']) ?>"><?= h($thus[$times[$i]]['genre']) ?></span>
+                                    <span class="badge <?= getStudioGenreColor($thus[$times[$i]]['genre']) ?>"><?= h($thus[$times[$i]]['genre']) ?></span>
                                 </p>
                                 <div class="avatar mx-auto m-2">
                                     <?php
@@ -2120,7 +2120,7 @@
                         <div class="row mb-2 p-2" style="background-color: white;">
                             <div class="col-md-12 col-xs-12 text-center">
                                 <p class="mb-1">
-                                    <span class="badge <?= getBadgeColor($fris[$times[$i]]['genre']) ?>"><?= h($fris[$times[$i]]['genre']) ?></span>
+                                    <span class="badge <?= getStudioGenreColor($fris[$times[$i]]['genre']) ?>"><?= h($fris[$times[$i]]['genre']) ?></span>
                                 </p>
                                 <div class="avatar mx-auto m-2">
                                     <?php
@@ -2272,7 +2272,7 @@
                         <div class="row mb-2 p-2" style="background-color: white;">
                             <div class="col-md-12 col-xs-12 text-center">
                                 <p class="mb-1">
-                                    <span class="badge <?= getBadgeColor($sats[$times[$i]]['genre']) ?>"><?= h($sats[$times[$i]]['genre']) ?></span>
+                                    <span class="badge <?= getStudioGenreColor($sats[$times[$i]]['genre']) ?>"><?= h($sats[$times[$i]]['genre']) ?></span>
                                 </p>
                                 <div class="avatar mx-auto m-2">
                                     <?php
