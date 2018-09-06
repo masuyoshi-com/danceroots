@@ -435,7 +435,7 @@
         <?php endif; ?>
     </div>
 </div>
-
+<?= $this->Form->hidden('js_address', ['id' => 'address', 'value' => h($studio->pref . $studio->city . $studio->address)]) ?>
 <script>
-    initGoogle.initMap('<?= $studio->pref . $studio->city . $studio->address ?>');
+    initGoogle.initMap();
 </script>

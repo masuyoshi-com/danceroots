@@ -24,7 +24,7 @@
     <?= $this->Html->script('jquery-3.2.1.min') ?>
 
     <?php if (strstr($url, 'studios/view') || strstr($url, 'events/view')) : ?>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgKCqD5RxbGvn317awtqsiexBBd5wJRPo" type="text/javascript"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgKCqD5RxbGvn317awtqsiexBBd5wJRPo&callback=initGoogle.initMap" type="text/javascript"></script>
         <?= $this->Html->script('googlemap') ?>
     <?php endif; ?>
 
