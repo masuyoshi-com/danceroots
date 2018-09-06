@@ -93,6 +93,7 @@ class StudiosController extends AppController
             $this->request->data = $this->Session->read('studio_search_request');
         }
 
+        $this->set('genres', $this->Common->valueToKey($this->genres));
         $this->set(compact('studios'));
     }
 
@@ -131,6 +132,7 @@ class StudiosController extends AppController
             $this->request->data = $this->Session->read('public_studio_search_request');
         }
 
+        $this->set('genres', $this->Common->valueToKey($this->genres));
         $this->set(compact('studios'));
     }
 
@@ -151,7 +153,16 @@ class StudiosController extends AppController
             $studio = $this->Studios->findByUserId($user->id)->first();
             $studio->user = $user;
 
-            $studio['youtube'] = $this->Common->getYoutubeId($studio['youtube']);
+            // 対応ジャンルを配列に
+            if ($studio->genre) {
+                $studio->genre = explode(',', $studio->genre);
+            }
+
+            // YoutubeIDのみを取得
+            if ($studio->youtube) {
+                $studio->youtube = $this->Common->getYoutubeId($studio->youtube);
+            }
+
             // ユーザ区分をカテゴリ名で取得
             $studio['user']['classification'] = $this->Common->getCategoryName($studio['user']['classification']);
             // スタジオスケジュールが存在するか
@@ -191,7 +202,15 @@ class StudiosController extends AppController
             if ($studio) {
                 $studio->user = $user;
 
-                $studio['youtube'] = $this->Common->getYoutubeId($studio['youtube']);
+                // 対応ジャンルを配列に
+                if ($studio->genre) {
+                    $studio->genre = explode(',', $studio->genre);
+                }
+
+                // YoutubeIDのみを取得
+                if ($studio->youtube) {
+                    $studio->youtube = $this->Common->getYoutubeId($studio->youtube);
+                }
 
                 // ユーザ区分をカテゴリ名で取得
                 $studio['user']['classification'] = $this->Common->getCategoryName($studio['user']['classification']);
@@ -237,6 +256,11 @@ class StudiosController extends AppController
 
                 if ($this->request->is('post')) {
 
+                    if (isset($this->request->data['genre'])) {
+                        // カンマ区切りの文字列に変換
+                        $this->request->data['genre'] = implode(',', $this->request->data['genre']);
+                    }
+
                     $studio = $this->Studios->patchEntity($studio, $this->request->getData());
 
                     if ($this->Studios->save($studio)) {
@@ -247,7 +271,7 @@ class StudiosController extends AppController
                     $this->Flash->error(__('エラーがあります。解決しない場合はフィードバックよりお問い合わせください。'));
                 }
 
-                $this->set('genres', $this->Common->valueToKey($this->genres));
+                $this->set('genres', $this->genres);
                 $this->set(compact('studio'));
             } else {
                 $this->Auth->logout();
@@ -275,6 +299,11 @@ class StudiosController extends AppController
 
         if ($this->request->is(['patch', 'post', 'put'])) {
 
+            if (isset($this->request->data['genre'])) {
+                // カンマ区切りの文字列に変換
+                $this->request->data['genre'] = implode(',', $this->request->data['genre']);
+            }
+
             $studio = $this->Studios->patchEntity($studio, $this->request->getData());
 
             if ($this->Studios->save($studio)) {
@@ -287,10 +316,15 @@ class StudiosController extends AppController
 
         if ($studio) {
 
+            // 対応ジャンルの登録があれば、配列に変換
+            if ($studio->genre) {
+                $studio->genres = explode(',', $studio->genre);
+            }
+
             $videos = '';
             $videos = $this->Common->getYoutubeId($studio['youtube']);
 
-            $this->set('genres', $this->Common->valueToKey($this->genres));
+            $this->set('genres', $this->genres);
             $this->set(compact('studio', 'videos'));
 
         } else {

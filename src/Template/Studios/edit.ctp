@@ -38,7 +38,7 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <label class="dark-gray-text w-100 text-left"><small>スタジオ名</small></label>
+                        <label class="dark-gray-text w-100 text-left"><small>スタジオ名 <span class="red-text">※</span></small></label>
                         <div class="md-form mt-0">
                             <?= $this->Form->control('studio_name', ['class' => 'form-control']) ?>
                         </div>
@@ -47,9 +47,18 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <label class="dark-gray-text w-100 text-left"><small>代表者名</small></label>
+                        <label class="dark-gray-text w-100 text-left"><small>代表者名 <span class="red-text">※</span></small></label>
                         <div class="md-form mt-0">
                             <?= $this->Form->control('name', ['class' => 'form-control']) ?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label class="dark-gray-text w-100 text-left"><small>主なジャンル <span class="red-text">※</span></small></label>
+                        <div class="md-form mt-0">
+                            <?= $this->Form->control('main_genre', ['class' => 'form-control']) ?>
                         </div>
                     </div>
                 </div>
@@ -118,6 +127,15 @@
             <div class="card-body">
 
                 <div class="row">
+                    <div class="col-lg-12">
+                        <label class="dark-gray-text w-100 text-left"><small>見出し紹介文 <span class="red-text">※</span></small></label>
+                        <div class="md-form mt-0">
+                            <?= $this->Form->control('self_intro', ['class' => 'form-control']) ?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="col-lg-6 col-md-6 col-xs-12">
                         <div class="md-form">
                             <?= $this->Form->control('pref',
@@ -129,7 +147,22 @@
                                     'empty'   => '選択してください'
                                 ]
                             ) ?>
-                            <label for="f--pref">都道府県</label>
+                            <label for="f--pref">都道府県 <span class="red-text">※</span></label>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xs-12 mt-2">
+                        <label class="dark-gray-text w-100 text-left"><small>市区町村 <span class="red-text">※</span></small></label>
+                        <div class="md-form mt-0">
+                            <?= $this->Form->control('city', ['class' => 'form-control']) ?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-xs-12 mt-2">
+                        <label class="dark-gray-text w-100 text-left"><small>以下所在地 <span class="red-text">※</span></small></label>
+                        <div class="md-form mt-0">
+                            <?= $this->Form->control('address', ['class' => 'form-control']) ?>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-xs-12">
@@ -142,18 +175,15 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <label class="dark-gray-text w-100 text-left"><small>所在地</small></label>
-                        <div class="md-form mt-0">
-                            <?= $this->Form->control('address', ['class' => 'form-control']) ?>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <label class="dark-gray-text w-100 text-left"><small>自己紹介</small></label>
-                        <div class="md-form mt-0">
-                            <?= $this->Form->control('self_intro', ['class' => 'form-control']) ?>
+                        <div class="md-form">
+                            <?= $this->Form->textarea('access',
+                                [
+                                    'id'    => 'f--access',
+                                    'class' => 'form-control md-textarea',
+                                    'rows'  => '6',
+                                ]
+                            ) ?>
+                            <label for="f--access">アクセス</label>
                         </div>
                     </div>
                 </div>
@@ -178,6 +208,21 @@
                         <div class="md-form">
                             <?= $this->Form->control('monthly_tax', ['id' => 'f--m_tax', 'class' => 'form-control']) ?>
                             <label for="f--m_tax">レッスン料 / 形態</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="md-form">
+                            <?= $this->Form->textarea('campaign',
+                                [
+                                    'id'    => 'f--campaign',
+                                    'class' => 'form-control md-textarea',
+                                    'rows'  => '6',
+                                ]
+                            ) ?>
+                            <label for="f--campaign">キャンペーン</label>
                         </div>
                     </div>
                 </div>
@@ -226,6 +271,43 @@
                 </div>
 
                 <div class="row">
+                    <div class="col-lg-12 mt-2">
+                        <?= $this->Form->unlockField('genre') ?>
+                        <label class="dark-gray-text w-100 text-left"><small>対応ジャンル</small></label>
+                        <?php for ($i = 0; $i < count($genres); $i++) : ?>
+                            <div class="form-check form-check-inline">
+                                <?php
+                                    $checked = '';
+                                    for ($j = 0; $j < count($studio->genres); $j++) {
+                                        if ($genres[$i] === $studio->genres[$j]) {
+                                            $checked = 1;
+                                        }
+                                    }
+
+                                    if ($checked === 1) {
+                                        print $this->Form->checkbox('genre[]', [
+                                                'id'          => 'materialInline' . $i,
+                                                'class'       => 'form-check-input',
+                                                'value'       => $genres[$i],
+                                                'hiddenField' => false,
+                                                'checked'
+                                            ]);
+                                    } else {
+                                        print $this->Form->checkbox('genre[]', [
+                                                'id'          => 'materialInline' . $i,
+                                                'class'       => 'form-check-input',
+                                                'value'       => $genres[$i],
+                                                'hiddenField' => false,
+                                            ]);
+                                    }
+                                ?>
+                                <label class="form-check-label" for="materialInline<?= $i ?>"><?= $genres[$i] ?></label>
+                            </div>
+                        <?php endfor; ?>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
                     <div class="col-lg-12">
                         <div class="md-form">
                             <?= $this->Form->textarea('introduction',
@@ -235,7 +317,7 @@
                                     'rows'  => '8',
                                 ]
                             ) ?>
-                            <label for="f--intro">スタジオ紹介</label>
+                            <label for="f--intro">スタジオ紹介 <span class="red-text">※</span></label>
                         </div>
                     </div>
                 </div>
@@ -245,10 +327,12 @@
     </div><!-- /.col-lg-8 -->
 </div><!-- /. row -->
 
-<div class="card card-body mb-3">
-    <p><i class="fa fa-youtube-play yt-ic"></i> Youtube</p>
+<div class="card card-body elegant-color mb-3">
     <div class="row">
-        <div class="col-lg-6 col-md-12 mb-3">
+        <div class="col-lg-3 col-md-3 col-xs-12">
+        </div>
+        <div class="col-lg-6 col-md-6 col-xs-12 mb-3">
+            <p class="white-text dark-gray-text"><i class="fa fa-youtube-play yt-ic"></i> Studio Video</p>
             <?php if ($videos) : ?>
                 <div class="embed-responsive embed-responsive-16by9 z-depth-1">
                     <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($videos) ?>?rel=0" style="height: 100%" allowfullscreen></iframe>
@@ -256,21 +340,20 @@
             <?php else : ?>
                 <?= $this->Html->image('/img/sample/no_video.jpg', ['class' => 'img-fluid']) ?>
             <?php endif; ?>
-        </div>
-    </div><!-- /.row -->
-
-    <div class="row">
-        <div class="col-lg-6 col-xs-12">
-            <label class="dark-gray-text w-100 text-left"><small>Youtube</small></label>
+            <label class="white-text dark-gray-text w-100 text-left mt-3"><small>YouTube URL</small></label>
             <div class="md-form mt-0">
-                <?= $this->Form->control('youtube', ['class' => 'form-control']) ?>
+                <?= $this->Form->control('youtube', ['class' => 'form-control white-text']) ?>
             </div>
         </div>
+        <div class="col-lg-3 col-md-3 col-xs-12">
+        </div>
     </div>
+</div><!-- /.card -->
 
+<div class="card card-body mb-3">
     <div class="row">
-        <div class="col-lg-12 mt-4">
-            <p><i class="fa fa-image"></i> Image <span class="badge badge-info">変更する場合のみ選択</span></p>
+        <div class="col-lg-12">
+            <p class="dark-gray-text"><i class="fa fa-image"></i> Studio Image <span class="badge badge-info">変更する場合のみ選択</span></p>
         </div>
 
         <div id="mdb-lightbox-ui"></div>

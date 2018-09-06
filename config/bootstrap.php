@@ -259,7 +259,7 @@ function em($data)
 */
 function tw($char, $length)
 {
-    return mb_strimwidth($char, 0, $length, "...", 'utf8mb4');
+    return mb_strimwidth($char, 0, $length, "...", 'utf8');
 }
 
 
@@ -304,5 +304,47 @@ function getBadgeColor($category)
         default:
             return 'green';
             break;
-     }
- }
+    }
+}
+
+
+/**
+* カテゴリでバッチ色訳
+*
+* @param string $category
+* @return string 色の文字列
+* @todo Jazz Reggae FreeStyle 色あれば追加
+*/
+function getStudioGenreColor($category)
+{
+    switch ($category) {
+        case ('HipHop') :
+        case ('R&B') :
+        case ('House') :
+            return 'mdb-color lighten-1';
+            break;
+        case ('Lock') :
+        case ('Pop') :
+        case ('Break') :
+            return 'pink lighten-1';
+            break;
+        case ('OldSchool') :
+        case ('FreeStyle') :
+        case ('GirlsHipHop') :
+            return 'light-blue lighten-1';
+            break;
+        case ('Jazz') :
+        case ('Kids') :
+        case ('BeBop') :
+            return 'purple lighten-1';
+            break;
+        case ('Reggae') :
+        case ('Berry') :
+        case ('Salsa') :
+            return 'deep-orange lighten-1';
+            break;
+        default:
+            return 'teal lighten-1';
+            break;
+    }
+}

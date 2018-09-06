@@ -104,6 +104,16 @@ class StudiosTable extends Table
             ]);
 
         $validator
+            ->scalar('main_genre')
+            ->maxLength('main_genre', 50)
+            ->notEmpty('main_genre')
+            ->add('main_genre', 'custom', [
+                'rule'     => 'isSpace',
+                'provider' => 'custom',
+                'message'  => '空白のみは受け付けません。'
+            ]);
+
+        $validator
             ->scalar('icon')
             ->maxLength('icon', 255)
             ->allowEmpty('icon');
@@ -137,11 +147,33 @@ class StudiosTable extends Table
             ->notEmpty('pref');
 
         $validator
+            ->scalar('city')
+            ->maxLength('city', 50)
+            ->requirePresence('city', 'create')
+            ->notEmpty('city')
+            ->add('city', 'custom', [
+                'rule'     => 'isSpace',
+                'provider' => 'custom',
+                'message'  => '空白のみは受け付けません。'
+            ]);
+
+        $validator
             ->scalar('address')
             ->maxLength('address', 255)
             ->requirePresence('address', 'create')
             ->notEmpty('address')
             ->add('address', 'custom', [
+                'rule'     => 'isSpace',
+                'provider' => 'custom',
+                'message'  => '空白のみは受け付けません。'
+            ]);
+
+        $validator
+            ->scalar('access')
+            ->maxLength('access', 255)
+            ->requirePresence('access', 'create')
+            ->allowEmpty('access')
+            ->add('access', 'custom', [
                 'rule'     => 'isSpace',
                 'provider' => 'custom',
                 'message'  => '空白のみは受け付けません。'
@@ -181,8 +213,24 @@ class StudiosTable extends Table
             ->allowEmpty('ex_lesson');
 
         $validator
+            ->scalar('campaign')
+            ->maxLength('campaign', 255)
+            ->requirePresence('campaign', 'create')
+            ->allowEmpty('campaign')
+            ->add('campaign', 'custom', [
+                'rule'     => 'isSpace',
+                'provider' => 'custom',
+                'message'  => '空白のみは受け付けません。'
+            ]);
+
+        $validator
             ->integer('instructors')
             ->allowEmpty('instructors');
+
+        $validator
+            ->scalar('genre')
+            ->maxLength('genre', 255)
+            ->allowEmpty('genre');
 
         $validator
             ->scalar('youtube')
@@ -307,9 +355,14 @@ class StudiosTable extends Table
     public function findBySearch($requests)
     {
         return $this->find('all')
-            ->where(['Studios.pref LIKE' => '%' . $requests['pref'] . '%'])
+            ->where(['Studios.pref LIKE'  => '%' . $requests['pref'] . '%'])
+            ->where(['Studios.genre LIKE' => '%' . $requests['genre'] . '%'])
             ->where(['OR' => [
                 ['Studios.name LIKE'        => '%' . $requests['word'] . '%'],
+                ['Studios.city LIKE'        => '%' . $requests['word'] . '%'],
+                ['Studios.main_genre LIKE'  => '%' . $requests['word'] . '%'],
+                ['Studios.address LIKE'     => '%' . $requests['word'] . '%'],
+                ['Studios.station LIKE'     => '%' . $requests['word'] . '%'],
                 ['Studios.studio_name LIKE' => '%' . $requests['word'] . '%']]])
             ;
     }
@@ -323,9 +376,14 @@ class StudiosTable extends Table
     public function findBySearchForPublic($requests)
     {
         return $this->find('all')
-            ->where(['Studios.pref LIKE' => '%' . $requests['pref'] . '%'])
+            ->where(['Studios.pref LIKE'  => '%' . $requests['pref'] . '%'])
+            ->where(['Studios.genre LIKE' => '%' . $requests['genre'] . '%'])
             ->where(['OR' => [
                 ['Studios.name LIKE'        => '%' . $requests['word'] . '%'],
+                ['Studios.city LIKE'        => '%' . $requests['word'] . '%'],
+                ['Studios.main_genre LIKE'  => '%' . $requests['word'] . '%'],
+                ['Studios.address LIKE'     => '%' . $requests['word'] . '%'],
+                ['Studios.station LIKE'     => '%' . $requests['word'] . '%'],
                 ['Studios.studio_name LIKE' => '%' . $requests['word'] . '%']]])
             ->andWhere(['Studios.public_flag' => 0])
             ;

@@ -12,8 +12,8 @@ class AppController extends Controller
 {
     // 汎用項目ジャンル
     public $genres = [
-        'HipHop', 'House', 'Lock', 'Poppin', 'Breakin', 'OldScool', 'Girls', 
-        'Jazz', 'BeBop', 'Reggae', 'FreeStyle', 'Berry', 'Salsa', 'Tap', 'Etc',
+        'HipHop', 'R&B', 'House', 'Lock', 'Pop', 'Break', 'OldSchool', 'FreeStyle',
+        'GirlsHipHop', 'Jazz', 'Kids', 'BeBop', 'Reggae', 'Berry', 'Salsa', 'Tap', 'ETC',
     ];
 
     /**

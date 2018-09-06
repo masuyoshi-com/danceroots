@@ -34,12 +34,11 @@
             ?>
 
             <div class="card-body">
-                <p class="dark-grey-text">
-                    <span class="badge badge-success"><?= h($studio->pref) ?></span>
-                    <span class="badge badge-info"><?= h($studio->user->classification) ?></span>
+                <p>
+                    <span class="badge indigo"><?= h($studio->pref . ' ' . $studio->city) ?></span>
+                    <span class="badge badge-success"><?= h($studio->main_genre) ?></span>
                 </p>
-                <h5><?= h($studio->user->username) ?></h5>
-                <h4 class="card-title"><strong><?= h($studio->studio_name) ?></strong></h4>
+                <h4 class="card-title mt-4"><strong><?= h($studio->studio_name) ?></strong></h4>
                 <h5><small>スタジオ代表者:</small> <?= h($studio->name) ?></h5>
 
                 <?php if ($studio->tel) : ?>
@@ -106,9 +105,6 @@
                     </p>
                 <?php endif; ?>
                 <hr>
-                <p class="card-text mt-3">
-                    <?= h($studio->self_intro) ?>
-                </p>
 
                 <?php if (isset($logins)) : ?>
                     <?php if ($logins['id'] === $studio->user_id) : ?>
@@ -177,104 +173,130 @@
 
     <div class="col-lg-8 col-md-12 mb-3">
         <div class="card card-body">
-            <?php if ($studio->image1 || $studio->image2 || $studio->image3) : ?>
             <div class="row">
                 <div class="col-lg-12">
-                    <h6 class="text-right">Studio Image</h6>
-
-                    <div id="carousel-studio" class="carousel slide carousel-fade" data-ride="carousel">
-
-                        <ol class="carousel-indicators">
-                            <li data-target="#carousel-studio" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel-studio" data-slide-to="1"></li>
-                            <li data-target="#carousel-studio" data-slide-to="2"></li>
-                        </ol>
-
-                        <div class="carousel-inner" role="listbox">
-                            <div class="carousel-item active">
-                                <?php
-                                    if ($studio->image1) {
-                                        print $this->Html->image($studio->image1, ['class' => 'd-block w-100']);
-                                    } else {
-                                        print $this->Html->image('/img/sample/dummy-image.jpg', ['class' => 'd-block w-100']);
-                                    }
-                                ?>
-
-                            </div>
-                            <div class="carousel-item">
-                                <?php
-                                    if ($studio->image2) {
-                                        print $this->Html->image($studio->image2, ['class' => 'd-block w-100']);
-                                    } else {
-                                        print $this->Html->image('/img/sample/dummy-image.jpg', ['class' => 'd-block w-100']);
-                                    }
-                                ?>
-                            </div>
-                            <div class="carousel-item">
-                                <?php
-                                    if ($studio->image3) {
-                                        print $this->Html->image($studio->image3, ['class' => 'd-block w-100']);
-                                    } else {
-                                        print $this->Html->image('/img/sample/dummy-image.jpg', ['class' => 'd-block w-100']);
-                                    }
-                                ?>
-                            </div>
-                        </div>
-
-                        <a class="carousel-control-prev" href="#carousel-studio" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carousel-studio" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div><!-- /.carouse-studio -->
+                    <h5 class="dark-grey-text h5-responsive text-center font-weight-bold"><?= h($studio->self_intro) ?></h5>
+                    <hr class="mb-2">
                 </div>
-            </div><!-- /.row -->
-            <hr>
+            </div>
+            <?php if ($studio->genre) : ?>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <?php
+                            for ($i = 0; $i < count($studio->genre); $i++) {
+                                print '<span class="badge badge-pill m-1 ' . getStudioGenreColor($studio->genre[$i]) . '">' . $studio->genre[$i] . '</span>';
+                            }
+                        ?>
+                    </div>
+                </div>
+                <hr>
             <?php endif; ?>
 
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-xs-12">
-                    <div class="md-form">
-                        <?= $this->Form->control('station', ['id' => 'f--station', 'class' => 'form-control', 'value' => h($studio->station), 'disabled']) ?>
-                        <label for="f--station">最寄り駅</label>
+            <?php if ($studio->image1 || $studio->image2 || $studio->image3) : ?>
+                <div class="row">
+                    <div class="col-lg-1">
+                    </div>
+                    <div class="col-lg-10">
+                        <h6 class="grey-text text-right">Studio Image</h6>
+                        <div id="carousel-studio" class="carousel slide carousel-fade" data-ride="carousel">
+
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-studio" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-studio" data-slide-to="1"></li>
+                                <li data-target="#carousel-studio" data-slide-to="2"></li>
+                            </ol>
+
+                            <div class="carousel-inner" role="listbox">
+                                <div class="carousel-item active">
+                                    <?php
+                                        if ($studio->image1) {
+                                            print $this->Html->image($studio->image1, ['class' => 'd-block w-100']);
+                                        } else {
+                                            print $this->Html->image('/img/sample/dummy-image.jpg', ['class' => 'd-block w-100']);
+                                        }
+                                    ?>
+
+                                </div>
+                                <div class="carousel-item">
+                                    <?php
+                                        if ($studio->image2) {
+                                            print $this->Html->image($studio->image2, ['class' => 'd-block w-100']);
+                                        } else {
+                                            print $this->Html->image('/img/sample/dummy-image.jpg', ['class' => 'd-block w-100']);
+                                        }
+                                    ?>
+                                </div>
+                                <div class="carousel-item">
+                                    <?php
+                                        if ($studio->image3) {
+                                            print $this->Html->image($studio->image3, ['class' => 'd-block w-100']);
+                                        } else {
+                                            print $this->Html->image('/img/sample/dummy-image.jpg', ['class' => 'd-block w-100']);
+                                        }
+                                    ?>
+                                </div>
+                            </div>
+
+                            <a class="carousel-control-prev" href="#carousel-studio" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carousel-studio" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div><!-- /.carouse-studio -->
+                    </div>
+                    <div class="col-lg-1">
+                    </div>
+                </div><!-- /.row -->
+                <hr>
+            <?php endif; ?>
+
+            <div class="row mt-2">
+                <div class="col-lg-12">
+                    <h6 class="dark-gray-text">スタジオ紹介</h6>
+                    <hr class="text-left blue mb-3 pb-1 mt-0 ml-0" style="width: 100px;">
+                    <div class="md-form mt-0">
+                        <?= nl2br(h($studio->introduction)) ?>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-xs-12">
+            </div>
+
+            <?php if ($studio->campaign) : ?>
+                <div class="row mt-5">
+                    <div class="col-lg-12">
+                        <h6 class="dark-gray-text">キャンペーン</h6>
+                        <hr class="text-left pink mb-3 pb-1 mt-0 ml-0" style="width: 100px;">
+                        <div class="md-form mt-0">
+                            <?= nl2br(h($studio->campaign)) ?>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
+
+            <hr class="mdb-form-color">
+
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-xs-12">
+                    <div class="md-form">
+                        <?= $this->Form->control('bussines_hours', ['class' => 'form-control', 'value' => h($studio->bussines_hours), 'disabled']) ?>
+                        <label>営業時間</label>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-xs-12">
+                    <div class="md-form">
+                        <?= $this->Form->control('entry_fee', ['class' => 'form-control', 'value' => h($studio->entry_fee), 'disabled']) ?>
+                        <label>入会費</label>
+                    </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-lg-12">
                     <div class="md-form">
-                        <?= $this->Form->control('address', ['id' => 'f--address', 'class' => 'form-control', 'value' => h($studio->address), 'disabled']) ?>
-                        <label for="f--address">所在地</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-6 col-md-12 col-xs-12">
-                    <div class="md-form">
-                        <?= $this->Form->control('bussines_hours', ['id' => 'f--b_hours', 'class' => 'form-control', 'value' => h($studio->bussines_hours), 'disabled']) ?>
-                        <label for="f--b_hours">営業時間</label>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-12 col-xs-12">
-                    <div class="md-form">
-                        <?= $this->Form->control('entry_fee', ['id' => 'f--e_fee', 'class' => 'form-control', 'value' => h($studio->entry_fee), 'disabled']) ?>
-                        <label for="f--e_fee">入会費</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="md-form">
-                        <?= $this->Form->control('monthly_tax', ['id' => 'f--m_tax', 'class' => 'form-control', 'value' => h($studio->monthly_tax), 'disabled']) ?>
-                        <label for="f--m_tax">レッスン料 / 形態</label>
+                        <?= $this->Form->control('monthly_tax', ['class' => 'form-control', 'value' => h($studio->monthly_tax), 'disabled']) ?>
+                        <label>レッスン料 / 形態</label>
                     </div>
                 </div>
             </div>
@@ -294,38 +316,82 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-12">
                     <div class="md-form">
-                        <?= $this->Form->control('instructors', ['id' => 'f--instructors', 'class' => 'form-control', 'value' => h($studio->instructors), 'disabled']) ?>
-                        <label for="f--instructors">所属インストラクター数</label>
+                        <?= $this->Form->control('instructors', ['class' => 'form-control', 'value' => h($studio->instructors), 'disabled']) ?>
+                        <label>所属インストラクター数</label>
                     </div>
                 </div>
             </div>
 
-            <div class="row mt-3">
-                <div class="col-lg-12 text-left">
-                    <label class="dark-gray-text w-100"><small>スタジオ紹介</small></label>
-                    <div class="md-form mt-0">
-                        <?= nl2br(h($studio->introduction)) ?>
-                    </div>
-                    <hr class="mdb-form-color">
-                </div>
-            </div>
+
         </div><!-- /.card -->
     </div><!-- /.col-lg-8 -->
 </div><!-- /. row -->
 
-<div class="card card-body mb-3">
+<?php if ($studio->youtube) : ?>
+<div class="card card-body mb-3 elegant-color">
     <div class="row">
-        <?php if ($studio->youtube) : ?>
-        <div class="col-lg-6 col-md-12 mb-3">
-            <h6><i class="fa fa-youtube-play yt-ic"></i> Studio Video</h6>
-            <div class="embed-responsive embed-responsive-16by9 z-depth-1">
+        <div class="col-lg-3 col-md-3 col-xs-12">
+        </div>
+        <div class="col-lg-6 col-md-6 col-xs-12">
+            <h6 class="white-text"><i class="fa fa-youtube-play yt-ic"></i> Studio Video</h6>
+            <div class="embed-responsive embed-responsive-16by9 z-depth-2">
                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($studio->youtube) ?>?rel=0" style="height: 100%" allowfullscreen></iframe>
             </div>
         </div>
-        <div class="col-lg-6 col-md-12">
-        <?php else : ?>
-            <div class="col-lg-12">
-        <?php endif; ?>
+        <div class="col-lg-3 col-md-3 col-xs-12">
+        </div>
+    </div>
+</div><!-- /.card -->
+<?php endif; ?>
+
+
+<div class="card card-body mb-3">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-12">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                    <div class="md-form">
+                        <?= $this->Form->control('pref', ['class' => 'form-control', 'value' => h($studio->pref), 'disabled']) ?>
+                        <label>都道府県</label>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                    <div class="md-form">
+                        <?= $this->Form->control('city', ['class' => 'form-control', 'value' => h($studio->city), 'disabled']) ?>
+                        <label>市区町村</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                    <div class="md-form">
+                        <?= $this->Form->control('address', ['class' => 'form-control', 'value' => h($studio->address), 'disabled']) ?>
+                        <label>所在地</label>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                    <div class="md-form">
+                        <?= $this->Form->control('station', ['class' => 'form-control', 'value' => h($studio->station), 'disabled']) ?>
+                        <label>最寄り駅</label>
+                    </div>
+                </div>
+            </div>
+
+            <?php if ($studio->access) : ?>
+                <div class="row mt-3 mb-3">
+                    <div class="col-lg-12">
+                        <h6 class="dark-gray-text"><small><i class="fa fa-subway" aria-hideen="true"></i> アクセス</small></h6>
+                        <hr class="text-left success-color mb-3 pb-1 mt-0 ml-0" style="width: 100px;">
+                        <div class="md-form mt-0">
+                            <?= nl2br(h($studio->access)) ?>
+                        </div>
+                    </div>
+                </div>
+                <hr class="mdb-form-color">
+            <?php endif; ?>
+        </div>
+        <div class="col-lg-6 col-md-6 col-xs-12">
             <div class="d-flex">
                 <h6><i class="fa fa-map-marker"></i> GoogleMap </h6>
                 <p class="ml-auto mb-0 blue-text" data-toggle="tooltip" data-placement="bottom" title="ブラウザをリロードしてください。">
@@ -335,7 +401,7 @@
             <!--Google map-->
             <div id="map" class="rounded z-depth-1 map-container" style="height: 375px"></div>
         </div>
-    </div>
+    </div><!-- /.row -->
 </div><!-- /.card -->
 
 <div class="row">
@@ -371,5 +437,5 @@
 </div>
 
 <script>
-    initGoogle.initMap('<?= $studio->address ?>');
+    initGoogle.initMap('<?= $studio->pref . $studio->city . $studio->address ?>');
 </script>

@@ -38,12 +38,14 @@
 
             <div class="card-body">
 
+                <h5 class="mb-4"><?= h($studio->user->username) ?> さんのホーム</h5>
+
                 <p class="dark-grey-text">
-                    <span class="badge badge-success"><?= h($studio->pref) ?></span>
-                    <span class="badge badge-info">Studio</span>
+                    <span class="badge indigo"><?= h($studio->pref . ' ' . $studio->city) ?></span>
+                    <span class="badge badge-success"><?= h($studio->main_genre) ?></span>
                 </p>
-                <h5><?= h($studio->user->username) ?></h5>
-                <h4 class="card-title"><strong><?= h($studio->studio_name) ?></strong></h4>
+
+                <h4 class="card-title mt-4"><strong><?= h($studio->studio_name) ?></strong></h4>
 
                 <h5><small>スタジオ代表者:</small> <?= h($studio->name) ?></h5>
 
@@ -106,10 +108,6 @@
                     </p>
                 <?php endif; ?>
                 <hr>
-
-                <p class="card-text mt-3">
-                    <?= h($studio->self_intro); ?>
-                </p>
 
                 <div class="dropdown">
                     <?= $this->Form->button('メインメニュー ',

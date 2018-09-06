@@ -6,23 +6,28 @@ use Cake\ORM\Entity;
 /**
  * スタジオエンティティ
  *
- * @property int $id
- * @property int $user_id
+ * @property int    $id
+ * @property int    $user_id
  * @property string $studio_name
  * @property string $icon
  * @property string $name
+ * @property string $main_genre
  * @property string $tel
  * @property string $self_intro
  * @property string $pref
+ * @property string $city
  * @property string $address
+ * @property string $access
  * @property string $station
  * @property string $url
- * @property \Cake\I18n\FrozenDate $establishment
+ * @property string $establishment
  * @property string $bussines_hours
  * @property string $entry_fee
  * @property string $monthly_tax
- * @property int $ex_lesson
- * @property int $instructors
+ * @property int    $ex_lesson
+ * @property string $campaign
+ * @property int    $instructors
+ * @property string $genre
  * @property string $youtube
  * @property string $facebook
  * @property string $twitter
@@ -49,12 +54,15 @@ class Studio extends Entity
         'user_id'        => true,
         'studio_name'    => true,
         'icon'           => true,
-        'name'           => true,
         'icon_file'      => true,
+        'name'           => true,
+        'main_genre'     => true,
         'tel'            => true,
         'self_intro'     => true,
         'pref'           => true,
+        'city'           => true,
         'address'        => true,
+        'access'         => true,
         'station'        => true,
         'url'            => true,
         'establishment'  => true,
@@ -62,7 +70,9 @@ class Studio extends Entity
         'entry_fee'      => true,
         'monthly_tax'    => true,
         'ex_lesson'      => true,
+        'campaign'       => true,
         'instructors'    => true,
+        'genre'          => true,
         'youtube'        => true,
         'facebook'       => true,
         'twitter'        => true,

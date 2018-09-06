@@ -35,7 +35,18 @@
                 ]
             ) ?>
         </div>
-        <div class="col-lg-9 col-md-12">
+        <div class="col-lg-3 col-md-6 col-xs-12 mt-2">
+            <?= $this->Form->control('genre',
+                [
+                    'id'      => 'f--genre',
+                    'type'    => 'select',
+                    'class'   => 'mdb-select colorful-select dropdown-primary',
+                    'options' => $genres,
+                    'empty'   => 'ジャンルを選択'
+                ]
+            ) ?>
+        </div>
+        <div class="col-lg-6 col-md-12 col-xs-12">
             <div class="form-inline md-form input-group mt-1 mb-2">
                 <?= $this->Form->control('word', ['class' => 'form-control my-0', 'placeholder' => '検索']) ?>
                 <?= $this->Form->button('<i class="fa fa-search"></i>',
@@ -70,47 +81,68 @@
 
         <div class="card testimonial-card">
             <div class="view overlay">
-                <a href="<?= $this->Url->build(['controller' => 'Studios', 'action' => 'publicView', h($studio->user->username)]) ?>">
                 <?php
                     if ($studio->image1) {
-                        print $this->Html->image($studio->image1, ['class' => 'img-fluid']);
+                        print $this->Html->link($this->Html->image($studio->image1, ['class' => 'img-fluid']),
+                            ['controller' => 'Studios', 'action' => 'publicView', $studio->user->username],
+                            ['escape' => false]
+                        );
                     } elseif ($studio->icon) {
                         print '
                             <div class="card-up indigo lighten-1">
                             </div>
+                            <!-- Avatar -->
                             <div class="avatar mx-auto white">
-                                ' . $this->Html->image(h($studio->icon), ['class' => 'rounded-circle']) . '
+                                ' . $this->Html->link($this->Html->image($studio->icon, ['class' => 'rounded-circle']),
+                                    ['controller' => 'Studios', 'action' => 'publicView', $studio->user->username],
+                                    ['escape' => false]
+                                ) . '
                             </div>
                         ';
                     } else {
                         print $this->Html->image('/img/sample/noimage-600x360.jpg', ['class' => 'img-fluid']);
                     }
                 ?>
-                </a>
             </div>
             <div class="card-body">
                 <p>
-                    <span class="badge badge-success"><?= h($studio->pref) ?></span>
-                    <span class="badge badge-info">Studio</span>
+                    <span class="badge indigo"><?= h($studio->pref . ' ' . $studio->city) ?></span>
+                    <span class="badge badge-success"><?= h($studio->main_genre) ?></span>
                 </p>
-
-                <a href="<?= $this->Url->build(['controller' => 'Studios', 'action' => 'publicView', h($studio->user->username)],
-                    ['class' => 'dark-grey-text']) ?>">
-                    <h5 class="card-title mb-1 dark-grey-text">
+                <a href="<?= $this->Url->build(['controller' => 'Studios', 'action' => 'publicView', h($studio->user->username)], ['class' => 'dark-grey-text']) ?>">
+                    <h5 class="card-title mb-1 mt-4 black-text">
                         <strong>
                             <?= h($studio->studio_name) ?>
                         </strong>
                     </h5>
-                    <p class="dark-grey-text">
-                        <small>代表者: <?= h($studio->name) ?></small>
+                    <hr>
+                    <p class="blue-text">
+                        <small><?= h($studio->self_intro) ?></small>
                     </p>
-                    <p class="dark-grey-text"><small><?= h($studio->user->username) ?></small></p>
                 </a>
                 <?php if ($studio->station) : ?>
-                    <p class="dark-grey-text"><small>最寄り駅: <?= h($studio->station) ?></small></p>
+                    <p class="dark-grey-text mt-3"><small>最寄り駅: <?= h($studio->station) ?></small></p>
                 <?php endif; ?>
+                <p class="dark-grey-text">
+                    <small>
+                        <span class="mr-3">体験: <?= ($studio->ex_lesson === 0) ? 'あり' : 'なし'; ?></span>
+                        <?php
+                            if ($studio->entry_fee) {
+                                print '入: ' . h($studio->entry_fee);
+                            }
+                        ?>
+                    </small>
+                </p>
+                <?php if ($studio->monthly_tax) : ?>
+                    <p class="dark-grey-text">
+                        <small>
+                            受: <?= h($studio->monthly_tax) ?>
+                        </small>
+                    </p>
+                <?php endif; ?>
+                <hr>
                 <?php if ($studio->facebook || $studio->twitter || $studio->instagram) : ?>
-                <ul class="list-unstyled personal-sm">
+                <ul class="list-unstyled personal-sm mb-0">
 
                     <?php
                         if ($studio->facebook) {
@@ -161,14 +193,8 @@
                     ?>
                 </ul>
                 <?php endif; ?>
-
-                <hr>
-
-                <p class="card-text">
-                    <?= h($studio->self_intro) ?>
-                </p>
-            </div>
-        </div>
+            </div><!-- /.card-body -->
+        </div><!-- /.card -->
     </div><!-- /.col-lg-3 -->
     <?php endforeach; ?>
 </div><!-- /.row -->

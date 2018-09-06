@@ -10,7 +10,7 @@
 <?= $this->Form->hidden('user_id', ['value' => $logins['id']]) ?>
 <div class="row mb-3">
 
-    <div class="col-lg-4 col-md-12 mt-5">
+    <div class="col-lg-4 col-md-12 mt-4">
         <section class="card card-cascade card-avatar mb-3 mt-5">
 
             <?= $this->Html->image('/img/sample/noimage.png') ?>
@@ -31,7 +31,7 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <label class="dark-gray-text w-100 text-left"><small>スタジオ名</small></label>
+                        <label class="dark-gray-text w-100 text-left"><small>スタジオ名 <span class="red-text">※</span></small></label>
                         <div class="md-form mt-0">
                             <?= $this->Form->control('studio_name', ['class' => 'form-control']) ?>
                         </div>
@@ -40,9 +40,18 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <label class="dark-gray-text w-100 text-left"><small>代表者名</small></label>
+                        <label class="dark-gray-text w-100 text-left"><small>代表者名 <span class="red-text">※</span></small></label>
                         <div class="md-form mt-0">
                             <?= $this->Form->control('name', ['class' => 'form-control']) ?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label class="dark-gray-text w-100 text-left"><small>主なジャンル <span class="red-text">※</span></small></label>
+                        <div class="md-form mt-0">
+                            <?= $this->Form->control('main_genre', ['class' => 'form-control']) ?>
                         </div>
                     </div>
                 </div>
@@ -55,7 +64,7 @@
                                     'type'        => 'text',
                                     'id'          => 'f--est',
                                     'class'       => 'form-control',
-                                    'placeholder' => ' 例) 2000-05-12'
+                                    'placeholder' => ' 例) 2000年05月12日'
                                 ]
                             ) ?>
                             <label for="f--est">設立日</label>
@@ -113,6 +122,15 @@
             <div class="card-body">
 
                 <div class="row">
+                    <div class="col-lg-12">
+                        <label class="dark-gray-text w-100 text-left"><small>見出し紹介文 <span class="red-text">※</span></small></label>
+                        <div class="md-form mt-0">
+                            <?= $this->Form->control('self_intro', ['class' => 'form-control']) ?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="col-lg-6 col-md-6 col-xs-12">
                         <div class="md-form">
                             <?= $this->Form->control('pref',
@@ -123,7 +141,22 @@
                                     'options' => $prefs,
                                 ]
                             ) ?>
-                            <label for="f--pref">都道府県</label>
+                            <label for="f--pref">都道府県 <span class="red-text">※</span></label>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xs-12 mt-2">
+                        <label class="dark-gray-text w-100 text-left"><small>市区町村 <span class="red-text">※</span></small></label>
+                        <div class="md-form mt-0">
+                            <?= $this->Form->control('city', ['class' => 'form-control']) ?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-xs-12 mt-2">
+                        <label class="dark-gray-text w-100 text-left"><small>以下所在地 <span class="red-text">※</span></small></label>
+                        <div class="md-form mt-0">
+                            <?= $this->Form->control('address', ['class' => 'form-control']) ?>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-xs-12">
@@ -136,18 +169,15 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <label class="dark-gray-text w-100 text-left"><small>所在地</small></label>
-                        <div class="md-form mt-0">
-                            <?= $this->Form->control('address', ['class' => 'form-control']) ?>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <label class="dark-gray-text w-100 text-left"><small>自己紹介</small></label>
-                        <div class="md-form mt-0">
-                            <?= $this->Form->control('self_intro', ['class' => 'form-control']) ?>
+                        <div class="md-form">
+                            <?= $this->Form->textarea('access',
+                                [
+                                    'id'    => 'f--access',
+                                    'class' => 'form-control md-textarea',
+                                    'rows'  => '6',
+                                ]
+                            ) ?>
+                            <label for="f--access">アクセス</label>
                         </div>
                     </div>
                 </div>
@@ -172,6 +202,21 @@
                         <div class="md-form">
                             <?= $this->Form->control('monthly_tax', ['id' => 'f--m_tax', 'class' => 'form-control']) ?>
                             <label for="f--m_tax">レッスン料 / 形態</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="md-form">
+                            <?= $this->Form->textarea('campaign',
+                                [
+                                    'id'    => 'f--campaign',
+                                    'class' => 'form-control md-textarea',
+                                    'rows'  => '6',
+                                ]
+                            ) ?>
+                            <label for="f--campaign">キャンペーン</label>
                         </div>
                     </div>
                 </div>
@@ -252,6 +297,44 @@
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col-lg-12 mt-2">
+                        <?= $this->Form->unlockField('genre') ?>
+                        <label class="dark-gray-text w-100 text-left"><small>対応ジャンル</small></label>
+                        <?php for ($i = 0; $i < count($genres); $i++) : ?>
+                            <div class="form-check form-check-inline">
+                                <?php
+                                    $checked = '';
+                                    for ($j = 0; $j < count($studio->genres); $j++) {
+                                        if ($genres[$i] === $studio->genres[$j]) {
+                                            $checked = 1;
+                                        }
+                                    }
+
+                                    if ($checked === 1) {
+                                        print $this->Form->checkbox('genre[]', [
+                                                'id'          => 'materialInline' . $i,
+                                                'class'       => 'form-check-input',
+                                                'value'       => $genres[$i],
+                                                'hiddenField' => false,
+                                                'checked'
+                                            ]);
+                                    } else {
+                                        print $this->Form->checkbox('genre[]', [
+                                                'id'          => 'materialInline' . $i,
+                                                'class'       => 'form-check-input',
+                                                'value'       => $genres[$i],
+                                                'hiddenField' => false,
+                                            ]);
+                                    }
+                                ?>
+                                <label class="form-check-label" for="materialInline<?= $i ?>"><?= $genres[$i] ?></label>
+                            </div>
+                        <?php endfor; ?>
+                    </div>
+                </div>
+                <hr>
+
                 <div class="row mb-3">
                     <div class="col-lg-12">
                         <div class="md-form">
@@ -262,7 +345,7 @@
                                     'rows'  => '8',
                                 ]
                             ) ?>
-                            <label for="f--intro">スタジオ紹介</label>
+                            <label for="f--intro">スタジオ紹介 <span class="red-text">※</span></label>
                         </div>
                     </div>
                 </div>
