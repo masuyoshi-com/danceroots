@@ -299,10 +299,6 @@
 
                 <hr>
 
-                <p class="card-text mt-3">
-                    <?= h($event->intro) ?>
-                </p>
-
                 <?php if (isset($logins)) : ?>
                     <?php if ($logins['id'] === $event->user_id) : ?>
                         <div class="md-form">

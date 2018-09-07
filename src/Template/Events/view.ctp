@@ -149,7 +149,7 @@
                 </div>
                 <hr>
                 <?php endif; ?>
-                
+
                 <div class="row mt-4">
                     <div class="col-lg-12">
                         <h6 class="dark-grey-text"><i class="fa fa-subway" aria-hideen="true"></i> アクセス</h6>
@@ -320,10 +320,6 @@
                 ?>
 
                 <hr>
-
-                <p class="card-text mt-3">
-                    <?= h($event->intro) ?>
-                </p>
 
                 <?php if ($logins['id'] === $event->user_id) : ?>
                     <div class="md-form">
