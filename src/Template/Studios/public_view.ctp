@@ -381,7 +381,7 @@
             <?php if ($studio->access) : ?>
                 <div class="row mt-3 mb-3">
                     <div class="col-lg-12">
-                        <h6 class="dark-gray-text"><small><i class="fa fa-subway" aria-hideen="true"></i> アクセス</small></h6>
+                        <h6 class="dark-grey-text"><small><i class="fa fa-subway" aria-hideen="true"></i> アクセス</small></h6>
                         <hr class="text-left success-color mb-3 pb-1 mt-0 ml-0" style="width: 100px;">
                         <div class="md-form mt-0">
                             <?= nl2br(h($studio->access)) ?>
