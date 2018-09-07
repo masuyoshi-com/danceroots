@@ -190,7 +190,7 @@
                     </div>
                 </div>
 
-                <div class="row mt-3 mb-4">
+                <div class="row mt-3">
                     <div class="col-lg-12">
                         <div class="d-flex">
                             <h6 class="dark-grey-text"><i class="fa fa-map-marker"></i> GoogleMap</h6>
@@ -201,22 +201,21 @@
                         <div id="map" class="rounded z-depth-1-half map-container" style="height: 300px"></div>
                     </div>
                 </div>
-                <hr class="mb-4">
+
+                <hr>
 
                 <?php if ($logins['id'] !== $event->user_id) : ?>
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="md-form">
-                            <?= $this->Html->link('<i class="fa fa-envelope" aria-hidden="true"></i> イベントの問い合わせ',
-                                'javascript:void(0)',
-                                [
-                                    'class'       => 'btn btn-primary btn-block',
-                                    'escape'      => false,
-                                    'data-toggle' => 'modal',
-                                    'data-target' => '#modalMessageForm'
-                                ]
-                            ) ?>
-                        </div>
+                        <?= $this->Html->link('<i class="fa fa-envelope" aria-hidden="true"></i> イベントの問い合わせ',
+                            'javascript:void(0)',
+                            [
+                                'class'       => 'btn btn-primary btn-block',
+                                'escape'      => false,
+                                'data-toggle' => 'modal',
+                                'data-target' => '#modalMessageForm'
+                            ]
+                        ) ?>
                     </div>
                 </div>
                 <?php else : ?>

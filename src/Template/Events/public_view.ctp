@@ -196,7 +196,6 @@
                         <div id="map" class="rounded z-depth-1-half map-container" style="height: 300px"></div>
                     </div>
                 </div>
-                <hr class="mb-4">
 
                 <?php if (isset($logins)) : ?>
                     <?php if ($logins['id'] !== $event->user_id) : ?>
@@ -219,9 +218,6 @@
             </div><!-- /.card-body -->
         </div><!-- /.card -->
     </div><!-- /.col-lg-8 -->
-
-
-
 
     <div class="col-lg-4 col-md-12">
         <section class="card card-cascade card-avatar mb-4">
