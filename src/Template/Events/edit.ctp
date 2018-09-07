@@ -22,13 +22,13 @@
 
         <div class="row">
             <div class="col-lg-6 col-md-12">
-                <label class="dark-gray-text w-100 text-left"><small>イベント名</small></label>
+                <label class="dark-grey-text w-100 text-left"><small>イベント名 <span class="red-text">※</span></small></label>
                 <div class="md-form mt-0">
                     <?= $this->Form->control('event_name', ['class' => 'form-control'])?>
                 </div>
             </div>
 
-            <div class="col-lg-6 col-md-12">
+            <div class="col-lg-3 col-md-6 col-xs-12">
                 <div class="md-form">
                     <?= $this->Form->control('pref',
                         [
@@ -38,7 +38,14 @@
                             'options' => $prefs
                         ]
                     ) ?>
-                    <label for="f--pref">都道府県</label>
+                    <label for="f--pref">都道府県 <span class="red-text">※</span></label>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-md-12">
+                <label class="dark-grey-text w-100 text-left"><small>市区町村 <span class="red-text">※</span></small></label>
+                <div class="md-form mt-0">
+                    <?= $this->Form->control('city', ['class' => 'form-control'])?>
                 </div>
             </div>
         </div>
@@ -63,20 +70,20 @@
                             'options' => $categories
                         ]
                     ) ?>
-                    <label for="f--category">カテゴリ</label>
+                    <label for="f--category">カテゴリ <span class="red-text">※</span></label>
                 </div>
             </div>
         </div>
 
         <div class="row">
             <div class="col-lg-6 col-md-12">
-                <label class="dark-gray-text w-100 text-left"><small>イベント簡易紹介</small></label>
+                <label class="dark-grey-text w-100 text-left"><small>イベント見出し紹介 <span class="red-text">※</span></small></label>
                 <div class="md-form mt-0">
                     <?= $this->Form->control('intro', ['class' => 'form-control'])?>
                 </div>
             </div>
             <div class="col-lg-6 col-md-12">
-                <label class="dark-gray-text w-100 text-left"><small>Youtube</small></label>
+                <label class="dark-grey-text w-100 text-left"><small>Youtube</small> <span class="badge badge-info">過去イベント動画URL</span></label>
                 <div class="md-form mt-0">
                     <?= $this->Form->control('youtube', ['class' => 'form-control']) ?>
                 </div>
@@ -85,9 +92,7 @@
 
         <div class="row">
             <div class="col-lg-4 col-md-6 col-xs-12">
-                <label class="dark-gray-text w-100 text-left">
-                    <small>開催日 </small>
-                </label>
+                <label class="dark-grey-text w-100 text-left"><small>開催日 <span class="red-text">※</span></small></label>
                 <div class="md-form mt-0">
                     <?= $this->Form->control('event_date',
                         [
@@ -107,7 +112,7 @@
                             'required'
                         ]
                     ) ?>
-                    <label for="f--start">Start</label>
+                    <label for="f--start">Start <span class="red-text">※</span></label>
                 </div>
             </div>
             <div class="col-lg-4 col-md-12">
@@ -120,20 +125,20 @@
                             'required'
                         ]
                     ) ?>
-                    <label for="f--end">End</label>
+                    <label for="f--end">End <span class="red-text">※</span></label>
                 </div>
             </div>
         </div>
 
         <div class="row">
             <div class="col-lg-6 col-md-12">
-                <label class="dark-gray-text w-100 text-left"><small>開催場所</small></label>
+                <label class="dark-grey-text w-100 text-left"><small>開催所在地 <span class="red-text">※</span></small></label>
                 <div class="md-form mt-0">
                     <?= $this->Form->control('address', ['class' => 'form-control']) ?>
                 </div>
             </div>
             <div class="col-lg-6 col-md-12">
-                <label class="dark-gray-text w-100 text-left"><small>会場名</small></label>
+                <label class="dark-grey-text w-100 text-left"><small>会場名 <span class="red-text">※</span></small></label>
                 <div class="md-form mt-0">
                     <?= $this->Form->control('place', ['class' => 'form-control']) ?>
                 </div>
@@ -187,7 +192,7 @@
                             'rows'  => '8',
                         ]
                     ) ?>
-                    <label for="f--e_detail">イベント詳細説明</label>
+                    <label for="f--e_detail">イベント詳細説明 <span class="red-text">※</span></label>
                 </div>
             </div>
         </div>

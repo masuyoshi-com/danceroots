@@ -67,9 +67,9 @@
                         ]
                     ) ?>
                 </td>
-                <td>
-                    <strong><?= h($event->event_date) ?></strong>
-                    <br> Start:<?= h($event->start) ?><br> End:<?= h($event->end) ?>
+                <td class="font-weight-bold">
+                    <?= h($event->event_date) ?>
+                    <br> Start: <?= h($event->start) ?><br> End: <?= h($event->end) ?>
                 </td>
                 <td>
                     <?= $this->Html->link('<i class="fa fa-pencil-square fa-lg"></i>',

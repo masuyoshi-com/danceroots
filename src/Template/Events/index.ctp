@@ -118,7 +118,7 @@
                         <div class="col-lg-12">
                             <h5>
                                 <span class="badge <?= getBadgeColor(h($event->category)) ?>"><?= h($event->category) ?></span>
-                                <span class="badge indigo"><?= h($event->pref) ?></span>
+                                <span class="badge indigo"><?= h($event->pref . ' ' . $event->city) ?></span>
                             </h5>
                         </div>
                     </div>
@@ -133,20 +133,34 @@
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <p class="dark-grey-text">
+                            <p class="dark-grey-text mb-2">
                                 <?= h($event->intro) ?>
                             </p>
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <p class="dark-grey-text text-right m-0">
+                                <small>
+                                    <?php if ($event->entry) : ?>
+                                        <span class="mr-3">資格: <?= h($event->entry) ?></span>
+                                    <?php endif; ?>
+                                    <?php if ($event->entry_fee) : ?>
+                                        参加費: <?= h($event->entry_fee) ?>
+                                    <?php endif; ?>
+                                </small>
+                            </p>
+                        </div>
+                    </div>
                     <hr>
 
                     <div class="row grey lighten-4 p-2 text-center">
                         <div class="col-lg-5 col-md-6 col-xs-12">
-                            <p class="dark-grey-text">
-                                <strong>開催日</strong> &nbsp;<?= h($event->event_date) ?>  <br>
-                                <strong>Start</strong> <?= h($event->start) ?> &nbsp;
-                                <strong>End</strong> <?= h($event->end) ?>
+                            <p class="dark-grey-text font-weight-bold">
+                                開催日: <?= h($event->event_date) ?>  <br>
+                                <span class="mr-2">Start: <?= h($event->start) ?></span>
+                                End: <?= h($event->end) ?>
                             </p>
                         </div>
                         <div class="col-lg-4 col-md-6 col-xs-12">

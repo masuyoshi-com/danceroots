@@ -17,6 +17,7 @@ use Cake\ORM\Entity;
  * @property string $start
  * @property string $end
  * @property string $pref
+ * @property string $city
  * @property string $address
  * @property string $place
  * @property string $entry
@@ -52,6 +53,7 @@ class Event extends Entity
         'start'         => true,
         'end'           => true,
         'pref'          => true,
+        'city'          => true,
         'address'       => true,
         'place'         => true,
         'entry'         => true,

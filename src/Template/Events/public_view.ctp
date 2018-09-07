@@ -1,7 +1,5 @@
 <?php $this->assign('title', h($event->event_name) . '公開イベント詳細'); ?>
 
-<?= $this->element('Modal/event_delete') ?>
-
 <div class="row mt-5">
 </div>
 
@@ -14,7 +12,7 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-xs-12">
                         <h5>
-                            <span class="badge indigo"><?= h($event->pref) ?> </span>
+                            <span class="badge indigo"><?= h($event->pref . ' ' . $event->city) ?> </span>
                             <span class="badge purple"><?= h($event->category) ?> </span>
                             <?php
                                 if ($event->recruit_flag === 0) {
@@ -26,12 +24,10 @@
                         </h5>
                     </div>
                     <div class="col-lg-6 col-md-6 col-xs-12">
-                        <?php if (isset($logins)) : ?>
-                            <?php if ($logins['id'] === $event->user_id) : ?>
-                            <h5 class="text-right">
-                                <span class="badge badge-warning">イベント所有者</span>
-                            </h5>
-                            <?php endif; ?>
+                        <?php if ($logins['id'] === $event->user_id) : ?>
+                        <h5 class="text-right mb-0">
+                            <span class="badge badge-warning">イベント所有者</span>
+                        </h5>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -47,17 +43,23 @@
                 </div>
 
                 <?php if ($event->image) : ?>
-                <div class="row mt-3 mb-3">
-                    <div class="col-lg-12">
+                <div class="row mb-3">
+                    <div class="col-lg-1">
+                    </div>
+                    <div class="col-lg-10">
+                        <h6 class="grey-text text-right">Event Image</h6>
                         <?= $this->Html->image($event->image, ['class' => 'd-block w-100']) ?>
                     </div>
+                    <div class="col-lg-1">
+                    </div>
                 </div>
+                <hr>
                 <?php endif; ?>
 
                 <div class="row">
                     <div class="col-lg-4 col-md-6 col-xs-12">
                         <div class="md-form">
-                            <?= $this->Form->control('event_date', ['class' => 'form-control', 'value' => h($event->event_date), 'disabled']) ?>
+                            <?= $this->Form->control('event_date', ['class' => 'form-control font-weight-bold', 'value' => h($event->event_date), 'disabled']) ?>
                             <label>開催日</label>
                         </div>
                     </div>
@@ -65,7 +67,7 @@
                         <div class="md-form">
                             <?= $this->form->control('start',
                                 [
-                                    'class' => 'form-control',
+                                    'class' => 'form-control font-weight-bold',
                                     'value' => h($event->start),
                                     'disabled'
                                 ]
@@ -76,12 +78,91 @@
                         <div class="md-form">
                             <?= $this->Form->control('end',
                                 [
-                                    'class' => 'form-control',
+                                    'class' => 'form-control font-weight-bold',
                                     'value' => h($event->end),
                                     'disabled'
                                 ]
                             ) ?>
                             <label>End</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-lg-12">
+                        <h6 class="dark-gray-text">イベント説明</h6>
+                        <hr class="text-left blue mb-3 pb-1 mt-0 ml-0" style="width: 100px;">
+                        <div class="md-form mt-0">
+                            <?= nl2br(h($event->event_detail)) ?>
+                        </div>
+                    </div>
+                </div>
+                <hr class="mdb-form-color">
+
+                <?php if ($event->guest) : ?>
+                    <div class="row mt-4">
+                        <div class="col-lg-12">
+                            <h6 class="dark-gray-text">ゲスト</h6>
+                            <hr class="text-left pink mb-3 pb-1 mt-0 ml-0" style="width: 100px;">
+                            <div class="md-form mt-0">
+                                <?= nl2br(h($event->guest)) ?>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="mdb-form-color">
+                <?php endif; ?>
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                        <div class="md-form">
+                            <div class="md-form">
+                                <?= $this->Form->control('entry', ['class' => 'form-control font-weight-bold', 'value' => h($event->entry), 'disabled']) ?>
+                                <label>参加資格</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        <div class="md-form">
+                            <?= $this->Form->control('entry_fee', ['class' => 'form-control font-weight-bold', 'value' => h($event->entry_fee), 'disabled']) ?>
+                            <label>参加費</label>
+                        </div>
+                    </div>
+                </div>
+
+                <?php if ($event->youtube) : ?>
+                <div class="row">
+                    <div class="col-lg-1">
+                    </div>
+                    <div class="col-lg-10 mt-3 mb-3">
+                        <h6 class="dark-grey-text"><i class="fa fa-youtube-play yt-ic"></i> Event Video</h6>
+                        <div class="embed-responsive embed-responsive-16by9 z-depth-1">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($event->youtube) ?>?rel=0" style="height: 100%" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="col-lg-1">
+                    </div>
+                </div>
+                <hr>
+                <?php endif; ?>
+
+                <div class="row mt-4">
+                    <div class="col-lg-12">
+                        <h6 class="dark-grey-text"><i class="fa fa-subway" aria-hideen="true"></i> アクセス</h6>
+                        <hr class="text-left success-color mb-3 pb-1 mt-0 ml-0" style="width: 100px;">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-xs-12">
+                        <div class="md-form">
+                            <?= $this->Form->control('pref', ['class' => 'form-control', 'value' => h($event->pref), 'disabled']) ?>
+                            <label>都道府県</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xs-12">
+                        <div class="md-form">
+                            <?= $this->Form->control('city', ['class' => 'form-control', 'value' => h($event->city), 'disabled']) ?>
+                            <label>市区町村</label>
                         </div>
                     </div>
                 </div>
@@ -99,62 +180,12 @@
                     <div class="col-lg-12">
                         <div class="md-form">
                             <?= $this->Form->control('address',['class' => 'form-control', 'value' => h($event->address), 'disabled']) ?>
-                            <label>開催住所</label>
+                            <label>開催所在地</label>
                         </div>
                     </div>
                 </div>
 
-                <?php if ($event->youtube) : ?>
-                <div class="row">
-                    <div class="col-lg-12 mt-3 mb-2">
-                        <h6 class="dark-grey-text"><i class="fa fa-youtube-play yt-ic"></i> Event Video</h6>
-                        <div class="embed-responsive embed-responsive-16by9 z-depth-1">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($event->youtube) ?>?rel=0" style="height: 100%" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
-                <?php endif; ?>
-
-                <div class="row">
-                    <div class="col-lg-6 col-md-12">
-                        <div class="md-form">
-                            <div class="md-form">
-                                <?= $this->Form->control('entry', ['class' => 'form-control', 'value' => h($event->entry), 'disabled']) ?>
-                                <label>参加資格</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12">
-                        <div class="md-form">
-                            <?= $this->Form->control('entry_fee', ['class' => 'form-control', 'value' => h($event->entry_fee), 'disabled']) ?>
-                            <label>参加費</label>
-                        </div>
-                    </div>
-                </div>
-
-                <?php if ($event->guest) : ?>
-                <div class="row mt-3">
-                    <div class="col-lg-12 text-left">
-                        <label class="dark-gray-text w-100"><small>ゲスト</small></label>
-                        <div class="md-form mt-0">
-                            <?= nl2br(h($event->guest)) ?>
-                        </div>
-                        <hr class="mdb-form-color">
-                    </div>
-                </div>
-                <?php endif; ?>
-
-                <div class="row mt-3">
-                    <div class="col-lg-12 text-left">
-                        <label class="dark-gray-text w-100"><small>イベント説明</small></label>
-                        <div class="md-form mt-0">
-                            <?= nl2br(h($event->event_detail)) ?>
-                        </div>
-                        <hr class="mdb-form-color">
-                    </div>
-                </div>
-
-                <div class="row mt-2">
+                <div class="row mt-3 mb-4">
                     <div class="col-lg-12">
                         <div class="d-flex">
                             <h6 class="dark-grey-text"><i class="fa fa-map-marker"></i> GoogleMap</h6>
@@ -165,6 +196,7 @@
                         <div id="map" class="rounded z-depth-1-half map-container" style="height: 300px"></div>
                     </div>
                 </div>
+                <hr class="mb-4">
 
                 <?php if (isset($logins)) : ?>
                     <?php if ($logins['id'] !== $event->user_id) : ?>
@@ -187,6 +219,9 @@
             </div><!-- /.card-body -->
         </div><!-- /.card -->
     </div><!-- /.col-lg-8 -->
+
+
+
 
     <div class="col-lg-4 col-md-12">
         <section class="card card-cascade card-avatar mb-4">

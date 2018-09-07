@@ -151,10 +151,21 @@ class EventsTable extends Table
 
         $validator
             ->scalar('pref')
-            ->maxLength('pref', 255)
+            ->maxLength('pref', 50)
             ->requirePresence('pref', 'create')
             ->notEmpty('pref');
 
+        $validator
+            ->scalar('city')
+            ->maxLength('city', 50)
+            ->requirePresence('city', 'create')
+            ->notEmpty('city')
+            ->add('city', 'custom', [
+                'rule'     => 'isSpace',
+                'provider' => 'custom',
+                'message'  => '空白のみは受け付けません。'
+            ]);
+                
         $validator
             ->scalar('address')
             ->maxLength('address', 255)
