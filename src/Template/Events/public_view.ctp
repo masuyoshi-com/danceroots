@@ -320,7 +320,7 @@
     </div><!-- /.col-lg-4 -->
 </div><!-- /. row -->
 
-
+<?= $this->Form->hidden('js_address', ['id' => 'address', 'value' => h($event->pref . $event->address)]) ?>
 <script>
-    initGoogle.initMap('<?= h($event->address) ?>');
+    initGoogle.initMap();
 </script>
