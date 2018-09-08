@@ -136,9 +136,8 @@
 
     <div class="col-lg-8 col-md-12 mt-4">
         <div class="row mb-3">
-
-            <div class="col-lg-6 col-md-12">
-                <div class="card card-image mb-3" style="background-color: #0d47a1;">
+            <div class="col-lg-6 col-md-12 mb-3">
+                <div class="card card-image" style="background-image: url(../img/event640×388.jpg);">
                     <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
                         <div>
                             <h6 class="pink-text">
@@ -161,7 +160,7 @@
             </div>
 
             <div class="col-lg-6 col-md-12">
-                <div class="card card-image" style="background-color: #0099CC;">
+                <div class="card card-image" style="background-image: url(../img/recruit800×450.jpg);">
                     <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
                         <div>
                             <h6 class="green-text">
