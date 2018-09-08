@@ -118,7 +118,7 @@
                         <div class="col-lg-12">
                             <h5>
                                 <span class="badge <?= getBadgeColor(h($job->category)) ?>"><?= h($job->category) ?></span>
-                                <span class="badge indigo"><?= h($job->pref) ?></span>
+                                <span class="badge indigo"><?= h($job->pref . ' ' . $job->city) ?></span>
                             </h5>
                         </div>
                     </div>
@@ -139,6 +139,20 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <p class="dark-grey-text text-right m-0">
+                                <small>
+                                    <?php if ($job->q_required) : ?>
+                                        <span class="mr-3">資格: <?= h($job->q_required) ?></span>
+                                    <?php endif; ?>
+                                    <?php if ($job->compensation) : ?>
+                                        報酬: <?= h($job->compensation) ?>
+                                    <?php endif; ?>
+                                </small>
+                            </p>
+                        </div>
+                    </div>
                     <hr>
 
                     <div class="row grey lighten-4 p-2 text-center">

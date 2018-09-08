@@ -12,7 +12,7 @@ use Cake\Network\Exception\NotFoundException;
  */
 class JobsController extends AppController
 {
-    public $categories  = ['インストラクター', '教育関連', 'バックダンサー', '振付'];
+    public $categories  = ['インストラクター', '教育関連', 'バックダンサー', '振付', 'その他'];
     public $search_keys = ['pref', 'category', 'word'];
 
     public $paginate = [

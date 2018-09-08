@@ -1,6 +1,6 @@
 <?php $this->assign('title', 'ダンス関連求人登録'); ?>
 
-<div class="card card-cascade narrower">
+<div class="card card-cascade narrower mb-3">
 
     <div class="col-lg-12">
         <div class="view gradient-card-header blue-gradient">
@@ -27,43 +27,10 @@
         <?= $this->Form->hidden('user_id', ['value' => $logins['id']]) ?>
 
         <div class="row">
-            <div class="col-lg-6 col-md-12">
-                <div class="md-form">
-                    <?= $this->Form->control('pref',
-                        [
-                            'id'      => 'f--pref',
-                            'type'    => 'select',
-                            'class'   => 'mdb-select colorful-select dropdown-primary',
-                            'options' => $prefs
-                        ]
-                    ) ?>
-                    <label for="f--pref">都道府県</label>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-12">
-                <label class="dark-gray-text w-100 text-left"><small>市区町村</small></label>
-                <div class="md-form mt-0">
-                    <?= $this->Form->control('city', ['class' => 'form-control']) ?>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
             <div class="col-lg-12">
-                <label class="dark-gray-text w-100 text-left"><small>タイトル</small></label>
+                <label class="dark-gray-text w-100 text-left"><small>求人タイトル <span class="red-text">※</span></small></label>
                 <div class="md-form mt-0">
                     <?= $this->Form->control('title', ['class' => 'form-control'])?>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-12">
-                <label class="dark-gray-text w-100 text-left">
-                    <small>募集内容の簡単説明</small> <span class="badge badge-info">検索一覧で表示されます</span>
-                </label>
-                <div class="md-form mt-0">
-                    <?= $this->Form->control('intro', ['class' => 'form-control'])?>
                 </div>
             </div>
         </div>
@@ -80,8 +47,19 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mt-2">
             <div class="col-lg-12">
+                <label class="dark-gray-text w-100 text-left">
+                    <small>募集内容の見出し説明 <span class="red-text">※</span></small> <span class="badge badge-info">検索一覧で表示されます</span>
+                </label>
+                <div class="md-form mt-0">
+                    <?= $this->Form->control('intro', ['class' => 'form-control'])?>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-xs-12">
                 <div class="md-form">
                     <?= $this->Form->textarea('work_detail',
                         [
@@ -90,7 +68,19 @@
                             'rows'  => '8',
                         ]
                     ) ?>
-                    <label for="f--w_detail">仕事依頼詳細</label>
+                    <label for="f--w_detail">募集内容詳細 <span class="red-text">※</span></label>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-12">
+                <div class="md-form">
+                    <?= $this->Form->textarea('question',
+                        [
+                            'id'    => 'f--question',
+                            'class' => 'form-control md-textarea',
+                            'rows'  => '8',
+                        ]
+                    ) ?>
+                    <label for="f--question">応募者への質問</label>
                 </div>
             </div>
         </div>
@@ -106,7 +96,7 @@
                             'options' => $categories
                         ]
                     ) ?>
-                    <label for="f--category">募集カテゴリ</label>
+                    <label for="f--category">募集カテゴリ <span class="red-text">※</span></label>
                 </div>
             </div>
             <div class="col-lg-6 col-md-12">
@@ -127,15 +117,15 @@
 
         <div class="row">
             <div class="col-lg-6 col-md-6 col-xs-12">
-                <label class="dark-gray-text w-100 text-left"><small>最寄り駅</small></label>
+                <label class="dark-gray-text w-100 text-left"><small>報酬形式 <span class="red-text">※</span></small></label>
                 <div class="md-form mt-0">
-                    <?= $this->Form->control('station', ['class' => 'form-control']) ?>
+                    <?= $this->Form->control('compensation', ['class' => 'form-control']) ?>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-xs-12">
-                <label class="dark-gray-text w-100 text-left"><small>週稼働時間</small></label>
+                <label class="dark-gray-text w-100 text-left"><small>応募資格 <span class="red-text">※</span></small></label>
                 <div class="md-form mt-0">
-                    <?= $this->Form->control('working_time', ['class' => 'form-control']) ?>
+                    <?= $this->Form->control('q_required', ['class' => 'form-control']) ?>
                 </div>
             </div>
         </div>
@@ -144,37 +134,50 @@
             <div class="col-lg-6 col-md-6 col-xs-12">
                 <div class="md-form">
                     <?= $this->Form->control('people', ['id' => 'f--people', 'class' => 'form-control']) ?>
-                    <label for="f--people">募集人数</label>
+                    <label for="f--people">募集人数 <span class="red-text">※</span></label>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-xs-12">
-                <label class="dark-gray-text w-100 text-left"><small>報酬形式</small></label>
+                <label class="dark-gray-text w-100 text-left"><small>週稼働時間 <span class="red-text">※</span></small></label>
                 <div class="md-form mt-0">
-                    <?= $this->Form->control('compensation', ['class' => 'form-control']) ?>
+                    <?= $this->Form->control('working_time', ['class' => 'form-control']) ?>
                 </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-lg-12">
-                <label class="dark-gray-text w-100 text-left"><small>応募資格</small></label>
-                <div class="md-form mt-0">
-                    <?= $this->Form->control('q_required', ['class' => 'form-control']) ?>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-12">
+        <div class="row mt-2">
+            <div class="col-lg-4 col-md-6 col-xs-12">
                 <div class="md-form">
-                    <?= $this->Form->textarea('question',
+                    <?= $this->Form->control('pref',
                         [
-                            'id'    => 'f--question',
-                            'class' => 'form-control md-textarea',
-                            'rows'  => '8',
+                            'id'      => 'f--pref',
+                            'type'    => 'select',
+                            'class'   => 'mdb-select colorful-select dropdown-primary',
+                            'options' => $prefs
                         ]
                     ) ?>
-                    <label for="f--question">応募者への質問</label>
+                    <label for="f--pref">都道府県 <span class="red-text">※</span></label>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-xs-12">
+                <label class="dark-gray-text w-100 text-left"><small>市区町村 <span class="red-text">※</span></small></label>
+                <div class="md-form mt-0">
+                    <?= $this->Form->control('city', ['class' => 'form-control']) ?>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-xs-12">
+                <label class="dark-gray-text w-100 text-left"><small>最寄り駅</small></label>
+                <div class="md-form mt-0">
+                    <?= $this->Form->control('station', ['class' => 'form-control']) ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <label class="dark-gray-text w-100 text-left"><small>所在地 <span class="red-text">※</span></small></label>
+                <div class="md-form mt-0">
+                    <?= $this->Form->control('address', ['class' => 'form-control']) ?>
                 </div>
             </div>
         </div>

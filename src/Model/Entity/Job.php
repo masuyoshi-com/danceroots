@@ -16,6 +16,7 @@ use Cake\ORM\Entity;
  * @property string $genre
  * @property string $pref
  * @property string $city
+ * @property string $address
  * @property string $station
  * @property string $q_required
  * @property string $question
@@ -49,6 +50,7 @@ class Job extends Entity
         'genre'         => true,
         'pref'          => true,
         'city'          => true,
+        'address'       => true,
         'station'       => true,
         'q_required'    => true,
         'question'      => true,

@@ -54,7 +54,7 @@
                         <hr>
 
                         <div class="md-form text-center">
-                            <h2 class="h2-responsive"><?= h($job->title) ?></h2>
+                            <h3 class="dark-grey-text h3-responsive font-weight-bold"><?= h($job->title) ?></h2>
                         </div>
 
                         <hr class="mb-0">
@@ -66,6 +66,7 @@
                     <div class="col-lg-1">
                     </div>
                     <div class="col-lg-10">
+                        <h6 class="grey-text text-right">Job Image</h6>
                         <?= $this->Html->image($job->image, ['class' => 'd-block w-100']) ?>
                     </div>
                     <div class="col-lg-1">
@@ -74,58 +75,56 @@
                 <hr>
                 <?php endif; ?>
 
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-xs-12">
-                        <div class="md-form">
-                            <?= $this->Form->control('city',
-                                [
-                                    'class' => 'form-control',
-                                    'value' => h($job->city),
-                                    'disabled'
-                                ]
-                            ) ?>
-                            <label>市区町村</label>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-xs-12">
-                        <div class="md-form">
-                            <?= $this->Form->control('station',
-                                [
-                                    'class' => 'form-control',
-                                    'value' => h($job->station),
-                                    'disabled'
-                                ]
-                            ) ?>
-                            <label>最寄り駅</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row mt-3">
+                <div class="row mt-4">
                     <div class="col-lg-12">
-                        <label class="dark-gray-text w-100 text-left"><small>仕事依頼詳細</small></label>
+                        <h6 class="dark-gray-text">仕事内容</h6>
+                        <hr class="text-left blue mb-3 pb-1 mt-0 ml-0" style="width: 100px;">
                         <div class="md-form mt-0">
                             <?= nl2br(h($job->work_detail)) ?>
                         </div>
-                        <hr class="mdb-form-color">
                     </div>
                 </div>
+                <hr class="mdb-form-color">
+
+                <?php if ($job->question) : ?>
+                    <div class="row mt-4">
+                        <div class="col-lg-12">
+                            <h6 class="dark-gray-text">応募者への質問</h6>
+                            <hr class="text-left pink mb-3 pb-1 mt-0 ml-0" style="width: 100px;">
+                            <div class="md-form mt-0">
+                                <?= nl2br(h($job->question)) ?>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="mdb-form-color">
+                <?php endif; ?>
 
                 <div class="row">
-                    <div class="col-lg-6 col-md-12">
+                    <div class="col-lg-4 col-md-12 col-xs-12">
+                        <div class="md-form">
+                            <?= $this->Form->control('category',
+                                [
+                                    'class' => 'form-control font-weight-bold',
+                                    'value' => h($job->category),
+                                    'disabled'
+                                ]
+                            ) ?>
+                            <label>職種</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-xs-12">
                         <label class="dark-gray-text w-100 text-left"><small>ジャンル</small></label>
                         <div class="md-form mt-0">
                             <?php
                                 if ($job->genre) {
-                                    print h($job->genre);
+                                    print $this->Form->control('genre', ['class' => 'form-control', 'value' => h($job->genre), 'disabled']);
                                 } else {
-                                    print 'ジャンルは問わない';
+                                    print $this->Form->control('genre', ['class' => 'form-control', 'value' => 'ジャンルは問わない', 'disabled']);
                                 }
                             ?>
                         </div>
-                        <hr class="mdb-form-color">
                     </div>
-                    <div class="col-lg-6 col-md-12">
+                    <div class="col-lg-4 col-md-12 col-xs-12">
                         <div class="md-form">
                             <?= $this->Form->control('people',
                                 [
@@ -156,7 +155,7 @@
                         <div class="md-form">
                             <?= $this->Form->control('compensation',
                                 [
-                                    'class' => 'form-control',
+                                    'class' => 'form-control font-weight-bold',
                                     'value' => h($job->compensation),
                                     'disabled'
                                 ]
@@ -172,7 +171,7 @@
                             <div class="md-form">
                                 <?= $this->Form->control('q_required',
                                     [
-                                        'class' => 'form-control',
+                                        'class' => 'form-control font-weight-bold',
                                         'value' => h($job->q_required),
                                         'disabled'
                                     ]
@@ -186,18 +185,6 @@
                 <?php if ($job->etc) : ?>
                 <div class="row mt-2">
                     <div class="col-lg-12">
-                        <label class="dark-gray-text w-100 text-left"><small>応募者への質問</small></label>
-                        <div class="md-form mt-0">
-                            <?= nl2br(h($job->question)) ?>
-                        </div>
-                        <hr class="mdb-form-color">
-                    </div>
-                </div>
-                <?php endif; ?>
-
-                <?php if ($job->etc) : ?>
-                <div class="row mt-2">
-                    <div class="col-lg-12">
                         <label class="dark-gray-text w-100 text-left"><small>その他</small></label>
                         <div class="md-form mt-0">
                             <?= nl2br(h($job->etc)) ?>
@@ -206,6 +193,57 @@
                     </div>
                 </div>
                 <?php endif; ?>
+
+                <div class="row mt-4">
+                    <div class="col-lg-12">
+                        <h6 class="dark-grey-text"><i class="fa fa-subway" aria-hideen="true"></i> アクセス</h6>
+                        <hr class="text-left success-color mb-3 pb-1 mt-0 ml-0" style="width: 100px;">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="md-form">
+                            <?= $this->Form->control('address',
+                                [
+                                    'class' => 'form-control',
+                                    'value' => h($job->pref . $job->city . $job->address),
+                                    'disabled'
+                                ]
+                            ) ?>
+                            <label>所在地</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 col-xs-12">
+                        <div class="md-form">
+                            <?= $this->Form->control('station',
+                                [
+                                    'class' => 'form-control',
+                                    'value' => h($job->station),
+                                    'disabled'
+                                ]
+                            ) ?>
+                            <label>最寄り駅</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mt-3">
+                    <div class="col-lg-12">
+                        <div class="d-flex">
+                            <h6 class="dark-grey-text"><i class="fa fa-map-marker"></i> GoogleMap</h6>
+                            <p class="ml-auto mb-0 blue-text" data-toggle="tooltip" data-placement="bottom" title="ブラウザをリロードしてください。">
+                                <small>表示されない場合</small>
+                            </p>
+                        </div>
+                        <div id="map" class="rounded z-depth-1-half map-container" style="height: 300px"></div>
+                    </div>
+                </div>
+
+                <hr>
 
                 <?php if ($logins['id'] !== $job->user_id) : ?>
                 <div class="row">
@@ -355,3 +393,7 @@
         </section>
     </div><!-- /.col-lg-4 -->
 </div><!-- /. row -->
+<?= $this->Form->hidden('js_address', ['id' => 'address', 'value' => h($job->pref . $job->city . $job->address)]) ?>
+<script>
+    initGoogle.initMap();
+</script>

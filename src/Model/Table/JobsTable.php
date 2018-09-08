@@ -142,10 +142,20 @@ class JobsTable extends Table
             ]);
 
         $validator
+            ->scalar('address')
+            ->maxLength('address', 150)
+            ->requirePresence('address', 'create')
+            ->notEmpty('address')
+            ->add('address', 'custom', [
+                'rule'     => 'isSpace',
+                'provider' => 'custom',
+                'message'  => '空白のみは受け付けません。'
+            ]);
+
+        $validator
             ->scalar('station')
-            ->maxLength('station', 100)
-            ->requirePresence('station', 'create')
-            ->notEmpty('station')
+            ->maxLength('station', 50)
+            ->allowEmpty('station')
             ->add('station', 'custom', [
                 'rule'     => 'isSpace',
                 'provider' => 'custom',
