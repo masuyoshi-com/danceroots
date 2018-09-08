@@ -42,10 +42,10 @@
                     <spna class="badge purple"><?= h($general->user->classification) ?></span>
                 </p>
 
-                <h4 class="card-title"><strong><?= h($general->user->username) ?></strong></h4>
+                <h4 class="card-title dark-grey-text font-weight-bold"><?= h($general->user->username) ?></h4>
 
                 <?php if ($general->favorite_genre) : ?>
-                <p class="dark-grey-text">好きなジャンル: <?= h($general->favorite_genre) ?></p>
+                <p class="dark-grey-text"><small>好きなジャンル:</small> <strong><?= h($general->favorite_genre) ?></strong></p>
                 <?php endif; ?>
 
                 <?php

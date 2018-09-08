@@ -43,10 +43,10 @@
                     <spna class="badge purple"><?= h($general->user->classification) ?></span>
                 </p>
 
-                <h4 class="card-title"><strong><?= h($general->user->username) ?></strong></h4>
+                <h4 class="card-title dark-grey-text font-weight-bold"><?= h($general->user->username) ?></h4>
 
                 <?php if ($general->favorite_genre) : ?>
-                <p class="dark-grey-text">好きなジャンル: <?= h($general->favorite_genre) ?></p>
+                <p class="dark-grey-text"><small>好きなジャンル:</small> <strong><?= h($general->favorite_genre) ?></strong></p>
                 <?php endif; ?>
 
                 <?php
@@ -148,6 +148,7 @@
 
             <div class="card-body mb-3">
                 <div class="row">
+                    <?php if ($general->favorite_dancer) : ?>
                     <div class="col-lg-6 col-md-6 col-xs-12">
                         <div class="md-form">
                             <?= $this->Form->control('favorite_dancer',
@@ -161,6 +162,9 @@
                             <label for="f--f_dancer">好きなダンサー</label>
                         </div>
                     </div>
+                    <?php endif; ?>
+
+                    <?php if ($general->favorite_artist) : ?>
                     <div class="col-lg-6 col-md-12 col-xs-12">
                         <div class="md-form">
                             <?= $this->Form->control('favorite_artist',
@@ -174,20 +178,21 @@
                             <label for="f--f_artist">好きなアーティスト</label>
                         </div>
                     </div>
+                    <?php endif; ?>
                 </div>
 
                 <?php if ($general->notes) : ?>
-                <div class="row mt-3">
-                    <div class="col-lg-12 text-left">
-                        <label class="dark-gray-text w-100"><small>紹介詳細</small></label>
-                        <div class="md-form mt-0">
-                            <?= nl2br(h($general->notes)) ?>
+                    <div class="row mt-2">
+                        <div class="col-lg-12">
+                            <h6 class="dark-grey-text">紹介詳細</h6>
+                            <hr class="text-left blue mb-3 pb-1 mt-0 ml-0" style="width: 100px;">
+                            <div class="md-form mt-0">
+                                <?= nl2br(h($general->notes)) ?>
+                            </div>
                         </div>
-                        <hr class="mdb-form-color">
                     </div>
-                </div>
+                    <hr class="mdb-form-color">
                 <?php endif; ?>
-
             </div><!-- /.card-body -->
         </div><!-- /.card -->
     </div><!-- /.col-lg-8 -->

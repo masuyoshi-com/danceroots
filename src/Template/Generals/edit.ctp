@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <label class="dark-gray-text w-100 text-left">
+                            <label class="dark-grey-text w-100 text-left">
                                 <small>アイコン画像 </small>
                                 <span class="badge badge-info">変更する場合のみ選択</span>
                             </label>
@@ -48,7 +48,7 @@
                                     'options' => $prefs
                                 ]
                             ) ?>
-                            <label for="f--pref">都道府県</label>
+                            <label for="f--pref">都道府県 <span class="red-text">※</span></label>
                         </div>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <label class="dark-grey-text"><small>自己紹介</small></label>
+                        <label class="dark-grey-text"><small>自己紹介 <span class="red-text">※</span></small></label>
                         <div class="md-form mt-0">
                             <?= $this->Form->control('self_intro', ['class' => 'form-control']) ?>
                         </div>
@@ -107,19 +107,19 @@
 
                 <div class="row">
                     <div class="col-lg-4 col-md-6 col-xs-12">
-                        <label class="dark-gray-text w-100 text-left mt-3"><small>Facebook</small></label>
+                        <label class="dark-grey-text w-100 text-left mt-3"><small>Facebook</small></label>
                         <div class="md-form mt-0">
                             <?= $this->Form->control('facebook', ['class' => 'form-control']) ?>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-xs-12">
-                        <label class="dark-gray-text w-100 text-left mt-3"><small>Twitter</small></label>
+                        <label class="dark-grey-text w-100 text-left mt-3"><small>Twitter</small></label>
                         <div class="md-form mt-0">
                             <?= $this->Form->control('twitter', ['class' => 'form-control']) ?>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-12 col-xs-12">
-                        <label class="dark-gray-text w-100 text-left mt-3"><small>Instagram</small></label>
+                        <label class="dark-grey-text w-100 text-left mt-3"><small>Instagram</small></label>
                         <div class="md-form mt-0">
                             <?= $this->Form->control('instagram', ['class' => 'form-control']) ?>
                         </div>
@@ -131,12 +131,12 @@
                         <div class="md-form">
                             <?= $this->Form->textarea('notes',
                                 [
-                                    'id'    => 'f--plan',
+                                    'id'    => 'f--note',
                                     'class' => 'form-control md-textarea',
                                     'rows'  => '8',
                                 ]
                             ) ?>
-                            <label for="f--plan">紹介詳細</label>
+                            <label for="f--note">紹介詳細</label>
                         </div>
                     </div>
                 </div>
