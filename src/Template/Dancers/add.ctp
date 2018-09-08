@@ -10,7 +10,7 @@
 <?= $this->Form->hidden('user_id', ['value' => $logins['id']]) ?>
 <div class="row">
 
-    <div class="col-lg-4 col-md-12 mt-5">
+    <div class="col-lg-4 col-md-12 mt-4">
         <section class="card card-cascade card-avatar mb-4 mt-5">
 
             <?= $this->Html->image('/img/sample/no_icon.jpg') ?>
@@ -49,7 +49,7 @@
                                     'options' => $genres,
                                 ]
                             ) ?>
-                            <label for="f--genre">ジャンル</label>
+                            <label for="f--genre">ジャンル <span class="red-text">※</span></label>
                         </div>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                                     'options' => $prefs,
                                 ]
                             ) ?>
-                            <label for="f--pref">都道府県</label>
+                            <label for="f--pref">都道府県 <span class="red-text">※</span></label>
                         </div>
                     </div>
                 </div>
@@ -126,7 +126,7 @@
                     <div class="col-lg-6 col-md-6 col-xs-12">
                         <div class="md-form">
                             <?= $this->Form->control('career', ['id' => 'f--career', 'class' => 'form-control', 'min' => 1, 'max' => 60]) ?>
-                            <label for="f--career">ダンス年数</label>
+                            <label for="f--career">ダンス年数 <span class="red-text">※</span></label>
                         </div>
                     </div>
                 </div>
@@ -135,7 +135,7 @@
                     <div class="col-lg-12">
                         <div class="md-form">
                             <?= $this->Form->control('self_intro', ['id' => 'f--self_intro', 'class' => 'form-control']) ?>
-                            <label for="f--self_intro">自己紹介</label>
+                            <label for="f--self_intro">自己紹介 <span class="red-text">※</span></label>
                         </div>
                     </div>
                 </div>
@@ -199,7 +199,7 @@
                                     'placeholder' => 'コンテストやクラブゲスト歴など'
                                 ]
                             ) ?>
-                            <label for="f--history">経歴</label>
+                            <label for="f--history">経歴 <span class="red-text">※</span></label>
                         </div>
                     </div>
                 </div>

@@ -15,7 +15,6 @@
         <div class="col-lg-3 col-md-6 col-xs-12 mt-2">
             <?= $this->Form->control('pref',
                 [
-                    'id'      => 'f--genre',
                     'type'    => 'select',
                     'class'   => 'mdb-select colorful-select dropdown-primary',
                     'options' => $prefs,
@@ -26,7 +25,6 @@
         <div class="col-lg-3 col-md-6 col-xs-12 mt-2">
             <?= $this->Form->control('genre',
                 [
-                    'id'      => 'f--genre',
                     'type'    => 'select',
                     'class'   => 'mdb-select colorful-select dropdown-primary',
                     'options' => $genres,

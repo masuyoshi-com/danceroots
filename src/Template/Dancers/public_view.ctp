@@ -155,88 +155,125 @@
         <div class="card card-cascade narrower mt-3 mb-3">
 
             <div class="view gradient-card-header mdb-color lighten-2">
-                <h5 class="mb-0 font-bold"><?= h($dancer->user->username) ?> Profile</h5>
+                <h5 class="mb-0 font-weight-bold"><?= h($dancer->user->username) ?> Profile</h5>
             </div>
 
-            <div class="card-body text-center">
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-xs-12">
+                        <div class="md-form">
+                            <?= $this->Form->control('pref',
+                                [
+                                    'class' => 'form-control',
+                                    'value' => h($dancer->pref),
+                                    'disabled'
+                                ]
+                            ) ?>
+                            <label>都道府県</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xs-12">
+                        <div class="md-form">
+                            <?= $this->Form->control('genre',
+                                [
+                                    'class' => 'form-control font-weight-bold',
+                                    'value' => $dancer->genre,
+                                    'disabled'
+                                ]
+                            ) ?>
+                            <label>ジャンル</label>
+                        </div>
+                    </div>
+                </div><!-- /.row -->
 
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-xs-12">
                         <div class="md-form">
                             <?= $this->Form->control('age',
                                 [
-                                    'id'    => 'f--age',
                                     'class' => 'form-control',
                                     'value' => h($dancer->age),
                                     'disabled'
                                 ]
                             ) ?>
-                            <label for="f--age">年齢</label>
+                            <label>年齢</label>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-xs-12">
                         <div class="md-form">
                             <?= $this->Form->control('career',
                                 [
-                                    'id'    => 'f--career',
                                     'class' => 'form-control',
                                     'value' => h($dancer->career),
                                     'disabled'
                                 ]
                             ) ?>
-                            <label for="f--age">ダンス年数</label>
+                            <label>ダンス年数</label>
                         </div>
                     </div>
                 </div><!-- /.row -->
 
-                <div class="row mt-3">
-                    <div class="col-lg-12 text-left">
-                        <label class="dark-gray-text w-100"><small>経歴</small></label>
+                <div class="row mt-4">
+                    <div class="col-lg-12">
+                        <h6 class="dark-grey-text">経歴</h6>
+                        <hr class="text-left blue mb-3 pb-1 mt-0 ml-0" style="width: 100px;">
                         <div class="md-form mt-0">
                             <?= nl2br(h($dancer->history)) ?>
                         </div>
-                        <hr class="mdb-form-color">
                     </div>
                 </div>
+
+                <hr class="mdb-form-color">
+
+                <?php if ($dancer->plan) : ?>
+                    <div class="row mt-4">
+                        <div class="col-lg-12">
+                            <h6 class="dark-gray-text">PR・今後の予定</h6>
+                            <hr class="text-left pink mb-3 pb-1 mt-0 ml-0" style="width: 100px;">
+                            <div class="md-form mt-0">
+                                <?= nl2br(h($dancer->plan)) ?>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="mdb-form-color">
+                <?php endif; ?>
 
                 <div class="row">
                     <div class="col-lg-4 col-md-6 col-xs-12">
                         <div class="md-form">
                             <?= $this->Form->control('practice_place',
                                 [
-                                    'id'    => 'f--p_place',
                                     'class' => 'form-control',
                                     'value' => h($dancer->practice_place),
                                     'disabled'
                                 ]
                             ) ?>
-                            <label for="f--p_place">主な練習場所</label>
+                            <label>主な練習場所</label>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-xs-12">
                         <div class="md-form">
                             <?= $this->Form->control('favorite_brand',
                                 [
-                                    'id'    => 'f--f_brand',
                                     'class' => 'form-control',
                                     'value' => h($dancer->favorite_brand),
                                     'disabled'
                                 ]
                             ) ?>
-                            <label for="f--f_brand">好きなブランド</label>
+                            <label>好きなブランド</label>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-xs-12">
                         <div class="md-form">
                             <?= $this->Form->control('url',
                                 [
-                                    'id'    => 'f--url',
                                     'class' => 'form-control',
                                     'value' => h($dancer->url),
                                     'disabled'
                                 ]
                             ) ?>
-                            <label for="f--url">サイトURL</label>
+                            <label>プロフィールURL</label>
                         </div>
                     </div>
                 </div><!-- /.row -->
@@ -246,50 +283,35 @@
                         <div class="md-form">
                             <?= $this->Form->control('respect_dancer',
                                 [
-                                    'id'    => 'f--r_dancer',
                                     'class' => 'form-control',
                                     'value' => h($dancer->respect_dancer),
                                     'disabled'
                                 ]
                             ) ?>
-                            <label for="f--r_dancer">リスペクトダンサー</label>
+                            <label>リスペクトダンサー</label>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-xs-12">
                         <div class="md-form">
                             <?= $this->Form->control('favorite_artist',
                                 [
-                                    'id'    => 'f--f_artist',
                                     'class' => 'form-control',
                                     'value' => h($dancer->favorite_artist),
                                     'disabled'
                                 ]
                             ) ?>
-                            <label for="f--f_artist">好きなアーティスト</label>
+                            <label>好きなアーティスト</label>
                         </div>
                     </div>
                 </div>
-
-                <?php if ($dancer->plan) : ?>
-                <div class="row mt-3">
-                    <div class="col-lg-12 text-left">
-                        <label class="dark-gray-text w-100"><small>PR・今後の予定</small></label>
-                        <div class="md-form mt-0">
-                            <?= nl2br(h($dancer->plan)) ?>
-                        </div>
-                        <hr class="mdb-form-color">
-                    </div>
-                </div>
-                <?php endif; ?>
-
             </div><!-- /.card-body -->
         </div><!-- /.card -->
     </div><!-- /.col-lg-8 -->
 </div><!-- /.row -->
 
 <?php if ($dancer->youtube1 || $dancer->youtube2 || $dancer->youtube3) : ?>
-<div class="card card-body mb-3">
-    <h6><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
+<div class="card card-body mb-3 elegant-color">
+    <h6 class="white-text"><i class="fa fa-youtube-play yt-ic"></i> Dance Video</h6>
     <div class="row">
 
         <?php if ($dancer->youtube1) : ?>

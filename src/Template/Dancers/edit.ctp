@@ -52,7 +52,7 @@
                                     'options' => $genres
                                 ]
                             ) ?>
-                            <label for="f--genre">ジャンル</label>
+                            <label for="f--genre">ジャンル <span class="red-text">※</span></label>
                         </div>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                                     'options' => $prefs
                                 ]
                             ) ?>
-                            <label for="f--pref">都道府県</label>
+                            <label for="f--pref">都道府県 <span class="red-text">※</span></label>
                         </div>
                     </div>
                 </div>
@@ -133,7 +133,7 @@
                                 <div class="col-lg-6 col-md-6 col-xs-12">
                                     <div class="md-form">
                                         <?= $this->Form->control('career', ['id' => 'f--career', 'class' => 'form-control', 'min' => 1, 'max' => 60]) ?>
-                                        <label for="f--age">ダンス年数</label>
+                                        <label for="f--age">ダンス年数 <span class="red-text">※</span></label>
                                     </div>
                                 </div>
                             </div>
@@ -142,7 +142,7 @@
                                 <div class="col-lg-12">
                                     <div class="md-form">
                                         <?= $this->Form->control('self_intro', ['id' => 'f--self_intro', 'class' => 'form-control']) ?>
-                                        <label for="f--self_intro">自己紹介</label>
+                                        <label for="f--self_intro">自己紹介 <span class="red-text">※</span></label>
                                     </div>
                                 </div>
                             </div>
@@ -158,7 +158,7 @@
                                                 'placeholder' => 'コンテストやクラブゲスト歴など'
                                             ]
                                         ) ?>
-                                        <label for="f--history">経歴</label>
+                                        <label for="f--history">経歴 <span class="red-text">※</span></label>
                                     </div>
                                 </div>
                             </div>
@@ -246,7 +246,7 @@
 <div class="card card-body mb-3">
     <div class="row">
         <div class="col-lg-12">
-            <p><i class="fa fa-youtube-play yt-ic"></i> Youtube</p>
+            <p class="dark-grey-text"><i class="fa fa-youtube-play yt-ic"></i> Youtube</p>
         </div>
         <?php for ($i = 0; $i < count($videos); $i++) : ?>
         <div class="col-lg-4 col-md-12 mb-3">
@@ -284,7 +284,7 @@
 
     <div class="row">
         <div class="col-lg-12 mt-4">
-            <p><i class="fa fa-image"></i> Image <span class="badge badge-info">変更する場合のみ選択</span></p>
+            <p class="dark-grey-text"><i class="fa fa-image"></i> Dance Image <span class="badge badge-info">変更する場合のみ選択</span></p>
         </div>
 
         <div id="mdb-lightbox-ui"></div>
