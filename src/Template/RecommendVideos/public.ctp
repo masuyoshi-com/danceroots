@@ -23,7 +23,7 @@
     <div class="col-lg-12 col-md-12 pt-3 pb-3">
         <div class="d-flex">
             <h6 class="h6-responsive font-weight-bold mb-0">
-                <i class="fa fa-youtube-play yt-ic"></i> おすすめダンス動画
+                <i class="fa fa-youtube-play yt-ic"></i> Dance Video
             </h6>
             <?php if (!isset($logins)) : ?>
                 <p class="ml-auto mb-0">
