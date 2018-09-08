@@ -42,7 +42,7 @@
                     <span class="badge indigo"><?= h($dancer->genre) ?></span>
                     <spna class="badge purple"><?= h($dancer->user->classification) ?></span>
                 </p>
-                <h4 class="card-title"><strong><?= h($dancer->user->username) ?></strong></h4>
+                <h4 class="card-title dark-grey-text font-weight-bold"><?= h($dancer->user->username) ?></h4>
 
                 <?php if ($dancer->team_name) : ?>
                 <h5 class="dark-grey-text">Team: <strong><?= h($dancer->team_name) ?></strong></h5>

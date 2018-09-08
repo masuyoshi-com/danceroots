@@ -179,7 +179,7 @@ class CirclesTable extends Table
             ->scalar('conditions')
             ->maxLength('conditions', 255)
             ->requirePresence('conditions', 'create')
-            ->notEmpty('conditions')
+            ->allowEmpty('conditions')
             ->add('conditions', 'custom', [
                 'rule'     => 'isSpace',
                 'provider' => 'custom',
@@ -188,8 +188,7 @@ class CirclesTable extends Table
 
         $validator
             ->scalar('purpose')
-            ->requirePresence('purpose', 'create')
-            ->notEmpty('purpose');
+            ->allowEmpty('purpose');
 
         $validator
             ->allowEmpty('public_flag');
