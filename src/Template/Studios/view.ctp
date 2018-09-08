@@ -249,7 +249,7 @@
 
             <div class="row mt-2">
                 <div class="col-lg-12">
-                    <h6 class="dark-gray-text">スタジオ紹介</h6>
+                    <h6 class="dark-grey-text">スタジオ紹介</h6>
                     <hr class="text-left blue mb-3 pb-1 mt-0 ml-0" style="width: 100px;">
                     <div class="md-form mt-0">
                         <?= nl2br(h($studio->introduction)) ?>
@@ -260,7 +260,7 @@
             <?php if ($studio->campaign) : ?>
                 <div class="row mt-5">
                     <div class="col-lg-12">
-                        <h6 class="dark-gray-text">キャンペーン</h6>
+                        <h6 class="dark-grey-text">キャンペーン</h6>
                         <hr class="text-left pink mb-3 pb-1 mt-0 ml-0" style="width: 100px;">
                         <div class="md-form mt-0">
                             <?= nl2br(h($studio->campaign)) ?>
@@ -297,7 +297,7 @@
 
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-12">
-                    <label class="dark-gray-text w-100 text-left"><small>体験レッスン</small></label>
+                    <label class="dark-grey-text w-100 text-left"><small>体験レッスン</small></label>
                     <div class="md-form mt-0">
                         <?php
                             if ($studio->ex_lesson === 0) {
