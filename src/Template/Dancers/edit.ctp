@@ -243,10 +243,10 @@
     </div><!-- /.col-lg-8 -->
 </div><!-- /.row -->
 
-<div class="card card-body mb-3">
+<div class="card card-body mb-3 elegant-color">
     <div class="row">
         <div class="col-lg-12">
-            <p class="dark-grey-text"><i class="fa fa-youtube-play yt-ic"></i> Youtube</p>
+            <p class="white-text"><i class="fa fa-youtube-play yt-ic"></i> Youtube</p>
         </div>
         <?php for ($i = 0; $i < count($videos); $i++) : ?>
         <div class="col-lg-4 col-md-12 mb-3">
@@ -261,27 +261,29 @@
         <?php endfor; ?>
     </div><!-- /.row -->
 
-    <div class="row">
+    <div class="row white-text">
         <div class="col-lg-4 col-md-6 col-xs-12">
-            <label class="dark-gray-text w-100 text-left"><small>Youtube①</small></label>
+            <label class="w-100 text-left"><small>Youtube①</small></label>
             <div class="md-form mt-0">
-                <?= $this->Form->control('youtube1', ['class' => 'form-control']) ?>
+                <?= $this->Form->control('youtube1', ['class' => 'form-control white-text']) ?>
             </div>
         </div>
         <div class="col-lg-4 col-md-6 col-xs-12">
-            <label class="dark-gray-text w-100 text-left"><small>Youtube②</small></label>
+            <label class="w-100 text-left"><small>Youtube②</small></label>
             <div class="md-form mt-0">
-                <?= $this->Form->control('youtube2', ['class' => 'form-control']) ?>
+                <?= $this->Form->control('youtube2', ['class' => 'form-control white-text']) ?>
             </div>
         </div>
         <div class="col-lg-4 col-md-12 col-xs-12">
-            <label class="dark-gray-text w-100 text-left"><small>Youtube③</small></label>
+            <label class="w-100 text-left"><small>Youtube③</small></label>
             <div class="md-form mt-0">
-                <?= $this->Form->control('youtube3', ['class' => 'form-control']) ?>
+                <?= $this->Form->control('youtube3', ['class' => 'form-control white-text']) ?>
             </div>
         </div>
     </div>
+</div>
 
+<div class="card card-body mb-3">
     <div class="row">
         <div class="col-lg-12 mt-4">
             <p class="dark-grey-text"><i class="fa fa-image"></i> Dance Image <span class="badge badge-info">変更する場合のみ選択</span></p>
