@@ -107,7 +107,18 @@ class OrganizersTable extends Table
         $validator
             ->scalar('city')
             ->maxLength('city', 100)
-            ->allowEmpty('city');
+            ->notEmpty('city');
+
+        $validator
+            ->scalar('address')
+            ->maxLength('address', 150)
+            ->requirePresence('address', 'create')
+            ->allowEmpty('address')
+            ->add('address', 'custom', [
+                'rule'     => 'isSpace',
+                'provider' => 'custom',
+                'message'  => '空白のみは受け付けません。'
+            ]);
 
         $validator
             ->scalar('url')

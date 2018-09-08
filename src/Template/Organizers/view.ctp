@@ -27,15 +27,14 @@
 <div class="row">
     <div class="col-lg-8 col-md-12 mb-3">
         <div class="card card-cascade narrower mb-3">
-            <div class="card-body mb-3">
+            <div class="card-body">
 
                 <?php if ($organizer->image1 || $organizer->image2 || $organizer->image3) : ?>
-                <hr>
-
                 <div class="row">
                     <div class="col-lg-1">
                     </div>
                     <div class="col-lg-10">
+                        <h6 class="grey-text text-right">Event Image</h6>
                         <div id="carousel-studio" class="carousel slide carousel-fade" data-ride="carousel">
 
                             <ol class="carousel-indicators">
@@ -92,55 +91,72 @@
                 <?php endif; ?>
 
                 <?php if ($organizer->organaized) : ?>
-                    <div class="row mt-3">
-                        <div class="col-lg-12 text-left">
-                            <label class="dark-gray-text w-100"><small>主催イベント実績</small></label>
+                    <div class="row mt-4">
+                        <div class="col-lg-12">
+                            <h6 class="dark-grey-text">主催イベント</h6>
+                            <hr class="text-left pink mb-3 pb-1 mt-0 ml-0" style="width: 100px;">
                             <div class="md-form mt-0">
                                 <?= nl2br(h($organizer->organaized)) ?>
                             </div>
-                            <hr class="mdb-form-color">
                         </div>
                     </div>
+                    <hr class="mdb-form-color">
                 <?php endif; ?>
 
-                <div class="row mt-3">
-                    <div class="col-lg-12 text-left">
-                        <label class="dark-gray-text w-100"><small>企業紹介・各種イベントコンセプト</small></label>
+                <div class="row mt-4">
+                    <div class="col-lg-12">
+                        <h6 class="dark-grey-text">企業紹介・各種イベントコンセプト</h6>
+                        <hr class="text-left blue mb-3 pb-1 mt-0 ml-0" style="width: 100px;">
                         <div class="md-form mt-0">
                             <?= nl2br(h($organizer->introduction)) ?>
                         </div>
-                        <hr class="mdb-form-color">
                     </div>
                 </div>
+                <hr class="mdb-form-color">
 
                 <?php if ($organizer->plan) : ?>
-                    <div class="row mt-3">
-                        <div class="col-lg-12 text-left">
-                            <label class="dark-gray-text w-100"><small>今後のイベント予定など</small></label>
+                    <div class="row mt-4 mb-3">
+                        <div class="col-lg-12">
+                            <h6 class="dark-grey-text">今後のイベント予定など</h6>
+                            <hr class="text-left success-color mb-3 pb-1 mt-0 ml-0" style="width: 100px;">
                             <div class="md-form mt-0">
                                 <?= nl2br(h($organizer->plan)) ?>
                             </div>
-                            <hr class="mdb-form-color">
                         </div>
                     </div>
+                    <hr class="mdb-form-color">
                 <?php endif; ?>
 
-                <?php if ($organizer->youtube) : ?>
-                    <div class="row mt-3">
-                        <div class="col-lg-1">
-                        </div>
-                        <div class="col-lg-10">
-                            <h6 class="grey-text"><i class="fa fa-youtube-play yt-ic"></i> Event Video</h6>
-                            <div class="embed-responsive embed-responsive-16by9 z-depth-1">
-                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($organizer->youtube) ?>?rel=0" style="height: 100%" allowfullscreen></iframe>
+                <?php if ($organizer->address) : ?>
+                    <div class="row mt-4">
+                        <div class="col-lg-12 text-left">
+                            <label class="dark-grey-text w-100"><small>所在地</small></label>
+                            <div class="md-form mt-0">
+                                <?= h($organizer->pref . $organizer->city . $organizer->address) ?>
                             </div>
-                        </div>
-                        <div class="col-lg-1">
+                            <hr class="mdb-form-color">
                         </div>
                     </div>
                 <?php endif; ?>
             </div><!-- /.card-body -->
         </div><!-- /.card -->
+
+        <?php if ($organizer->youtube) : ?>
+        <div class="card card-body mb-3 elegant-color">
+            <div class="row">
+                <div class="col-lg-1">
+                </div>
+                <div class="col-lg-10">
+                    <h6 class="white-text"><i class="fa fa-youtube-play yt-ic"></i> Event Video</h6>
+                    <div class="embed-responsive embed-responsive-16by9 z-depth-1">
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($organizer->youtube) ?>?rel=0" style="height: 100%" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="col-lg-1">
+                </div>
+            </div>
+        </div><!-- /.card -->
+        <?php endif; ?>
     </div><!-- /.col-lg-8 -->
 
     <div class="col-lg-4 col-md-12">
@@ -159,7 +175,7 @@
                     <span class="badge badge-secondary"><?= h($organizer->pref) ?></span>
                     <span class="badge badge-default"><?= h($organizer->user->classification) ?></span>
                 </p>
-                <h4 class="card-title"><strong><?= h($organizer->user->username) ?></strong></h4>
+                <h4 class="card-title dark-grey-text font-weight-bold"><?= h($organizer->user->username) ?></h4>
 
                 <?php if ($organizer->city) : ?>
                 <p class="dark-grey-text"><?= h($organizer->city) ?></p>

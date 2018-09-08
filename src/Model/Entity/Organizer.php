@@ -6,12 +6,13 @@ use Cake\ORM\Entity;
 /**
  * Organizer Entity
  *
- * @property int $id
- * @property int $user_id
+ * @property int    $id
+ * @property int    $user_id
  * @property string $icon
  * @property string $company
  * @property string $pref
  * @property string $city
+ * @property string $address
  * @property string $url
  * @property string $self_intro
  * @property string $facebook
@@ -36,29 +37,30 @@ class Organizer extends Entity
      * @var array
      */
     protected $_accessible = [
-        'user_id' => true,
-        'icon' => true,
-        'icon_file' => true,
-        'company' => true,
-        'pref' => true,
-        'city' => true,
-        'url' => true,
-        'self_intro' => true,
-        'facebook' => true,
-        'twitter' => true,
-        'instagram' => true,
-        'organaized' => true,
-        'youtube' => true,
-        'image1' => true,
-        'image1_file' => true,
-        'image2' => true,
-        'image2_file' => true,
-        'image3' => true,
-        'image3_file' => true,
+        'user_id'      => true,
+        'icon'         => true,
+        'icon_file'    => true,
+        'company'      => true,
+        'pref'         => true,
+        'city'         => true,
+        'address'      => true,
+        'url'          => true,
+        'self_intro'   => true,
+        'facebook'     => true,
+        'twitter'      => true,
+        'instagram'    => true,
+        'organaized'   => true,
+        'youtube'      => true,
+        'image1'       => true,
+        'image1_file'  => true,
+        'image2'       => true,
+        'image2_file'  => true,
+        'image3'       => true,
+        'image3_file'  => true,
         'introduction' => true,
-        'plan' => true,
-        'created' => true,
-        'modified' => true,
-        'user' => true
+        'plan'         => true,
+        'created'      => true,
+        'modified'     => true,
+        'user'         => true
     ];
 }

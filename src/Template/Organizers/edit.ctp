@@ -22,31 +22,11 @@
 
             <div class="card-body mb-3">
 
-                <?php if ($video) : ?>
                 <div class="row">
                     <div class="col-lg-12">
-                        <h6><i class="fa fa-youtube-play yt-ic"></i> Event Video</h6>
-                        <div class="embed-responsive embed-responsive-16by9 z-depth-1">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($video) ?>?rel=0" style="height: 100%" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
-                <?php endif; ?>
-
-                <div class="row">
-                    <div class="col-lg-12 mt-3">
-                        <label class="dark-gray-text w-100 text-left"><small>Youtube</small> <span class="badge badge-info">イベント動画URLのコピペ</span></label>
+                        <label class="dark-grey-text w-100 text-left"><small>自己紹介 <span class="red-text">※</span></small></label>
                         <div class="md-form mt-0">
-                            <?= $this->Form->control('youtube', ['class' => 'form-control']) ?>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="md-form">
-                            <?= $this->Form->control('self_intro', ['id' => 'f--s_intro', 'class' => 'form-control']) ?>
-                            <label for="f--s_intro">簡単な紹介・コメント</label>
+                            <?= $this->Form->control('self_intro', ['class' => 'form-control']) ?>
                         </div>
                     </div>
                 </div>
@@ -67,27 +47,6 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 col-xs-12">
-                        <label class="dark-gray-text w-100 text-left"><small>Twitter</small></label>
-                        <div class="md-form mt-0">
-                            <?= $this->Form->control('twitter', ['class' => 'form-control']) ?>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-xs-12">
-                        <label class="dark-gray-text w-100 text-left"><small>Facebook</small></label>
-                        <div class="md-form mt-0">
-                            <?= $this->Form->control('facebook', ['class' => 'form-control']) ?>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12 col-xs-12">
-                        <label class="dark-gray-text w-100 text-left"><small>Instagram</small></label>
-                        <div class="md-form mt-0">
-                            <?= $this->Form->control('instagram', ['class' => 'form-control']) ?>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
                     <div class="col-lg-12">
                         <div class="md-form">
                             <?= $this->Form->textarea('introduction',
@@ -97,7 +56,7 @@
                                     'rows'  => '8',
                                 ]
                             ) ?>
-                            <label for="f--intro">企業紹介・各種イベントコンセプト</label>
+                            <label for="f--intro">企業紹介・各種イベントコンセプト <span class="red-text">※</span></label>
                         </div>
                     </div>
                 </div>
@@ -113,6 +72,27 @@
                                 ]
                             ) ?>
                             <label for="f--plan">今後のイベント予定など</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <label class="dark-grey-text w-100 text-left"><small>Twitter</small></label>
+                        <div class="md-form mt-0">
+                            <?= $this->Form->control('twitter', ['class' => 'form-control']) ?>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <label class="dark-grey-text w-100 text-left"><small>Facebook</small></label>
+                        <div class="md-form mt-0">
+                            <?= $this->Form->control('facebook', ['class' => 'form-control']) ?>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-xs-12">
+                        <label class="dark-grey-text w-100 text-left"><small>Instagram</small></label>
+                        <div class="md-form mt-0">
+                            <?= $this->Form->control('instagram', ['class' => 'form-control']) ?>
                         </div>
                     </div>
                 </div>
@@ -138,7 +118,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <label class="dark-gray-text w-100 text-left">
+                            <label class="dark-grey-text w-100 text-left">
                                 <small>アイコン画像 </small>
                                 <span class="badge badge-info">変更する場合のみ選択</span>
                             </label>
@@ -167,7 +147,7 @@
                                     'options' => $prefs
                                 ]
                             ) ?>
-                            <label for="f--pref">都道府県</label>
+                            <label for="f--pref">都道府県 <span class="red-text">※</span></label>
                         </div>
                     </div>
                 </div>
@@ -176,7 +156,16 @@
                     <div class="col-lg-12">
                         <div class="md-form">
                             <?= $this->Form->control('city', ['id' => 'f--city', 'class' => 'form-control']) ?>
-                            <label for="f--city">市区町村</label>
+                            <label for="f--city">市区町村 <span class="red-text">※</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12 mt-3">
+                        <label class="dark-grey-text w-100 text-left"><small>所在地</small></label>
+                        <div class="md-form mt-0">
+                            <?= $this->Form->control('address', ['class' => 'form-control']) ?>
                         </div>
                     </div>
                 </div>
@@ -195,10 +184,33 @@
     </div><!-- /.col-lg-4 -->
 </div><!-- /. row -->
 
+<div class="card card-body elegant-color mb-3">
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-xs-12">
+        </div>
+        <div class="col-lg-6 col-md-6 col-xs-12 mb-3">
+            <p class="white-text dark-gray-text"><i class="fa fa-youtube-play yt-ic"></i> Event Video</p>
+            <?php if ($video) : ?>
+                <div class="embed-responsive embed-responsive-16by9 z-depth-1">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($video) ?>?rel=0" style="height: 100%" allowfullscreen></iframe>
+                </div>
+            <?php else : ?>
+                <?= $this->Html->image('/img/sample/no_video.jpg', ['class' => 'img-fluid']) ?>
+            <?php endif; ?>
+            <label class="white-text dark-gray-text w-100 text-left mt-3"><small>YouTube URL</small></label>
+            <div class="md-form mt-0">
+                <?= $this->Form->control('youtube', ['class' => 'form-control white-text']) ?>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-xs-12">
+        </div>
+    </div>
+</div><!-- /.card -->
+
 <div class="card card-body mb-3">
     <div class="row">
         <div class="col-lg-12 mt-2">
-            <p><i class="fa fa-image"></i> Image <span class="badge badge-info">変更する場合のみ選択</span></p>
+            <p class="dark-grey-text"><i class="fa fa-image"></i> Event Image <span class="badge badge-info">変更する場合のみ選択</span></p>
         </div>
 
         <div id="mdb-lightbox-ui"></div>
@@ -236,19 +248,19 @@
     <div class="row">
         <div class="col-lg-4 col-md-12">
             <div class="form-group">
-                <label class="dark-gray-text w-100 text-left mt-2"><small>イベント画像①</small></label>
+                <label class="dark-grey-text w-100 text-left mt-2"><small>イベント画像①</small></label>
                 <?= $this->Form->control('image1_file', ['type' => 'file', 'class' => 'form-control']) ?>
             </div>
         </div>
         <div class="col-lg-4 col-md-12">
             <div class="form-group">
-                <label class="dark-gray-text w-100 text-left mt-2"><small>イベント画像②</small></label>
+                <label class="dark-grey-text w-100 text-left mt-2"><small>イベント画像②</small></label>
                 <?= $this->Form->control('image2_file', ['type' => 'file', 'class' => 'form-control']) ?>
             </div>
         </div>
         <div class="col-lg-4 col-md-12">
             <div class="form-group">
-                <label class="dark-gray-text w-100 text-left mt-2"><small>イベント画像③</small></label>
+                <label class="dark-grey-text w-100 text-left mt-2"><small>イベント画像③</small></label>
                 <?= $this->Form->control('image3_file', ['type' => 'file', 'class' => 'form-control']) ?>
             </div>
         </div>
