@@ -38,7 +38,7 @@
                                 'options' => $genres
                             ]
                         ) ?>
-                        <label for="f--genre">ジャンル</label>
+                        <label for="f--genre">ジャンル <span class="red-text">※</span></label>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-12">
@@ -73,7 +73,7 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <label class="dark-gray-text w-100 text-left"><small>タイトル</small></label>
+                    <label class="dark-gray-text w-100 text-left"><small>タイトル <span class="red-text">※</span></small></label>
                     <div class="md-form mt-0">
                         <?= $this->Form->control('title', ['id' => 'f--title', 'class' => 'form-control']) ?>
                     </div>
@@ -82,7 +82,7 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <label class="dark-gray-text w-100 text-left"><small>Youtube</small> <span class="badge badge-info">動画URLをコピペ</span></label>
+                    <label class="dark-gray-text w-100 text-left"><small>Youtube <span class="red-text">※</span></small> <span class="badge badge-info">動画URLをコピペ</span></label>
                     <div class="md-form mt-0">
                         <?= $this->Form->control('youtube', ['class' => 'form-control']) ?>
                     </div>
@@ -93,7 +93,11 @@
                 <div class="col-lg-12">
                     <label class="dark-gray-text w-100 text-left"><small>コメント</small>
                     <div class="md-form mt-0">
-                        <?= $this->Form->textarea('comment', ['class' => 'form-control md-textarea']) ?>
+                        <?= $this->Form->textarea('comment', [
+                                'class' => 'form-control md-textarea',
+                                'placeholder' => '使用しているアーティスト・曲など動画に関する情報'
+                            ])
+                        ?>
                     </div>
                 </div>
             </div>
