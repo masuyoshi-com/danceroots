@@ -24,10 +24,12 @@
                         </h5>
                     </div>
                     <div class="col-lg-6 col-md-6 col-xs-12">
-                        <?php if ($logins['id'] === $event->user_id) : ?>
-                        <h5 class="text-right mb-0">
-                            <span class="badge badge-warning">イベント所有者</span>
-                        </h5>
+                        <?php if (isset($logins)) : ?>
+                            <?php if ($logins['id'] === $event->user_id) : ?>
+                            <h5 class="text-right mb-0">
+                                <span class="badge badge-warning">イベント所有者</span>
+                            </h5>
+                            <?php endif; ?>
                         <?php endif; ?>
                     </div>
                 </div>
