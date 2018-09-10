@@ -83,20 +83,21 @@
                                                         </h3>
                                                     </div>
                                                     <div class="col-lg-7 text-center">
-                                                        <h2 class="h2-responsive product-name mt-3">
-                                                          <strong><?= h($suns[$times[$i]]['name']) ?></strong>
-                                                        </h2>
+                                                        <h3 class="h3-responsive product-name mt-3 dark-grey-text font-weight-bold">
+                                                            <?= h($suns[$times[$i]]['name']) ?>
+                                                        </h3>
                                                         <?php if ($suns[$times[$i]]['team']) : ?>
-                                                            <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($suns[$times[$i]]['team']) ?></h3>
+                                                            <h3 class="h3-responsive dark-grey-text"><small>Team:</small> <?= h($suns[$times[$i]]['team']) ?></h3>
                                                         <?php endif; ?>
                                                         <p>
-                                                            <small>ジャンル: </small><span class="badge <?= getStudioGenreColor($suns[$times[$i]]['genre']) ?>"><?= h($suns[$times[$i]]['genre']) ?></span>
+                                                            <small>ジャンル: </small>
+                                                            <span class="badge <?= getStudioGenreColor($suns[$times[$i]]['genre']) ?>">
+                                                                <?= h($suns[$times[$i]]['genre']) ?>
+                                                            </span>
+                                                            <span class="badge pink"><?= h($suns[$times[$i]]['difficulty']) ?></span>
                                                         </p>
                                                         <p class="font-weight-bold">
                                                             <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($suns[$times[$i]]['start']) ?> ～ <?= h($suns[$times[$i]]['end']) ?>
-                                                        </p>
-                                                        <p>
-                                                            <small><?= h($suns[$times[$i]]['difficulty']) ?></small>
                                                         </p>
                                                         <hr>
                                                         <div class="row">
@@ -104,7 +105,7 @@
                                                                 <?php if ($suns[$times[$i]]['comment']) : ?>
                                                                     <p class="dark-grey-text">
                                                                         <small>
-                                                                            <?= h($suns[$times[$i]]['comment']) ?>
+                                                                            <?= nl2br(h($suns[$times[$i]]['comment'])) ?>
                                                                         </small>
                                                                     </p>
                                                                 <?php endif; ?>
@@ -252,20 +253,21 @@
                                                         </h3>
                                                     </div>
                                                     <div class="col-lg-7 text-center">
-                                                        <h2 class="h2-responsive product-name mt-3">
-                                                          <strong><?= h($mons[$times[$i]]['name']) ?></strong>
-                                                        </h2>
+                                                        <h3 class="h3-responsive product-name mt-3 dark-grey-text font-weight-bold">
+                                                            <?= h($mons[$times[$i]]['name']) ?>
+                                                        </h3>
                                                         <?php if ($mons[$times[$i]]['team']) : ?>
-                                                            <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($mons[$times[$i]]['team']) ?></h3>
+                                                            <h3 class="h3-responsive dark-grey-text"><small>Team:</small> <?= h($mons[$times[$i]]['team']) ?></h3>
                                                         <?php endif; ?>
                                                         <p>
-                                                            <small>ジャンル: </small><span class="badge <?= getStudioGenreColor($mons[$times[$i]]['genre']) ?>"><?= h($mons[$times[$i]]['genre']) ?></span>
+                                                            <small>ジャンル: </small>
+                                                            <span class="badge <?= getStudioGenreColor($mons[$times[$i]]['genre']) ?>">
+                                                                <?= h($mons[$times[$i]]['genre']) ?>
+                                                            </span>
+                                                            <span class="badge pink"><?= h($mons[$times[$i]]['difficulty']) ?></span>
                                                         </p>
                                                         <p class="font-weight-bold">
                                                             <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($mons[$times[$i]]['start']) ?> ～ <?= h($mons[$times[$i]]['end']) ?>
-                                                        </p>
-                                                        <p>
-                                                            <small><?= h($mons[$times[$i]]['difficulty']) ?></small>
                                                         </p>
                                                         <hr>
                                                         <div class="row">
@@ -273,7 +275,7 @@
                                                                 <?php if ($mons[$times[$i]]['comment']) : ?>
                                                                     <p class="dark-grey-text">
                                                                         <small>
-                                                                            <?= h($mons[$times[$i]]['comment']) ?>
+                                                                            <?= nl2br(h($mons[$times[$i]]['comment'])) ?>
                                                                         </small>
                                                                     </p>
                                                                 <?php endif; ?>
@@ -420,20 +422,21 @@
                                                         </h3>
                                                     </div>
                                                     <div class="col-lg-7 text-center">
-                                                        <h2 class="h2-responsive product-name mt-3">
-                                                          <strong><?= h($tues[$times[$i]]['name']) ?></strong>
-                                                        </h2>
+                                                        <h3 class="h3-responsive product-name mt-3 dark-grey-text font-weight-bold">
+                                                            <?= h($tues[$times[$i]]['name']) ?>
+                                                        </h3>
                                                         <?php if ($tues[$times[$i]]['team']) : ?>
-                                                            <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($tues[$times[$i]]['team']) ?></h3>
+                                                            <h3 class="h3-responsive dark-grey-text"><small>Team:</small> <?= h($tues[$times[$i]]['team']) ?></h3>
                                                         <?php endif; ?>
                                                         <p>
-                                                            <small>ジャンル: </small><span class="badge <?= getStudioGenreColor($tues[$times[$i]]['genre']) ?>"><?= h($tues[$times[$i]]['genre']) ?></span>
+                                                            <small>ジャンル: </small>
+                                                            <span class="badge <?= getStudioGenreColor($tues[$times[$i]]['genre']) ?>">
+                                                                <?= h($tues[$times[$i]]['genre']) ?>
+                                                            </span>
+                                                            <span class="badge pink"><?= h($tues[$times[$i]]['difficulty']) ?></span>
                                                         </p>
                                                         <p class="font-weight-bold">
                                                             <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($tues[$times[$i]]['start']) ?> ～ <?= h($tues[$times[$i]]['end']) ?>
-                                                        </p>
-                                                        <p>
-                                                            <small><?= h($tues[$times[$i]]['difficulty']) ?></small>
                                                         </p>
                                                         <hr>
                                                         <div class="row">
@@ -441,7 +444,7 @@
                                                                 <?php if ($tues[$times[$i]]['comment']) : ?>
                                                                     <p class="dark-grey-text">
                                                                         <small>
-                                                                            <?= h($tues[$times[$i]]['comment']) ?>
+                                                                            <?= nl2br(h($tues[$times[$i]]['comment'])) ?>
                                                                         </small>
                                                                     </p>
                                                                 <?php endif; ?>
@@ -588,20 +591,21 @@
                                                         </h3>
                                                     </div>
                                                     <div class="col-lg-7 text-center">
-                                                        <h2 class="h2-responsive product-name mt-3">
-                                                          <strong><?= h($weds[$times[$i]]['name']) ?></strong>
-                                                        </h2>
+                                                        <h3 class="h3-responsive product-name mt-3 dark-grey-text font-weight-bold">
+                                                            <?= h($weds[$times[$i]]['name']) ?>
+                                                        </h3>
                                                         <?php if ($weds[$times[$i]]['team']) : ?>
-                                                            <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($weds[$times[$i]]['team']) ?></h3>
+                                                            <h3 class="h3-responsive dark-grey-text"><small>Team:</small> <?= h($weds[$times[$i]]['team']) ?></h3>
                                                         <?php endif; ?>
                                                         <p>
-                                                            <small>ジャンル: </small><span class="badge <?= getStudioGenreColor($weds[$times[$i]]['genre']) ?>"><?= h($weds[$times[$i]]['genre']) ?></span>
+                                                            <small>ジャンル: </small>
+                                                            <span class="badge <?= getStudioGenreColor($weds[$times[$i]]['genre']) ?>">
+                                                                <?= h($weds[$times[$i]]['genre']) ?>
+                                                            </span>
+                                                            <span class="badge pink"><?= h($weds[$times[$i]]['difficulty']) ?></span>
                                                         </p>
                                                         <p class="font-weight-bold">
                                                             <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($weds[$times[$i]]['start']) ?> ～ <?= h($weds[$times[$i]]['end']) ?>
-                                                        </p>
-                                                        <p>
-                                                            <small><?= h($weds[$times[$i]]['difficulty']) ?></small>
                                                         </p>
                                                         <hr>
                                                         <div class="row">
@@ -609,7 +613,7 @@
                                                                 <?php if ($weds[$times[$i]]['comment']) : ?>
                                                                     <p class="dark-grey-text">
                                                                         <small>
-                                                                            <?= h($weds[$times[$i]]['comment']) ?>
+                                                                            <?= nl2br(h($weds[$times[$i]]['comment'])) ?>
                                                                         </small>
                                                                     </p>
                                                                 <?php endif; ?>
@@ -756,20 +760,21 @@
                                                         </h3>
                                                     </div>
                                                     <div class="col-lg-7 text-center">
-                                                        <h2 class="h2-responsive product-name mt-3">
-                                                          <strong><?= h($thus[$times[$i]]['name']) ?></strong>
-                                                        </h2>
+                                                        <h3 class="h3-responsive product-name mt-3 dark-grey-text font-weight-bold">
+                                                            <?= h($thus[$times[$i]]['name']) ?>
+                                                        </h3>
                                                         <?php if ($thus[$times[$i]]['team']) : ?>
-                                                            <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($thus[$times[$i]]['team']) ?></h3>
+                                                            <h3 class="h3-responsive dark-grey-text"><small>Team:</small> <?= h($thus[$times[$i]]['team']) ?></h3>
                                                         <?php endif; ?>
                                                         <p>
-                                                            <small>ジャンル: </small><span class="badge <?= getStudioGenreColor($thus[$times[$i]]['genre']) ?>"><?= h($thus[$times[$i]]['genre']) ?></span>
+                                                            <small>ジャンル: </small>
+                                                            <span class="badge <?= getStudioGenreColor($thus[$times[$i]]['genre']) ?>">
+                                                                <?= h($thus[$times[$i]]['genre']) ?>
+                                                            </span>
+                                                            <span class="badge pink"><?= h($thus[$times[$i]]['difficulty']) ?></span>
                                                         </p>
                                                         <p class="font-weight-bold">
                                                             <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($thus[$times[$i]]['start']) ?> ～ <?= h($thus[$times[$i]]['end']) ?>
-                                                        </p>
-                                                        <p>
-                                                            <small><?= h($thus[$times[$i]]['difficulty']) ?></small>
                                                         </p>
                                                         <hr>
                                                         <div class="row">
@@ -777,7 +782,7 @@
                                                                 <?php if ($thus[$times[$i]]['comment']) : ?>
                                                                     <p class="dark-grey-text">
                                                                         <small>
-                                                                            <?= h($thus[$times[$i]]['comment']) ?>
+                                                                            <?= nl2br(h($thus[$times[$i]]['comment'])) ?>
                                                                         </small>
                                                                     </p>
                                                                 <?php endif; ?>
@@ -924,20 +929,21 @@
                                                         </h3>
                                                     </div>
                                                     <div class="col-lg-7 text-center">
-                                                        <h2 class="h2-responsive product-name mt-3">
-                                                          <strong><?= h($fris[$times[$i]]['name']) ?></strong>
-                                                        </h2>
+                                                        <h3 class="h3-responsive product-name mt-3 dark-grey-text font-weight-bold">
+                                                            <?= h($fris[$times[$i]]['name']) ?>
+                                                        </h3>
                                                         <?php if ($fris[$times[$i]]['team']) : ?>
-                                                            <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($fris[$times[$i]]['team']) ?></h3>
+                                                            <h3 class="h3-responsive dark-grey-text"><small>Team:</small> <?= h($fris[$times[$i]]['team']) ?></h3>
                                                         <?php endif; ?>
                                                         <p>
-                                                            <small>ジャンル: </small><span class="badge <?= getStudioGenreColor($fris[$times[$i]]['genre']) ?>"><?= h($fris[$times[$i]]['genre']) ?></span>
+                                                            <small>ジャンル: </small>
+                                                            <span class="badge <?= getStudioGenreColor($fris[$times[$i]]['genre']) ?>">
+                                                                <?= h($fris[$times[$i]]['genre']) ?>
+                                                            </span>
+                                                            <span class="badge pink"><?= h($fris[$times[$i]]['difficulty']) ?></span>
                                                         </p>
                                                         <p class="font-weight-bold">
                                                             <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($fris[$times[$i]]['start']) ?> ～ <?= h($fris[$times[$i]]['end']) ?>
-                                                        </p>
-                                                        <p>
-                                                            <small><?= h($fris[$times[$i]]['difficulty']) ?></small>
                                                         </p>
                                                         <hr>
                                                         <div class="row">
@@ -945,7 +951,7 @@
                                                                 <?php if ($fris[$times[$i]]['comment']) : ?>
                                                                     <p class="dark-grey-text">
                                                                         <small>
-                                                                            <?= h($fris[$times[$i]]['comment']) ?>
+                                                                            <?= nl2br(h($fris[$times[$i]]['comment'])) ?>
                                                                         </small>
                                                                     </p>
                                                                 <?php endif; ?>
@@ -1092,20 +1098,21 @@
                                                         </h3>
                                                     </div>
                                                     <div class="col-lg-7 text-center">
-                                                        <h2 class="h2-responsive product-name mt-3">
-                                                          <strong><?= h($sats[$times[$i]]['name']) ?></strong>
-                                                        </h2>
+                                                        <h3 class="h3-responsive product-name mt-3 dark-grey-text font-weight-bold">
+                                                            <?= h($sats[$times[$i]]['name']) ?>
+                                                        </h3>
                                                         <?php if ($sats[$times[$i]]['team']) : ?>
-                                                            <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($sats[$times[$i]]['team']) ?></h3>
+                                                            <h3 class="h3-responsive dark-grey-text"><small>Team:</small> <?= h($sats[$times[$i]]['team']) ?></h3>
                                                         <?php endif; ?>
                                                         <p>
-                                                            <small>ジャンル: </small><span class="badge <?= getStudioGenreColor($sats[$times[$i]]['genre']) ?>"><?= h($sats[$times[$i]]['genre']) ?></span>
+                                                            <small>ジャンル: </small>
+                                                            <span class="badge <?= getStudioGenreColor($sats[$times[$i]]['genre']) ?>">
+                                                                <?= h($sats[$times[$i]]['genre']) ?>
+                                                            </span>
+                                                            <span class="badge pink"><?= h($sats[$times[$i]]['difficulty']) ?></span>
                                                         </p>
                                                         <p class="font-weight-bold">
                                                             <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($sats[$times[$i]]['start']) ?> ～ <?= h($sats[$times[$i]]['end']) ?>
-                                                        </p>
-                                                        <p>
-                                                            <small><?= h($sats[$times[$i]]['difficulty']) ?></small>
                                                         </p>
                                                         <hr>
                                                         <div class="row">
@@ -1113,7 +1120,7 @@
                                                                 <?php if ($sats[$times[$i]]['comment']) : ?>
                                                                     <p class="dark-grey-text">
                                                                         <small>
-                                                                            <?= h($sats[$times[$i]]['comment']) ?>
+                                                                            <?= nl2br(h($sats[$times[$i]]['comment'])) ?>
                                                                         </small>
                                                                     </p>
                                                                 <?php endif; ?>
@@ -1307,16 +1314,17 @@
                                               <strong><?= h($suns[$times[$i]]['name']) ?></strong>
                                             </h2>
                                             <?php if ($suns[$times[$i]]['team']) : ?>
-                                                <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($suns[$times[$i]]['team']) ?></h3>
+                                                <h3 class="h3-responsive dark-grey-text"><small>Team:</small> <?= h($suns[$times[$i]]['team']) ?></h3>
                                             <?php endif; ?>
                                             <p>
-                                                <small>ジャンル: <strong><?= h($suns[$times[$i]]['genre']) ?></strong></small>
+                                                <small>ジャンル: </small>
+                                                <span class="badge  <?= getStudioGenreColor($suns[$times[$i]]['genre']) ?>">
+                                                    <?= h($suns[$times[$i]]['genre']) ?>
+                                                </span>
+                                                <span class="badge pink"><?= h($suns[$times[$i]]['difficulty']) ?></span>
                                             </p>
                                             <p class="font-weight-bold">
                                                 <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($suns[$times[$i]]['start']) ?> ～ <?= h($suns[$times[$i]]['end']) ?>
-                                            </p>
-                                            <p>
-                                                <small><?= h($suns[$times[$i]]['difficulty']) ?></small>
                                             </p>
                                             <?php if ($suns[$times[$i]]['comment'] || $suns[$times[$i]]['profile']) : ?>
                                                 <hr>
@@ -1325,7 +1333,7 @@
                                                         <?php if ($suns[$times[$i]]['comment']) : ?>
                                                             <p class="dark-grey-text">
                                                                 <small>
-                                                                    <?= h($suns[$times[$i]]['comment']) ?>
+                                                                    <?= nl2br(h($suns[$times[$i]]['comment'])) ?>
                                                                 </small>
                                                             </p>
                                                         <?php endif; ?>
@@ -1459,16 +1467,17 @@
                                                   <strong><?= h($mons[$times[$i]]['name']) ?></strong>
                                                 </h2>
                                                 <?php if ($mons[$times[$i]]['team']) : ?>
-                                                    <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($mons[$times[$i]]['team']) ?></h3>
+                                                    <h3 class="h3-responsive dark-grey-text"><small>Team:</small> <?= h($mons[$times[$i]]['team']) ?></h3>
                                                 <?php endif; ?>
                                                 <p>
-                                                    <small>ジャンル: <strong><?= h($mons[$times[$i]]['genre']) ?></strong></small>
+                                                    <small>ジャンル: </small>
+                                                    <span class="badge <?= getStudioGenreColor($mons[$times[$i]]['genre']) ?>">
+                                                        <?= h($mons[$times[$i]]['genre']) ?>
+                                                    </span>
+                                                    <span class="badge pink"><?= h($mons[$times[$i]]['difficulty']) ?></span>
                                                 </p>
                                                 <p class="font-weight-bold">
                                                     <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($mons[$times[$i]]['start']) ?> ～ <?= h($mons[$times[$i]]['end']) ?>
-                                                </p>
-                                                <p>
-                                                    <small><?= h($mons[$times[$i]]['difficulty']) ?></small>
                                                 </p>
                                                 <?php if ($mons[$times[$i]]['comment'] || $mons[$times[$i]]['profile']) : ?>
                                                     <hr>
@@ -1477,7 +1486,7 @@
                                                             <?php if ($mons[$times[$i]]['comment']) : ?>
                                                                 <p class="dark-grey-text">
                                                                     <small>
-                                                                        <?= h($mons[$times[$i]]['comment']) ?>
+                                                                        <?= nl2br(h($mons[$times[$i]]['comment'])) ?>
                                                                     </small>
                                                                 </p>
                                                             <?php endif; ?>
@@ -1611,16 +1620,17 @@
                                                   <strong><?= h($tues[$times[$i]]['name']) ?></strong>
                                                 </h2>
                                                 <?php if ($tues[$times[$i]]['team']) : ?>
-                                                    <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($tues[$times[$i]]['team']) ?></h3>
+                                                    <h3 class="h3-responsive dark-grey-text"><small>Team:</small> <?= h($tues[$times[$i]]['team']) ?></h3>
                                                 <?php endif; ?>
                                                 <p>
-                                                    <small>ジャンル: <strong><?= h($tues[$times[$i]]['genre']) ?></strong></small>
+                                                    <small>ジャンル: </small>
+                                                    <span class="badge <?= getStudioGenreColor($tues[$times[$i]]['genre']) ?>">
+                                                        <?= h($tues[$times[$i]]['genre']) ?>
+                                                    </span>
+                                                    <span class="badge pink"><?= h($tues[$times[$i]]['difficulty']) ?></span>
                                                 </p>
                                                 <p class="font-weight-bold">
                                                     <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($tues[$times[$i]]['start']) ?> ～ <?= h($tues[$times[$i]]['end']) ?>
-                                                </p>
-                                                <p>
-                                                    <small><?= h($tues[$times[$i]]['difficulty']) ?></small>
                                                 </p>
                                                 <?php if ($tues[$times[$i]]['comment'] || $tues[$times[$i]]['profile']) : ?>
                                                     <hr>
@@ -1629,7 +1639,7 @@
                                                             <?php if ($tues[$times[$i]]['comment']) : ?>
                                                                 <p class="dark-grey-text">
                                                                     <small>
-                                                                        <?= h($tues[$times[$i]]['comment']) ?>
+                                                                        <?= nl2br(h($tues[$times[$i]]['comment'])) ?>
                                                                     </small>
                                                                 </p>
                                                             <?php endif; ?>
@@ -1763,16 +1773,17 @@
                                                   <strong><?= h($weds[$times[$i]]['name']) ?></strong>
                                                 </h2>
                                                 <?php if ($weds[$times[$i]]['team']) : ?>
-                                                    <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($weds[$times[$i]]['team']) ?></h3>
+                                                    <h3 class="h3-responsive dark-grey-text"><small>Team:</small> <?= h($weds[$times[$i]]['team']) ?></h3>
                                                 <?php endif; ?>
                                                 <p>
-                                                    <small>ジャンル: <strong><?= h($weds[$times[$i]]['genre']) ?></strong></small>
+                                                    <small>ジャンル: </small>
+                                                    <span class="badge <?= getStudioGenreColor($weds[$times[$i]]['genre']) ?>">
+                                                        <?= h($weds[$times[$i]]['genre']) ?>
+                                                    </span>
+                                                    <span class="badge pink"><?= h($weds[$times[$i]]['difficulty']) ?></span>
                                                 </p>
                                                 <p class="font-weight-bold">
                                                     <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($weds[$times[$i]]['start']) ?> ～ <?= h($weds[$times[$i]]['end']) ?>
-                                                </p>
-                                                <p>
-                                                    <small><?= h($weds[$times[$i]]['difficulty']) ?></small>
                                                 </p>
                                                 <?php if ($weds[$times[$i]]['comment'] || $weds[$times[$i]]['profile']) : ?>
                                                     <hr>
@@ -1781,7 +1792,7 @@
                                                             <?php if ($weds[$times[$i]]['comment']) : ?>
                                                                 <p class="dark-grey-text">
                                                                     <small>
-                                                                        <?= h($weds[$times[$i]]['comment']) ?>
+                                                                        <?= nl2br(h($weds[$times[$i]]['comment'])) ?>
                                                                     </small>
                                                                 </p>
                                                             <?php endif; ?>
@@ -1915,16 +1926,17 @@
                                                   <strong><?= h($thus[$times[$i]]['name']) ?></strong>
                                                 </h2>
                                                 <?php if ($thus[$times[$i]]['team']) : ?>
-                                                    <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($thus[$times[$i]]['team']) ?></h3>
+                                                    <h3 class="h3-responsive dark-grey-text"><small>Team:</small> <?= h($thus[$times[$i]]['team']) ?></h3>
                                                 <?php endif; ?>
                                                 <p>
-                                                    <small>ジャンル: <strong><?= h($thus[$times[$i]]['genre']) ?></strong></small>
+                                                    <small>ジャンル: </small>
+                                                    <span class="badge <?= getStudioGenreColor($thus[$times[$i]]['genre']) ?>">
+                                                        <?= h($thus[$times[$i]]['genre']) ?>
+                                                    </span>
+                                                    <span class="badge pink"><?= h($thus[$times[$i]]['difficulty']) ?></span>
                                                 </p>
                                                 <p class="font-weight-bold">
                                                     <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($thus[$times[$i]]['start']) ?> ～ <?= h($thus[$times[$i]]['end']) ?>
-                                                </p>
-                                                <p>
-                                                    <small><?= h($thus[$times[$i]]['difficulty']) ?></small>
                                                 </p>
                                                 <?php if ($thus[$times[$i]]['comment'] || $thus[$times[$i]]['profile']) : ?>
                                                     <hr>
@@ -1933,7 +1945,7 @@
                                                             <?php if ($thus[$times[$i]]['comment']) : ?>
                                                                 <p class="dark-grey-text">
                                                                     <small>
-                                                                        <?= h($thus[$times[$i]]['comment']) ?>
+                                                                        <?= nl2br(h($thus[$times[$i]]['comment'])) ?>
                                                                     </small>
                                                                 </p>
                                                             <?php endif; ?>
@@ -2067,16 +2079,17 @@
                                                   <strong><?= h($fris[$times[$i]]['name']) ?></strong>
                                                 </h2>
                                                 <?php if ($fris[$times[$i]]['team']) : ?>
-                                                    <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($fris[$times[$i]]['team']) ?></h3>
+                                                    <h3 class="h3-responsive dark-grey-text"><small>Team:</small> <?= h($fris[$times[$i]]['team']) ?></h3>
                                                 <?php endif; ?>
                                                 <p>
-                                                    <small>ジャンル: <strong><?= h($fris[$times[$i]]['genre']) ?></strong></small>
+                                                    <small>ジャンル: </small>
+                                                    <span class="badge <?= getStudioGenreColor($fris[$times[$i]]['genre']) ?>">
+                                                        <?= h($fris[$times[$i]]['genre']) ?>
+                                                    </span>
+                                                    <span class="badge pink"><?= h($fris[$times[$i]]['difficulty']) ?></span>
                                                 </p>
                                                 <p class="font-weight-bold">
                                                     <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($fris[$times[$i]]['start']) ?> ～ <?= h($fris[$times[$i]]['end']) ?>
-                                                </p>
-                                                <p>
-                                                    <small><?= h($fris[$times[$i]]['difficulty']) ?></small>
                                                 </p>
                                                 <?php if ($fris[$times[$i]]['comment'] || $fris[$times[$i]]['profile']) : ?>
                                                     <hr>
@@ -2085,7 +2098,7 @@
                                                             <?php if ($fris[$times[$i]]['comment']) : ?>
                                                                 <p class="dark-grey-text">
                                                                     <small>
-                                                                        <?= h($fris[$times[$i]]['comment']) ?>
+                                                                        <?= nl2br(h($fris[$times[$i]]['comment'])) ?>
                                                                     </small>
                                                                 </p>
                                                             <?php endif; ?>
@@ -2219,16 +2232,17 @@
                                                   <strong><?= h($sats[$times[$i]]['name']) ?></strong>
                                                 </h2>
                                                 <?php if ($sats[$times[$i]]['team']) : ?>
-                                                    <h3 class="h3-responsive dark-gray-text"><small>Team:</small> <?= h($sats[$times[$i]]['team']) ?></h3>
+                                                    <h3 class="h3-responsive dark-grey-text"><small>Team:</small> <?= h($sats[$times[$i]]['team']) ?></h3>
                                                 <?php endif; ?>
                                                 <p>
-                                                    <small>ジャンル: <strong><?= h($sats[$times[$i]]['genre']) ?></strong></small>
+                                                    <small>ジャンル: </small>
+                                                    <span class="badge <?= getStudioGenreColor($sats[$times[$i]]['genre']) ?>">
+                                                        <?= h($sats[$times[$i]]['genre']) ?>
+                                                    </span>
+                                                    <span class="badge pink"><?= h($sats[$times[$i]]['difficulty']) ?></span>
                                                 </p>
                                                 <p class="font-weight-bold">
                                                     <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($sats[$times[$i]]['start']) ?> ～ <?= h($sats[$times[$i]]['end']) ?>
-                                                </p>
-                                                <p>
-                                                    <small><?= h($sats[$times[$i]]['difficulty']) ?></small>
                                                 </p>
                                                 <?php if ($sats[$times[$i]]['comment'] || $sats[$times[$i]]['profile']) : ?>
                                                     <hr>
@@ -2237,7 +2251,7 @@
                                                             <?php if ($sats[$times[$i]]['comment']) : ?>
                                                                 <p class="dark-grey-text">
                                                                     <small>
-                                                                        <?= h($sats[$times[$i]]['comment']) ?>
+                                                                        <?= nl2br(h($sats[$times[$i]]['comment'])) ?>
                                                                     </small>
                                                                 </p>
                                                             <?php endif; ?>

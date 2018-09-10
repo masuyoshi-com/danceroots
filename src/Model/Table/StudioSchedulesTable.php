@@ -146,7 +146,6 @@ class StudioSchedulesTable extends Table
 
         $validator
             ->scalar('comment')
-            ->maxLength('comment', 255)
             ->allowEmpty('comment');
 
         return $validator;

@@ -30,7 +30,7 @@
 
             <div class="row">
                 <div class="col-lg-6 col-md-12 col-xs-12">
-                    <label class="dark-gray-text w-100 text-left"><small>インストラクター名</small></label>
+                    <label class="dark-gray-text w-100 text-left"><small>インストラクター名 <span class="red-text">※</span></small></label>
                     <div class="md-form mt-0">
                         <?= $this->Form->control('name', ['class' => 'form-control']) ?>
                     </div>
@@ -54,7 +54,7 @@
                                 'options' => $genres
                             ]
                         ) ?>
-                        <label for="f--genre">ジャンル</label>
+                        <label for="f--genre">ジャンル <span class="red-text">※</span></label>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-12">
@@ -67,7 +67,7 @@
                                 'options' => $difficulties
                             ]
                         ) ?>
-                        <label for="f--difficulty">レッスン難易度</label>
+                        <label for="f--difficulty">レッスン難易度 <span class="red-text">※</span></label>
                     </div>
                 </div>
             </div>
@@ -92,7 +92,7 @@
                                 'options' => $weeks,
                             ]
                         ) ?>
-                        <label for="f--week">曜日選択</label>
+                        <label for="f--week">曜日選択 <span class="red-text">※</span></label>
                     </div>
                 </div>
             </div>
@@ -108,7 +108,7 @@
                                 'options' => $times
                             ]
                         ) ?>
-                        <label for="f--start">開始時間</label>
+                        <label for="f--start">開始時間 <span class="red-text">※</span></label>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-12">
@@ -121,7 +121,7 @@
                                 'options' => ['1 hour' => '1時間', '1 hour 30 minute' => '1時間30分'],
                             ]
                         ) ?>
-                        <label for="f--time">レッスン時間帯</label>
+                        <label for="f--time">レッスン時間帯 <span class="red-text">※</span></label>
                     </div>
                 </div>
             </div>
@@ -144,11 +144,18 @@
                 </div>
             </div>
 
-            <div class="row mb-4">
+            <div class="row mb-3">
                 <div class="col-lg-12">
                     <div class="md-form">
-                        <?= $this->Form->control('comment', ['id' => 'f--comment', 'class' => 'form-control']) ?>
-                        <label for="f--comment">コメント</label>
+                        <?= $this->Form->textarea('comment',
+                            [
+                                'id'          => 'f--comment',
+                                'class'       => 'form-control md-textarea',
+                                'rows'        => '8',
+                                'placeholder' => 'レッスンに関する情報や、インストラクター情報など'
+                            ]
+                        ) ?>
+                        <label for="f--comment">コメント・情報</label>
                     </div>
                 </div>
             </div>
