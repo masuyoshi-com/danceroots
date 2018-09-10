@@ -60,7 +60,7 @@
                 </p>
                 <?php endif; ?>
                 <hr>
-                <p class="grey-text"><?= h($group->profile->self_intro) ?></p>
+                <p class="grey-text"><small><?= h($group->profile->self_intro) ?></small></p>
                 <ul class="list-unstyled personal-sm mb-0">
                     <?php
                         if ($group->profile->facebook) {

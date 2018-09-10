@@ -93,32 +93,45 @@
 
                 <hr class="mt-0">
 
+                <div class="row mt-4">
+                    <div class="col-lg-12">
+                        <h6 class="dark-grey-text">サークル情報</h6>
+                        <hr class="text-left blue mb-3 pb-1 mt-0 ml-0" style="width: 100px;">
+                        <div class="md-form mt-0">
+                            <?= nl2br(h($circle->circle_detail)) ?>
+                        </div>
+                    </div>
+                </div>
+                <hr class="mdb-form-color">
+
+                <?php if ($circle->purpose) : ?>
+                    <div class="row mt-4">
+                        <div class="col-lg-12">
+                            <h6 class="dark-grey-text">目的</h6>
+                            <hr class="text-left pink mb-3 pb-1 mt-0 ml-0" style="width: 100px;">
+                            <div class="md-form mt-0">
+                                <?= nl2br(h($circle->purpose)) ?>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="mdb-form-color">
+                <?php endif; ?>
+
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 col-xs-12">
-                        <div class="md-form">
-                            <?= $this->Form->control('city',
-                                [
-                                    'class' => 'form-control',
-                                    'value' => h($circle->city),
-                                    'disabled'
-                                ]
-                            ) ?>
-                            <label>市区町村</label>
+                    <div class="col-lg-6 col-md-6 col-xs-12">
+                        <label class="dark-grey-text w-100 text-left"><small>ジャンル</small></label>
+                        <div class="md-form mt-0">
+                            <?php
+                                if ($circle->genre) {
+                                    print h($circle->genre);
+                                } else {
+                                    print 'ジャンルは問わない';
+                                }
+                            ?>
                         </div>
+                        <hr class="mdb-form-color mt-2">
                     </div>
-                    <div class="col-lg-4 col-md-6 col-xs-12">
-                        <div class="md-form">
-                            <?= $this->Form->control('station',
-                                [
-                                    'class' => 'form-control',
-                                    'value' => h($circle->station),
-                                    'disabled'
-                                ]
-                            ) ?>
-                            <label>最寄り駅</label>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
+                    <div class="col-lg-6 col-md-6 col-xs-12 mt-1">
                         <div class="md-form">
                             <?= $this->Form->control('age',
                                 [
@@ -129,44 +142,6 @@
                             ) ?>
                             <label>平均年齢</label>
                         </div>
-                    </div>
-                </div><!-- /.row -->
-
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-xs-12">
-                        <div class="md-form">
-                            <?= $this->Form->control('place',
-                                [
-                                    'class' => 'form-control',
-                                    'value' => h($circle->place),
-                                    'disabled'
-                                ]
-                            ) ?>
-                            <label>主な集合場所</label>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-xs-12 mt-1">
-                        <label class="dark-gray-text w-100 text-left"><small>ジャンル</small></label>
-                        <div class="md-form mt-0">
-                            <?php
-                                if ($circle->genre) {
-                                    print h($circle->genre);
-                                } else {
-                                    print 'ジャンルは問わない';
-                                }
-                            ?>
-                        </div>
-                        <hr class="mdb-form-color">
-                    </div>
-                </div>
-
-                <div class="row mt-2">
-                    <div class="col-lg-12">
-                        <label class="dark-gray-text w-100 text-left"><small>サークル詳細</small></label>
-                        <div class="md-form mt-0">
-                            <?= nl2br(h($circle->circle_detail)) ?>
-                        </div>
-                        <hr class="mdb-form-color">
                     </div>
                 </div>
 
@@ -185,14 +160,64 @@
                     </div>
                 </div>
 
-
-                <div class="row mt-2">
+                <div class="row mt-4">
                     <div class="col-lg-12">
-                        <label class="dark-gray-text w-100 text-left"><small>目的</small></label>
-                        <div class="md-form mt-0">
-                            <?= nl2br(h($circle->purpose)) ?>
+                        <h6 class="dark-grey-text">活動場所など</h6>
+                        <hr class="text-left success-color mb-3 pb-1 mt-0 ml-0" style="width: 100px;">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <div class="md-form">
+                            <?= $this->Form->control('pref',
+                                [
+                                    'class' => 'form-control',
+                                    'value' => h($circle->pref),
+                                    'disabled'
+                                ]
+                            ) ?>
+                            <label>都道府県</label>
                         </div>
-                        <hr class="mdb-form-color">
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <div class="md-form">
+                            <?= $this->Form->control('city',
+                                [
+                                    'class' => 'form-control',
+                                    'value' => h($circle->city),
+                                    'disabled'
+                                ]
+                            ) ?>
+                            <label>市区町村</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="md-form">
+                            <?= $this->Form->control('station',
+                                [
+                                    'class' => 'form-control',
+                                    'value' => h($circle->station),
+                                    'disabled'
+                                ]
+                            ) ?>
+                            <label>最寄り駅</label>
+                        </div>
+                    </div>
+                </div><!-- /.row -->
+
+                <div class="row mb-3">
+                    <div class="col-lg-12">
+                        <div class="md-form">
+                            <?= $this->Form->control('place',
+                                [
+                                    'class' => 'form-control',
+                                    'value' => h($circle->place),
+                                    'disabled'
+                                ]
+                            ) ?>
+                            <label>主な集合場所</label>
+                        </div>
                     </div>
                 </div>
 

@@ -86,7 +86,7 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <p class="dark-gray-text text-right">
+                <p class="dark-grey-text text-right">
                     <small>
                         <?= $this->Paginator->counter('{{page}} / {{pages}} ページ &nbsp; 全 {{count}} 件') ?>
                     </small>
@@ -118,7 +118,7 @@
                     <div class="row">
                         <div class="col-lg-12 col-md-4 col-xs-12">
                             <h5>
-                                <span class="badge indigo"><?= h($circle->pref) ?></span>
+                                <span class="badge indigo"><?= h($circle->pref . ' ' . $circle->city) ?></span>
                                 <span class="badge badge-success"><?= h($circle->distinction) ?></span>
                                 <?php
                                     if ($circle->genre) {
@@ -141,21 +141,36 @@
                     </div>
                     <div class="row text-center">
                         <div class="col-lg-12">
-                            <p class="mb-0">
+                            <p>
                                 <small><?= h($circle->intro) ?></small>
                             </p>
                         </div>
                     </div>
-                    <hr>
+
+                    <hr class="mb-2">
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <p class="dark-grey-text text-right mb-2">
+                                <small>
+                                    <span class="mr-3">年齢: <?= h($circle->age) ?></span>
+                                    <?php if ($circle->station) : ?>
+                                         <i class="fa fa-subway" aria-hidden="true"></i> <?= h($circle->station) ?>
+                                    <?php endif; ?>
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+
                     <div class="row grey lighten-4 p-2 text-center">
                         <div class="col-lg-4 col-md-6 col-xs-12">
                             <p class="dark-grey-text">
-                                <i class="fa fa-clock-o" aria-hidden="true"></i> 登録日: <?= h($circle->created) ?>
+                                <small><i class="fa fa-clock-o" aria-hidden="true"></i> 登録日: </small><?= h($circle->created) ?>
                             </p>
                         </div>
                         <div class="col-lg-4 col-md-6 col-xs-12">
                             <p class="dark-grey-text">
-                                代表者: <?= h($circle->user->username) ?>
+                                <small>代表者: </small><?= h($circle->user->username) ?>
                             </p>
                         </div>
                         <div class="col-lg-4 col-md-12">
@@ -190,7 +205,7 @@
     <div class="card card-body">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h5 class="dark-gray-text mt-3">
+                <h5 class="dark-grey-text mt-3">
                     検索結果はありません。
                 </h5>
                 <hr>
