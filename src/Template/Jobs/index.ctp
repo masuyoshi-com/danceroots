@@ -124,7 +124,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-12 mt-3">
                             <h4 class="mb-3 font-weight-bold dark-grey-text text-center">
                                  <strong><?= h($job->title) ?></strong>
                             </h4>
@@ -133,15 +133,16 @@
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <p class="dark-grey-text">
+                            <p class="text-center dark-grey-text">
                                 <?= h($job->intro) ?>
                             </p>
                         </div>
                     </div>
 
+                    <hr>
                     <div class="row">
                         <div class="col-lg-12">
-                            <p class="dark-grey-text text-right m-0">
+                            <p class="dark-grey-text text-right">
                                 <small>
                                     <?php if ($job->q_required) : ?>
                                         <span class="mr-3">資格: <?= h($job->q_required) ?></span>
@@ -153,19 +154,17 @@
                             </p>
                         </div>
                     </div>
-                    <hr>
 
-                    <div class="row grey lighten-4 p-2 text-center">
-                        <div class="col-lg-5 col-md-6 col-xs-12">
+                    <div class="row grey lighten-4 text-center">
+                        <div class="col-lg-5 col-md-6 col-xs-12 pt-2">
                             <p class="dark-grey-text">
-                                <strong><i class="fa fa-clock-o" aria-hidden="true"></i>  登録日</strong><br>
-                                <?= h($job->created) ?>
+                                <small><i class="fa fa-clock-o mr-2" aria-hidden="true"></i>登録日: </small>
+                                <strong><?= h($job->created) ?></strong>
                             </p>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-xs-12">
+                        <div class="col-lg-4 col-md-6 col-xs-12 pt-2">
                             <p class="dark-grey-text">
-                                <strong>Recruiter</strong> <br>
-                                <?= h($job->user->username) ?>
+                                <small><i class="fa fa-briefcase mr-2" aria-hidden="true"></i>Recruiter: </small> <?= h($job->user->username) ?>
                             </p>
                         </div>
                         <div class="col-lg-3 col-md-12 mt-1 mb-1">
