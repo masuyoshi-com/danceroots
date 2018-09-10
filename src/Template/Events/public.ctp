@@ -136,7 +136,7 @@
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <p class="dark-grey-text">
+                            <p class="text-center dark-grey-text">
                                 <?= h($event->intro) ?>
                             </p>
                         </div>
@@ -162,9 +162,9 @@
                     <div class="row grey lighten-4 p-2 text-center">
                         <div class="col-lg-5 col-md-6 col-xs-12">
                             <p class="dark-grey-text font-weight-bold">
-                                開催日: <?= h($event->event_date) ?>  <br>
-                                <span class="mr-2">Start: <?= h($event->start) ?></span>
-                                End: <?= h($event->end) ?>
+                                <small>開催日: </small><?= h($event->event_date) ?>  <br>
+                                <span class="mr-2"><small>Start: </small><?= h($event->start) ?></span>
+                                <small>End: </small><?= h($event->end) ?>
                             </p>
                         </div>
                         <div class="col-lg-4 col-md-6 col-xs-12">
