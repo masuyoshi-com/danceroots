@@ -83,7 +83,7 @@
                                 <?= $this->Html->link('マイ ダンス動画', ['controller' => 'DanceVideos', 'action' => 'list'], ['class' => 'waves-effect']) ?>
                             </li>
                             <li>
-                                <?= $this->Html->link('おすすめ動画', ['controller' => 'RecommendVideos', 'action' => 'index'], ['class' => 'waves-effect']) ?>
+                                <?= $this->Html->link('おすすめダンス動画', ['controller' => 'RecommendVideos', 'action' => 'index'], ['class' => 'waves-effect']) ?>
                             </li>
                         </ul>
                     </div>
@@ -95,7 +95,7 @@
                     <div class="collapsible-body">
                         <ul class="list-unstyled">
                             <li>
-                                <?= $this->Html->link('ミュージック検索', ['controller' => 'DanceMusics', 'action' => 'index'], ['class' => 'waves-effect']) ?>
+                                <?= $this->Html->link('ミュージック', ['controller' => 'DanceMusics', 'action' => 'index'], ['class' => 'waves-effect']) ?>
                             </li>
                             <li>
                                 <?= $this->Html->link('マイ ミュージック', ['controller' => 'DanceMusics', 'action' => 'list'], ['class' => 'waves-effect']) ?>
