@@ -70,7 +70,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <?= $this->Html->link('<i class="fa fa-twitter"></i>', 'https://twitter.com/share?url=https://danceroots.net/&text=ストリートダンス総合SNS',
+                    <?= $this->Html->link('<i class="fa fa-twitter"></i>', 'https://twitter.com/share?url=https://danceroots.net/&text=ストリートダンス総合プラットフォーム',
                         [
                             'class'          => 'nav-link waves-effect waves-light',
                             'target'         => '_blank',
