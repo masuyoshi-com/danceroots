@@ -18,10 +18,17 @@
 
 <div class="row">
     <div class="col-lg-12 col-md-12 pb-2">
-        <h5 class="h5-responsive font-weight-bold">
-            <i class="fa fa-music pink-text"></i> My Music
-        </h5>
-        <hr class="mb-0">
+        <div class="d-flex">
+            <div>
+                <h5 class="h5-responsive font-weight-bold">
+                    <i class="fa fa-music pink-text"></i> My Music
+                </h5>
+            </div>
+            <div class="ml-auto">
+                <p class="m-0 grey-text"><small>シェア済みダンス音楽</small></p>
+            </div>
+        </div>
+        <hr class="m-0">
     </div>
 </div><!-- /.row -->
 

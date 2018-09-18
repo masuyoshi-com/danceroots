@@ -18,10 +18,17 @@
 
 <div class="row">
     <div class="col-lg-12 col-md-12">
-        <h5 class="h5-responsive font-weight-bold">
-            <i class="fa fa-youtube-play yt-ic"></i> Favorite Dance Videos
-        </h5>
-        <hr>
+        <div class="d-flex">
+            <div>
+                <h5 class="h5-responsive font-weight-bold">
+                    <i class="fa fa-youtube-play yt-ic"></i> <span class="none">Favorite</span> Dance Video
+                </h5>
+            </div>
+            <div class="ml-auto">
+                <p class="m-0 grey-text"><small>全ユーザーの共有ダンス動画</small></p>
+            </div>
+        </div>
+        <hr class="mt-0">
     </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
 

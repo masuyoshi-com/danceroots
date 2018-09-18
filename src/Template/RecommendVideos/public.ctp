@@ -24,6 +24,7 @@
         <div class="d-flex">
             <h6 class="h6-responsive font-weight-bold mb-0">
                 <i class="fa fa-youtube-play yt-ic"></i> Dance Video
+                <span class="ml-1 grey-text"><small>おすすめダンス動画</small></span>
             </h6>
             <?php if (!isset($logins)) : ?>
                 <p class="ml-auto mb-0">

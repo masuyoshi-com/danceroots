@@ -18,10 +18,17 @@
 
 <div class="row">
     <div class="col-lg-12 col-md-12 pb-2">
-        <h5 class="h5-responsive">
-            <i class="fa fa-music pink-text"></i> おすすめミュージック
-        </h5>
-        <hr class="my-2">
+        <div class="d-flex">
+            <div>
+                <h5 class="h5-responsive font-weight-bold">
+                    <i class="fa fa-music pink-text"></i> Music
+                </h5>
+            </div>
+            <div class="ml-auto">
+                <p class="m-0 grey-text"><small>おすすめミュージック</small></p>
+            </div>
+        </div>
+        <hr class="mt-0">
     </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
 

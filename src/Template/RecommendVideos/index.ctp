@@ -17,11 +17,18 @@
 <?php endif; ?>
 
 <div class="row">
-    <div class="col-lg-12 col-md-12 pb-2">
-        <h5 class="h5-responsive">
-            <i class="fa fa-youtube-play yt-ic"></i> おすすめダンス動画
-        </h5>
-        <hr class="my-2">
+    <div class="col-lg-12 col-md-12">
+        <div class="d-flex">
+            <div>
+                <h5 class="h5-responsive font-weight-bold">
+                    <i class="fa fa-youtube-play yt-ic"></i> Dance Video
+                </h5>
+            </div>
+            <div class="ml-auto">
+                <p class="m-0 grey-text"><small>おすすめダンス動画</small></p>
+            </div>
+        </div>
+        <hr class="mt-0">
     </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
 
