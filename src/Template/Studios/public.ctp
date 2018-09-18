@@ -107,7 +107,7 @@
             <div class="card-body">
                 <p>
                     <span class="badge indigo"><?= h($studio->pref . ' ' . $studio->city) ?></span>
-                    <span class="badge badge-success w-100"><?= h($studio->main_genre) ?></span>
+                    <span class="badge badge-success"><?= tw(h($studio->main_genre), 37) ?></span>
                 </p>
                 <a href="<?= $this->Url->build(['controller' => 'Studios', 'action' => 'publicView', h($studio->user->username)], ['class' => 'dark-grey-text']) ?>">
                     <h5 class="card-title mb-1 mt-4 black-text">
