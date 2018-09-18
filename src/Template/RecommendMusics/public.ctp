@@ -24,7 +24,7 @@
         <div class="d-flex">
             <h6 class="h6-responsive font-weight-bold mb-0">
                 <i class="fa fa-music pink-text"></i> Music
-                <span class="ml-1 grey-text"><small>おすすめミュージック</small></span>
+                <span class="ml-1 grey-text none"><small>おすすめミュージック</small></span>
             </h6>
             <?php if (!isset($logins)) : ?>
                 <p class="ml-auto mb-0">
