@@ -106,8 +106,8 @@
         <hr>
 
         <p class="section-description mb-5 mt-lg-5 mx-lg-5 text-center">
-            <span class="font-weight-bold">Danceroots</span>はWebを通してストリートダンサーの価値を高めるサポートをします。ダンスをしている誰もがダンサープロフィール作成できます。
-            活躍の場を広げましょう。全国のダンスに興味を持った方とつながることも簡単です。
+            <span class="font-weight-bold">Danceroots</span>はWebを通してストリートダンサーの価値を高めるサポートをします。ダンスをしている誰もがダンサープロフィールを作成できます。
+            活躍の場を広げましょう。全国のダンスに興味を持ったユーザーとつながることも簡単です。
         </p>
         <p class="section-description mb-5 mt-lg-5 mx-lg-5 text-center">
             ストリートダンス文化、知識の共有。ストリートダンスビジネスの向上を目指すことを目的としたストリートダンサーのための総合プラットフォームです。
