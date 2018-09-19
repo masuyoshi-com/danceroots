@@ -280,6 +280,41 @@
             </div><!-- /.card-body -->
         </section>
 
+        <?php if ($music !== 0 || $video !== 0) : ?>
+        <div class="row">
+            <div class="col-lg-12">
+                <?php if ($music !== 0) : ?>
+                    <p class="mb-2">
+                        <?= $this->Html->link('<i class="fa fa-music" aria-hidden="true"></i> Music',
+                            ['controller' => 'DanceMusics', 'action' => 'detail', $organizer->user->username],
+                            [
+                                'class'          => 'btn btn-block purple-gradient',
+                                'escape'         => false,
+                                'data-toggle'    => 'tooltip',
+                                'data-placement' => 'bottom',
+                                'title'          => h($organizer->user->username) . 'さんのシェアミュージック'
+                            ]
+                        ) ?>
+                    </p>
+                <?php endif ?>
+                <?php if ($video !== 0) : ?>
+                    <p class="mb-3">
+                        <?= $this->Html->link('<i class="fa fa-youtube-play" aria-hidden="true"></i> Dance Video',
+                            ['controller' => 'DanceVideos', 'action' => 'detail', $organizer->user->username],
+                            [
+                                'class'          => 'btn btn-block peach-gradient',
+                                'escape'         => false,
+                                'data-toggle'    => 'tooltip',
+                                'data-placement' => 'bottom',
+                                'title'          => h($organizer->user->username) . 'さんのシェアダンス動画'
+                            ]
+                        ) ?>
+                    </p>
+                <?php endif; ?>
+            </div><!-- /.col-lg-12 -->
+        </div><!-- /.row -->
+        <?php endif; ?>
+
         <?php if ($organizer->facebook) : ?>
             <div class=" card card-body mb-3">
                 <div class="row">

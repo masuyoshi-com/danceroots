@@ -19,7 +19,7 @@
 <div class="row">
     <div class="col-lg-12 col-md-12">
         <h6 class="h6-responsive">
-            <i class="fa fa-youtube-play yt-ic"></i> <?= h($user->username) ?>さんのお気に入り動画
+            <i class="fa fa-youtube-play yt-ic"></i> <?= h($user->username) ?>さんのシェアダンス動画
         </h6>
         <hr>
     </div><!-- /.col-lg-12 -->
@@ -59,7 +59,7 @@
         ?>
         <div class="media-body">
             <h5 class="font-weight-bold mt-0 blue-text">
-                <?= h($user->username) ?>
+                <?= $this->Html->link($user->username, $user->link) ?>
             </h5>
             <p>
                 <?= h($user->profile->self_intro) ?>

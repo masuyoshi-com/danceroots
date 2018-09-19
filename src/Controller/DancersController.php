@@ -145,7 +145,7 @@ class DancersController extends AppController
         $user = $this->Dancers->Users->findByUsername($username)->first();
 
         if ($user) {
-            
+
             $dancer = $this->Dancers->findByUserId($user->id)->first();
             $dancer->user = $user;
 
@@ -156,7 +156,14 @@ class DancersController extends AppController
 
             // ユーザ区分をカテゴリ名で取得
             $dancer['user']['classification'] = $this->Common->getCategoryName($dancer['user']['classification']);
+
+            // Musicが登録されているか
+            $music = $this->Dancers->Users->DanceMusics->findByUserId($user->id)->count();
+            // DanceVideoが登録されているか
+            $video = $this->Dancers->Users->DanceVideos->findByUserId($user->id)->count();
+
             $this->set('dancer', $dancer);
+            $this->set(compact('music', 'video'));
             // メッセージ用変数
             $this->set('to_user_id',  $dancer->user_id);
             $this->set('to_username', $dancer->user->username);

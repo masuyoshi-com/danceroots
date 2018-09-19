@@ -169,8 +169,13 @@ class StudiosController extends AppController
             $this->loadModel('StudioSchedules');
             $schedule_count = $this->StudioSchedules->findByUserId($studio->user_id)->count();
 
+            // Musicが登録されているか
+            $music = $this->Studios->Users->DanceMusics->findByUserId($user->id)->count();
+            // DanceVideoが登録されているか
+            $video = $this->Studios->Users->DanceVideos->findByUserId($user->id)->count();
+
+            $this->set(compact('studio', 'music', 'video'));
             $this->set('schedule', $schedule_count);
-            $this->set('studio', $studio);
             // メッセージ用変数
             $this->set('to_user_id',  $studio->user_id);
             $this->set('to_username', $studio->user->username);

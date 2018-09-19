@@ -59,7 +59,13 @@ class GeneralsController extends AppController
 
             // ユーザ区分をカテゴリ名で取得
             $general['user']['classification'] = $this->Common->getCategoryName($general['user']['classification']);
-            $this->set('general', $general);
+
+            // Musicが登録されているか
+            $music = $this->Generals->Users->DanceMusics->findByUserId($user->id)->count();
+            // DanceVideoが登録されているか
+            $video = $this->Generals->Users->DanceVideos->findByUserId($user->id)->count();
+
+            $this->set(compact('general', 'music', 'video'));
             // メッセージ用変数
             $this->set('to_user_id',  $general->user_id);
             $this->set('to_username', $general->user->username);

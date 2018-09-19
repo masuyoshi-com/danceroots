@@ -59,7 +59,13 @@ class OrganizersController extends AppController
             $organizer['youtube'] = $this->Common->getYoutubeId($organizer['youtube']);
             // ユーザ区分をカテゴリ名で取得
             $organizer['user']['classification'] = $this->Common->getCategoryName($organizer['user']['classification']);
-            $this->set('organizer', $organizer);
+
+            // Musicが登録されているか
+            $music = $this->Organizers->Users->DanceMusics->findByUserId($user->id)->count();
+            // DanceVideoが登録されているか
+            $video = $this->Organizers->Users->DanceVideos->findByUserId($user->id)->count();
+
+            $this->set(compact('organizer', 'music', 'video'));
             // メッセージ用変数
             $this->set('to_user_id',  $organizer->user->id);
             $this->set('to_username', $organizer->user->username);

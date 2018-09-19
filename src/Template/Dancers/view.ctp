@@ -144,6 +144,42 @@
 
             </div><!-- /.card-body -->
         </section>
+
+        <?php if ($music !== 0 || $video !== 0) : ?>
+        <div class="row">
+            <div class="col-lg-12">
+                <?php if ($music !== 0) : ?>
+                    <p class="mb-2">
+                        <?= $this->Html->link('<i class="fa fa-music" aria-hidden="true"></i> Music',
+                            ['controller' => 'DanceMusics', 'action' => 'detail', $dancer->user->username],
+                            [
+                                'class'          => 'btn btn-block purple-gradient',
+                                'escape'         => false,
+                                'data-toggle'    => 'tooltip',
+                                'data-placement' => 'bottom',
+                                'title'          => h($dancer->user->username) . 'さんのシェアミュージック'
+                            ]
+                        ) ?>
+                    </p>
+                <?php endif ?>
+                <?php if ($video !== 0) : ?>
+                    <p class="mb-3">
+                        <?= $this->Html->link('<i class="fa fa-youtube-play" aria-hidden="true"></i> Dance Video',
+                            ['controller' => 'DanceVideos', 'action' => 'detail', $dancer->user->username],
+                            [
+                                'class'          => 'btn btn-block peach-gradient',
+                                'escape'         => false,
+                                'data-toggle'    => 'tooltip',
+                                'data-placement' => 'bottom',
+                                'title'          => h($dancer->user->username) . 'さんのシェアダンス動画'
+                            ]
+                        ) ?>
+                    </p>
+                <?php endif; ?>
+            </div><!-- /.col-lg-12 -->
+        </div><!-- /.row -->
+        <?php endif; ?>
+
     </div><!-- /.col-lg-4 -->
 
     <div class="col-lg-8 col-md-12 mt-3">
@@ -344,7 +380,7 @@
 
 <?php if ($dancer->image1 || $dancer->image2 || $dancer->image3) : ?>
 <div class="card card-body mb-5">
-    <h6><i class="fa fa-image"></i> Dance Image</h6>
+    <h6 class="dark-grey-text"><i class="fa fa-image"></i> Dance Image</h6>
     <div id="mdb-lightbox-ui"></div>
     <div class="mdb-lightbox">
         <?php

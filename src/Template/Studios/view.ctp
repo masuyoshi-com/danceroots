@@ -146,6 +146,7 @@
                 <?php endif; ?>
             </div><!-- /.card-body -->
         </section>
+
         <?php if ($schedule !== 0) : ?>
             <div class="card card-image mb-3" style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
                 <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
@@ -163,6 +164,42 @@
                 </div>
             </div>
         <?php endif; ?>
+
+        <?php if ($music !== 0 || $video !== 0) : ?>
+        <div class="row">
+            <div class="col-lg-12">
+                <?php if ($music !== 0) : ?>
+                    <p class="mb-2">
+                        <?= $this->Html->link('<i class="fa fa-music" aria-hidden="true"></i> Music',
+                            ['controller' => 'DanceMusics', 'action' => 'detail', $studio->user->username],
+                            [
+                                'class'          => 'btn btn-block purple-gradient',
+                                'escape'         => false,
+                                'data-toggle'    => 'tooltip',
+                                'data-placement' => 'bottom',
+                                'title'          => h($studio->user->username) . 'さんのシェアミュージック'
+                            ]
+                        ) ?>
+                    </p>
+                <?php endif ?>
+                <?php if ($video !== 0) : ?>
+                    <p class="mb-2">
+                        <?= $this->Html->link('<i class="fa fa-youtube-play" aria-hidden="true"></i> Dance Video',
+                            ['controller' => 'DanceVideos', 'action' => 'detail', $studio->user->username],
+                            [
+                                'class'          => 'btn btn-block peach-gradient',
+                                'escape'         => false,
+                                'data-toggle'    => 'tooltip',
+                                'data-placement' => 'bottom',
+                                'title'          => h($studio->user->username) . 'さんのシェアダンス動画'
+                            ]
+                        ) ?>
+                    </p>
+                <?php endif; ?>
+            </div><!-- /.col-lg-12 -->
+        </div><!-- /.row -->
+        <?php endif; ?>
+        
     </div><!-- /.col-lg-4 -->
 
     <div class="col-lg-8 col-md-12 mb-3">
