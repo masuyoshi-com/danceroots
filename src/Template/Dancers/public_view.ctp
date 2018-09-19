@@ -427,7 +427,7 @@
 
 <?php if ($dancer->image1 || $dancer->image2 || $dancer->image3) : ?>
 <div class="card card-body mb-3">
-    <h6><i class="fa fa-image"></i> Dance Image</h6>
+    <h6 class="dark-grey-text"><i class="fa fa-image"></i> Dance Image</h6>
     <div id="mdb-lightbox-ui"></div>
     <div class="mdb-lightbox">
         <?php
