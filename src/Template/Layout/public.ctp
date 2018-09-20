@@ -32,7 +32,13 @@
     <?= $this->fetch('script') ?>
 </head>
 
-<body>
+<?php
+    if (strstr($url, 'legends')) {
+        print '<body class="elegant-color">';
+    } else {
+        print '<body>';
+    }
+?>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar" style="background-color: #1C2331">
     <?= $this->element('Menu/header') ?>
     <main class="pt-4">

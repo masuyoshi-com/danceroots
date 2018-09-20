@@ -53,7 +53,7 @@
             print $this->Html->script('autolink');
         }
     ?>
-    
+
     <script>
         new WOW().init();
         $('[data-toggle="tooltip"]').tooltip();
