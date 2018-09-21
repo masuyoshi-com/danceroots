@@ -60,6 +60,8 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.1 controllers/RecommendMusics',
             'bin/cake acl grant Groups.1 controllers/RecommendVideos',
             'bin/cake acl grant Groups.1 controllers/StudioSchedules/index',
+            'bin/cake acl grant Groups.1 controllers/Forums',
+            'bin/cake acl grant Groups.1 controllers/ForumComments',
 
             'bin/cake acl grant Groups.1 controllers/Legends',
 
@@ -85,6 +87,8 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.2 controllers/RecommendMusics',
             'bin/cake acl grant Groups.2 controllers/RecommendVideos',
             'bin/cake acl grant Groups.2 controllers/StudioSchedules',
+            'bin/cake acl grant Groups.2 controllers/Forums',
+            'bin/cake acl grant Groups.2 controllers/ForumComments',
 
             'bin/cake acl grant Groups.2 controllers/Legends',
 
@@ -111,6 +115,8 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.3 controllers/RecommendMusics',
             'bin/cake acl grant Groups.3 controllers/RecommendVideos',
             'bin/cake acl grant Groups.3 controllers/StudioSchedules/index',
+            'bin/cake acl grant Groups.3 controllers/Forums',
+            'bin/cake acl grant Groups.3 controllers/ForumComments',
 
             'bin/cake acl grant Groups.3 controllers/Legends',
 
@@ -138,6 +144,8 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.4 controllers/RecommendMusics',
             'bin/cake acl grant Groups.4 controllers/RecommendVideos',
             'bin/cake acl grant Groups.4 controllers/StudioSchedules/index',
+            'bin/cake acl grant Groups.4 controllers/Forums',
+            'bin/cake acl grant Groups.4 controllers/ForumComments',
 
             'bin/cake acl grant Groups.4 controllers/Legends',
 
