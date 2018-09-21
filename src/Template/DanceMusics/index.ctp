@@ -200,7 +200,7 @@
                             'class'          => 'grey-text',
                             'data-toggle'    => 'tooltip',
                             'data-placement' => 'bottom',
-                            'title'          => 'お気に入り音楽を見る'
+                            'title'          => 'シェアミュージックを見る'
                         ]
                     ) ?>
 

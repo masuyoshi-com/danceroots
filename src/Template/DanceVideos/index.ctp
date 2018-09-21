@@ -138,7 +138,7 @@
                                                 'class'          => 'grey-text',
                                                 'data-toggle'    => 'tooltip',
                                                 'data-placement' => 'bottom',
-                                                'title'          => 'お気に入り動画を見る'
+                                                'title'          => 'シェア動画を見る'
                                             ]
                                         ) ?>
                                     </small>
