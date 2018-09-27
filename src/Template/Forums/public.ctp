@@ -71,9 +71,17 @@
     <div class="col-lg-12">
         <div class="d-flex">
             <p class="mb-0">
-                <?= $this->Html->link('<i class="fa fa-plus"></i> スレッド作成', ['controller' => 'Forums', 'action' => 'add'],
-                    ['class' => 'btn btn-sm btn-success', 'escape' => false]
-                ) ?>
+                <?php
+                    if (isset($logins['id'])) {
+                        print $this->Html->link('<i class="fa fa-plus"></i> スレッド作成', ['controller' => 'Forums', 'action' => 'add'],
+                            ['class' => 'btn btn-sm btn-default', 'escape' => false]
+                        );
+                    } else {
+                        print $this->Html->link('<i class="fa fa-plus"></i> ログインしてスレッド作成', ['controller' => 'Users', 'action' => 'login'],
+                            ['class' => 'btn btn-sm btn-default', 'escape' => false]
+                        );
+                    }
+                ?>
             </p>
             <p class="ml-auto dark-gray-text pt-2">
                 <small>
