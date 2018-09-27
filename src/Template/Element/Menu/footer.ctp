@@ -34,6 +34,9 @@
                 </h6>
                 <hr class="blue mb-4 pb-1 mt-0 d-inline-block mx-auto" style="width: 60px;">
                 <p>
+                    <?= $this->Html->link('フォーラム閲覧', ['controller' => 'Forums', 'action' => 'public']) ?>
+                </p>
+                <p>
                     ユーザー機能紹介
                 </p>
                 <p>
@@ -75,10 +78,13 @@
                     ミュージック
                 </p>
                 <p>
-                    イベント管理
+                    イベント
                 </p>
                 <p>
                     ダンス関連求人
+                </p>
+                <p>
+                    フォーラム
                 </p>
             </div>
             <div class="col-md-4 col-lg-3 col-xl-3">

@@ -34,6 +34,9 @@
                     <?= $this->Html->link('おすすめダンス動画', ['controller' => 'RecommendVideos', 'action' => 'public'], ['class' => 'dark-grey-text']) ?>
                 </div>
                 <div class="p-2">
+                    <?= $this->Html->link('フォーラム閲覧', ['controller' => 'Forums', 'action' => 'public'], ['class' => 'dark-grey-text']) ?>
+                </div>
+                <div class="p-2">
                     <?= $this->Html->link('読んで学ぶWebストリートダンス講座', ['controller' => 'Lectures', 'action' => 'index'], ['class' => 'dark-grey-text']) ?>
                 </div>
             </div>
@@ -78,6 +81,7 @@
                 <div class="p-2">ミュージック</div>
                 <div class="p-2">イベント</div>
                 <div class="p-2">ダンス関連求人(<small><span class="red-text">※</span>スタジオ / 企業 ユーザーのみ</small>)</div>
+                <div class="p-2">フォーラム</div>
             </div>
         </div>
     </div>
