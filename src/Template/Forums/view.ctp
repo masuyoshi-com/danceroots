@@ -172,31 +172,41 @@
                                 <?php endif; ?>
                             <?php $i++; endforeach; ?>
                         <?php endif; ?>
-                        <?= $this->Form->create('', ['url' => ['controller' => 'ForumComments', 'action' => 'add']]) ?>
-                        <?= $this->Form->hidden('user_id',  ['value' => $logins['id']]) ?>
-                        <?= $this->Form->hidden('forum_id', ['value' => $forum->id]) ?>
-                        <li class="white">
-                            <div class="form-group basic-textarea">
-                                <?= $this->Form->textarea('comment',
-                                    [
-                                        'id'          => 'f--comment',
-                                        'class'       => 'form-control pl-2 my-0',
-                                        'rows'        => '4',
-                                        'placeholder' => 'コメントを入力'
-                                    ]
-                                ) ?>
+                        <?php if (count($forum->forum_comments) <= 1000) : ?>
+                            <?= $this->Form->create('', ['url' => ['controller' => 'ForumComments', 'action' => 'add']]) ?>
+                            <?= $this->Form->hidden('user_id',  ['value' => $logins['id']]) ?>
+                            <?= $this->Form->hidden('forum_id', ['value' => $forum->id]) ?>
+                            <li class="white">
+                                <div class="form-group basic-textarea">
+                                    <?= $this->Form->textarea('comment',
+                                        [
+                                            'id'          => 'f--comment',
+                                            'class'       => 'form-control pl-2 my-0',
+                                            'rows'        => '4',
+                                            'placeholder' => 'コメントを入力'
+                                        ]
+                                    ) ?>
+                                </div>
+                            </li>
+                            <li class="white">
+                                <div class="form-check p-2">
+                                    <?= $this->Form->checkbox('anonymous_flag', ['class' => 'form-check-input', 'id' => 'materialUnchecked']) ?>
+                                    <label class="form-check-label dark-grey-text" for="materialUnchecked"><small>匿名で書き込み</small></label>
+                                </div>
+                            </li>
+                            <li>
+                                <?= $this->Form->button('コメント', ['type' => 'submit', 'class' => 'btn btn-info btn-rounded btn-sm waves-effect waves-light float-right mt-3']) ?>
+                            </li>
+                            <?= $this->Form->end() ?>
+                        <?php else : ?>
+                            <div class="p-2 z-depth-1 w-100" style="background-color: #f4f7fb;">
+                                <p class="mb-0 text-center">
+                                    <small>
+                                        コメントが上限1000件に達しています。新たにスレッドを立ててください。
+                                    </small>
+                                </p>
                             </div>
-                        </li>
-                        <li class="white">
-                            <div class="form-check p-2">
-                                <?= $this->Form->checkbox('anonymous_flag', ['class' => 'form-check-input', 'id' => 'materialUnchecked']) ?>
-                                <label class="form-check-label dark-grey-text" for="materialUnchecked"><small>匿名で書き込み</small></label>
-                            </div>
-                        </li>
-                        <li>
-                            <?= $this->Form->button('コメント', ['type' => 'submit', 'class' => 'btn btn-info btn-rounded btn-sm waves-effect waves-light float-right mt-3']) ?>
-                        </li>
-                        <?= $this->Form->end() ?>
+                        <?php endif; ?>
                     </ul>
                 </div><!-- /.chat-message -->
             </div><!-- /.col-lg-12 -->
