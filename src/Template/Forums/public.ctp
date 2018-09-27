@@ -146,15 +146,6 @@
 
 <?php else : ?>
 
-    <div class="row">
-        <div class="col-lg-12">
-            <p class="mb-0">
-                <?= $this->Html->link('<i class="fa fa-plus"></i> スレッド作成', ['controller' => 'Forums', 'action' => 'add'],
-                    ['class' => 'btn btn-sm btn-success', 'escape' => false]
-                ) ?>
-            </p>
-        </div>
-    </div>
     <div class="row mt-2 mb-2">
         <div class="col-lg-12">
             <?= $this->Flash->render() ?>

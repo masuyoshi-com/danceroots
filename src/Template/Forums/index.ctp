@@ -143,7 +143,7 @@
         <div class="col-lg-12">
             <p class="mb-0">
                 <?= $this->Html->link('<i class="fa fa-plus"></i> スレッド作成', ['controller' => 'Forums', 'action' => 'add'],
-                    ['class' => 'btn btn-sm btn-success', 'escape' => false]
+                    ['class' => 'btn btn-sm btn-default', 'escape' => false]
                 ) ?>
             </p>
         </div>
