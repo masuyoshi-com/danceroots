@@ -277,24 +277,28 @@ function getBadgeColor($category)
         case ('インストラクター') :
         case ('HipHop') :
         case ('Dancer') :
+        case ('質問') :
             return 'pink';
             break;
         case ('コンテスト') :
         case ('教育関連') :
         case ('House') :
         case ('Studio') :
+        case ('相談') :
             return 'light-blue';
             break;
         case ('ライブ') :
         case ('バックダンサー') :
         case ('Lock') :
         case ('Organizer') :
+        case ('雑談') :
             return 'indigo';
             break;
         case ('発表会') :
         case ('振付') :
         case ('Pop') :
         case ('General') :
+        case ('議論') :
             return 'purple';
             break;
         case ('その他') :

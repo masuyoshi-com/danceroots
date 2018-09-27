@@ -1,9 +1,12 @@
 <?php $this->assign('title', $forum->title) ?>
 
+<div class="row mt-5">
+</div>
+
 <?php if (AD === 0) : ?>
-<div class="row">
+<div class="row mt-2">
     <div class="col-lg-12 text-center">
-        <section id="dynamicContentWrapper-docsPanel" class="mb-4">
+        <section id="dynamicContentWrapper-docsPanel">
             <div class="card border border-danger z-depth-0" style="height: 200px;">
                 <div class="card-body text-center">
                     <p>
@@ -16,7 +19,7 @@
 </div>
 <?php endif; ?>
 
-<div class="row">
+<div class="row mt-3">
     <div class="col-lg-12">
         <div class="jumbotron p-4 text-center text-md-left author-box">
             <h4 class="h4-responsive text-center font-weight-bold dark-grey-text mb-0">
@@ -38,29 +41,6 @@
                             print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'avatar rounded-circle mr-2 ml-lg-3 z-depth-1']);
                         }
                     ?>
-                    <?php if ($forum->user_id === $logins['id']) : ?>
-                        <hr>
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                <p>
-                                    <?= $this->Html->link('<i class="fa fa-edit mr-2"></i>編集',
-                                        ['controller' => 'Forums', 'action' => 'edit', $forum->id],
-                                        ['class' => 'btn btn-sm btn-primary', 'escape' => false]
-                                    ) ?>
-                                </p>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                <?= $this->Form->postLink('<i class="fa fa-close mr-2"></i><small>削除</small>',
-                                    ['controller' => 'Forums', 'action' => 'delete', $forum->id],
-                                    [
-                                        'class'  => 'btn btn-sm btn-danger',
-                                        'escape' => false,
-                                        'confirm' => 'スレッドを削除します。本当によろしいですか？'
-                                    ]
-                                ) ?>
-                            </div>
-                        </div>
-                    <?php endif; ?>
                 </div>
                 <div class="col-lg-9 col-md-9 col-xs-12">
                     <div class="p-3 z-depth-1 w-100" style="background-color: #f4f7fb;">
@@ -91,8 +71,8 @@
                             <?php endif; ?>
                         </p>
                     </div>
-                </div>
-            </div>
+                </div><!-- /.col-lg-9 -->
+            </div><!-- /.row -->
         </div><!-- /.jumbotron -->
     </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
@@ -105,9 +85,7 @@
 
 <div class="card grey lighten-4 chat-room mb-3">
     <div class="card-body">
-        <!-- Grid row -->
         <div class="row px-lg-2 px-2">
-            <!-- Grid column -->
             <div class="col-lg-12 px-lg-auto px-0">
                 <div class="chat-message">
                     <ul class="list-unstyled chat">
@@ -172,31 +150,21 @@
                                 <?php endif; ?>
                             <?php $i++; endforeach; ?>
                         <?php endif; ?>
-                        <?= $this->Form->create('', ['url' => ['controller' => 'ForumComments', 'action' => 'add']]) ?>
-                        <?= $this->Form->hidden('user_id',  ['value' => $logins['id']]) ?>
-                        <?= $this->Form->hidden('forum_id', ['value' => $forum->id]) ?>
-                        <li class="white">
-                            <div class="form-group basic-textarea">
-                                <?= $this->Form->textarea('comment',
-                                    [
-                                        'id'          => 'f--comment',
-                                        'class'       => 'form-control pl-2 my-0',
-                                        'rows'        => '4',
-                                        'placeholder' => 'コメントを入力'
-                                    ]
-                                ) ?>
-                            </div>
-                        </li>
-                        <li class="white">
-                            <div class="form-check p-2">
-                                <?= $this->Form->checkbox('anonymous_flag', ['class' => 'form-check-input', 'id' => 'materialUnchecked']) ?>
-                                <label class="form-check-label dark-grey-text" for="materialUnchecked"><small>匿名で書き込み</small></label>
-                            </div>
-                        </li>
                         <li>
-                            <?= $this->Form->button('コメント', ['type' => 'submit', 'class' => 'btn btn-info btn-rounded btn-sm waves-effect waves-light float-right mt-3']) ?>
+                            <div class="p-2 z-depth-1 w-100" style="background-color: #f4f7fb;">
+                                <p class="mb-0 text-center">
+                                    <small>
+                                        <?php
+                                            if (isset($logins['id'])) {
+                                                print $this->Html->link('コメントは会員側画面で入力できます。', ['controller' => 'Forums', 'action' => 'view', $forum->id]);
+                                            } else {
+                                                print $this->Html->link('ログインしてコメントする', ['controller' => 'Users', 'action' => 'login']);
+                                            }
+                                        ?>
+                                    </small>
+                                </p>
+                            </div>
                         </li>
-                        <?= $this->Form->end() ?>
                     </ul>
                 </div><!-- /.chat-message -->
             </div><!-- /.col-lg-12 -->

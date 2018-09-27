@@ -31,6 +31,9 @@
                 <li class="nav-item">
                     <?= $this->Html->link('DanceVideo', ['controller' => 'RecommendVideos', 'action' => 'public'], ['class' => 'nav-link']) ?>
                 </li>
+                <li class="nav-item">
+                    <?= $this->Html->link('Forum', ['controller' => 'Forums', 'action' => 'public'], ['class' => 'nav-link']) ?>
+                </li>
                 <!--
                 <li class="nav-item">
                     <?= $this->Html->link('Legend', ['controller' => 'Legends', 'action' => 'publicView'], ['class' => 'nav-link']) ?>

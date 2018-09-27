@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'フォーラム一覧'); ?>
+<?php $this->assign('title', 'マイ フォーラム'); ?>
 
 <?php if (AD === 0) : ?>
 <div class="row">
@@ -21,45 +21,16 @@
         <div class="d-flex">
             <div>
                 <h5 class="h5-responsive font-weight-bold">
-                    <i class="fa fa-comments cyan-text"></i> Dance Forums
+                    <i class="fa fa-comments cyan-text"></i> My Dance Forums
                 </h5>
             </div>
             <div class="ml-auto">
-                <p class="m-0 grey-text"><small>フォーラム一覧</small></p>
+                <p class="m-0 grey-text"><small>マイ フォーラム</small></p>
             </div>
         </div>
         <hr class="mt-0">
     </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
-
-<?= $this->Form->create('', ['type' => 'get']) ?>
-<div class="card card-body p-3 mb-3">
-    <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 mt-3">
-            <?= $this->Form->control('category',
-                [
-                    'id'      => 'f--category',
-                    'type'    => 'select',
-                    'class'   => 'mdb-select colorful-select dropdown-primary',
-                    'options' => $categories,
-                    'empty'   => 'カテゴリを選択'
-                ]
-            ) ?>
-        </div>
-        <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
-            <div class="form-inline md-form input-group mt-2 mb-2">
-                <?= $this->Form->control('word', ['class' => 'form-control my-0', 'placeholder' => '検索']) ?>
-                <?= $this->Form->button('<i class="fa fa-search"></i>',
-                    [
-                        'class'  => 'btn btn-primary ml-2 waves-effect waves-light',
-                        'escape' => false
-                    ]
-                ) ?>
-            </div>
-        </div>
-    </div><!-- /.row -->
-</div><!-- /.card -->
-<?= $this->Form->end() ?>
 
 <?php if (count($forums) !== 0) : ?>
 <div class="row">
@@ -98,7 +69,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($forums as $forum): ?>
+                    <?php foreach ($forums as $forum) : ?>
                     <tr>
                         <td class="dark-grey-text">
                             <?php
@@ -111,8 +82,7 @@
                         </td>
                         <td><span class="badge <?= getBadgeColor($forum->category) ?>"><?= h($forum->category) ?></td>
                         <td>
-                            <?= $this->Html->link($forum->title, ['controller' => 'Forums', 'action' => 'view', $forum->id], ['class' => 'blue-text']) ?>
-                            <a class="comm-ic mr-3"><i class="fa fa-lg fa-comments mr-2"></i></a><span class="counter orange"><?= count(h($forum->forum_comments))?></span><br>
+                            <?= $this->Html->link($forum->title, ['controller' => 'Forums', 'action' => 'view', $forum->id], ['class' => 'blue-text']) ?><br>
                             <?= h($forum->created->timeAgoInWords(['format' => 'MMM d, YYY', 'end' => '+1 year'])) ?>
                         </td>
                     </tr>

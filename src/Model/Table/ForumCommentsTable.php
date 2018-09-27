@@ -26,9 +26,9 @@ class ForumCommentsTable extends Table
 {
 
     /**
-     * Initialize method
+     * 初期化メソッド
      *
-     * @param array $config The configuration for the Table.
+     * @param array $config
      * @return void
      */
     public function initialize(array $config)
@@ -43,42 +43,50 @@ class ForumCommentsTable extends Table
 
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',
-            'joinType' => 'INNER'
+            'joinType'   => 'INNER'
         ]);
         $this->belongsTo('Forums', [
             'foreignKey' => 'forum_id',
-            'joinType' => 'INNER'
+            'joinType'   => 'INNER'
         ]);
     }
 
+
     /**
-     * Default validation rules.
+     * バリデート
      *
-     * @param \Cake\Validation\Validator $validator Validator instance.
+     * @param \Cake\Validation\Validator $validator
      * @return \Cake\Validation\Validator
      */
     public function validationDefault(Validator $validator)
     {
+        $validator->provider('custom', 'App\Model\Validation\CustomValidation');
+
         $validator
             ->allowEmpty('id', 'create');
 
         $validator
             ->scalar('comment')
             ->requirePresence('comment', 'create')
-            ->notEmpty('comment');
+            ->notEmpty('comment')
+            ->add('comment', 'custom', [
+                'rule'     => 'isSpace',
+                'provider' => 'custom',
+                'message'  => '空白のみは受け付けません。'
+            ]);
 
         $validator
             ->requirePresence('anonymous_flag', 'create')
-            ->notEmpty('anonymous_flag');
+            ->allowEmpty('anonymous_flag');
 
         return $validator;
     }
 
+
     /**
-     * Returns a rules checker object that will be used for validating
-     * application integrity.
+     * ルールチェッカー
      *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @param \Cake\ORM\RulesChecker $rules
      * @return \Cake\ORM\RulesChecker
      */
     public function buildRules(RulesChecker $rules)

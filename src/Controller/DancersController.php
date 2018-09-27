@@ -16,21 +16,21 @@ class DancersController extends AppController
     public $search_keys = ['pref', 'genre', 'word'];
 
     public $paginate = [
-           'limit'   => 16,
-           'order'   => ['Dancers.created' => 'desc'],
-           'contain' => ['Users']
-     ];
+        'limit'   => 16,
+        'order'   => ['Dancers.created' => 'desc'],
+        'contain' => ['Users']
+    ];
 
-     /**
-      * 初期化メソッド
-      *
-      * @return void
-      */
-     public function initialize()
-     {
-         parent::initialize();
-         $this->Auth->allow(['public', 'publicView']);
-     }
+    /**
+    * 初期化メソッド
+    *
+    * @return void
+    */
+    public function initialize()
+    {
+        parent::initialize();
+        $this->Auth->allow(['public', 'publicView']);
+    }
 
     /**
      * ホーム - 初期登録時、プロフィール未作成の場合、強制的にaddアクションへ

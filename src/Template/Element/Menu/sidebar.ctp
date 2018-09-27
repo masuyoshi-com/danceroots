@@ -128,6 +128,24 @@
                     </div>
                 </li>
                 <li>
+                    <?= $this->Html->link('<i class="fa fa-comments" aria-hidden="true"></i> フォーラム<i class="fa fa-angle-down rotate-icon"></i>', 'javascript:void(0)',
+                        ['class' => 'collapsible-header waves-effect arrow-r', 'escape' => false]
+                    ) ?>
+                    <div class="collapsible-body">
+                        <ul class="list-unstyled">
+                            <li>
+                                <?= $this->Html->link('フォーラム', ['controller' => 'Forums', 'action' => 'index'], ['class' => 'waves-effect']) ?>
+                            </li>
+                            <li>
+                                <?= $this->Html->link('マイ フォーラム', ['controller' => 'Forums', 'action' => 'list'], ['class' => 'waves-effect']) ?>
+                            </li>
+                            <li>
+                                <?= $this->Html->link('スレッド登録', ['controller' => 'Forums', 'action' => 'add'], ['class' => 'waves-effect']) ?>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
                     <?= $this->Html->link('<i class="fa fa-paper-plane-o"></i> フィードバック', 'javascript:void(0)',
                         [
                             'class'       => 'collapsible-header waves-effect arrow-r',

@@ -40,6 +40,18 @@
                 ]
             ) ?>
         </li>
+        <li class="nav-item">
+            <?= $this->Html->link('<i class="fa fa-comments"></i> <span class="clearfix d-none d-sm-inline-block">フォーラム</span>',
+                ['controller' => 'Forums', 'action' => 'index'],
+                [
+                    'class'          => 'nav-link',
+                    'escape'         => false,
+                    'data-toggle'    => 'tooltip',
+                    'data-placement' => 'bottom',
+                    'title'          => 'ダンスフォーラム'
+                ]
+            ) ?>
+        </li>
         <li class="nav-item dropdown">
             <?= $this->Html->link('<i class="fa fa-user"></i> <span class="clearfix d-none d-sm-inline-block">アカウント</span>', '#',
                 [
