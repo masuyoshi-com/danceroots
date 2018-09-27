@@ -156,7 +156,7 @@
             <?= $this->Flash->render() ?>
         </div>
     </div>
-    <div class="card card-body">
+    <div class="card card-body mb-5">
         <div class="row">
             <div class="col-lg-12">
                 <p class="dark-grey-text text-center m-0">スレッドはありません。</p>
