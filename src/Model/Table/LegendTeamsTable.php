@@ -7,19 +7,19 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Legends Model
+ * LegendTeams Model
  *
- * @method \App\Model\Entity\Legend get($primaryKey, $options = [])
- * @method \App\Model\Entity\Legend newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\Legend[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Legend|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Legend patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Legend[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\Legend findOrCreate($search, callable $callback = null, $options = [])
+ * @method \App\Model\Entity\LegendTeam get($primaryKey, $options = [])
+ * @method \App\Model\Entity\LegendTeam newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\LegendTeam[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\LegendTeam|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\LegendTeam patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\LegendTeam[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\LegendTeam findOrCreate($search, callable $callback = null, $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
-class LegendsTable extends Table
+class LegendTeamsTable extends Table
 {
 
     /**
@@ -32,7 +32,7 @@ class LegendsTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('legends');
+        $this->setTable('legend_teams');
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 

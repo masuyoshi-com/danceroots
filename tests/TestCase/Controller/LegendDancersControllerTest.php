@@ -1,13 +1,13 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\LegendsController;
+use App\Controller\LegendDancersController;
 use Cake\TestSuite\IntegrationTestCase;
 
 /**
- * App\Controller\LegendsController Test Case
+ * App\Controller\LegendDancersController Test Case
  */
-class LegendsControllerTest extends IntegrationTestCase
+class LegendDancersControllerTest extends IntegrationTestCase
 {
 
     /**
@@ -16,7 +16,7 @@ class LegendsControllerTest extends IntegrationTestCase
      * @var array
      */
     public $fixtures = [
-        'app.legends'
+        'app.legend_dancers'
     ];
 
     /**

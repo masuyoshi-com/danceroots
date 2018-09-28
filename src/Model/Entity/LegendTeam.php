@@ -4,14 +4,14 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Legend Entity
+ * LegendTeam Entity
  *
  * @property int $id
  * @property string $name
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  */
-class Legend extends Entity
+class LegendTeam extends Entity
 {
 
     /**

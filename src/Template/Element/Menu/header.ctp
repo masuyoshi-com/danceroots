@@ -34,11 +34,22 @@
                 <li class="nav-item">
                     <?= $this->Html->link('Forum', ['controller' => 'Forums', 'action' => 'public'], ['class' => 'nav-link']) ?>
                 </li>
-                <!--
-                <li class="nav-item">
-                    <?= $this->Html->link('Legend', ['controller' => 'Legends', 'action' => 'publicView'], ['class' => 'nav-link']) ?>
+                <li class="nav-item dropdown">
+                    <?= $this->Html->link('Legends ', '#',
+                        [
+                            'class'         => 'nav-link dropdown-toggle',
+                            'id'            => 'navbarDropdownMenuLink',
+                            'data-toggle'   => 'dropdown',
+                            'aria-haspopup' => 'true',
+                            'aria-expanded' => 'false',
+                            'escape'        => false
+                        ]
+                    ) ?>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                        <?= $this->Html->link('LegendTeam',   ['controller' => 'LegendTeams',   'action' => 'publicView'],   ['class' => 'dropdown-item']) ?>
+                        <?= $this->Html->link('LegendDancer', ['controller' => 'LegendDancers', 'action' => 'publicView'],   ['class' => 'dropdown-item']) ?>
+                    </div>
                 </li>
-                -->
                 <li class="nav-item">
                     <?= $this->Html->link('Webダンス講座', ['controller' => 'Lectures', 'action' => 'index'], ['class' => 'nav-link']) ?>
                 </li>

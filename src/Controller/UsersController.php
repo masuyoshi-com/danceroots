@@ -63,7 +63,8 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.1 controllers/Forums',
             'bin/cake acl grant Groups.1 controllers/ForumComments',
 
-            'bin/cake acl grant Groups.1 controllers/Legends',
+            'bin/cake acl grant Groups.1 controllers/LegendTeams',
+            'bin/cake acl grant Groups.1 controllers/LegendDancers',
 
             // Studios
             'bin/cake acl deny Groups.2 controllers',
@@ -90,7 +91,8 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.2 controllers/Forums',
             'bin/cake acl grant Groups.2 controllers/ForumComments',
 
-            'bin/cake acl grant Groups.2 controllers/Legends',
+            'bin/cake acl grant Groups.2 controllers/LegendTeams',
+            'bin/cake acl grant Groups.2 controllers/LegendDancers',
 
             // Organizers
             'bin/cake acl deny Groups.3 controllers',
@@ -118,7 +120,8 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.3 controllers/Forums',
             'bin/cake acl grant Groups.3 controllers/ForumComments',
 
-            'bin/cake acl grant Groups.3 controllers/Legends',
+            'bin/cake acl grant Groups.3 controllers/LegendTeams',
+            'bin/cake acl grant Groups.3 controllers/LegendDancers',
 
             // Generals
             'bin/cake acl deny Groups.4 controllers',
@@ -147,7 +150,8 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.4 controllers/Forums',
             'bin/cake acl grant Groups.4 controllers/ForumComments',
 
-            'bin/cake acl grant Groups.4 controllers/Legends',
+            'bin/cake acl grant Groups.4 controllers/LegendTeams',
+            'bin/cake acl grant Groups.4 controllers/LegendDancers',
 
             // linux環境はbin/cakeをchmod +x bin/cakeしておく
             // Controller追加，Groupの変更などで更新する場合
