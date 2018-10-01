@@ -27,9 +27,10 @@ class DanceVideosController extends AppController
      */
     public function list()
     {
+        $user   = $this->DanceVideos->Users->findById($this->Auth->user('id'))->first();
         $query  = $this->DanceVideos->findByUserId($this->Auth->user('id'));
         $videos = $this->paginate($query)->toArray();
-
+        
         if ($videos) {
             for ($i = 0; $i < count($videos); $i++) {
                 $videos[$i]['youtube'] = $this->Common->getYoutubeId($videos[$i]['youtube']);
@@ -39,7 +40,7 @@ class DanceVideosController extends AppController
             $profiles = $this->Common->getUsersByClassification($videos[0]['user']['classification'], $videos[0]['user']['id']);
             $this->set('icon', $profiles->icon);
         }
-        $this->set('videos', $videos);
+        $this->set(compact('videos', 'user'));
         $this->set('genres', $this->Common->valueToKey($this->genres));
     }
 
@@ -97,7 +98,7 @@ class DanceVideosController extends AppController
         $this->paginate = ['contain' => ''];
 
         $user = $this->DanceVideos->Users->findByUsername($username)->first();
-        
+
         if ($user) {
             $query  = $this->DanceVideos->findByUserId($user->id);
             $videos = $this->paginate($query)->toArray();

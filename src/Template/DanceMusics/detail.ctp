@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'お気に入りストリートダンスミュージック - ユーザーミュージック詳細'); ?>
+<?php $this->assign('title', 'お気に入りストリートダンスミュージック - ' . h($user->username) . 'さんのミュージックプレイリスト'); ?>
 
 <?php if (AD === 0) : ?>
 <div class="row">
@@ -20,7 +20,7 @@
 <div class="row">
     <div class="col-lg-12 col-md-12">
         <h6 class="h6-responsive">
-            <i class="fa fa-music pink-text"></i> <?= h($user->username) ?>さんのシェアミュージックリスト
+            <i class="fa fa-music pink-text"></i> <?= h($user->username) ?>さんのミュージックプレイリスト
         </h6>
         <hr>
     </div><!-- /.col-lg-12 -->
@@ -43,10 +43,7 @@
                 </li>
             <?php endif; ?>
             <li class="list-inline-item mr-3">
-                <?= $this->Html->link('<i class="fa fa-user mr-1"></i> <small>プロフィール</small>',
-                    $user->link,
-                    ['target' => '_blank', 'escape' => false]
-                ) ?>
+                <?= $this->Html->link('<i class="fa fa-user mr-1"></i> <small>プロフィール</small>', $user->link, ['escape' => false]) ?>
             </li>
         </ul>
     </div>

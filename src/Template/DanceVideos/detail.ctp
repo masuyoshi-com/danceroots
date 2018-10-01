@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'ストリートダンス動画 - ユーザー別お気に入り動画詳細'); ?>
+<?php $this->assign('title', 'ストリートダンス動画 - ' . h($user->username) . 'さんのダンス動画プレイリスト'); ?>
 
 <?php if (AD === 0) : ?>
 <div class="row">
@@ -19,7 +19,7 @@
 <div class="row">
     <div class="col-lg-12 col-md-12">
         <h6 class="h6-responsive">
-            <i class="fa fa-youtube-play yt-ic"></i> <?= h($user->username) ?>さんのシェアダンス動画
+            <i class="fa fa-youtube-play yt-ic"></i> <?= h($user->username) ?>さんのダンス動画プレイリスト
         </h6>
         <hr>
     </div><!-- /.col-lg-12 -->
@@ -42,10 +42,7 @@
                 </li>
             <?php endif; ?>
             <li class="list-inline-item mr-3">
-                <?= $this->Html->link('<i class="fa fa-user mr-1"></i> <small>プロフィール</small>',
-                    $user->link,
-                    ['target' => '_blank', 'escape' => false]
-                ) ?>
+                <?= $this->Html->link('<i class="fa fa-user mr-1"></i> <small>プロフィール</small>', $user->link, ['escape' => false]) ?>
             </li>
         </ul>
     </div>

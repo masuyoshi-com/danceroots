@@ -21,7 +21,7 @@
         <div class="d-flex">
             <div>
                 <h5 class="h5-responsive font-weight-bold">
-                    <i class="fa fa-music pink-text"></i> Music
+                    <i class="fa fa-music pink-text"></i> <span class="none">Recommend</span> Music
                 </h5>
             </div>
             <div class="ml-auto">

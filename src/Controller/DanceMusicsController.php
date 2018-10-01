@@ -275,10 +275,11 @@ class DanceMusicsController extends AppController
      */
     public function list()
     {
+        $user        = $this->DanceMusics->Users->findById($this->Auth->user('id'))->first();
         $query       = $this->DanceMusics->findByUserId($this->Auth->user('id'));
         $danceMusics = $this->paginate($query);
 
-        $this->set(compact('danceMusics'));
+        $this->set(compact('danceMusics', 'user'));
     }
 
 

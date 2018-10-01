@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'ストリートダンス動画共有検索'); ?>
+<?php $this->assign('title', 'ストリートダンス動画プレイリスト'); ?>
 
 <?php if (AD === 0) : ?>
 <div class="row">
@@ -21,11 +21,11 @@
         <div class="d-flex">
             <div>
                 <h5 class="h5-responsive font-weight-bold">
-                    <i class="fa fa-youtube-play yt-ic"></i> <span class="none">Favorite</span> Dance Video
+                    <i class="fa fa-youtube-play yt-ic"></i> Dance Video
                 </h5>
             </div>
             <div class="ml-auto">
-                <p class="m-0 grey-text"><small>全ユーザーの共有ダンス動画</small></p>
+                <p class="m-0 grey-text"><small>ダンス動画</small></p>
             </div>
         </div>
         <hr class="mt-0">
@@ -138,7 +138,7 @@
                                                 'class'          => 'grey-text',
                                                 'data-toggle'    => 'tooltip',
                                                 'data-placement' => 'bottom',
-                                                'title'          => 'シェア動画を見る'
+                                                'title'          => $video->user->username . 'さんのダンス動画'
                                             ]
                                         ) ?>
                                     </small>

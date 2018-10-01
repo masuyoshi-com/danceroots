@@ -21,7 +21,7 @@
         <div class="d-flex">
             <div>
                 <h5 class="h5-responsive font-weight-bold">
-                    <i class="fa fa-youtube-play yt-ic"></i> Dance Video
+                    <i class="fa fa-youtube-play yt-ic"></i> <span class="none">Recommend</span> Dance Video
                 </h5>
             </div>
             <div class="ml-auto">

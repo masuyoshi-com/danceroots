@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'マイ ミュージックリスト'); ?>
+<?php $this->assign('title', h($user->username) . 'さんのミュージックプレイリスト'); ?>
 
 <?php if (AD === 0) : ?>
 <div class="row">
@@ -25,7 +25,7 @@
                 </h5>
             </div>
             <div class="ml-auto">
-                <p class="m-0 grey-text"><small>シェア済みダンス音楽</small></p>
+                <p class="m-0 grey-text"><small>マイ ミュージック</small></p>
             </div>
         </div>
         <hr class="m-0">

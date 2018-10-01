@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'マイダンス動画リスト'); ?>
+<?php $this->assign('title', h($user->username) . 'さんのダンス動画プレイリスト'); ?>
 
 <?php if (AD === 0) : ?>
 <div class="row">
@@ -25,7 +25,7 @@
                 </h5>
             </div>
             <div class="ml-auto">
-                <p class="m-0 grey-text"><small>シェア済みダンス動画</small></p>
+                <p class="m-0 grey-text"><small>マイ ダンス動画</small></p>
             </div>
         </div>
         <hr class="m-0">

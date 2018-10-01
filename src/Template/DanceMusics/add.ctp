@@ -1,10 +1,10 @@
-<?php $this->assign('title', 'ミュージック共有登録'); ?>
+<?php $this->assign('title', 'ミュージックプレイリスト登録'); ?>
 
 <div class="row">
     <div class="col-lg-12 col-md-12">
         <div class="d-flex">
             <h5 class="h5-responsive">
-                <i class="fa fa-music pink-text"></i> お気に入りミュージック
+                <i class="fa fa-music pink-text"></i> ミュージックプレイリスト
                     <small><i class="fa fa-plus pink-text"></i></small>
             </h5>
             <p class="none ml-auto dark-grey-text mb-0">
@@ -82,7 +82,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="form-inline md-form input-group mt-2 mb-2">
-                <?= $this->Form->control('term', ['class' => 'form-control my-0', 'placeholder' => 'アーティスト名または曲名']) ?>
+                <?= $this->Form->control('term', ['class' => 'form-control my-0', 'placeholder' => '曲・アーティストなど']) ?>
                 <?= $this->Form->button('<i class="fa fa-search"></i>',
                     [
                         'class'  => 'btn btn-primary ml-2 waves-effect waves-light',

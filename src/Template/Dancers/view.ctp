@@ -157,7 +157,7 @@
                                 'escape'         => false,
                                 'data-toggle'    => 'tooltip',
                                 'data-placement' => 'bottom',
-                                'title'          => h($dancer->user->username) . 'さんのシェアミュージック'
+                                'title'          => h($dancer->user->username) . 'さんのミュージックプレイリスト'
                             ]
                         ) ?>
                     </p>
@@ -171,7 +171,7 @@
                                 'escape'         => false,
                                 'data-toggle'    => 'tooltip',
                                 'data-placement' => 'bottom',
-                                'title'          => h($dancer->user->username) . 'さんのシェアダンス動画'
+                                'title'          => h($dancer->user->username) . 'さんのダンス動画プレイリスト'
                             ]
                         ) ?>
                     </p>

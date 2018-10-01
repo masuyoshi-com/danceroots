@@ -7,12 +7,12 @@
 
     <div class="col-lg-8">
         <div class="jumbotron text-center pt-4 pb-4">
-            <h2 class="h2-responsive">
-                <i class="fa fa-youtube-play yt-ic"></i> お気に入りダンス動画 <i class="fa fa-plus pink-text"></i>
-            </h2>
+            <h3 class="h3-responsive">
+                <i class="fa fa-youtube-play yt-ic"></i> ダンス動画プレイリスト <i class="fa fa-plus pink-text"></i>
+            </h3>
             <hr class="my-2">
             <p class="lead grey-text">
-                <small><i class="fa fa-info-circle" aria-hidden="true"></i> 共有するダンス動画 (YouTubeURL) を入力してください。</small>
+                <small><i class="fa fa-info-circle" aria-hidden="true"></i> ダンス動画 (YouTubeURL) を入力してください。</small>
             </p>
             <hr class="my-2">
         </div>

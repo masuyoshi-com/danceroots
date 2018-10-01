@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'ストリートダンスミュージック共有検索'); ?>
+<?php $this->assign('title', 'ミュージック'); ?>
 
 <?php if (AD === 0) : ?>
 <div class="row">
@@ -21,11 +21,11 @@
         <div class="d-flex">
             <div>
                 <h5 class="h5-responsive font-weight-bold">
-                    <i class="fa fa-music pink-text"></i> <span class="none">Favorite</span> Dance Music
+                    <i class="fa fa-music pink-text"></i> Music
                 </h5>
             </div>
             <div class="ml-auto">
-                <p class="m-0 grey-text"><small>全ユーザーの共有ダンス音楽</small></p>
+                <p class="m-0 grey-text"><small>ミュージック</small></p>
             </div>
         </div>
         <hr class="mt-0">
@@ -200,10 +200,9 @@
                             'class'          => 'grey-text',
                             'data-toggle'    => 'tooltip',
                             'data-placement' => 'bottom',
-                            'title'          => 'シェアミュージックを見る'
+                            'title'          => $music->user->username . 'さんのミュージック'
                         ]
                     ) ?>
-
                 </small>
             </p>
             <hr class="mt-1">

@@ -7,7 +7,7 @@
 
     <div class="col-lg-8">
         <div class="jumbotron text-center pt-4 pb-1">
-            <h2 class="h2-responsive dark-grey-text"><i class="fa fa-youtube-play yt-ic"></i> ダンス動画 <i class="fa fa-pencil" aria-hidden="true"></i></h2>
+            <h3 class="h3-responsive dark-grey-text"><i class="fa fa-youtube-play yt-ic"></i> ダンス動画 <i class="fa fa-pencil" aria-hidden="true"></i></h3>
             <hr class="my-2">
             <p class="lead grey-text">
                 <small><i class="fa fa-info-circle" aria-hidden="true"></i> 必要箇所を編集してください。</small>
