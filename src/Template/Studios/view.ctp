@@ -177,7 +177,7 @@
                                 'escape'         => false,
                                 'data-toggle'    => 'tooltip',
                                 'data-placement' => 'bottom',
-                                'title'          => h($studio->user->username) . 'さんのシェアミュージック'
+                                'title'          => h($studio->user->username) . 'さんのミュージックプレイリスト'
                             ]
                         ) ?>
                     </p>
@@ -191,7 +191,7 @@
                                 'escape'         => false,
                                 'data-toggle'    => 'tooltip',
                                 'data-placement' => 'bottom',
-                                'title'          => h($studio->user->username) . 'さんのシェアダンス動画'
+                                'title'          => h($studio->user->username) . 'さんのダンス動画プレイリスト'
                             ]
                         ) ?>
                     </p>
@@ -199,7 +199,7 @@
             </div><!-- /.col-lg-12 -->
         </div><!-- /.row -->
         <?php endif; ?>
-        
+
     </div><!-- /.col-lg-4 -->
 
     <div class="col-lg-8 col-md-12 mb-3">

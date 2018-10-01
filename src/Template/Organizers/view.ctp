@@ -292,7 +292,7 @@
                                 'escape'         => false,
                                 'data-toggle'    => 'tooltip',
                                 'data-placement' => 'bottom',
-                                'title'          => h($organizer->user->username) . 'さんのシェアミュージック'
+                                'title'          => h($organizer->user->username) . 'さんのミュージックプレイリスト'
                             ]
                         ) ?>
                     </p>
@@ -306,7 +306,7 @@
                                 'escape'         => false,
                                 'data-toggle'    => 'tooltip',
                                 'data-placement' => 'bottom',
-                                'title'          => h($organizer->user->username) . 'さんのシェアダンス動画'
+                                'title'          => h($organizer->user->username) . 'さんのダンス動画プレイリスト'
                             ]
                         ) ?>
                     </p>
