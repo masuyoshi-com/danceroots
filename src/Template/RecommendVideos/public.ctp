@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'おすすめダンス動画一覧'); ?>
+<?php $this->assign('title', 'おすすめダンス動画'); ?>
 
 <div class="row mt-5">
 </div>

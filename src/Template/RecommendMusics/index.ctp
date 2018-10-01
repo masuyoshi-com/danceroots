@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'おすすめミュージック検索・一覧'); ?>
+<?php $this->assign('title', 'おすすめミュージック'); ?>
 
 <?php if (AD === 0) : ?>
 <div class="row">

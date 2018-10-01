@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'おすすめミュージック一覧'); ?>
+<?php $this->assign('title', 'おすすめミュージック'); ?>
 
 <div class="row mt-5">
 </div>

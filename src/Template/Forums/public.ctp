@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'ダンスフォーラム一覧'); ?>
+<?php $this->assign('title', 'ダンスフォーラム'); ?>
 
 <div class="row mt-5">
 </div>

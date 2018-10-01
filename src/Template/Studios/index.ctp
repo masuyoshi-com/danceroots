@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'スタジオ検索'); ?>
+<?php $this->assign('title', 'ダンススタジオ・スクール検索'); ?>
 
 <div class="row">
     <div class="col-lg-12 col-md-12 mb-2">
