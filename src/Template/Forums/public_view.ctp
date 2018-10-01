@@ -53,9 +53,11 @@
                                     print '<span class="font-weight-bold">匿名ユーザー</span>';
                                 }
                             ?>
+                            <!--
                             <small class="pull-right text-muted pt-3">
                                 <i class="fa fa-clock-o"></i> <?= h($forum->created->timeAgoInWords(['format' => 'MMM d, YYY', 'end' => '+1 year'])) ?>
                             </small>
+                        -->
                         </div>
                         <hr>
                         <p class="mb-0">
