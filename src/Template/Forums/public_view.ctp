@@ -46,18 +46,20 @@
                 <div class="col-lg-9 col-md-9 col-xs-12">
                     <div class="p-3 z-depth-1 w-100" style="background-color: #f4f7fb;">
                         <div class="header">
-                            <?php
-                                if ($forum->anonymous_flag === 0) {
-                                    print '<span class="font-weight-bold">' . h($forum->user->username) . '</span>';
-                                } else {
-                                    print '<span class="font-weight-bold">匿名ユーザー</span>';
-                                }
-                            ?>
-                            <!--
-                            <small class="pull-right text-muted pt-3">
-                                <i class="fa fa-clock-o"></i> <?= h($forum->created->timeAgoInWords(['format' => 'MMM d, YYY', 'end' => '+1 year'])) ?>
-                            </small>
-                        -->
+                            <p class="mb-0">
+                                <?php
+                                    if ($forum->anonymous_flag === 0) {
+                                        print '<span class="font-weight-bold">' . h($forum->user->username) . '</span>';
+                                    } else {
+                                        print '<span class="font-weight-bold">匿名ユーザー</span>';
+                                    }
+                                ?>
+                            </p>
+                            <p>
+                                <small class="pull-right text-muted">
+                                    <i class="fa fa-clock-o"></i> <?= h($forum->created->timeAgoInWords(['format' => 'MMM d, YYY', 'end' => '+1 year'])) ?>
+                                </small>
+                            </p>
                         </div>
                         <hr>
                         <p class="mb-0">
