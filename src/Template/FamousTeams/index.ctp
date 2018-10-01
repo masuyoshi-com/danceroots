@@ -1,17 +1,17 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\LegendTeam[]|\Cake\Collection\CollectionInterface $legendTeams
+ * @var \App\Model\Entity\FamousTeam[]|\Cake\Collection\CollectionInterface $famousTeams
  */
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Legend Team'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('New Famous Team'), ['action' => 'add']) ?></li>
     </ul>
 </nav>
-<div class="legendTeams index large-9 medium-8 columns content">
-    <h3><?= __('Legend Teams') ?></h3>
+<div class="famousTeams index large-9 medium-8 columns content">
+    <h3><?= __('Famous Teams') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
@@ -23,16 +23,16 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($legendTeams as $legendTeam): ?>
+            <?php foreach ($famousTeams as $famousTeam): ?>
             <tr>
-                <td><?= $this->Number->format($legendTeam->id) ?></td>
-                <td><?= h($legendTeam->name) ?></td>
-                <td><?= h($legendTeam->created) ?></td>
-                <td><?= h($legendTeam->modified) ?></td>
+                <td><?= $this->Number->format($famousTeam->id) ?></td>
+                <td><?= h($famousTeam->name) ?></td>
+                <td><?= h($famousTeam->created) ?></td>
+                <td><?= h($famousTeam->modified) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $legendTeam->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $legendTeam->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $legendTeam->id], ['confirm' => __('Are you sure you want to delete # {0}?', $legendTeam->id)]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $famousTeam->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $famousTeam->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $famousTeam->id], ['confirm' => __('Are you sure you want to delete # {0}?', $famousTeam->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

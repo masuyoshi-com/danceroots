@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\LegendTeamsTable;
+use App\Model\Table\FamousTeamsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\LegendTeamsTable Test Case
+ * App\Model\Table\FamousTeamsTable Test Case
  */
-class LegendTeamsTableTest extends TestCase
+class FamousTeamsTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\LegendTeamsTable
+     * @var \App\Model\Table\FamousTeamsTable
      */
-    public $LegendTeams;
+    public $FamousTeams;
 
     /**
      * Fixtures
@@ -24,7 +24,7 @@ class LegendTeamsTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.legend_teams'
+        'app.famous_teams'
     ];
 
     /**
@@ -35,8 +35,8 @@ class LegendTeamsTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('LegendTeams') ? [] : ['className' => LegendTeamsTable::class];
-        $this->LegendTeams = TableRegistry::get('LegendTeams', $config);
+        $config = TableRegistry::exists('FamousTeams') ? [] : ['className' => FamousTeamsTable::class];
+        $this->FamousTeams = TableRegistry::get('FamousTeams', $config);
     }
 
     /**
@@ -46,7 +46,7 @@ class LegendTeamsTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->LegendTeams);
+        unset($this->FamousTeams);
 
         parent::tearDown();
     }

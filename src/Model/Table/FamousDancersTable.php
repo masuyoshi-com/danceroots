@@ -7,19 +7,19 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * LegendTeams Model
+ * FamousDancers Model
  *
- * @method \App\Model\Entity\LegendTeam get($primaryKey, $options = [])
- * @method \App\Model\Entity\LegendTeam newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\LegendTeam[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\LegendTeam|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\LegendTeam patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\LegendTeam[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\LegendTeam findOrCreate($search, callable $callback = null, $options = [])
+ * @method \App\Model\Entity\FamousDancer get($primaryKey, $options = [])
+ * @method \App\Model\Entity\FamousDancer newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\FamousDancer[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\FamousDancer|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\FamousDancer patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\FamousDancer[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\FamousDancer findOrCreate($search, callable $callback = null, $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
-class LegendTeamsTable extends Table
+class FamousDancersTable extends Table
 {
 
     /**
@@ -32,7 +32,7 @@ class LegendTeamsTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('legend_teams');
+        $this->setTable('famous_dancers');
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 

@@ -33,7 +33,7 @@
 </head>
 
 <?php
-    if (strstr($url, 'legend')) {
+    if (strstr($url, 'famous')) {
         print '<body class="elegant-color">';
     } else {
         print '<body>';

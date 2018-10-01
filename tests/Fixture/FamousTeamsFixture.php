@@ -4,10 +4,10 @@ namespace App\Test\Fixture;
 use Cake\TestSuite\Fixture\TestFixture;
 
 /**
- * LegendTeamsFixture
+ * FamousTeamsFixture
  *
  */
-class LegendTeamsFixture extends TestFixture
+class FamousTeamsFixture extends TestFixture
 {
 
     /**
@@ -42,8 +42,8 @@ class LegendTeamsFixture extends TestFixture
             [
                 'id' => 1,
                 'name' => 'Lorem ipsum dolor sit amet',
-                'created' => '2018-09-28 15:52:52',
-                'modified' => '2018-09-28 15:52:52'
+                'created' => '2018-10-01 10:30:24',
+                'modified' => '2018-10-01 10:30:24'
             ],
         ];
         parent::init();

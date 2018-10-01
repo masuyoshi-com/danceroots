@@ -63,8 +63,8 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.1 controllers/Forums',
             'bin/cake acl grant Groups.1 controllers/ForumComments',
 
-            'bin/cake acl grant Groups.1 controllers/LegendTeams',
-            'bin/cake acl grant Groups.1 controllers/LegendDancers',
+            'bin/cake acl grant Groups.1 controllers/FamousTeams',
+            'bin/cake acl grant Groups.1 controllers/FamousDancers',
 
             // Studios
             'bin/cake acl deny Groups.2 controllers',
@@ -91,8 +91,8 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.2 controllers/Forums',
             'bin/cake acl grant Groups.2 controllers/ForumComments',
 
-            'bin/cake acl grant Groups.2 controllers/LegendTeams',
-            'bin/cake acl grant Groups.2 controllers/LegendDancers',
+            'bin/cake acl grant Groups.2 controllers/FamousTeams',
+            'bin/cake acl grant Groups.2 controllers/FamousDancers',
 
             // Organizers
             'bin/cake acl deny Groups.3 controllers',
@@ -120,8 +120,8 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.3 controllers/Forums',
             'bin/cake acl grant Groups.3 controllers/ForumComments',
 
-            'bin/cake acl grant Groups.3 controllers/LegendTeams',
-            'bin/cake acl grant Groups.3 controllers/LegendDancers',
+            'bin/cake acl grant Groups.3 controllers/FamousTeams',
+            'bin/cake acl grant Groups.3 controllers/FamousDancers',
 
             // Generals
             'bin/cake acl deny Groups.4 controllers',
@@ -150,8 +150,8 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.4 controllers/Forums',
             'bin/cake acl grant Groups.4 controllers/ForumComments',
 
-            'bin/cake acl grant Groups.4 controllers/LegendTeams',
-            'bin/cake acl grant Groups.4 controllers/LegendDancers',
+            'bin/cake acl grant Groups.4 controllers/FamousTeams',
+            'bin/cake acl grant Groups.4 controllers/FamousDancers',
 
             // linux環境はbin/cakeをchmod +x bin/cakeしておく
             // Controller追加，Groupの変更などで更新する場合
