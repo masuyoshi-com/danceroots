@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'マイ フォーラム'); ?>
+<?php $this->assign('title', 'マイ ダンスフォーラム'); ?>
 
 <?php if (AD === 0) : ?>
 <div class="row">

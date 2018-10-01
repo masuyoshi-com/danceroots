@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'スレッド登録'); ?>
+<?php $this->assign('title', 'ダンスフォーラム - スレッド登録'); ?>
 
 <div class="row">
     <div class="col-lg-12 col-md-12">
