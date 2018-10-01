@@ -1,4 +1,4 @@
-<?php $this->assign('title', h($dancer->user->username) . 'プロフィール'); ?>
+<?php $this->assign('title', h($dancer->user->username) . ' - プロフィール'); ?>
 
 <div class="row mt-5">
 </div>

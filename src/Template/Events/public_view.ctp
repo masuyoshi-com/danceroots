@@ -1,4 +1,4 @@
-<?php $this->assign('title', h($event->event_name) . '公開イベント詳細'); ?>
+<?php $this->assign('title', h($event->event_name) . 'イベント詳細'); ?>
 
 <div class="row mt-5">
 </div>

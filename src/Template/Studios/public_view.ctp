@@ -1,4 +1,4 @@
-<?php $this->assign('title', h($studio->user->username) . ' 詳細'); ?>
+<?php $this->assign('title', h($studio->studio_name) . '情報'); ?>
 
 <div class="row mt-5">
 </div>

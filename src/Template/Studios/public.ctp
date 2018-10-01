@@ -1,4 +1,4 @@
-<?php $this->assign('title', '公開スタジオ検索'); ?>
+<?php $this->assign('title', 'スタジオ検索'); ?>
 
 <div class="row mt-5">
 </div>
