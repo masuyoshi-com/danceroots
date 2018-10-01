@@ -34,6 +34,7 @@
                 <li class="nav-item">
                     <?= $this->Html->link('Forum', ['controller' => 'Forums', 'action' => 'public'], ['class' => 'nav-link']) ?>
                 </li>
+                <!--
                 <li class="nav-item dropdown">
                     <?= $this->Html->link('Famous ', '#',
                         [
@@ -50,6 +51,7 @@
                         <?= $this->Html->link('有名ダンサー', ['controller' => 'FamousDancers', 'action' => 'publicView'],   ['class' => 'dropdown-item']) ?>
                     </div>
                 </li>
+                -->
                 <li class="nav-item">
                     <?= $this->Html->link('Webダンス講座', ['controller' => 'Lectures', 'action' => 'index'], ['class' => 'nav-link']) ?>
                 </li>
