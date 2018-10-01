@@ -256,10 +256,10 @@
         <a href="<?= $this->Url->build(['controller' => 'Circles', 'action' => 'list']) ?>">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title dark-grey-text"><strong><i class="fa fa-users pink-text"></i> ダンスサークル</strong></h5>
+                    <h5 class="card-title dark-grey-text"><strong><i class="fa fa-users deep-orange-text"></i> サークル</strong></h5>
                     <hr>
                     <p class="card-text">
-                        ダンスサークルを作成・参加し、グループ活動を始めましょう。
+                        サークルを作成・参加し、グループ活動を始めましょう。
                     </p>
                     <p class="card-text text-right">
                         <small class="text-muted">マイ サークルへ <i class="fa fa-arrow-circle-right blue-text"></i></small>
@@ -291,8 +291,7 @@
                     <h5 class="card-title dark-grey-text"><strong><i class="fa fa-music pink-text"></i> ミュージック</strong></h5>
                     <hr>
                     <p class="card-text">
-                        音楽を知ることは、センスを高めるために欠かせません。
-                        ぜひ、好きな音楽を教えてください。
+                        ミュージックプレイリストを作成し、皆で共有しましょう。
                     </p>
                     <p class="card-text text-right">
                         <small class="text-muted">マイ ミュージックへ <i class="fa fa-arrow-circle-right blue-text"></i></small>

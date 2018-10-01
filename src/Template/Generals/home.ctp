@@ -246,7 +246,7 @@
                     <h5 class="card-title dark-grey-text"><strong><i class="fa fa-music pink-text"></i> ミュージック</strong></h5>
                     <hr>
                     <p class="card-text">
-                        良い音楽を皆で共有します。ぜひ、あなたの好きな音楽を教えてください。
+                        ミュージックプレイリストを作成して、良い音楽を共有しましょう。
                     </p>
                     <p class="card-text text-right">
                         <small class="text-muted">マイ ミュージックへ <i class="fa fa-arrow-circle-right blue-text"></i></small>

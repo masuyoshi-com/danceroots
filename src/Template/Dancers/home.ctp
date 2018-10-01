@@ -232,7 +232,7 @@
                     <h5 class="card-title dark-grey-text"><strong><i class="fa fa-youtube-play yt-ic"></i> ダンス動画</strong></h5>
                     <hr>
                     <p class="card-text">
-                        あなたがインスパイアを受けたYoutubeダンス動画を共有しましょう。
+                        あなたがインスパイアを受けたYouTubeダンス動画を共有しましょう。
                         皆で共有することがこのSNSの目的の一つです。是非協力してください。
                     </p>
                     <p class="card-text text-right">
@@ -250,7 +250,7 @@
                     <hr>
                     <p class="card-text">
                         良い音楽を知ることは、ダンスのセンスを高めるために欠かせません。
-                        音楽がなければダンスは生まれてこなかったのです。あなたの好きな音楽を教えてください。
+                        ミュージックプレイリストを作成して、皆で音楽を共有しましょう。
                     </p>
                     <p class="card-text text-right">
                         <small class="text-muted">マイ ミュージックへ <i class="fa fa-arrow-circle-right blue-text"></i></small>
