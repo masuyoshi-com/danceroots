@@ -18,10 +18,10 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <div class="jumbotron p-4 text-center text-md-left author-box">
-            <h4 class="h4-responsive text-center font-weight-bold dark-grey-text mb-0">
+        <div class="jumbotron p-4 text-md-left author-box">
+            <h5 class="h5-responsive text-center font-weight-bold dark-grey-text mb-0">
                 <span class="badge <?= getBadgeColor($forum->category) ?> mr-2"><?= h($forum->category) ?></span><?= h($forum->title) ?>
-            </h4>
+            </h5>
             <p class="text-right m-0">
                 <button type="button" class="btn btn-sm btn-comm btn-lg">
                     <i class="fa fa-comments fa-3x"></i>
@@ -105,9 +105,7 @@
 
 <div class="card grey lighten-4 chat-room mb-3">
     <div class="card-body">
-        <!-- Grid row -->
         <div class="row px-lg-2 px-2">
-            <!-- Grid column -->
             <div class="col-lg-12 px-lg-auto px-0">
                 <div class="chat-message">
                     <ul class="list-unstyled chat">
