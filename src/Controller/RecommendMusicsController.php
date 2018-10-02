@@ -30,7 +30,7 @@ class RecommendMusicsController extends AppController
 
 
     public $paginate = [
-           'limit' => 50,
+           'limit' => 30,
            'order' => ['RecommendMusics.created' => 'desc'],
     ];
 

@@ -39,7 +39,7 @@ class DanceMusicsController extends AppController
     ];
 
     public $paginate = [
-           'limit' => 50,
+           'limit' => 30,
            'order' => ['DanceMusics.created' => 'desc'],
      ];
 
