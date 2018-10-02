@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'お気に入りストリートダンスミュージック - ' . h($user->username) . 'さんのミュージックプレイリスト'); ?>
+<?php $this->assign('title', 'ミュージック - ' . h($user->username) . 'さんのミュージックプレイリスト'); ?>
 
 <?php if (AD === 0) : ?>
 <div class="row">
