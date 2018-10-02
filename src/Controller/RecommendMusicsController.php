@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Collection\Collection;
 
 /**
  * RecommendMusics Controller
@@ -67,7 +68,8 @@ class RecommendMusicsController extends AppController
             $this->Session->write('reco_music_search_request', $this->request->query);
 
         } else {
-            $recommendMusics = $this->paginate($this->RecommendMusics)->toArray();
+            $collection      = new Collection($this->paginate($this->RecommendMusics)->toArray());
+            $recommendMusics = $collection->shuffle()->toList();
         }
 
         if ($this->Session->check('reco_music_search_request')) {
@@ -103,7 +105,8 @@ class RecommendMusicsController extends AppController
             $this->Session->write('public_reco_music_search', $this->request->query);
 
         } else {
-            $recommendMusics = $this->paginate($this->RecommendMusics)->toArray();
+            $collection      = new Collection($this->paginate($this->RecommendMusics)->toArray());
+            $recommendMusics = $collection->shuffle()->toList();
         }
 
         if ($this->Session->check('public_reco_music_search')) {

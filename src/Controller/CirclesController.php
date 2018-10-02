@@ -5,6 +5,7 @@ use App\Controller\AppController;
 use Cake\Event\Event;
 use Cake\Mailer\MailerAwareTrait;
 use Cake\Network\Exception\NotFoundException;
+use Cake\Collection\Collection;
 
 /**
  * Circles Controller
@@ -149,8 +150,9 @@ class CirclesController extends AppController
             $this->Session->write('circle_search_request', $this->request->query);
 
         } else {
-            $query   = $this->Circles->findByPublicFlagAndDeleteFlag(0, 0);
-            $circles = $this->paginate($query);
+            $query      = $this->Circles->findByPublicFlagAndDeleteFlag(0, 0);
+            $collection = new Collection($this->paginate($query)->toArray());
+            $circles    = $collection->shuffle()->toList();
         }
 
         // 検索項目状態があればリード

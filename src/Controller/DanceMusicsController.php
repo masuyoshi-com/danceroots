@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Network\Exception\NotFoundException;
-
+use Cake\Collection\Collection;
 /**
  * DanceMusics Controller
  *
@@ -67,7 +67,8 @@ class DanceMusicsController extends AppController
 
         } else {
             $query       = $this->DanceMusics->find()->group('track_name');
-            $danceMusics = $this->paginate($query)->toArray();
+            $collection  = new Collection($this->paginate($query)->toArray());
+            $danceMusics = $collection->shuffle()->toList();
         }
 
         if ($this->Session->check('music_search_request')) {

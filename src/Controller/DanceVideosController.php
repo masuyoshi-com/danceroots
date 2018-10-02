@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Event\Event;
 use Cake\Network\Exception\NotFoundException;
+use Cake\Collection\Collection;
 
 /**
  * DanceVideos Controller
@@ -30,7 +31,7 @@ class DanceVideosController extends AppController
         $user   = $this->DanceVideos->Users->findById($this->Auth->user('id'))->first();
         $query  = $this->DanceVideos->findByUserId($this->Auth->user('id'));
         $videos = $this->paginate($query)->toArray();
-        
+
         if ($videos) {
             for ($i = 0; $i < count($videos); $i++) {
                 $videos[$i]['youtube'] = $this->Common->getYoutubeId($videos[$i]['youtube']);
@@ -66,7 +67,8 @@ class DanceVideosController extends AppController
             $this->Session->write('video_search_request', $this->request->query);
 
         } else {
-            $videos = $this->paginate($this->DanceVideos)->toArray();
+            $collection = new Collection($this->paginate($this->DanceVideos)->toArray());
+            $videos     = $collection->shuffle()->toList();
         }
 
         if ($this->Session->check('video_search_request')) {

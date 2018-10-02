@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Collection\Collection;
 
 /**
  * RecommendVideos Controller
@@ -53,7 +54,8 @@ class RecommendVideosController extends AppController
             $this->Session->write('reco_video_search_request', $this->request->query);
 
         } else {
-            $reco_videos = $this->paginate($this->RecommendVideos)->toArray();
+            $collection  = new Collection($this->paginate($this->RecommendVideos)->toArray());
+            $reco_videos = $collection->shuffle()->toList();
         }
 
         if ($this->Session->check('reco_video_search_request')) {
@@ -95,7 +97,8 @@ class RecommendVideosController extends AppController
             $this->Session->write('public_reco_video_search', $this->request->query);
 
         } else {
-            $reco_videos = $this->paginate($this->RecommendVideos)->toArray();
+            $collection  = new Collection($this->paginate($this->RecommendVideos)->toArray());
+            $reco_videos = $collection->shuffle()->toList();
         }
 
         if ($this->Session->check('public_reco_video_search')) {

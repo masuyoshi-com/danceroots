@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Event\Event;
 use Cake\Network\Exception\NotFoundException;
+use Cake\Collection\Collection;
 
 /**
  * Dancers Controller
@@ -81,7 +82,8 @@ class DancersController extends AppController
             $this->Session->write('dancer_search_request', $this->request->query);
 
         } else {
-            $dancers = $this->paginate($this->Dancers);
+            $collection = new Collection($this->paginate($this->Dancers)->toArray());
+            $dancers    = $collection->shuffle()->toList();
         }
 
         // 検索項目状態があればリード
@@ -119,8 +121,9 @@ class DancersController extends AppController
             $this->Session->write('public_dancer_search_request', $this->request->query);
 
         } else {
-            $query   = $this->Dancers->findByPublicFlag(0);
-            $dancers = $this->paginate($query);
+            $query      = $this->Dancers->findByPublicFlag(0);
+            $collection = new Collection($this->paginate($query)->toArray());
+            $dancers    = $collection->shuffle()->toList();
         }
 
         // 検索項目状態があればリード
@@ -163,7 +166,7 @@ class DancersController extends AppController
             $video = $this->Dancers->Users->DanceVideos->findByUserId($user->id)->count();
             // Eventが登録されているか(delete_flagを除く)
             $event = $this->Dancers->Users->Events->findByUserIdAndDeleteFlag($user->id, 0)->count();
-            
+
             $this->set('dancer', $dancer);
             $this->set(compact('music', 'video', 'event'));
             // メッセージ用変数

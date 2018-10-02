@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Event\Event;
 use Cake\Network\Exception\NotFoundException;
+use Cake\Collection\Collection;
 
 /**
  * Studios Controller
@@ -85,7 +86,8 @@ class StudiosController extends AppController
             $this->Session->write('studio_search_request', $this->request->query);
 
         } else {
-            $studios = $this->paginate($this->Studios);
+            $collection = new Collection($this->paginate($this->Studios)->toArray());
+            $studios    = $collection->shuffle()->toList();
         }
 
         // 検索項目状態があればリード
@@ -123,8 +125,9 @@ class StudiosController extends AppController
             $this->Session->write('public_studio_search_request', $this->request->query);
 
         } else {
-            $query   = $this->Studios->findByPublicFlag(0);
-            $studios = $this->paginate($query);
+            $query      = $this->Studios->findByPublicFlag(0);
+            $collection = new Collection($this->paginate($query)->toArray());
+            $studios    = $collection->shuffle()->toList();
         }
 
         // 検索項目状態があればリード
