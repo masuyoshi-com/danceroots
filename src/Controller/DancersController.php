@@ -161,9 +161,11 @@ class DancersController extends AppController
             $music = $this->Dancers->Users->DanceMusics->findByUserId($user->id)->count();
             // DanceVideoが登録されているか
             $video = $this->Dancers->Users->DanceVideos->findByUserId($user->id)->count();
-
+            // Eventが登録されているか(delete_flagを除く)
+            $event = $this->Dancers->Users->Events->findByUserIdAndDeleteFlag($user->id, 0)->count();
+            
             $this->set('dancer', $dancer);
-            $this->set(compact('music', 'video'));
+            $this->set(compact('music', 'video', 'event'));
             // メッセージ用変数
             $this->set('to_user_id',  $dancer->user_id);
             $this->set('to_username', $dancer->user->username);

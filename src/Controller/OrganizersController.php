@@ -64,8 +64,10 @@ class OrganizersController extends AppController
             $music = $this->Organizers->Users->DanceMusics->findByUserId($user->id)->count();
             // DanceVideoが登録されているか
             $video = $this->Organizers->Users->DanceVideos->findByUserId($user->id)->count();
+            // Eventが登録されているか(delete_flagを除く)
+            $event = $this->Organizers->Users->Events->findByUserIdAndDeleteFlag($user->id, 0)->count();
 
-            $this->set(compact('organizer', 'music', 'video'));
+            $this->set(compact('organizer', 'music', 'video', 'event'));
             // メッセージ用変数
             $this->set('to_user_id',  $organizer->user->id);
             $this->set('to_username', $organizer->user->username);

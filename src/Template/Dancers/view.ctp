@@ -145,7 +145,7 @@
             </div><!-- /.card-body -->
         </section>
 
-        <?php if ($music !== 0 || $video !== 0) : ?>
+        <?php if ($music !== 0 || $video !== 0 || $event !== 0) : ?>
         <div class="row">
             <div class="col-lg-12">
                 <?php if ($music !== 0) : ?>
@@ -163,7 +163,7 @@
                     </p>
                 <?php endif ?>
                 <?php if ($video !== 0) : ?>
-                    <p class="mb-3">
+                    <p class="mb-2">
                         <?= $this->Html->link('<i class="fa fa-youtube-play" aria-hidden="true"></i> Dance Video',
                             ['controller' => 'DanceVideos', 'action' => 'detail', $dancer->user->username],
                             [
@@ -172,6 +172,20 @@
                                 'data-toggle'    => 'tooltip',
                                 'data-placement' => 'bottom',
                                 'title'          => h($dancer->user->username) . 'さんのダンス動画プレイリスト'
+                            ]
+                        ) ?>
+                    </p>
+                <?php endif; ?>
+                <?php if ($event !== 0) : ?>
+                    <p class="mb-3">
+                        <?= $this->Html->link('<i class="fa fa-calendar" aria-hidden="true"></i> Event',
+                            ['controller' => 'Events', 'action' => 'detail', $dancer->user->username],
+                            [
+                                'class'          => 'btn btn-block aqua-gradient',
+                                'escape'         => false,
+                                'data-toggle'    => 'tooltip',
+                                'data-placement' => 'bottom',
+                                'title'          => h($dancer->user->username) . 'さんのイベントリスト'
                             ]
                         ) ?>
                     </p>

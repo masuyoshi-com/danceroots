@@ -165,8 +165,17 @@
                         </div>
                         <div class="col-lg-4 col-md-6 col-xs-12">
                             <p class="dark-grey-text">
-                                <small><i class="fa fa-calendar"></i> イベント登録者</small> <br>
-                                <?= h($event->user->username) ?>
+                                <small>
+                                    <i class="fa fa-calendar"></i> イベント登録者<br>
+                                    <?= $this->Html->link($event->user->username,
+                                        ['controller' => 'Events', 'action' => 'detail', $event->user->username],
+                                        [
+                                            'data-toggle'    => 'tooltip',
+                                            'data-placement' => 'bottom',
+                                            'title'          => h($event->user->username) . 'さんのイベントリスト'
+                                        ])
+                                    ?>
+                                </small>
                             </p>
                         </div>
                         <div class="col-lg-3 col-md-12 mt-1 mb-1">

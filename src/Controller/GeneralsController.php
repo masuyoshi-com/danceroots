@@ -64,8 +64,10 @@ class GeneralsController extends AppController
             $music = $this->Generals->Users->DanceMusics->findByUserId($user->id)->count();
             // DanceVideoが登録されているか
             $video = $this->Generals->Users->DanceVideos->findByUserId($user->id)->count();
+            // Eventが登録されているか(delete_flagを除く)
+            $event = $this->Generals->Users->Events->findByUserIdAndDeleteFlag($user->id, 0)->count();
 
-            $this->set(compact('general', 'music', 'video'));
+            $this->set(compact('general', 'music', 'video', 'event'));
             // メッセージ用変数
             $this->set('to_user_id',  $general->user_id);
             $this->set('to_username', $general->user->username);

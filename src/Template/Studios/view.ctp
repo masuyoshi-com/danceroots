@@ -165,7 +165,7 @@
             </div>
         <?php endif; ?>
 
-        <?php if ($music !== 0 || $video !== 0) : ?>
+        <?php if ($music !== 0 || $video !== 0 || $event !== 0) : ?>
         <div class="row">
             <div class="col-lg-12">
                 <?php if ($music !== 0) : ?>
@@ -196,6 +196,20 @@
                         ) ?>
                     </p>
                 <?php endif; ?>
+                <?php if ($event !== 0) : ?>
+                    <p class="mb-3">
+                        <?= $this->Html->link('<i class="fa fa-calendar" aria-hidden="true"></i> Event',
+                            ['controller' => 'Events', 'action' => 'detail', $studio->user->username],
+                            [
+                                'class'          => 'btn btn-block aqua-gradient',
+                                'escape'         => false,
+                                'data-toggle'    => 'tooltip',
+                                'data-placement' => 'bottom',
+                                'title'          => h($studio->user->username) . 'さんのイベントリスト'
+                            ]
+                        ) ?>
+                    </p>
+                <?php endif; ?>
             </div><!-- /.col-lg-12 -->
         </div><!-- /.row -->
         <?php endif; ?>
@@ -210,18 +224,6 @@
                     <hr class="mb-2">
                 </div>
             </div>
-            <?php if ($studio->genre) : ?>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <?php
-                            for ($i = 0; $i < count($studio->genre); $i++) {
-                                print '<span class="badge badge-pill m-1 ' . getStudioGenreColor($studio->genre[$i]) . '">' . $studio->genre[$i] . '</span>';
-                            }
-                        ?>
-                    </div>
-                </div>
-                <hr>
-            <?php endif; ?>
 
             <?php if ($studio->image1 || $studio->image2 || $studio->image3) : ?>
                 <div class="row">
@@ -302,6 +304,24 @@
                         <div class="md-form mt-0">
                             <?= nl2br(h($studio->campaign)) ?>
                         </div>
+                    </div>
+                </div>
+            <?php endif; ?>
+
+
+            <?php if ($studio->genre) : ?>
+                <hr>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h6 class="dark-grey-text">対応ジャンル</h6>
+                        <hr class="text-left grey mb-3 pb-1 mt-0 ml-0" style="width: 100px;">
+                        <p class="mb-0">
+                            <?php
+                                for ($i = 0; $i < count($studio->genre); $i++) {
+                                    print h($studio->genre[$i]) . ' / ';
+                                }
+                            ?>
+                        </p>
                     </div>
                 </div>
             <?php endif; ?>

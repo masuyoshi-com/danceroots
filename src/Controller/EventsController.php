@@ -205,6 +205,39 @@ class EventsController extends AppController
 
 
     /**
+     * ユーザー別イベントリスト
+     *
+     * @param string $username ユーザー名
+     * @return [type] [description]
+     */
+    public function detail($username = null)
+    {
+        $user = $this->Events->Users->findByUsername($username)->first();
+
+        if ($user) {
+
+            $query  = $this->Events->findByUserIdAndDeleteFlag($user->id, 0);
+            $events = $this->paginate($query);
+
+            if (count($events) !== 0) {
+
+                $user->profile = $this->Common->getUsersByClassification($user->classification, $user->id);
+                $user->link    = $this->Common->linkSwitch($user->classification, 'view', $user->username);
+
+                $this->set(compact('events', 'user'));
+                // メッセージ用変数
+                $this->set('to_user_id',  $user->id);
+                $this->set('to_username', $user->username);
+            } else {
+                throw new NotFoundException(__('音楽データが見つかりませんでした。'));
+            }
+        } else {
+            throw new NotFoundException(__('ユーザーが見つかりませんでした。'));
+        }
+    }
+
+
+    /**
      * イベント登録
      *
      * @return redirect view イベントID付与

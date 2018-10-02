@@ -28,8 +28,8 @@
 
 <div class="card card-body">
     <div class="card-header border-0 d-flex grey lighten-4" >
-        <p class="font-weight-bold mr-4 mb-0">About author</p>
-        <ul class="ml-auto list-unstyled list-inline mb-0">
+        <p class="font-weight-bold mr-4 mb-0">About Author</p>
+        <ul class="ml-auto text-right list-unstyled list-inline mb-0">
             <?php if ($user->id !== $logins['id']) : ?>
                 <li class="list-inline-item mr-3">
                     <?= $this->Html->link('<i class="fa fa-envelope mr-1"></i> <small>メッセージ</small>',
