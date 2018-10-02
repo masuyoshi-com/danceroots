@@ -4,6 +4,8 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Event\Event;
 use Cake\Network\Exception\NotFoundException;
+use Cake\Collection\Collection;
+
 /**
  * Events Controller
  *
@@ -88,8 +90,9 @@ class EventsController extends AppController
             $this->Session->write('event_search_request', $this->request->query);
 
         } else {
-            $query = $this->Events->findByDeleteFlag(0);
-            $events = $this->paginate($query);
+            $query      = $this->Events->findByDeleteFlag(0);
+            $collection = new Collection($this->paginate($query)->toArray());
+            $events     = $collection->shuffle()->toList();
         }
 
         // 検索項目状態があればリード
@@ -127,8 +130,9 @@ class EventsController extends AppController
             $this->Session->write('public_event_search_request', $this->request->query);
 
         } else {
-            $query  = $this->Events->findByDeleteFlagAndPublicFlag(0, 0);
-            $events = $this->paginate($query);
+            $query      = $this->Events->findByDeleteFlagAndPublicFlag(0, 0);
+            $collection = new Collection($this->paginate($query)->toArray());
+            $events     = $collection->shuffle()->toList();
         }
 
         // 検索項目状態があればリード

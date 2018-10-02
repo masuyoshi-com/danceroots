@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Event\Event;
 use Cake\Network\Exception\NotFoundException;
+use Cake\Collection\Collection;
 
 /**
  * ダンス関連求人コントローラー
@@ -74,8 +75,9 @@ class JobsController extends AppController
             $this->Session->write('job_search_request', $this->request->query);
 
         } else {
-            $query = $this->Jobs->findByPublicFlagAndDeleteFlag(0, 0);
-            $jobs = $this->paginate($query);
+            $query      = $this->Jobs->findByPublicFlagAndDeleteFlag(0, 0);
+            $collection = new Collection($this->paginate($query)->toArray());
+            $jobs       = $collection->shuffle()->toList();
         }
 
         // 検索項目状態があればリード
