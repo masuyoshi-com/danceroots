@@ -59,7 +59,8 @@ class AppController extends Controller
         $this->loadComponent('Flash');
         $this->loadComponent('Mail');
         $this->loadComponent('Common');
-
+        $this->loadComponent('ImageFile');
+        
         // アクセスしやすいようにローカル変数に格納
         $this->Session = $this->request->session();
     }

@@ -15,6 +15,9 @@
             <?= $this->Html->link('<i class="fa fa-plus"></i> スケジュール登録', ['controller' => 'StudioSchedules', 'action' => 'add'],
                 ['class' => 'btn btn-sm btn-primary', 'escape' => false]
             ) ?>
+            <?= $this->Html->link('<i class="fa fa-image"></i> イメージ管理', ['controller' => 'StudioSchedules', 'action' => 'uploadedImage'],
+                ['class' => 'btn btn-sm btn-success', 'escape' => false]
+            ) ?>
         </p>
     </div>
 </div>

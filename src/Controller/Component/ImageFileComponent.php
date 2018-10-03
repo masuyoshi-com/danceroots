@@ -7,20 +7,18 @@ use Cake\Filesystem\File;
 
 class ImageFileComponent extends Component
 {
-    // 最大アップロードファイル数
-    const IMAGE_FILE_COUNT = 7;
-
     /**
      * 削除選択されていればファイル削除
      *
-     * @param array $data $this->request->data
+     * @param array  $data $this->request->data
      * @param string $table_name テーブル名 単数形
-     * @return array $data $this->request->data
+     * @param int    $count データカウント数
+     * @return void
      */
-    public function isSelectedDelete($data, $table_name)
+    public function isSelectedDelete($data, $table_name, $count)
     {
-        for ($i = 1; $i <= self::IMAGE_FILE_COUNT; $i++) {
-            if (isset($data['delete_img' . $i])) {
+        for ($i = 1; $i <= $count; $i++) {
+            if ($data['delete_img' . $i] !== '0') {
                 // FileAPIインスタンス作成
                 $dir = new Folder('upload/' . $table_name);
                 // 最後のスラッシュから後のファイル名を取得
@@ -29,9 +27,7 @@ class ImageFileComponent extends Component
                 $file     = new File($dir->pwd() . DS . $filename);
                 $file->delete();
                 $file->close();
-                $data['image_path' . $i] = NULL;
             }
         }
-        return $data;
     }
 }

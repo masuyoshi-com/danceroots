@@ -185,6 +185,46 @@ class StudioSchedulesController extends AppController
 
 
     /**
+     * アップロード済みイメージ一覧
+     * チェックボックス選択で画像を削除(更新)
+     */
+    public function uploadedImage()
+    {
+        // スタジオスケジュールのアップロードイメージを取得
+        $studioSchedules = $this->StudioSchedules->findByUserId($this->Auth->user('id'))
+            ->select(['StudioSchedules.image'])
+            ->group(['StudioSchedules.image'])
+            ->all();
+
+        if ($this->request->is(['patch', 'post', 'put'])) {
+
+            // データカウント(user_idを省く)
+            $count = count($this->request->getData()) - 1;
+
+            // 画像削除
+            $this->ImageFile->isSelectedDelete($this->request->data, 'studio_schedule', $count);
+
+            // 対象イメージをnullとして更新
+            for ($i = 1; $i <= $count; $i++) {
+                if ($this->request->data['delete_img' . $i] !== '0') {
+                    $schedulesImages = $this->StudioSchedules->findByImage($this->request->data['delete_img' . $i])
+                    ->select(['StudioSchedules.id', 'StudioSchedules.image'])
+                    ->all();
+                    foreach ($schedulesImages as $scheduleImage) {
+                        $scheduleImage->image = null;
+                        $this->StudioSchedules->save($scheduleImage);
+                    }
+                }
+            }
+            $this->Flash->success(__('削除しました。'));
+            return $this->redirect(['action' => 'uploaded-image']);
+        }
+
+        $this->set(compact('studioSchedules'));
+    }
+
+
+    /**
      * スタジオレッスンスケジュール登録
      *
      * @return \Cake\Http\Response|null
