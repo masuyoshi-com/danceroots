@@ -160,27 +160,36 @@ class StudioSchedulesController extends AppController
      */
      public function mySchedule()
      {
-         // 各曜日スケジュールをセレクト。$times配列の時間系列にスケジュールの開始時間を合わせる
-         for ($i = 0; $i < count($this->times); $i++) {
+        // 各曜日スケジュールをセレクト。$times配列の時間系列にスケジュールの開始時間を合わせる
+        for ($i = 0; $i < count($this->times); $i++) {
+            for ($j = 0; $j < count($this->val_weeks); $j++) {
 
-             for ($j = 0; $j < count($this->val_weeks); $j++) {
-                 ${$this->val_weeks[$j]}[$this->times[$i]] = $this->StudioSchedules->findByUserIdAndWeekAndStart($this->Auth->user('id'), $j, $this->times[$i])->first();
+                ${$this->val_weeks[$j]}[$this->times[$i]] = $this->StudioSchedules->findByUserIdAndWeekAndStart($this->Auth->user('id'), $j, $this->times[$i])->first();
 
-                 if (is_null(${$this->val_weeks[$j]}[$this->times[$i]])) {
-                     ${$this->val_weeks[$j]}[$this->times[$i]] = $this->StudioSchedules->findByUserIdAndWeek($this->Auth->user('id'), $j)
-                     ->where(function (QueryExpression $exp, Query $q) use ($i) {
-                         return $exp->like('zone', '%' . $this->times[$i] . '%');
-                     })
-                     ->count();
-                 } else {
-                     // YouTubeID取得
-                     ${$this->val_weeks[$j]}[$this->times[$i]]['youtube'] = $this->Common->getYoutubeId(${$this->val_weeks[$j]}[$this->times[$i]]['youtube']);
-                 }
-             }
-         }
+                if (is_null(${$this->val_weeks[$j]}[$this->times[$i]])) {
 
-         $this->set(compact('suns', 'mons', 'tues', 'weds', 'thus', 'fris', 'sats'));
-         $this->set('times', $this->times);
+                    ${$this->val_weeks[$j]}[$this->times[$i]] = $this->StudioSchedules->findByUserIdAndWeek($this->Auth->user('id'), $j)
+                        ->where(function (QueryExpression $exp, Query $q) use ($i) {
+                            return $exp->like('zone', '%' . $this->times[$i] . '%');
+                        })
+                        ->count();
+
+                } else {
+                    // YouTubeID取得
+                    ${$this->val_weeks[$j]}[$this->times[$i]]['youtube'] = $this->Common->getYoutubeId(${$this->val_weeks[$j]}[$this->times[$i]]['youtube']);
+                }
+            }
+        }
+
+        // スケジュールにイメージが一つでもあるかカウント
+        $img_count = $this->StudioSchedules->findByUserId($this->Auth->user('id'))
+            ->select(['StudioSchedules.image'])
+            ->where(function (QueryExpression $exp, Query $q) {
+                return $exp->isNotNull('StudioSchedules.image');
+            })->count();
+
+        $this->set(compact('suns', 'mons', 'tues', 'weds', 'thus', 'fris', 'sats', 'img_count'));
+        $this->set('times', $this->times);
      }
 
 
@@ -201,25 +210,41 @@ class StudioSchedulesController extends AppController
             // データカウント(user_idを省く)
             $count = count($this->request->getData()) - 1;
 
-            // 画像削除
-            $this->ImageFile->isSelectedDelete($this->request->data, 'studio_schedule', $count);
-
-            // 対象イメージをnullとして更新
+            // 選択されている数をカウント
+            $select_count = 0;
             for ($i = 1; $i <= $count; $i++) {
                 if ($this->request->data['delete_img' . $i] !== '0') {
-                    $schedulesImages = $this->StudioSchedules->findByImage($this->request->data['delete_img' . $i])
-                    ->select(['StudioSchedules.id', 'StudioSchedules.image'])
-                    ->all();
-                    foreach ($schedulesImages as $scheduleImage) {
-                        $scheduleImage->image = null;
-                        $this->StudioSchedules->save($scheduleImage);
-                    }
+                    $select_count++;
                 }
             }
-            $this->Flash->success(__('削除しました。'));
-            return $this->redirect(['action' => 'uploaded-image']);
-        }
 
+            // 未選択の場合はエラー
+            if ($select_count !== 0) {
+
+                // 画像削除
+                $this->ImageFile->isSelectedDelete($this->request->data, 'studio_schedule', $count);
+
+                // 対象イメージをnullとして更新
+                for ($i = 1; $i <= $count; $i++) {
+                    if ($this->request->data['delete_img' . $i] !== '0') {
+                        $schedulesImages = $this->StudioSchedules->findByImage($this->request->data['delete_img' . $i])
+                        ->select(['StudioSchedules.id', 'StudioSchedules.image'])
+                        ->all();
+                        foreach ($schedulesImages as $scheduleImage) {
+                            $scheduleImage->image = null;
+                            $this->StudioSchedules->save($scheduleImage);
+                        }
+                    }
+                }
+
+                $this->Flash->success(__('イメージを削除しました。'));
+                return $this->redirect(['action' => 'uploaded-image']);
+
+            } else {
+                $this->Flash->error(__('削除対象が選択されていません。'));
+                return $this->redirect(['action' => 'uploaded-image']);
+            }
+        }
         $this->set(compact('studioSchedules'));
     }
 
@@ -232,9 +257,20 @@ class StudioSchedulesController extends AppController
     public function add()
     {
         $this->Common->referer();
-        $studioSchedule = $this->StudioSchedules->newEntity();
+        $studioSchedule  = $this->StudioSchedules->newEntity();
+        $instructor_imgs = $studioSchedules = $this->StudioSchedules->findByUserId($this->Auth->user('id'))
+            ->select(['StudioSchedules.image'])
+            ->group(['StudioSchedules.image'])
+            ->toArray();
 
         if ($this->request->is('post')) {
+
+            // image_fileが選択されず、instructor_imgがある場合はimageに代入
+            if ($this->request->data['image_file']['tmp_name'] === '') {
+                if (isset($this->request->data['instructor_img']) && $this->request->data['instructor_img'] !== '') {
+                    $this->request->data['image'] = $this->request->data['instructor_img'];
+                }
+            }
 
             $this->request->data = $this->StudioSchedules->createEndAndZoneTime($this->request->getData());
             $studioSchedule = $this->StudioSchedules->patchEntity($studioSchedule, $this->request->getData());
@@ -260,12 +296,13 @@ class StudioSchedulesController extends AppController
         $this->set('times',  $this->Common->valueToKey($this->times));
         $this->set('genres', $this->Common->valueToKey($this->genres));
         $this->set('weeks',  $this->weeks);
-        $this->set(compact('studioSchedule'));
+        $this->set(compact('studioSchedule', 'instructor_imgs'));
     }
 
 
     /**
      * レッスンスケジュール編集
+     * 画像が変更された場合、元の画像がもし他に使用されていなければ、その画像は削除する
      *
      * @param string|null $id スケジュールID
      * @return \Cake\Http\Response|null
@@ -275,7 +312,34 @@ class StudioSchedulesController extends AppController
     {
         $this->Common->referer();
         $studioSchedule = $this->StudioSchedules->get($id);
+
+        $instructor_imgs = $studioSchedules = $this->StudioSchedules->findByUserId($this->Auth->user('id'))
+            ->select(['StudioSchedules.image'])
+            ->group(['StudioSchedules.image'])
+            ->toArray();
+
         if ($this->request->is(['patch', 'post', 'put'])) {
+
+            // image_fileが選択されず、instructor_imgがある場合はimageに代入
+            if ($this->request->data['image_file']['tmp_name'] === '') {
+                if (isset($this->request->data['instructor_img']) && $this->request->data['instructor_img'] !== '') {
+
+                    $this->request->data['image'] = $this->request->data['instructor_img'];
+
+                    // 元のイメージが選択されたものと違う場合、なおかつそのイメージが一つの場合はそのイメージを削除
+                    if ($studioSchedule->image !== $this->request->data['image']) {
+                        // 元のイメージが一つかどうか検索
+                        $img_count = $this->StudioSchedules->findByImage($studioSchedule->image)->count();
+
+                        if ($img_count === 1) {
+                            // delete_img1にファイルパス代入
+                            $this->request->data['delete_img1'] = $studioSchedule->image;
+                            // イメージ削除
+                            $this->ImageFile->isSelectedDelete($this->request->data, 'studio_schedule', 1);
+                        }
+                    }
+                }
+            }
 
             $this->request->data = $this->StudioSchedules->createEndAndZoneTime($this->request->getData());
             $studioSchedule = $this->StudioSchedules->patchEntity($studioSchedule, $this->request->getData());
@@ -300,7 +364,7 @@ class StudioSchedulesController extends AppController
         $this->set('times',  $this->Common->valueToKey($this->times));
         $this->set('genres', $this->Common->valueToKey($this->genres));
         $this->set('weeks',  $this->weeks);
-        $this->set(compact('studioSchedule'));
+        $this->set(compact('studioSchedule', 'instructor_imgs'));
     }
 
 
@@ -316,6 +380,19 @@ class StudioSchedulesController extends AppController
         $this->Common->referer();
         $this->request->allowMethod(['post', 'delete']);
         $studioSchedule = $this->StudioSchedules->get($id);
+
+        // アップロードデータが一つの場合、画像も同時に削除する
+        if (!is_null($studioSchedule->image)) {
+            $img_count = $this->StudioSchedules->findByImage($studioSchedule->image)->count();
+
+            if ($img_count === 1) {
+                // delete_img1にファイルパス代入
+                $this->request->data['delete_img1'] = $studioSchedule->image;
+                // イメージ削除
+                $this->ImageFile->isSelectedDelete($this->request->data, 'studio_schedule', 1);
+            }
+        }
+
         if ($this->StudioSchedules->delete($studioSchedule)) {
             $this->Flash->success(__('スケジュールを削除しました。'));
         } else {

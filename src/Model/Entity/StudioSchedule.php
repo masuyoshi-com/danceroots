@@ -51,6 +51,7 @@ class StudioSchedule extends Entity
         'comment'    => true,
         'created'    => true,
         'modified'   => true,
-        'user'       => true
+        'user'       => true,
+        'instructor_img' => true,
     ];
 }

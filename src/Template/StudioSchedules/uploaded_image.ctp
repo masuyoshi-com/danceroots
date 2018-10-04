@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'スケジュールアップロード済みイメージ'); ?>
+<?php $this->assign('title', 'レッスンスケジュール - イメージ管理'); ?>
 
 <div class="row">
 
@@ -23,10 +23,11 @@
             <div class="col-lg-12">
                 <?= $this->Html->link('マイ スケジュール',
                     ['controller' => 'StudioSchedules', 'action' => 'mySchedule'],
-                    ['class' => 'btn btn-sm btn-success']
+                    ['class' => 'btn btn-sm btn-primary']
                 ) ?>
             </div>
         </div>
+
         <div class="row">
             <div class="col-lg-12">
                 <?= $this->Flash->render() ?>
@@ -37,7 +38,6 @@
         <?= $this->Form->hidden('user_id', ['value' => h($logins['id'])]) ?>
 
         <div class="card card-body mb-3">
-
             <div class="row">
                 <?php $i = 1; foreach ($studioSchedules as $schedule) : ?>
                     <?php if (!is_null($schedule->image)) : ?>
@@ -49,7 +49,7 @@
                                 <?= $this->Form->checkbox('delete_img' . $i,
                                     [
                                          'id'   => 'materialUnchecked' . $i,
-                                        'class' => 'fomr-check-input',
+                                        'class' => 'form-check-input',
                                         'value' => $schedule->image
                                     ]
                                 ) ?>
@@ -67,7 +67,6 @@
                     ) ?>
                 </div>
             </div>
-
             <?= $this->Form->end() ?>
         </div><!-- /.card -->
     </div><!-- /.col-lg-8 -->

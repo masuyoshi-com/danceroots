@@ -147,7 +147,7 @@ class StudioSchedulesTable extends Table
         $validator
             ->scalar('comment')
             ->allowEmpty('comment');
-
+            
         return $validator;
     }
 

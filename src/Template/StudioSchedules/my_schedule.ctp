@@ -2,9 +2,18 @@
 
 <div class="row">
     <div class="col-lg-12 col-md-12 mb-2">
-        <h5 class="h5-responsive font-weight-bold mb-0">
-            <i class="fa fa-calendar" aria-hidden="true"></i>  My Lesson Schedules
-        </h5>
+        <div class="d-flex">
+            <div>
+                <h5 class="h5-responsive font-weight-bold mb-0">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>  My Lesson Schedules
+                </h5>
+            </div>
+            <div class="ml-auto">
+                <p class="grey-text mb-0 none">
+                    <small>マイレッスンスケジュール</small>
+                </p>
+            </div>
+        </div>
         <hr class="my-2">
     </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
@@ -15,9 +24,13 @@
             <?= $this->Html->link('<i class="fa fa-plus"></i> スケジュール登録', ['controller' => 'StudioSchedules', 'action' => 'add'],
                 ['class' => 'btn btn-sm btn-primary', 'escape' => false]
             ) ?>
-            <?= $this->Html->link('<i class="fa fa-image"></i> イメージ管理', ['controller' => 'StudioSchedules', 'action' => 'uploadedImage'],
-                ['class' => 'btn btn-sm btn-success', 'escape' => false]
-            ) ?>
+            <?php
+                if ($img_count !== 0) {
+                    print $this->Html->link('<i class="fa fa-image"></i> イメージ管理', ['controller' => 'StudioSchedules', 'action' => 'uploadedImage'],
+                        ['class' => 'btn btn-sm btn-success', 'escape' => false]
+                    );
+                }
+            ?>
         </p>
     </div>
 </div>

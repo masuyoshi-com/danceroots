@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'スタジオレッスンスケジュール一覧'); ?>
+<?php $this->assign('title', h($studio->studio_name) . 'レッスンスケジュール一覧'); ?>
 
 <div class="row">
     <div class="col-lg-12">

@@ -96,6 +96,14 @@ body {
     border: solid #f7f7f9;
 }
 
+input[type=radio] {
+    left: auto;
+    visibility: visible;
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+    margin-right: 0.5em;
+}
+
 /* CircleGroupList */
 section.team-section .avatar img.rounded-circle {
     max-width: 150px;

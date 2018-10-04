@@ -6,15 +6,26 @@
     </div>
 
     <div class="col-lg-8">
-        <div class="jumbotron text-center pt-4 pb-4">
-            <h2 class="h2-responsive">
-                <i class="fa fa-calendar"></i> レッスンスケジュール <i class="fa fa-plus pink-text"></i>
-            </h2>
-            <hr class="my-2">
-            <p class="lead grey-text">
-                <small><i class="fa fa-info-circle" aria-hidden="true"></i> 同じ時間帯のスケジュールは登録できません。</small>
-            </p>
-            <hr class="my-2">
+        <div class="d-flex">
+            <div>
+                <h6 class="h6-responsive">
+                    <i class="fa fa-calendar"></i> レッスンスケジュール <i class="fa fa-plus pink-text"></i>
+                </h6>
+            </div>
+            <div class="ml-auto">
+                <p class="grey-text mb-0 none">
+                    <small>同じ時間帯のスケジュールは登録できません。</small>
+                </p>
+            </div>
+        </div>
+        <hr class="mt-0 mb-1">
+        <div class="row mb-1">
+            <div class="col-lg-12">
+                <?= $this->Html->link('マイ スケジュール',
+                    ['controller' => 'StudioSchedules', 'action' => 'mySchedule'],
+                    ['class' => 'btn btn-sm btn-primary']
+                ) ?>
+            </div>
         </div>
 
         <div class="row">
@@ -25,6 +36,45 @@
 
         <?= $this->Form->create($studioSchedule, ['type' => 'file']) ?>
         <?= $this->Form->hidden('user_id', ['value' => h($logins['id'])]) ?>
+        <?= $this->Form->unlockField('instructor_img') ?>
+
+        <?php if (count($instructor_imgs) !== 0) : ?>
+            <div class="card card-body mb-3">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="mb-0">
+                            該当するインストラクターを選択
+                        </p>
+                        <hr class="mt-0">
+                    </div>
+                    <?php $i = 1; foreach ($instructor_imgs as $inst) : ?>
+                        <?php if (!is_null($inst->image)) : ?>
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                <div class="view">
+                                    <?= $this->Html->image($inst->image, ['class' => 'img-fluid img-thumbnail', 'alt' => 'インストラクターイメージ']) ?>
+                                </div>
+                                <div class="form-check m-3 text-right">
+                                    <?= $this->Form->radio('instructor_img',
+                                        [
+                                            [
+                                                'text'  => 'イメージ' . $i,
+                                                'id'    => 'instructor_img' . $i,
+                                                'label' => 'instructor_img' . $i,
+                                                'class' => 'form-check-input',
+                                                'value' => $inst->image,
+                                            ]
+                                        ],
+                                        [
+                                            'hiddenField' => false
+                                        ]
+                                    ) ?>
+                                </div>
+                            </div>
+                        <?php $i++; endif; ?>
+                    <?php endforeach; ?>
+                </div>
+            </div><!-- /.card -->
+        <?php endif; ?>
 
         <div class="card card-body mb-3">
 
