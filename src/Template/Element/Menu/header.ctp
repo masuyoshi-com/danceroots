@@ -17,7 +17,7 @@
                     <?= $this->Html->link('Home', '/', ['class' => 'nav-link']) ?>
                 </li>
                 <li class="nav-item">
-                    <?= $this->Html->link('StreetDancer', ['controller' => 'Dancers', 'action' => 'public'], ['class' => 'nav-link']) ?>
+                    <?= $this->Html->link('Dancer', ['controller' => 'Dancers', 'action' => 'public'], ['class' => 'nav-link']) ?>
                 </li>
                 <li class="nav-item">
                     <?= $this->Html->link('Studio', ['controller' => 'Studios', 'action' => 'public'], ['class' => 'nav-link']) ?>
@@ -34,9 +34,8 @@
                 <li class="nav-item">
                     <?= $this->Html->link('Forum', ['controller' => 'Forums', 'action' => 'public'], ['class' => 'nav-link']) ?>
                 </li>
-                <!--
                 <li class="nav-item dropdown">
-                    <?= $this->Html->link('Famous ', '#',
+                    <?= $this->Html->link('FamousDancer ', '#',
                         [
                             'class'         => 'nav-link dropdown-toggle',
                             'id'            => 'navbarDropdownMenuLink',
@@ -47,16 +46,12 @@
                         ]
                     ) ?>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                        <?= $this->Html->link('有名チーム',   ['controller' => 'FamousTeams',   'action' => 'publicView'],   ['class' => 'dropdown-item']) ?>
-                        <?= $this->Html->link('有名ダンサー', ['controller' => 'FamousDancers', 'action' => 'publicView'],   ['class' => 'dropdown-item']) ?>
+                        <?= $this->Html->link('有名チーム',   ['controller' => 'FamousTeams',   'action' => 'pv'],   ['class' => 'dropdown-item']) ?>
+                        <?= $this->Html->link('有名ダンサー', ['controller' => 'FamousDancers', 'action' => 'pv'],   ['class' => 'dropdown-item']) ?>
                     </div>
                 </li>
-                -->
-                <li class="nav-item">
-                    <?= $this->Html->link('Webダンス講座', ['controller' => 'Lectures', 'action' => 'index'], ['class' => 'nav-link']) ?>
-                </li>
                 <li class="nav-item dropdown">
-                    <?= $this->Html->link('ユーザー機能紹介 ', '#',
+                    <?= $this->Html->link('機能紹介 ', '#',
                         [
                             'class'         => 'nav-link dropdown-toggle',
                             'id'            => 'navbarDropdownMenuLink',

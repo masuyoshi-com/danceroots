@@ -26,7 +26,7 @@ class FamousDancersController extends AppController
     public function initialize()
     {
         parent::initialize();
-        $this->Auth->allow(['public', 'publicView']);
+        $this->Auth->allow(['public', 'pv']);
     }
 
 
@@ -79,11 +79,11 @@ class FamousDancersController extends AppController
      *
      * @param string|null $id
      * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException
      */
-    public function publicView()
+    public function pv()
     {
-        $this->viewBuilder()->setLayout('public');
+        $this->viewBuilder()->setLayout('famous');
 
         /*
         $famousDancer = $this->FamousDancers->get($id, [

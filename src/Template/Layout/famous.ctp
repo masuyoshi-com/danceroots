@@ -20,45 +20,47 @@
     <?= $this->Html->css('bootstrap.min') ?>
     <?= $this->Html->css('mdb.min') ?>
     <?= $this->Html->css('top-style') ?>
+    <style>
+        html,
+        body,
+        header,
+        .jarallax {
+            height: 100%;
+        }
+    </style>
+
     <?= $this->Html->script('jquery-3.2.1.min') ?>
-
-    <?php if (strstr($url, 'studios/public-view') || strstr($url, 'events/public-view')) : ?>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgKCqD5RxbGvn317awtqsiexBBd5wJRPo" type="text/javascript"></script>
-        <?= $this->Html->script('googlemap') ?>
-    <?php endif; ?>
-
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
 </head>
 
-<body>
+<body class="team">
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar" style="background-color: #1C2331">
-    <?= $this->element('Menu/header') ?>
-    <main class="pt-4">
-        <div class="container-fluid">
-            <?= $this->fetch('content') ?>
-        </div>
-    </main>
 
+    <?= $this->element('Menu/header') ?>
+    <?= $this->fetch('content') ?>
     <?= $this->element('Menu/footer') ?>
 
     <!-- Bootstrap dropdown -->
     <?= $this->Html->script('popper.min') ?>
     <?= $this->Html->script('bootstrap.min') ?>
     <?= $this->Html->script('mdb.min') ?>
+    <?= $this->Html->script('script') ?>
+    <?= $this->Html->script('autolink') ?>
 
     <?php
-        if (strstr($url, 'recommend-musics')) {
-            print $this->Html->script('autolink');
+        if (strstr($url, 'pv')) {
+            print $this->Html->script('facebook');
         }
     ?>
 
     <script>
         new WOW().init();
         $('[data-toggle="tooltip"]').tooltip();
-        $('.mdb-select').material_select();
         $('#mdb-lightbox-ui').load('<?= $this->Url->build('/mdb-addons/mdb-lightbox-ui.html') ?>');
+
+        initRun.message('<?= $this->Url->build(['controller' => 'Messages', 'action' => 'add']) ?>');
     </script>
 </body>
 </html>

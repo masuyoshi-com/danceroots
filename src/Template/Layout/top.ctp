@@ -13,7 +13,7 @@
     <?= $this->Html->meta(['http-equiv' => 'x-ua-compatible', 'content' => 'ie=edge']) ?>
     <?= $this->Html->meta('description',
         'ストリートダンス総合プラットフォーム。ストリートダンサー・スタジオ・オーガナイザーなどの検索、ダンス動画・ミュージックの共有、イベントや求人情報もストリートダンスに特化した専用プラットフォーム。利用は全て無料です。') ?>
-    <title>Danceroots | ストリートダンス総合プラットフォーム</title>
+    <title>ストリートダンス総合プラットフォーム | Danceroots</title>
     <?= $this->Html->meta('icon') ?>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-5544353-4"></script>
     <?= $this->Html->script('gtag') ?>

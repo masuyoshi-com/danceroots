@@ -5,7 +5,7 @@
     <?= $this->Html->charset() ?>
     <?= $this->Html->meta(['name' => 'viewport', 'content' => 'width=device-width, initial-scale=1, shrink-to-fit=no']) ?>
     <?= $this->Html->meta(['http-equiv' => 'x-ua-compatible', 'content' => 'ie=edge']) ?>
-    <title>Danceroots | <?= $this->fetch('title') ?></title>
+    <title><?= $this->fetch('title') ?> | Danceroots</title>
     <?= $this->Html->meta('icon') ?>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-5544353-4"></script>
     <?= $this->Html->script('gtag') ?>

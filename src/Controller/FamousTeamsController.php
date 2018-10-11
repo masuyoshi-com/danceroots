@@ -26,7 +26,7 @@ class FamousTeamsController extends AppController
     public function initialize()
     {
         parent::initialize();
-        $this->Auth->allow(['public', 'publicView']);
+        $this->Auth->allow(['public', 'pv']);
     }
 
 
@@ -81,9 +81,9 @@ class FamousTeamsController extends AppController
      * @return \Cake\Http\Response|void
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function publicView()
+    public function pv()
     {
-        $this->viewBuilder()->setLayout('public');
+        $this->viewBuilder()->setLayout('famous');
 
         /*
         $famousTeam = $this->FamousTeams->get($id, [
