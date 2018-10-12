@@ -10,9 +10,6 @@ use Cake\Validation\Validator;
  * FamousDancers Model
  *
  * @property |\Cake\ORM\Association\BelongsTo $Users
- * @property |\Cake\ORM\Association\HasMany $FamousDancerArtists
- * @property |\Cake\ORM\Association\HasMany $FamousDancerEvents
- * @property |\Cake\ORM\Association\HasMany $FamousDancerRoots
  *
  * @method \App\Model\Entity\FamousDancer get($primaryKey, $options = [])
  * @method \App\Model\Entity\FamousDancer newEntity($data = null, array $options = [])
@@ -59,15 +56,6 @@ class FamousDancersTable extends Table
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',
             'joinType'   => 'INNER'
-        ]);
-        $this->hasMany('FamousDancerArtists', [
-            'foreignKey' => 'famous_dancer_id'
-        ]);
-        $this->hasMany('FamousDancerEvents', [
-            'foreignKey' => 'famous_dancer_id'
-        ]);
-        $this->hasMany('FamousDancerRoots', [
-            'foreignKey' => 'famous_dancer_id'
         ]);
     }
 

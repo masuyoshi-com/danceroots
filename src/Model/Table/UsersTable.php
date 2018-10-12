@@ -26,6 +26,12 @@ use Cake\Validation\Validator;
  * @property \App\Model\Table\StudioSchedulesTable|\Cake\ORM\Association\HasMany $StudioSchedules
  * @property \App\Model\Table\TeamGroupsTable|\Cake\ORM\Association\HasMany      $TeamGroups
  * @property \App\Model\Table\TeamsTable|\Cake\ORM\Association\HasMany           $Teams
+ * @property \App\Model\Table\FamousTeamsTable|\Cake\ORM\Association\HasMany     $FamousTeams
+ * @property \App\Model\Table\FamousTeamMembersTable|\Cake\ORM\Association\HasMany $FamousTeamMembers
+ * @property \App\Model\Table\FamousDancersTable|\Cake\ORM\Association\HasMany   $FamousDancers
+ * @property \App\Model\Table\FamousEventsTable|\Cake\ORM\Association\HasMany    $FamousEvents
+ * @property \App\Model\Table\FamousRootsTable|\Cake\ORM\Association\HasMany     $FamousRoots
+ * @property \App\Model\Table\FamousArtistsTable|\Cake\ORM\Association\HasMany   $FamousArtists
  * @property \App\Model\Table\GroupsTable|\Cake\ORM\Association\BelongsTo        $Groups
  *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
@@ -114,6 +120,24 @@ class UsersTable extends Table
             'foreignKey' => 'user_id'
         ]);
         $this->hasMany('Teams', [
+            'foreignKey' => 'user_id'
+        ]);
+        $this->hasMany('FamousTeams', [
+            'foreignKey' => 'user_id'
+        ]);
+        $this->hasMany('FamousTeamMembers', [
+            'foreignKey' => 'user_id'
+        ]);
+        $this->hasMany('FamousDancers', [
+            'foreignKey' => 'user_id'
+        ]);
+        $this->hasMany('FamousEvents', [
+            'foreignKey' => 'user_id'
+        ]);
+        $this->hasMany('FamousRoots', [
+            'foreignKey' => 'user_id'
+        ]);
+        $this->hasMany('FamousArtists', [
             'foreignKey' => 'user_id'
         ]);
     }

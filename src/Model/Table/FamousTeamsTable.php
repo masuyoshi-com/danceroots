@@ -10,10 +10,7 @@ use Cake\Validation\Validator;
  * FamousTeams Model
  *
  * @property |\Cake\ORM\Association\BelongsTo $Users
- * @property |\Cake\ORM\Association\HasMany $FamousTeamArtists
- * @property |\Cake\ORM\Association\HasMany $FamousTeamEvents
  * @property |\Cake\ORM\Association\HasMany $FamousTeamMembers
- * @property |\Cake\ORM\Association\HasMany $FamousTeamRoots
  *
  * @method \App\Model\Entity\FamousTeam get($primaryKey, $options = [])
  * @method \App\Model\Entity\FamousTeam newEntity($data = null, array $options = [])
@@ -61,16 +58,7 @@ class FamousTeamsTable extends Table
             'foreignKey' => 'user_id',
             'joinType'   => 'INNER'
         ]);
-        $this->hasMany('FamousTeamArtists', [
-            'foreignKey' => 'famous_team_id'
-        ]);
-        $this->hasMany('FamousTeamEvents', [
-            'foreignKey' => 'famous_team_id'
-        ]);
         $this->hasMany('FamousTeamMembers', [
-            'foreignKey' => 'famous_team_id'
-        ]);
-        $this->hasMany('FamousTeamRoots', [
             'foreignKey' => 'famous_team_id'
         ]);
     }
