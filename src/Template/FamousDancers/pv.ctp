@@ -339,7 +339,11 @@
                 <div class="row pb-3">
                     <div class="col-lg-12">
                         <p class="text-right m-0">
-                            <small><a href="javascript:void(0)">さらに見る<i class="fa fa-angle-right ml-2" aria-hidden="true"></i></a></small>
+                            <small>
+                                <?= $this->Html->link('さらに見る<i class="fa fa-angle-right ml-2" aria-hidden="true"></i>',
+                                    ['controller' => 'FamousEvents', 'action' => 'public', '#' => 'event'], ['escape' => false]) ?>
+                                <a href="javascript:void(0)"></a>
+                            </small>
                         </p>
                     </div>
                 </div>

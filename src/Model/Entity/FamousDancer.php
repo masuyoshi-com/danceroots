@@ -33,6 +33,8 @@ use Cake\ORM\Entity;
  * @property string $instagram
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
+ *
+ * @property \App\Model\Entity\User $user
  */
 class FamousDancer extends Entity
 {
@@ -69,6 +71,7 @@ class FamousDancer extends Entity
         'twitter'       => true,
         'instagram'     => true,
         'created'       => true,
-        'modified'      => true
+        'modified'      => true,
+        'user'          => true,
     ];
 }

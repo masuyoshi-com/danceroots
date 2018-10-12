@@ -20,6 +20,8 @@ use Cake\ORM\Entity;
  * @property string $style
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
+ *
+ * @property \App\Model\Entity\User $user
  */
 class FamousTeam extends Entity
 {
@@ -43,6 +45,7 @@ class FamousTeam extends Entity
         'youtube3'   => true,
         'style'      => true,
         'created'    => true,
-        'modified'   => true
+        'modified'   => true,
+        'user'       => true,
     ];
 }
