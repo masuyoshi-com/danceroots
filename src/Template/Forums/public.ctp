@@ -7,9 +7,9 @@
     <div class="col-lg-12 col-md-12">
         <div class="d-flex">
             <div>
-                <h5 class="h5-responsive font-weight-bold">
-                    <i class="fa fa-comments cyan-text"></i> Dance Forums
-                </h5>
+                <h6 class="h6-responsive font-weight-bold">
+                    <i class="fa fa-comments cyan-text"></i> Dance Forum
+                </h6>
             </div>
             <div class="ml-auto">
                 <p class="m-0 grey-text"><small>フォーラム一覧</small></p>

@@ -288,9 +288,9 @@
     </div><!-- /.container -->
 
     <div class="container-fluid mb-4 wow fadeIn grey lighten-3" data-wow-delay="0.2s">
-        <div class="container mb-3">
+        <div class="container mb-3 pt-4">
             <section>
-                <h2 class="section-heading text-center mb-0 mt-4 pt-5 font-weight-bold wow fadeIn">Event / Workshop</h2>
+                <h2 class="section-heading text-center mb-0 mt-4 pt-4 font-weight-bold wow fadeIn">Event / Workshop</h2>
                 <p class="text-center text-uppercase font-weight-bold mt-0 mb-5 wow fadeIn" data-wow-delay="0.2s">
                     <small>イベント・ワークショップ</small>
                 </p>

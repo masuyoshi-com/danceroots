@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'ダンススタジオ・スクール検索'); ?>
+<?php $this->assign('title', '有名ダンスチーム一覧'); ?>
 
 <div class="row mt-5">
 </div>
@@ -6,8 +6,9 @@
 <div class="row">
     <div class="col-lg-12 col-md-12 pt-3 pb-3">
         <div class="d-flex">
-            <h6 class="h6-responsive font-weight-bold mb-0">DANCE STUDIO / SCHOOL
-                <span class="ml-1 grey-text"><small>ダンススタジオ<span class="none">・スクール</span>検索</small></span>
+            <h6 class="h6-responsive font-weight-bold mb-0">
+                <i class="fa fa-star orange-text"></i> FAMOUS DANCE TEAM
+                <span class="ml-1 grey-text"><small>有名ダンスチーム一覧</small></span>
             </h6>
             <?php if (!isset($logins)) : ?>
                 <p class="ml-auto mb-0">

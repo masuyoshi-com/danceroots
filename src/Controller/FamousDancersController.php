@@ -12,9 +12,11 @@ use App\Controller\AppController;
  */
 class FamousDancersController extends AppController
 {
+    public $search_keys = ['pref', 'genre', 'word'];
+
     public $paginate = [
         'limit' => 16,
-        'order' => ['Legends.created' => 'desc']
+        'order' => ['FamousDancers.created' => 'desc']
     ];
 
 
@@ -50,9 +52,10 @@ class FamousDancersController extends AppController
      */
     public function public()
     {
-        $this->viewBuilder()->setLayout('public');
+        $this->viewBuilder()->setLayout('public_fluid');
         $famousDancers = $this->paginate($this->FamousDancers);
 
+        $this->set('genres', $this->Common->valueToKey($this->genres));
         $this->set(compact('famousDancers'));
     }
 

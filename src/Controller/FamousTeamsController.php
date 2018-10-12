@@ -12,6 +12,8 @@ use App\Controller\AppController;
  */
 class FamousTeamsController extends AppController
 {
+    public $search_keys = ['pref', 'genre', 'word'];
+
     public $paginate = [
         'limit' => 16,
         'order' => ['Legends.created' => 'desc']
@@ -50,9 +52,10 @@ class FamousTeamsController extends AppController
      */
     public function public()
     {
-        $this->viewBuilder()->setLayout('public');
+        $this->viewBuilder()->setLayout('public_fluid');
         $famousTeams = $this->paginate($this->FamousTeams);
 
+        $this->set('genres', $this->Common->valueToKey($this->genres));
         $this->set(compact('famousTeams'));
     }
 

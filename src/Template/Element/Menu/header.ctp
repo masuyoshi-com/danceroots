@@ -46,8 +46,8 @@
                         ]
                     ) ?>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                        <?= $this->Html->link('有名チーム',   ['controller' => 'FamousTeams',   'action' => 'pv'],   ['class' => 'dropdown-item']) ?>
-                        <?= $this->Html->link('有名ダンサー', ['controller' => 'FamousDancers', 'action' => 'pv'],   ['class' => 'dropdown-item']) ?>
+                        <?= $this->Html->link('有名チーム',   ['controller' => 'FamousTeams',   'action' => 'public'],   ['class' => 'dropdown-item']) ?>
+                        <?= $this->Html->link('有名ダンサー', ['controller' => 'FamousDancers', 'action' => 'public'],   ['class' => 'dropdown-item']) ?>
                     </div>
                 </li>
                 <li class="nav-item dropdown">

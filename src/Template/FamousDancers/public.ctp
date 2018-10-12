@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'ストリートダンサー検索'); ?>
+<?php $this->assign('title', '有名ストリートダンサー一覧'); ?>
 
 <div class="row mt-5">
 </div>
@@ -7,13 +7,13 @@
     <div class="col-lg-12 col-md-12 pt-3 pb-3">
         <div class="d-flex">
             <h6 class="h6-responsive font-weight-bold mb-0">
-                <i class="fa fa-universal-access indigo-text" aria-hidden="true"></i> STREET DANCER
-                <span class="ml-1 grey-text"><small>ストリートダンサー検索</small></span>
+                <i class="fa fa-universal-access orange-text" aria-hidden="true"></i> FAMOUS STREET DANCER
+                <span class="ml-1 grey-text"><small>有名<span class="none">ストリート</span>ダンサー一覧</small></span>
             </h6>
             <?php if (!isset($logins)) : ?>
                 <p class="ml-auto mb-0">
                     <small>
-                        <?= $this->Html->link('プロフィール作成', ['controller' => 'Users', 'action' => 'signup']) ?>
+                        <?= $this->Html->link('もっと機能を使う', ['controller' => 'Users', 'action' => 'signup']) ?>
                     </small>
                 </p>
             <?php endif; ?>
@@ -85,7 +85,7 @@
             </label>
 
             <div class="avatar mx-auto my-3 mt-0">
-                <a href="<?= $this->Url->build(['action' => 'publicView', $dancer->user->username]) ?>">
+                <a href="<?= $this->Url->build(['action' => 'pv', $dancer->user->username]) ?>">
                     <?php
                         if ($dancer->icon) {
                             print $this->Html->image($dancer->icon, ['class' => 'rounded-circle img-fluid']);
