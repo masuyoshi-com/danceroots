@@ -96,4 +96,53 @@ class FamousDancersController extends AppController
         $this->set('famousDancer', $famousDancer);
         */
     }
+
+
+    /**
+     * Add method
+     *
+     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
+     */
+    public function add()
+    {
+        $famousDancer = $this->FamousDancers->newEntity();
+        if ($this->request->is('post')) {
+            $famousDancer = $this->FamousDancers->patchEntity($famousDancer, $this->request->getData());
+            if ($this->FamousDancers->save($famousDancer)) {
+                $this->Flash->success(__('The famous dancer has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The famous dancer could not be saved. Please, try again.'));
+        }
+        $users = $this->FamousDancers->Users->find('list', ['limit' => 200]);
+        $this->set(compact('famousDancer', 'users'));
+    }
+
+
+    /**
+     * Edit method
+     *
+     * @param string|null $id Famous Dancer id.
+     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
+    public function edit($id = null)
+    {
+        $famousDancer = $this->FamousDancers->get($id, [
+            'contain' => []
+        ]);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $famousDancer = $this->FamousDancers->patchEntity($famousDancer, $this->request->getData());
+            if ($this->FamousDancers->save($famousDancer)) {
+                $this->Flash->success(__('The famous dancer has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The famous dancer could not be saved. Please, try again.'));
+        }
+        $users = $this->FamousDancers->Users->find('list', ['limit' => 200]);
+        $this->set(compact('famousDancer', 'users'));
+    }
+
 }

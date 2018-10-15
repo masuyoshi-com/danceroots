@@ -97,4 +97,56 @@ class FamousTeamsController extends AppController
         */
     }
 
+
+    /**
+     * 有名チーム登録
+     *
+     * @param string $id ユーザーID
+     * @return \Cake\Http\Response|null
+     */
+    public function add($id = null)
+    {
+        $famousTeam = $this->FamousTeams->newEntity();
+
+        if ($this->request->is('post')) {
+            debug($this->request->getData());
+            exit;
+            $famousTeam = $this->FamousTeams->patchEntity($famousTeam, $this->request->getData());
+            if ($this->FamousTeams->save($famousTeam)) {
+                $this->Flash->success(__('The famous team has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The famous team could not be saved. Please, try again.'));
+        }
+        $this->set('genres', $this->Common->valueToKey($this->genres));
+        $this->set('user_id', $id);
+        $this->set(compact('famousTeam', 'users'));
+    }
+
+
+    /**
+     * Edit method
+     *
+     * @param string|null $id Famous Team id.
+     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
+    public function edit($id = null)
+    {
+        $famousTeam = $this->FamousTeams->get($id, [
+            'contain' => []
+        ]);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $famousTeam = $this->FamousTeams->patchEntity($famousTeam, $this->request->getData());
+            if ($this->FamousTeams->save($famousTeam)) {
+                $this->Flash->success(__('The famous team has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The famous team could not be saved. Please, try again.'));
+        }
+        $users = $this->FamousTeams->Users->find('list', ['limit' => 200]);
+        $this->set(compact('famousTeam', 'users'));
+    }
 }
