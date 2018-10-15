@@ -34,7 +34,7 @@ class DancersController extends AppController
     }
 
     /**
-     * ホーム - 初期登録時、プロフィール未作成の場合、強制的にaddアクションへ
+     * ホーム - プロフィール未作成の場合はaddアクションへ
      *
      * @return redirect add 初期登録の場合のみ
      */

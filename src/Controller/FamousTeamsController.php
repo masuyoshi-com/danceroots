@@ -33,6 +33,32 @@ class FamousTeamsController extends AppController
 
 
     /**
+     * ホーム - プロフィール未作成の場合はaddアクションへ
+     *
+     * @return redirect add 初期登録の場合のみ
+     */
+    public function home()
+    {
+        $famousTeam = $this->FamousTeams->findByUserId($this->Auth->user('id'))->contain(['Users'])->first();
+
+        if (!$famousTeam) {
+            $this->Flash->default(__('最初にプロフィールを作成しましょう。'));
+            $this->redirect(['action' => 'add']);
+        }
+
+        $famousTeam['user']['classification'] = $this->Common->getCategoryName($famousTeam['user']['classification']);
+        // メッセージ未読数取得
+        $message_number = $this->FamousTeams->Users->Messages->findByToUserIdAndReadFlag($this->Auth->user('id'), 0)->count();
+
+        // お知らせ最新1か月以内を3件のみ取得
+        $this->loadModel('Informations');
+        $informations = $this->Informations->find()->where(['Informations.created >' => new \DateTime('-1 months')])->limit(3)->all();
+
+        $this->set(compact('famousTeam', 'message_number', 'informations'));
+    }
+
+
+    /**
      * Index method
      *
      * @return \Cake\Http\Response|void

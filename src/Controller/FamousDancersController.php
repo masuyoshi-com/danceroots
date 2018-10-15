@@ -33,6 +33,32 @@ class FamousDancersController extends AppController
 
 
     /**
+     * ホーム - 初期登録時、プロフィール未作成の場合、強制的にaddアクションへ
+     *
+     * @return redirect add 初期登録の場合のみ
+     */
+    public function home()
+    {
+        $famousDancer = $this->FamousDancers->findByUserId($this->Auth->user('id'))->contain(['Users'])->first();
+
+        if (!$famousDancer) {
+            $this->Flash->default(__('最初にプロフィールを作成しましょう。'));
+            $this->redirect(['action' => 'add']);
+        }
+
+        $famousDancer['user']['classification'] = $this->Common->getCategoryName($famousDancer['user']['classification']);
+        // メッセージ未読数取得
+        $message_number = $this->FamousDancers->Users->Messages->findByToUserIdAndReadFlag($this->Auth->user('id'), 0)->count();
+
+        // お知らせ最新1か月以内を3件のみ取得
+        $this->loadModel('Informations');
+        $informations = $this->Informations->find()->where(['Informations.created >' => new \DateTime('-1 months')])->limit(3)->all();
+
+        $this->set(compact('famousDancer', 'message_number', 'informations'));
+    }
+
+
+    /**
      * Index method
      *
      * @return \Cake\Http\Response|void
