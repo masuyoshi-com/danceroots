@@ -2,6 +2,9 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
+use Cake\Network\Exception\NotFoundException;
+use Cake\Collection\Collection;
 
 /**
  * FamousTeams Controller
@@ -125,29 +128,48 @@ class FamousTeamsController extends AppController
 
 
     /**
-     * 有名チーム登録
+     * 有名チームプロフィール登録 -初期登録は画面周りをaddに変更
      *
-     * @param string $id ユーザーID
-     * @return \Cake\Http\Response|null
+     * @return \Cake\Http\Response|null 登録成功の場合はviewへ
      */
-    public function add($id = null)
+    public function add()
     {
-        $famousTeam = $this->FamousTeams->newEntity();
+        $this->Common->referer();
 
-        if ($this->request->is('post')) {
-            debug($this->request->getData());
-            exit;
-            $famousTeam = $this->FamousTeams->patchEntity($famousTeam, $this->request->getData());
-            if ($this->FamousTeams->save($famousTeam)) {
-                $this->Flash->success(__('The famous team has been saved.'));
+        $this->viewBuilder()->setLayout('add');
 
-                return $this->redirect(['action' => 'index']);
+        // 区分ユーザーが存在し、本登録済みか
+        $user = $this->FamousTeams->Users->findByIdAndRegisterFlagAndClassification($this->Auth->user('id'), 1, 5)->first();
+
+        if ($user) {
+
+            // そのユーザーは既に一度プロフィール登録しているか
+            $profile = $this->FamousTeams->findByUserId($user->id)->first();
+
+            if (!$profile) {
+                $famousTeam = $this->FamousTeams->newEntity();
+
+                if ($this->request->is('post')) {
+
+                    $famousTeam = $this->FamousTeams->patchEntity($famousTeam, $this->request->getData());
+
+                    if ($this->FamousTeams->save($famousTeam)) {
+                        $this->Flash->success(__('プロフィール作成しました。各メニューが使用できるようになりました。'));
+                        return $this->redirect(['action' => 'home']);
+                    }
+
+                    $this->Flash->error(__('エラーがあります。入力項目を確認してください。'));
+                }
+                $this->set('genres',  $this->Common->valueToKey($this->genres));
+                $this->set(compact('famousTeam'));
+            } else {
+                $this->Auth->logout();
+                throw new NotFoundException(__('404 不正なアクセスまたはコンテンツが見つかりません。'));
             }
-            $this->Flash->error(__('The famous team could not be saved. Please, try again.'));
+        } else {
+            $this->Auth->logout();
+            throw new NotFoundException(__('404 不正なアクセスまたはコンテンツが見つかりません。'));
         }
-        $this->set('genres', $this->Common->valueToKey($this->genres));
-        $this->set('user_id', $id);
-        $this->set(compact('famousTeam', 'users'));
     }
 
 

@@ -29,6 +29,13 @@ class CommonComponent extends Component
                 break;
             case 3:
                 return ['controller' => 'Generals', 'action' => $action, $username];
+                break;
+            case 4:
+                return ['controller' => 'FamousDancers', 'action' => $action, $username];
+                break;
+            case 5:
+                return ['controller' => 'FamousTeams', 'action' => $action, $username];
+                break;
             default:
                 return false;
                 break;
@@ -78,6 +85,12 @@ class CommonComponent extends Component
             case 3:
                 return 'General';
                 break;
+            case 4:
+                return 'FamousDancers';
+                break;
+            case 5:
+                return 'FamousTeams';
+                break;
             default:
                 return false;
                 break;
@@ -125,6 +138,14 @@ class CommonComponent extends Component
             case (3) :
                 $this->Generals = TableRegistry::get('Generals');
                 return $this->Generals->findByUserId($user_id)->first();
+                break;
+            case (4) :
+                $this->FamousDancers = TableRegistry::get('FamousDancers');
+                return $this->FamousDancers->findByUserId($user_id)->first();
+                break;
+            case (4) :
+                $this->FamousTeams = TableRegistry::get('FamousDancers');
+                return $this->FamousTeams->findByUserId($user_id)->first();
                 break;
             default :
                 return false;

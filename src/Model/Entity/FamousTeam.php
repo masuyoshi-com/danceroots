@@ -9,6 +9,7 @@ use Cake\ORM\Entity;
  * @property int    $id
  * @property int    $user_id
  * @property string $name
+ * @property string $icon
  * @property string $image
  * @property string $genre
  * @property string $pref
@@ -34,6 +35,8 @@ class FamousTeam extends Entity
     protected $_accessible = [
         'user_id'    => true,
         'name'       => true,
+        'icon'       => true,
+        'icon_file'  => true,
         'image'      => true,
         'image_file' => true,
         'genre'      => true,

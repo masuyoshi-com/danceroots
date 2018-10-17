@@ -72,6 +72,8 @@ class FamousTeamsTable extends Table
      */
     public function validationDefault(Validator $validator)
     {
+        $validator->provider('custom', 'App\Model\Validation\CustomValidation');
+
         $validator
             ->allowEmpty('id', 'create');
 
@@ -79,12 +81,36 @@ class FamousTeamsTable extends Table
             ->scalar('name')
             ->maxLength('name', 100)
             ->requirePresence('name', 'create')
-            ->notEmpty('name');
+            ->notEmpty('name')
+            ->add('name', 'custom', [
+                'rule'     => 'isSpace',
+                'provider' => 'custom',
+                'message'  => '空白のみは受け付けません。'
+            ]);
 
+        $validator
+            ->scalar('icon')
+            ->maxLength('icon', 255)
+            ->allowEmpty('icon');
+
+        $validator
+            ->add('icon_file', 'file', [
+                'rule'    => ['mimeType', ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']],
+                'message' => '拡張子が違います。'
+            ])
+            ->allowEmpty('icon_file');
+            
         $validator
             ->scalar('image')
             ->maxLength('image', 255)
             ->allowEmpty('image');
+
+        $validator
+            ->add('image_file', 'file', [
+                'rule' => ['mimeType', ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']],
+                'message' => '拡張子が違います。'
+            ])
+            ->allowEmpty('image_file');
 
         $validator
             ->scalar('genre')
@@ -102,7 +128,12 @@ class FamousTeamsTable extends Table
             ->scalar('period')
             ->maxLength('period', 100)
             ->requirePresence('period', 'create')
-            ->notEmpty('period');
+            ->notEmpty('period')
+            ->add('period', 'custom', [
+                'rule'     => 'isSpace',
+                'provider' => 'custom',
+                'message'  => '空白のみは受け付けません。'
+            ]);
 
         $validator
             ->scalar('profile')
@@ -112,17 +143,44 @@ class FamousTeamsTable extends Table
         $validator
             ->scalar('youtube1')
             ->maxLength('youtube1', 255)
-            ->allowEmpty('youtube1');
+            ->allowEmpty('youtube1')
+            ->add('youtube1', 'valid-url', [
+                'rule'    => ['url', true],
+                'message' => '正当なURLを入力してください。'
+            ])
+            ->add('youtube1', 'custom', [
+                'rule'     => 'isYoutube',
+                'provider' => 'custom',
+                'message'  => 'Youtube動画ではありません。'
+            ]);
 
         $validator
             ->scalar('youtube2')
             ->maxLength('youtube2', 255)
-            ->allowEmpty('youtube2');
+            ->allowEmpty('youtube2')
+            ->add('youtube2', 'valid-url', [
+                'rule'    => ['url', true],
+                'message' => '正当なURLを入力してください。'
+            ])
+            ->add('youtube2', 'custom', [
+                'rule'     => 'isYoutube',
+                'provider' => 'custom',
+                'message'  => 'Youtube動画ではありません。'
+            ]);
 
         $validator
             ->scalar('youtube3')
             ->maxLength('youtube3', 255)
-            ->allowEmpty('youtube3');
+            ->allowEmpty('youtube3')
+            ->add('youtube3', 'valid-url', [
+                'rule'    => ['url', true],
+                'message' => '正当なURLを入力してください。'
+            ])
+            ->add('youtube3', 'custom', [
+                'rule'     => 'isYoutube',
+                'provider' => 'custom',
+                'message'  => 'Youtube動画ではありません。'
+            ]);
 
         $validator
             ->scalar('style')
@@ -132,11 +190,11 @@ class FamousTeamsTable extends Table
         return $validator;
     }
 
+
     /**
-     * Returns a rules checker object that will be used for validating
-     * application integrity.
+     * ルールチェッカー ユーザーID必須
      *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @param \Cake\ORM\RulesChecker $rules
      * @return \Cake\ORM\RulesChecker
      */
     public function buildRules(RulesChecker $rules)
@@ -144,5 +202,22 @@ class FamousTeamsTable extends Table
         $rules->add($rules->existsIn(['user_id'], 'Users'));
 
         return $rules;
+    }
+
+
+    /**
+    * 有名チーム検索 - 都道府県・ジャンル・フリーワード
+    *
+    * @param array $requests
+    */
+    public function findBySearch($requests)
+    {
+        return $this->find('all')
+            ->where(['FamousTeams.pref LIKE'  => '%' . $requests['pref'] . '%'])
+            ->where(['FamousTeams.genre LIKE' => '%' . $requests['genre'] . '%'])
+            ->where(['OR' => [
+                ['Users.username LIKE'   => '%' . $requests['word'] . '%'],
+                ['FamousTeams.name LIKE' => '%' . $requests['word'] . '%']]])
+            ;
     }
 }

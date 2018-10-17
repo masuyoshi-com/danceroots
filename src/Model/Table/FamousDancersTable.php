@@ -83,9 +83,23 @@ class FamousDancersTable extends Table
             ->allowEmpty('icon');
 
         $validator
+            ->add('icon_file', 'file', [
+                'rule'    => ['mimeType', ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']],
+                'message' => '拡張子が違います。'
+            ])
+            ->allowEmpty('icon_file');
+
+        $validator
             ->scalar('image')
             ->maxLength('image', 255)
             ->allowEmpty('image');
+
+        $validator
+            ->add('image_file', 'file', [
+                'rule'    => ['mimeType', ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']],
+                'message' => '拡張子が違います。'
+            ])
+            ->allowEmpty('image_file');
 
         $validator
             ->scalar('genre')
@@ -121,17 +135,44 @@ class FamousDancersTable extends Table
         $validator
             ->scalar('youtube1')
             ->maxLength('youtube1', 255)
-            ->allowEmpty('youtube1');
+            ->allowEmpty('youtube1')
+            ->add('youtube1', 'valid-url', [
+                'rule'    => ['url', true],
+                'message' => '正当なURLを入力してください。'
+            ])
+            ->add('youtube1', 'custom', [
+                'rule'     => 'isYoutube',
+                'provider' => 'custom',
+                'message'  => 'YouTube動画ではありません。'
+            ]);
 
         $validator
             ->scalar('youtube2')
             ->maxLength('youtube2', 255)
-            ->allowEmpty('youtube2');
+            ->allowEmpty('youtube2')
+            ->add('youtube2', 'valid-url', [
+                'rule'    => ['url', true],
+                'message' => '正当なURLを入力してください。'
+            ])
+            ->add('youtube2', 'custom', [
+                'rule'     => 'isYoutube',
+                'provider' => 'custom',
+                'message'  => 'YouTube動画ではありません。'
+            ]);
 
         $validator
             ->scalar('youtube3')
             ->maxLength('youtube3', 255)
-            ->allowEmpty('youtube3');
+            ->allowEmpty('youtube3')
+            ->add('youtube3', 'valid-url', [
+                'rule'    => ['url', true],
+                'message' => '正当なURLを入力してください。'
+            ])
+            ->add('youtube3', 'custom', [
+                'rule'     => 'isYoutube',
+                'provider' => 'custom',
+                'message'  => 'YouTube動画ではありません。'
+            ]);
 
         $validator
             ->scalar('sche_sun')
@@ -162,28 +203,55 @@ class FamousDancersTable extends Table
             ->allowEmpty('sche_sat');
 
         $validator
-            ->scalar('facebook')
-            ->maxLength('facebook', 255)
-            ->allowEmpty('facebook');
-
-        $validator
             ->scalar('twitter')
             ->maxLength('twitter', 255)
-            ->allowEmpty('twitter');
+            ->allowEmpty('twitter')
+            ->add('twitter', 'valid-url', [
+                'rule'    => ['url', true],
+                'message' => '正当なURLを入力してください。'
+            ])
+            ->add('twitter', 'custom', [
+                'rule'     => 'isTwitter',
+                'provider' => 'custom',
+                'message'  => 'Twitterではありません。'
+            ]);
+
+        $validator
+            ->scalar('facebook')
+            ->maxLength('facebook', 255)
+            ->allowEmpty('facebook')
+            ->add('facebook', 'valid-url', [
+                'rule'    => ['url', true],
+                'message' => '正当なURLを入力してください。'
+            ])
+            ->add('facebook', 'custom', [
+                'rule'     => 'isFacebook',
+                'provider' => 'custom',
+                'message'  => 'Facebookではありません。'
+            ]);
 
         $validator
             ->scalar('instagram')
             ->maxLength('instagram', 255)
-            ->allowEmpty('instagram');
+            ->allowEmpty('instagram')
+            ->add('instagram', 'valid-url', [
+                'rule'    => ['url', true],
+                'message' => '正当なURLを入力してください。'
+            ])
+            ->add('instagram', 'custom', [
+                'rule'     => 'isInstagram',
+                'provider' => 'custom',
+                'message'  => 'Instagramではありません。'
+            ]);
 
         return $validator;
     }
 
+
     /**
-     * Returns a rules checker object that will be used for validating
-     * application integrity.
+     * ルールチェッカー ユーザーID必須
      *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @param \Cake\ORM\RulesChecker $rules
      * @return \Cake\ORM\RulesChecker
      */
     public function buildRules(RulesChecker $rules)
@@ -191,5 +259,22 @@ class FamousDancersTable extends Table
         $rules->add($rules->existsIn(['user_id'], 'Users'));
 
         return $rules;
+    }
+
+
+    /**
+    * 有名チーム検索 - 都道府県・ジャンル・フリーワード
+    *
+    * @param array $requests
+    */
+    public function findBySearch($requests)
+    {
+        return $this->find('all')
+            ->where(['FamousDancers.pref LIKE'  => '%' . $requests['pref'] . '%'])
+            ->where(['FamousDancers.genre LIKE' => '%' . $requests['genre'] . '%'])
+            ->where(['OR' => [
+                ['Users.username LIKE'   => '%' . $requests['word'] . '%'],
+                ['FamousDancers.name LIKE' => '%' . $requests['word'] . '%']]])
+            ;
     }
 }

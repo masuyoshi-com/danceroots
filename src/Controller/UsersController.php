@@ -234,7 +234,8 @@ class UsersController extends AppController
             // linux環境はbin/cakeをchmod +x bin/cakeしておく
             // Controller追加，Groupの変更などで更新する場合
             'bin/cake acl_extras aco_update',
-
+            // acos db に controller 周りのデータをシンクさせる
+            'bin/cake acl_extras aco_sync',
             // その後に各区分に上記コマンドで設定
         ];
     }
@@ -258,16 +259,22 @@ class UsersController extends AppController
 
                     switch ($user['classification']) {
                         case 0:
-                            return $this->redirect(['controller' => 'dancers', 'action' => 'home']);
+                            return $this->redirect(['controller' => 'Dancers', 'action' => 'home']);
                             break;
                         case 1:
-                            return $this->redirect(['controller' => 'studios', 'action' => 'home']);
+                            return $this->redirect(['controller' => 'Studios', 'action' => 'home']);
                             break;
                         case 2:
-                            return $this->redirect(['controller' => 'organizers', 'action' => 'home']);
+                            return $this->redirect(['controller' => 'Organizers', 'action' => 'home']);
                             break;
                         case 3:
-                            return $this->redirect(['controller' => 'generals', 'action' => 'home']);
+                            return $this->redirect(['controller' => 'Generals', 'action' => 'home']);
+                            break;
+                        case 4:
+                            return $this->redirect(['controller' => 'FamousDancers', 'action' => 'home']);
+                            break;
+                        case 5:
+                            return $this->redirect(['controller' => 'FamousTeams', 'action' => 'home']);
                             break;
                         default:
                             return false;
