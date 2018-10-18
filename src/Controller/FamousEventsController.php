@@ -30,7 +30,7 @@ class FamousEventsController extends AppController
     }
 
     /**
-     * Index method
+     * 有名チーム/ダンサー イベント一覧(管理)
      *
      * @return \Cake\Http\Response|void
      */
@@ -42,6 +42,23 @@ class FamousEventsController extends AppController
         $famousEvents = $this->paginate($this->FamousEvents);
 
         $this->set(compact('famousEvents'));
+    }
+
+
+    /**
+     * 有名チーム/ダンサーイベント一覧
+     *
+     * @param string|null $id Famous Event id.
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function view($id = null)
+    {
+        $famousEvent = $this->FamousEvents->get($id, [
+            'contain' => ['Users']
+        ]);
+
+        $this->set('famousEvent', $famousEvent);
     }
 
 
@@ -60,22 +77,6 @@ class FamousEventsController extends AppController
         */
     }
 
-
-    /**
-     * View method
-     *
-     * @param string|null $id Famous Event id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $famousEvent = $this->FamousEvents->get($id, [
-            'contain' => ['Users']
-        ]);
-
-        $this->set('famousEvent', $famousEvent);
-    }
 
     /**
      * Add method

@@ -196,7 +196,6 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.5 controllers/FamousDancers',
             'bin/cake acl grant Groups.5 controllers/FamousEvents',
             'bin/cake acl grant Groups.5 controllers/FamousRoots',
-            'bin/cake acl grant Groups.5 controllers/FamousArtists',
 
             // FamousTeams
             'bin/cake acl deny Groups.6 controllers',
@@ -229,7 +228,7 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.6 controllers/FamousDancers/view',
             'bin/cake acl grant Groups.6 controllers/FamousEvents',
             'bin/cake acl grant Groups.6 controllers/FamousRoots',
-            'bin/cake acl grant Groups.6 controllers/FamousArtists',
+            'bin/cake acl grant Groups.6 controllers/FamousTeamMembers',
 
             // linux環境はbin/cakeをchmod +x bin/cakeしておく
             // Controller追加，Groupの変更などで更新する場合

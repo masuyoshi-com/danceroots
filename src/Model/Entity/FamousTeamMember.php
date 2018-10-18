@@ -6,43 +6,40 @@ use Cake\ORM\Entity;
 /**
  * FamousTeamMember Entity
  *
- * @property int $id
- * @property int $user_id
- * @property int $famous_team_id
- * @property int $famous_dancer_id
+ * @property int    $id
+ * @property int    $user_id
+ * @property int    $famous_team_id
  * @property string $name
  * @property string $image
- * @property int $leader_flag
+ * @property string $profile_url
+ * @property int    $leader_flag
+ * @property int    $display_order
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\User $user
  * @property \App\Model\Entity\FamousTeam $famous_team
- * @property \App\Model\Entity\FamousDancer $famous_dancer
  */
 class FamousTeamMember extends Entity
 {
 
     /**
-     * Fields that can be mass assigned using newEntity() or patchEntity().
-     *
-     * Note that when '*' is set to true, this allows all unspecified fields to
-     * be mass assigned. For security purposes, it is advised to set '*' to false
-     * (or remove it), and explicitly make individual fields accessible as needed.
+     * アクセスフィールド
      *
      * @var array
      */
     protected $_accessible = [
-        'user_id' => true,
+        'user_id'        => true,
         'famous_team_id' => true,
-        'famous_dancer_id' => true,
-        'name' => true,
-        'image' => true,
-        'leader_flag' => true,
-        'created' => true,
-        'modified' => true,
-        'user' => true,
-        'famous_team' => true,
-        'famous_dancer' => true
+        'name'           => true,
+        'image'          => true,
+        'image_file'     => true,
+        'profile_url'    => true,
+        'leader_flag'    => true,
+        'display_order'  => true,
+        'created'        => true,
+        'modified'       => true,
+        'user'           => true,
+        'famous_team'    => true
     ];
 }

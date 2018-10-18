@@ -25,11 +25,13 @@ use Cake\Validation\Validator;
  */
 class FamousTeamMembersTable extends Table
 {
+    const F_TEAM_MEMBERS_IMAGE_PATH = 'upload/famous_team_member/:md5';
+
 
     /**
-     * Initialize method
+     * 初期化メソッド
      *
-     * @param array $config The configuration for the Table.
+     * @param array $config
      * @return void
      */
     public function initialize(array $config)
@@ -41,28 +43,41 @@ class FamousTeamMembersTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Xety/Cake3Upload.Upload', [
+            'fields' => [
+                'icon' => [
+                    'path'   => self::F_TEAM_MEMBERS_IMAGE_PATH,
+                    'prefix' => '../'
+                ],
+                'image' => [
+                    'path'   => self::F_TEAM_MEMBERS_IMAGE_PATH,
+                    'prefix' => '../'
+                ]
+            ]
+        ]);
 
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',
-            'joinType' => 'INNER'
+            'joinType'   => 'INNER'
         ]);
+
         $this->belongsTo('FamousTeams', [
             'foreignKey' => 'famous_team_id',
-            'joinType' => 'INNER'
-        ]);
-        $this->belongsTo('FamousDancers', [
-            'foreignKey' => 'famous_dancer_id'
+            'joinType'   => 'INNER'
         ]);
     }
 
+
     /**
-     * Default validation rules.
+     * バリデート
      *
-     * @param \Cake\Validation\Validator $validator Validator instance.
+     * @param \Cake\Validation\Validator $validator
      * @return \Cake\Validation\Validator
      */
     public function validationDefault(Validator $validator)
     {
+        $validator->provider('custom', 'App\Model\Validation\CustomValidation');
+
         $validator
             ->allowEmpty('id', 'create');
 
@@ -70,7 +85,12 @@ class FamousTeamMembersTable extends Table
             ->scalar('name')
             ->maxLength('name', 50)
             ->requirePresence('name', 'create')
-            ->notEmpty('name');
+            ->notEmpty('name')
+            ->add('name', 'custom', [
+                'rule'     => 'isSpace',
+                'provider' => 'custom',
+                'message'  => '空白のみは受け付けません。'
+            ]);
 
         $validator
             ->scalar('image')
@@ -78,24 +98,52 @@ class FamousTeamMembersTable extends Table
             ->allowEmpty('image');
 
         $validator
-            ->requirePresence('leader_flag', 'create')
-            ->notEmpty('leader_flag');
+            ->add('image_file', 'file', [
+                'rule'    => ['mimeType', ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']],
+                'message' => '拡張子が違います。'
+            ])
+            ->allowEmpty('image_file');
+
+        $validator
+            ->scalar('profile_url')
+            ->maxLength('profile_url', 150)
+            ->requirePresence('profile_url', 'create')
+            ->allowEmpty('profile_url')
+            ->add('profile_url', 'custom', [
+                'rule'     => 'isSpace',
+                'provider' => 'custom',
+                'message'  => '空白のみは受け付けません。'
+            ])
+            ->add('profile_url', 'custom', [
+                'rule'     => 'isDanceroots',
+                'provider' => 'custom',
+                'message'  => 'DancerootsのプロフィールURLではありません。'
+            ]);
+
+        $validator
+            ->scalar('display_order')
+            ->maxLength('display_order', 10)
+            ->requirePresence('display_order', 'create')
+            ->allowEmpty('display_order')
+            ->add('display_order', 'validValue', [
+                'rule'     => ['range', 0, 20],
+                'message'  => '0 ～ 20 で設定してください。'
+            ]);
 
         return $validator;
     }
 
+
     /**
-     * Returns a rules checker object that will be used for validating
-     * application integrity.
+     * ルールチェッカー
      *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @param \Cake\ORM\RulesChecker $rules
      * @return \Cake\ORM\RulesChecker
      */
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['user_id'], 'Users'));
         $rules->add($rules->existsIn(['famous_team_id'], 'FamousTeams'));
-        $rules->add($rules->existsIn(['famous_dancer_id'], 'FamousDancers'));
 
         return $rules;
     }
