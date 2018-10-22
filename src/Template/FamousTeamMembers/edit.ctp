@@ -4,7 +4,7 @@
     <div class="col-lg-12 col-md-12">
         <div class="d-flex">
             <div>
-                <h5 class="h5-responsive font-weight-bold dark-grey-text">
+                <h5 class="h5-responsive font-weight-bold">
                     <span class="none">Famous</span> Team Member<i class="fa fa-pencil pink-text ml-2" aria-hidden="true"></i>
                 </h5>
             </div>

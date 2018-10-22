@@ -27,7 +27,6 @@ class FamousTeamMembersTable extends Table
 {
     const F_TEAM_MEMBERS_IMAGE_PATH = 'upload/famous_team_member/:md5';
 
-
     /**
      * 初期化メソッド
      *

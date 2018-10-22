@@ -12,6 +12,7 @@ use App\Controller\AppController;
  */
 class FamousEventsController extends AppController
 {
+    public $categories = ['クラブショー', 'コンテスト', 'ワークショップ', 'その他'];
 
     public $paginate = [
         'limit' => 16,
@@ -29,6 +30,7 @@ class FamousEventsController extends AppController
         $this->Auth->allow(['public']);
     }
 
+
     /**
      * 有名チーム/ダンサー イベント一覧(管理)
      *
@@ -36,12 +38,23 @@ class FamousEventsController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Users']
-        ];
-        $famousEvents = $this->paginate($this->FamousEvents);
+        // ユーザー区分で判定
+        if ($this->Auth->user('classification') === 4) {
+            // ダンサー名のみ取得
+            $famous = $this->FamousEvents->Users->FamousDancers
+                ->findByUserId($this->Auth->user('id'))
+                ->select(['FamousDancers.name'])
+                ->first();
+        } elseif ($this->Auth->user('classification') === 5) {
+            // チーム名のみ取得
+            $famous = $this->FamousEvents->Users->FamousTeams
+                ->findByUserId($this->Auth->user('id'))
+                ->select(['FamousTeams.name'])
+                ->first();
+        }
 
-        $this->set(compact('famousEvents'));
+        $famousEvents = $this->paginate($this->FamousEvents);
+        $this->set(compact('famousEvents', 'famous'));
     }
 
 
@@ -79,66 +92,83 @@ class FamousEventsController extends AppController
 
 
     /**
-     * Add method
+     * プロフィール内イベント登録
      *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
+     * @return \Cake\Http\Response|null
      */
     public function add()
     {
         $famousEvent = $this->FamousEvents->newEntity();
+
         if ($this->request->is('post')) {
+
             $famousEvent = $this->FamousEvents->patchEntity($famousEvent, $this->request->getData());
+
             if ($this->FamousEvents->save($famousEvent)) {
-                $this->Flash->success(__('The famous event has been saved.'));
+                $this->Flash->success(__('プロフィール内のイベントを登録しました。'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The famous event could not be saved. Please, try again.'));
+            $this->Flash->error(__('エラーがあります。入力項目を再確認してください。'));
         }
-        $users = $this->FamousEvents->Users->find('list', ['limit' => 200]);
-        $this->set(compact('famousEvent', 'users'));
+
+        $this->set('categories', $this->Common->valueToKey($this->categories));
+        $this->set(compact('famousEvent'));
     }
 
+
     /**
-     * Edit method
+     * プロフィール内イベント編集
      *
      * @param string|null $id Famous Event id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     * @return \Cake\Http\Response|null
+     * @throws \Cake\Network\Exception\NotFoundException レコードがない場合
      */
     public function edit($id = null)
     {
-        $famousEvent = $this->FamousEvents->get($id, [
-            'contain' => []
-        ]);
+        $this->Common->referer();
+
+        $famousEvent = $this->FamousEvents->get($id);
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $famousEvent = $this->FamousEvents->patchEntity($famousEvent, $this->request->getData());
             if ($this->FamousEvents->save($famousEvent)) {
-                $this->Flash->success(__('The famous event has been saved.'));
-
+                $this->Flash->success(__('イベントを編集しました。'));
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The famous event could not be saved. Please, try again.'));
+            $this->Flash->error(__('エラーがあります。入力項目を再確認してください。'));
         }
-        $users = $this->FamousEvents->Users->find('list', ['limit' => 200]);
-        $this->set(compact('famousEvent', 'users'));
+
+        $this->set('categories', $this->Common->valueToKey($this->categories));
+        $this->set(compact('famousEvent'));
     }
 
+
     /**
-     * Delete method
+     * プロフィール内イベント削除
      *
      * @param string|null $id Famous Event id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     * @return \Cake\Http\Response|null
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException レコードがない場合
      */
     public function delete($id = null)
     {
+        $this->Common->referer();
         $this->request->allowMethod(['post', 'delete']);
         $famousEvent = $this->FamousEvents->get($id);
+
+        // 画像も同時に削除する
+        if (!is_null($famousEvent->image)) {
+            // delete_img1にファイルパス代入
+            $this->request->data['delete_img1'] = $famousEvent->image;
+            // イメージ削除
+            $this->ImageFile->isSelectedDelete($this->request->data, 'famous_event', 1);
+        }
+
         if ($this->FamousEvents->delete($famousEvent)) {
-            $this->Flash->success(__('The famous event has been deleted.'));
+            $this->Flash->success(__('イベントを削除しました。'));
         } else {
-            $this->Flash->error(__('The famous event could not be deleted. Please, try again.'));
+            $this->Flash->error(__('削除できません。解決しない場合はフィードバックよりお問い合わせください。'));
         }
 
         return $this->redirect(['action' => 'index']);

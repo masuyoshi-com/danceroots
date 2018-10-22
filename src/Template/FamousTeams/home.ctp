@@ -199,8 +199,8 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 text-center">
-                    <a href="<?= $this->Url->build(['controller' => 'FamousEvents', 'action' => 'index']) ?>">
-                        <h5 class="dark-grey-text"><strong>TEAM ROOTS</strong></h5>
+                    <a href="<?= $this->Url->build(['controller' => 'FamousRoots', 'action' => 'index']) ?>">
+                        <h5 class="dark-grey-text"><strong>TEAM R<span class="font-blue">OO</span>TS</strong></h5>
                         <p class="dark-grey-text">
                             <small>
                                 チームのルーツを辿ります。
@@ -211,10 +211,10 @@
                         </p>
                     </a>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
+            </div><!-- /.row -->
+        </div><!-- /.col-lg-12 -->
+    </div><!-- /.row -->
+</div><!-- /.card -->
 
 
 <div class="row mb-3">

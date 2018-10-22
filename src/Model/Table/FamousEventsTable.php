@@ -63,6 +63,8 @@ class FamousEventsTable extends Table
      */
     public function validationDefault(Validator $validator)
     {
+        $validator->provider('custom', 'App\Model\Validation\CustomValidation');
+
         $validator
             ->allowEmpty('id', 'create');
 
@@ -76,13 +78,25 @@ class FamousEventsTable extends Table
             ->scalar('title')
             ->maxLength('title', 100)
             ->requirePresence('title', 'create')
-            ->notEmpty('title');
+            ->notEmpty('title')
+            ->add('title', 'custom', [
+                'rule'     => 'isSpace',
+                'provider' => 'custom',
+                'message'  => '空白のみは受け付けません。'
+            ]);
 
         $validator
             ->scalar('image')
             ->maxLength('image', 255)
             ->allowEmpty('image');
 
+        $validator
+            ->add('image_file', 'file', [
+                'rule'    => ['mimeType', ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']],
+                'message' => '拡張子が違います。'
+            ])
+            ->allowEmpty('image_file');
+        
         $validator
             ->date('event_date')
             ->requirePresence('event_date', 'create')
