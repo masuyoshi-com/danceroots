@@ -86,10 +86,10 @@ class CommonComponent extends Component
                 return 'General';
                 break;
             case 4:
-                return 'FamousDancers';
+                return 'FamousDancer';
                 break;
             case 5:
-                return 'FamousTeams';
+                return 'FamousTeam';
                 break;
             default:
                 return false;
