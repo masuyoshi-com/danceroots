@@ -440,6 +440,7 @@
         </div><!-- /.col-lg-12 -->
     </div><!-- /.row -->
 
+    <?php if (count($respect_artists) !== 0) : ?>
     <div class="card card-body grey lighten-3 mb-5">
         <div class="row">
             <div class="col-lg-12 pt-4">
@@ -448,14 +449,14 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-6 col-md-12 col-xs-12">
-                <iframe allow="autoplay *; encrypted-media *;" frameborder="0" height="350" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/album/the-low-end-theory/278911460?app=music"></iframe>
-            </div>
-            <div class="col-lg-6 col-md-12 col-xs-12">
-                <iframe allow="autoplay *; encrypted-media *;" frameborder="0" height="350" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/album/kitchen-feat-plus-casual-opio-pep-love-tajai-phesto/660282594?app=music"></iframe>
-            </div>
+            <?php foreach ($respect_artists as $artist) : ?>
+                <div class="col-lg-6 col-md-12 col-xs-12">
+                    <?= $artist->iframe ?>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div><!-- /.card -->
+    <?php endif; ?>
 </div><!-- /.container-fluid -->
 
 <script>

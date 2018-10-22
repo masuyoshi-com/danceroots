@@ -135,12 +135,12 @@ class FamousTeamsController extends AppController
             }
 
             // RespectArtist取得
-
+            $respect_artists = $this->FamousTeams->Users->FamousArtists->findByUserId($user->id)->all();
 
             // メッセージ用変数
             $this->set('to_user_id',  $famousTeam->user_id);
             $this->set('to_username', $famousTeam->user->username);
-            $this->set(compact('famousTeam', 'team_members', 'team_events', 'team_roots'));
+            $this->set(compact('famousTeam', 'team_members', 'team_events', 'team_roots', 'respect_artists'));
         } else {
             throw new NotFoundException(__('404 ページが見つかりません。'));
         }
