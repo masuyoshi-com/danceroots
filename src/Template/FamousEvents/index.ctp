@@ -167,8 +167,8 @@
                         </ul>
                     </div>
                 </div><!-- /.card -->
-            </div><!-- /.col-lg-4 -->
-        <?php endforeach; ?>
+            </div><!-- /.col-lg-3 -->
+        <?php $i++; endforeach; ?>
     </div><!-- /.row -->
     <hr>
     <div class="row">

@@ -56,6 +56,7 @@
                     ) ?>
                     <div class="dropdown-menu dropdown-primary">
                         <?= $this->Html->link('マイプロフィール', $views, ['class' => 'dropdown-item']) ?>
+                        <?= $this->Html->link('プロフィール編集', ['controller' => 'FamousTeams', 'action' => 'edit'], ['class' => 'dropdown-item']) ?>
                         <?= $this->Html->link('メッセージ',  ['controller' => 'Messages',    'action' => 'index'], ['class' => 'dropdown-item']) ?>
                         <?= $this->Html->link('サークル',    ['controller' => 'Circles',     'action' => 'list'], ['class' => 'dropdown-item']) ?>
                         <?= $this->Html->link('イベント',    ['controller' => 'Events',      'action' => 'list'], ['class' => 'dropdown-item']) ?>
@@ -169,8 +170,19 @@
 <div class="card card-body mb-3">
     <div class="row">
         <div class="col-lg-12">
-            <h6 class="dark-grey-text font-weight-bold"><i class="fa fa-id-card mr-2" aria-hidden="true"></i>PROFILE MENU</h6>
-            <hr>
+            <div class="d-flex">
+                <div>
+                    <h6 class="dark-grey-text font-weight-bold"><i class="fa fa-id-card mr-2" aria-hidden="true"></i>PROFILE MENU</h6>
+                </div>
+                <div class="ml-auto">
+                    <p class="m-0">
+                        <small>
+                            <?= $this->Html->link('プロフィール基本編集', ['controller' => 'FamousTeams', 'action' => 'edit']) ?>
+                        </small>
+                    </p>
+                </div>
+            </div>
+            <hr class="mt-1">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-12 text-center">
                     <a href="<?= $this->Url->build(['controller' => 'FamousTeamMembers', 'action' => 'index']) ?>">
@@ -184,6 +196,7 @@
                             <small class="text-muted">チームメンバーへ <i class="fa fa-arrow-circle-right blue-text"></i></small>
                         </p>
                     </a>
+                    <hr class="xs-show">
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 text-center">
                     <a href="<?= $this->Url->build(['controller' => 'FamousEvents', 'action' => 'index']) ?>">
@@ -197,6 +210,7 @@
                             <small class="text-muted">プロフィールイベントへ <i class="fa fa-arrow-circle-right blue-text"></i></small>
                         </p>
                     </a>
+                    <hr class="xs-show">
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 text-center">
                     <a href="<?= $this->Url->build(['controller' => 'FamousRoots', 'action' => 'index']) ?>">

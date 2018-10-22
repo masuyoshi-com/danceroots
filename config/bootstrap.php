@@ -274,6 +274,7 @@ function getBadgeColor($category)
 {
     switch ($category) {
         case ('クラブイベント') :
+        case ('クラブショー') :
         case ('インストラクター') :
         case ('HipHop') :
         case ('Dancer') :

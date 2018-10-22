@@ -90,19 +90,61 @@ class FamousTeamsController extends AppController
 
 
     /**
-     * View method
+     * プロフィール詳細
      *
-     * @param string|null $id Famous Team id.
+     * @param string|null $username ユーザー名
      * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     * @throws \Cake\Network\Exception\NotFoundException
      */
-    public function view($id = null)
+    public function view($username = null)
     {
-        $famousTeam = $this->FamousTeams->get($id, [
-            'contain' => []
-        ]);
+        $user = $this->FamousTeams->Users->findByUsername($username)->first();
 
-        $this->set('famousTeam', $famousTeam);
+        if ($user) {
+            $famousTeam = $this->FamousTeams->findByUserId($user->id)->first();
+            $famousTeam->user = $user;
+
+            // Youtube動画IDのみを取得
+            for ($i = 1; $i <= 3; $i++) {
+                $famousTeam['youtube' . $i] = $this->Common->getYoutubeId($famousTeam['youtube' . $i]);
+            }
+
+            // TeamMember取得
+            $team_members = $this->FamousTeams->Users->FamousTeamMembers
+                ->findByUserId($user->id)
+                ->order(['FamousTeamMembers.display_order' => 'ASC'])
+                ->all();
+
+            // Events取得 limit3
+            $team_events = $this->FamousTeams->Users->FamousEvents
+                ->findByUserId($user->id)
+                ->order(['FamousEvents.created' => 'DESC'])
+                ->limit(3)
+                ->all();
+
+            // Roots取得
+            $team_roots = $this->FamousTeams->Users->FamousRoots
+                ->findByUserId($user->id)
+                ->order(['FamousRoots.year' => 'ASC'])
+                ->toArray();
+            // RootsのYouTubeIDを取得
+            for ($i = 0; $i < count($team_roots); $i++) {
+                if ($team_roots[$i]['youtube']) {
+                    $team_roots[$i]['youtube'] = $this->Common->getYoutubeId($team_roots[$i]['youtube']);
+                }
+            }
+
+            // RespectArtist取得
+
+
+            // メッセージ用変数
+            $this->set('to_user_id',  $famousTeam->user_id);
+            $this->set('to_username', $famousTeam->user->username);
+            $this->set(compact('famousTeam', 'team_members', 'team_events', 'team_roots'));
+        } else {
+            throw new NotFoundException(__('404 ページが見つかりません。'));
+        }
+
     }
 
 
@@ -174,27 +216,26 @@ class FamousTeamsController extends AppController
 
 
     /**
-     * Edit method
+     * 有名チームプロフィール編集
      *
-     * @param string|null $id Famous Team id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     * @return \Cake\Http\Response|null
+     * @throws \Cake\Network\Exception\NotFoundException レコードがない場合
      */
-    public function edit($id = null)
+    public function edit()
     {
-        $famousTeam = $this->FamousTeams->get($id, [
-            'contain' => []
-        ]);
+        $famousTeam = $this->FamousTeams->findByUserId($this->Auth->user('id'))->contain(['Users'])->first();
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $famousTeam = $this->FamousTeams->patchEntity($famousTeam, $this->request->getData());
             if ($this->FamousTeams->save($famousTeam)) {
-                $this->Flash->success(__('The famous team has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                $this->Flash->success(__('プロフィール編集しました。'));
+                return $this->redirect(['action' => 'home']);
             }
-            $this->Flash->error(__('The famous team could not be saved. Please, try again.'));
+            $this->Flash->error(__('エラーがあります。入力項目を確認してください。'));
         }
-        $users = $this->FamousTeams->Users->find('list', ['limit' => 200]);
-        $this->set(compact('famousTeam', 'users'));
+
+        $this->set('genres', $this->Common->valueToKey($this->genres));
+        $this->set(compact('famousTeam'));
     }
 }

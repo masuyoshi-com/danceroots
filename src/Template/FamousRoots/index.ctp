@@ -112,7 +112,7 @@
             <?php $i++; endforeach; ?>
         </ul>
     </div><!-- /.col-lg-12 -->
-</div><!-- /.First row -->
+</div><!-- /.row -->
 
 <script>
 $(function() {
