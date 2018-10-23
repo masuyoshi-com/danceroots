@@ -5,7 +5,7 @@
         <div class="col-lg-12 mt-5 mb-4">
             <?= $this->Flash->render() ?>
             <h3 class="dark-grey-text text-center">
-                <strong>Dancer<span class="font-blue">oo</span>ts</strong> ログイン
+                サインイン
             </h3>
         </div>
     </div>
