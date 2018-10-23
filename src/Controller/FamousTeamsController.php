@@ -17,7 +17,7 @@ class FamousTeamsController extends AppController
 {
     public $search_keys = ['pref', 'genre', 'word'];
 
-    public $paginate = ['limit' => 1, 'contain' => ['Users']]; // 24
+    public $paginate = ['limit' => 20, 'contain' => ['Users']]; // 24
 
 
      /**

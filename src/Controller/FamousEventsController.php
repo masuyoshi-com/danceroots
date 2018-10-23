@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Network\Exception\NotFoundException;
 
 /**
  * FamousEvents Controller
@@ -59,35 +60,62 @@ class FamousEventsController extends AppController
 
 
     /**
-     * 有名チーム/ダンサーイベント一覧
+     * 有名チーム/ダンサー イベント一覧
      *
-     * @param string|null $id Famous Event id.
+     * @param string|null $username ユーザー名
      * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     * @throws \Cake\Network\Exception\NotFoundException
      */
-    public function view($id = null)
+    public function view($username = null)
     {
-        $famousEvent = $this->FamousEvents->get($id, [
-            'contain' => ['Users']
-        ]);
+        // ユーザー名検索
+        $user = $this->FamousEvents->Users->findByUsername($username)->first();
 
-        $this->set('famousEvent', $famousEvent);
+        if ($user) {
+            // ユーザー区分で判定
+            if ($user->classification === 4) {
+                $famous = $this->FamousEvents->Users->FamousDancers->findByUserId($user->id)->first();
+            } elseif ($user->classification === 5) {
+                $famous = $this->FamousEvents->Users->FamousTeams->findByUserId($user->id)->first();
+            }
+
+            $famousEvents = $this->paginate($this->FamousEvents);
+            $this->set(compact('famousEvents', 'famous', 'user'));
+
+        } else {
+            throw new NotFoundException(__('404 ページが見つかりません。'));
+        }
     }
 
 
     /**
-     * 公開用 有名チーム/ダンサーイベント一覧
+     * 公開用 有名チーム/ダンサー イベント一覧
      *
+     * @param string|null $username ユーザー名
      * @return \Cake\Http\Response|void
+     * @throws \Cake\Network\Exception\NotFoundException
      */
-    public function public()
+    public function public($username = null)
     {
         $this->viewBuilder()->setLayout('famous');
-        /*
-        $famousEvents = $this->paginate($this->FamousEvents);
 
-        $this->set(compact('famousEvents'));
-        */
+        // ユーザー名検索
+        $user = $this->FamousEvents->Users->findByUsername($username)->first();
+
+        if ($user) {
+            // ユーザー区分で判定
+            if ($user->classification === 4) {
+                $famous = $this->FamousEvents->Users->FamousDancers->findByUserId($user->id)->first();
+            } elseif ($user->classification === 5) {
+                $famous = $this->FamousEvents->Users->FamousTeams->findByUserId($user->id)->first();
+            }
+
+            $famousEvents = $this->paginate($this->FamousEvents);
+            $this->set(compact('famousEvents', 'famous', 'user'));
+
+        } else {
+            throw new NotFoundException(__('404 ページが見つかりません。'));
+        }
     }
 
 

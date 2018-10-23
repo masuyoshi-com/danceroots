@@ -1,37 +1,39 @@
-<?php $this->assign('title', 'ダンサー/チーム名 - 出演イベント一覧'); ?>
+<?php $this->assign('title', h($famous->name) . ' - 出演イベント/ワークショップ一覧'); ?>
 
 <!-- ユーザー区分でチームかダンサーかを変更 -->
-<div class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/People/full%20page/img%20%2827%29.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
-    <div class="mask rgba-black-slight">
-        <div class="container h-100 d-flex justify-content-start align-items-center">
-            <div class="row smooth-scroll">
-                <div class="col-lg-12">
-                    <div class="wow fadeInUp">
-                        <h1 class="display-3 font-weight-bold mb-3">Dancer Name</h1>
-                        <h4 class="dark-grey-text text-uppercase font-weight-bold">Team: TeamName</h4>
-                        <h5 class="dark-grey-text text-uppercase font-weight-bold">Genre: HipHop</h5>
-                        <p>
-                            <a href="#event" class="btn btn-outline-black wow fadeIn waves-effect waves-light animated" data-wow-delay="0.4s">EVENT</a>
-                        </p>
-                    </div>
-                </div><!-- /.col-lg-12-->
-            </div><!-- /.row -->
-        </div><!-- /.container -->
-    </div><!-- /.mask -->
-</div><!-- /.view -->
+<?php if ($user->classification === 4) : ?>
 
-<main>
-    <div id="event" class="container-fluid pb-5 wow fadeIn grey lighten-4" data-wow-delay="0.2s">
-        <div class="container pt-4">
-            <section>
-                <h2 class="section-heading text-center mb-0 mt-4 pt-4 font-weight-bold wow fadeIn">Event / Workshop</h2>
-                <p class="text-center text-uppercase font-weight-bold mt-0 mb-5 wow fadeIn" data-wow-delay="0.2s">
-                    <small>イベント・ワークショップ</small>
-                </p>
-                <!--
+<?php else : ?>
+    <div class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('../<?= h($famous->image) ?>'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+        <div class="mask rgba-black-strong">
+            <div class="container h-100 d-flex justify-content-center align-items-center">
+                <div class="row smooth-scroll">
+                    <div class="col-lg-12">
+                        <div class="white-text text-center">
+                            <h1 class="display-3 font-weight-bold wow fadeIn"><?= h($famous->name) ?></h1>
+                            <h4 class="text-uppercase wow fadeIn" data-wow-delay="0.2s"><small>Genre:</small> HipHop</h4>
+                            <h5 class="text-uppercase wow fadeIn" data-wow-delay="0.2s"><small>Activity Period:</small> <?= h($famous->period) ?></h5>
+                            <a href="#event" class="btn btn-outline-pink wow fadeIn" data-wow-delay="0.4s">Event</a>
+                            <?= $this->Html->link('Profile', ['controller' => 'FamousTeams', 'action' => 'view', $user->username], ['class' => 'btn btn-outline-white wow fadeIn']) ?>
+                        </div>
+                    </div><!-- /.col-lg-12 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </div><!-- /.mask -->
+    </div><!-- /.view -->
+<?php endif; ?>
+
+<div id="event" class="container-fluid pb-5 wow fadeIn grey lighten-4" data-wow-delay="0.2s">
+    <div class="container pt-4">
+        <section>
+            <h2 class="section-heading text-center mb-0 mt-4 pt-4 font-weight-bold wow fadeIn">Event / Workshop</h2>
+            <p class="text-center text-uppercase font-weight-bold mt-0 mb-3 wow fadeIn" data-wow-delay="0.2s">
+                <small>イベント・ワークショップ</small>
+            </p>
+            <?php if (count($famousEvents) !== 0) : ?>
                 <div class="row">
                     <div class="col-lg-12">
-                        <p class="dark-grey-text text-right">
+                        <p class="dark-grey-text text-right mt-0">
                             <small>
                                 <?= $this->Paginator->counter('{{page}} / {{pages}} ページ &nbsp; 全 {{count}} 件') ?>
                             </small>
@@ -39,10 +41,8 @@
                         <hr>
                     </div>
                 </div>
-                -->
-                <div class="row wow fadeIn" data-wow-delay="0.2s">
-                    <?php for ($i = 0; $i < 9; $i++) : ?>
-
+                <div class="row">
+                    <?php $i = 0; foreach ($famousEvents as $event) : ?>
                         <div class="modal fade event" id="event<?= $i ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
@@ -50,8 +50,8 @@
 
                                         <div class="d-flex">
                                             <div class="p-0">
-                                                <h6 class="dark-grey-text font-weight-bold m-3">
-                                                    <i class="fa fa-calendar mr-2" aria-hidden="true"></i>Event Information
+                                                <h6 class="font-weight-bold m-3">
+                                                    Event Information
                                                 </h6>
                                             </div>
                                             <div class="ml-auto pt-3 pr-2">
@@ -65,44 +65,41 @@
                                             <div class="col-lg-5 text-center">
                                                 <h3>
                                                     <?php
-                                                        print $this->Html->image('/img/sample/noimage-600x360.jpg', ['class' => 'img-fluid']);
+                                                        if ($event->image) {
+                                                            print $this->Html->image($event->image, ['class' => 'img-fluid']);
+                                                        } else {
+                                                            print $this->Html->image('/img/sample/noimage-600x360.jpg', ['class' => 'img-fluid']);
+                                                        }
                                                     ?>
                                                 </h3>
                                             </div>
                                             <div class="col-lg-7 text-center">
                                                 <p class="grey-text text-left mb-0">
-                                                    <small>クラブショー</small>
+                                                    <span class="badge <?= getBadgeColor($event->category) ?>"><?= h($event->category) ?></span>
                                                 </p>
                                                 <h3 class="h3-responsive product-name mt-2 dark-grey-text font-weight-bold">
-                                                    <strong>EVENT TITLE</strong>
+                                                    <strong><?= h($event->title) ?></strong>
                                                 </h3>
                                                 <hr>
                                                 <h6 class="h6-responsive font-weight-bold">
-                                                    <i class="fa fa-clock-o" aria-hidden="true"></i> 2018/10/12
+                                                    <i class="fa fa-clock-o" aria-hidden="true"></i> <?= h($event->event_date) ?>
                                                 </h6>
                                                 <p class="font-weight-bold">
-                                                    Start: 18:00 ～ End: 23:00
+                                                    START: <?= h($event->start) ?> ～ END: <?= h($event->end) ?>
                                                 </p>
 
                                                 <div class="row">
                                                     <div class="col-lg-12">
                                                         <p class="dark-grey-text">
-                                                            ここにイベント本文が表示されます。
+                                                            <?= nl2br(h($event->body)) ?>
                                                         </p>
                                                     </div>
                                                 </div><!-- /.row -->
                                                 <!--Footer-->
                                                 <div class="modal-footer justify-content-center">
-                                                    <a type="button" class="btn-floating btn-sm btn-fb">
-                                                        <i class="fa fa-facebook"></i>
-                                                    </a>
-                                                    <a type="button" class="btn-floating btn-sm btn-tw">
-                                                        <i class="fa fa-twitter"></i>
-                                                    </a>
-                                                    <a type="button" class="btn-floating btn-sm btn-pink">
-                                                        <i class="fa fa-instagram"></i>
-                                                    </a>
-                                                    <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">
+                                                        <i class="fa fa-close mr-1" aria-hidden="true"></i><span class="none">Close</span>
+                                                    </button>
                                                 </div>
                                             </div><!-- /.col-lg-7 -->
                                         </div><!-- /.row -->
@@ -111,18 +108,14 @@
                             </div><!-- /.modal-dialog -->
                         </div><!-- /.modal -->
 
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mb-3">
                             <div class="card">
                                 <div class="view overlay">
                                     <?php
-                                        if ($i === 0) {
-                                            print '<img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/food.jpg" alt="Card image cap">';
-                                        } elseif ($i === 1) {
-                                            print '<img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/49.jpg" alt="Card image cap">';
-                                        } elseif ($i === 2) {
-                                            print '<img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/48.jpg" alt="Card image cap">';
+                                        if ($event->image) {
+                                            print $this->Html->image($event->image, ['class' => 'card-img-top', 'alt' => 'Card image cap']);
                                         } else {
-                                            print '<img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/food.jpg" alt="Card image cap">';
+                                            print $this->Html->image('/img/sample/noimage-600x360.jpg', ['class' => 'card-img-top', 'alt' => 'Card image cap']);
                                         }
                                     ?>
                                     <a>
@@ -140,28 +133,25 @@
                                 ?>
 
                                 <div class="card-body">
-                                    <h4 class="card-title">Event title <?= $i + 1?></h4>
+                                    <h5 class="card-title h5-responsive"><?= h($event->title) ?></h5>
                                     <hr>
                                     <p class="card-text">
-                                        イベントの簡易説明文が表示されます。<br>
-                                        <br>
-                                        複数段の入力が可能です。
+                                        <?= tw(nl2br(h($event->body)), 70) ?>
                                     </p>
                                 </div>
 
                                 <div class="rounded-bottom mdb-color lighten-3 text-center pt-3">
                                     <ul class="list-unstyled list-inline font-small">
-                                        <li class="list-inline-item pr-2 white-text"><i class="fa fa-clock-o pr-1"></i>2018/12/20</li>
-                                        <li class="list-inline-item pr-2 white-text">Start: 18:00</li>
-                                        <li class="list-inline-item pr-2 white-text">End:   23:00</li>
+                                        <li class="list-inline-item white-text"><?= h($event->event_date) ?></li>
+                                        <li class="list-inline-item white-text">Start: <?= h($event->start) ?></li>
+                                        <li class="list-inline-item white-text">End: <?= h($event->end) ?></li>
                                     </ul>
                                 </div>
                             </div><!-- /.card -->
-                        </div><!-- /.col-lg-4 -->
-                    <?php endfor; ?>
+                        </div><!-- /.col-lg-3 -->
+                    <?php $i++; endforeach; ?>
                 </div><!-- /.row -->
                 <hr>
-                <!--
                 <div class="row">
                     <div class="col-lg-12">
                         <nav aria-label="pagination">
@@ -173,8 +163,16 @@
                         </nav>
                     </div>
                 </div>
-                -->
-            </section>
-        </div><!-- /.container -->
-    </div><!-- /.container-fluid -->
-</main>
+            <?php else : ?>
+                <hr>
+                <div class="row mb-5">
+                    <div class="col-lg-12">
+                        <p class="text-center mb-0">
+                            現在イベントはありません。
+                        </p>
+                    </div>
+                </div>
+            <?php endif; ?>
+        </section>
+    </div><!-- /.container -->
+</div><!-- /.container-fluid -->

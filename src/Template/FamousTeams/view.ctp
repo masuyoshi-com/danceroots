@@ -376,7 +376,12 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <p class="text-right m-0 mb-3">
-                            <small><a href="javascript:void(0)">さらに見る<i class="fa fa-angle-right ml-2" aria-hidden="true"></i></a></small>
+                            <small>
+                                <?= $this->Html->link('さらに見る<i class="fa fa-angle-right ml-2" aria-hidden="true"></i>',
+                                        ['controller' => 'FamousEvents', 'action' => 'view', $famousTeam->user->username],
+                                        ['escape' => false]
+                                ) ?>
+                            </small>
                         </p>
                     </div>
                 </div>

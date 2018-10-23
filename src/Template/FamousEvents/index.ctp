@@ -78,7 +78,7 @@
                                 </div>
                                 <div class="col-lg-7 text-center">
                                     <p class="grey-text text-left mb-0">
-                                        <small><?= h($event->category) ?></small>
+                                        <span class="badge <?= getBadgeColor($event->category) ?>"><?= h($event->category) ?></span>
                                     </p>
                                     <h3 class="h3-responsive product-name mt-2 dark-grey-text font-weight-bold">
                                         <strong><?= h($event->title) ?></strong>
