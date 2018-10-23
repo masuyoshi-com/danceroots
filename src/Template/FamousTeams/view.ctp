@@ -10,6 +10,24 @@
                         <h4 class="text-uppercase wow fadeIn" data-wow-delay="0.2s"><small>Genre:</small> HipHop</h4>
                         <h5 class="text-uppercase wow fadeIn" data-wow-delay="0.2s"><small>Activity Period:</small> <?= h($famousTeam->period) ?></h5>
                         <a href="#profile" class="btn btn-outline-white wow fadeIn" data-wow-delay="0.4s">Profile</a>
+                        <?php
+                            if ($famousTeam->user_id !== $logins['id']) {
+                                print $this->Html->link('Message',
+                                    'javascript:void(0)',
+                                    [
+                                        'class'       => 'btn btn-outline-primary wow fadeIn',
+                                        'data-toggle' => 'modal',
+                                        'data-target' => '#modalMessageForm'
+                                    ]
+                                );
+                            } else {
+                                print $this->Html->link('Home',
+                                    ['controller' => 'FamousTeams', 'action' => 'home'],
+                                    ['class' => 'btn btn-outline-warning wow fadeIn']
+                                );
+                            }
+                        ?>
+
                     </div>
                 </div><!-- /.col-lg-12 -->
             </div><!-- /.row -->
