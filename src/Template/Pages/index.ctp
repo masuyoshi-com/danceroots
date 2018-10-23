@@ -25,7 +25,7 @@
                                 print $this->Html->link('サインアップ', ['controller' => 'Users', 'action' => 'signup'],
                                     ['class' => 'btn btn-primary btn-lg flex-item']
                                 );
-                                print $this->Html->link('ログイン', ['controller' => 'Users', 'action' => 'login'],
+                                print $this->Html->link('サインイン', ['controller' => 'Users', 'action' => 'login'],
                                     ['class'=> 'btn btn-outline-white btn-lg flex-item']
                                 );
                             }

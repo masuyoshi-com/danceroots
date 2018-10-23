@@ -4,7 +4,7 @@
         <div class="col-lg-12 mt-5">
             <h3 class="text-center">メールアドレスを変更しました。</h3>
             <p class="dark-grey-text text-center">
-                <small>自動ログアウトしました。再度ログインしてください。</small>
+                <small>自動サインアウトしました。再度サインインしてください。</small>
             </p>
         </div>
     </div>
@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="md-form">
-                <?= $this->Html->link('ログイン', ['controller' => 'users', 'action' => 'login'], ['class' => 'btn btn-primary btn-block']) ?>
+                <?= $this->Html->link('サインイン', ['controller' => 'users', 'action' => 'login'], ['class' => 'btn btn-primary btn-block']) ?>
             </div>
         </div>
     </div>

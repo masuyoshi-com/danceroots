@@ -4,7 +4,7 @@
         <div class="col-lg-12 mt-5">
             <h3 class="text-center">パスワード再発行しました。</h3>
             <p class="dark-grey-text text-center">
-                <small>無事にパスワード再発行しました。トップページよりログインへ進んでください。</small>
+                <small>無事にパスワード再発行しました。トップページよりサインインへ進んでください。</small>
             </p>
         </div>
     </div>

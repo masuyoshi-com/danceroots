@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'ログイン'); ?>
+<?php $this->assign('title', 'サインイン'); ?>
 
 <div class="container mt-5">
     <div class="row">
@@ -36,7 +36,7 @@
 
                 <div class="col-lg-12">
                     <div class="md-form">
-                        <?= $this->Form->button('ログイン', ['class' => 'btn btn-primary btn-block']) ?>
+                        <?= $this->Form->button('サインイン', ['class' => 'btn btn-primary btn-block']) ?>
                     </div>
                 </div>
 

@@ -70,7 +70,7 @@
                     <div class="d-flex justify-content-end">
                         <p>
                             <small>
-                                既にアカウントをお持ちの方は <?= $this->Html->link('ログイン', ['action' => 'login']) ?>
+                                既にアカウントをお持ちの方は <?= $this->Html->link('サインイン', ['action' => 'login']) ?>
                             </small>
                         </p>
                     </div>
