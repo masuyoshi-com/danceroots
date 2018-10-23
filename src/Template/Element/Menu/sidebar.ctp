@@ -34,6 +34,12 @@
                                 <?= $this->Html->link('ダンスチーム検索', ['controller' => 'Teams', 'action' => 'index'], ['class' => 'waves-effect']) ?>
                             </li>
                             -->
+                            <li>
+                                <?= $this->Html->link('有名ダンサー検索', ['controller' => 'FamousDancers', 'action' => 'index'], ['class' => 'waves-effect']) ?>
+                            </li>
+                            <li>
+                                <?= $this->Html->link('有名チーム検索', ['controller' => 'FamousTeams', 'action' => 'index'], ['class' => 'waves-effect']) ?>
+                            </li>
                         </ul>
                     </div>
                 </li>
