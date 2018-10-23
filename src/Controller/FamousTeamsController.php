@@ -31,7 +31,7 @@ class FamousTeamsController extends AppController
     public function initialize()
     {
         parent::initialize();
-        $this->Auth->allow(['public', 'pv']);
+        $this->Auth->allow(['public', 'pv', 'sample']);
     }
 
 
@@ -151,11 +151,67 @@ class FamousTeamsController extends AppController
     /**
      * 公開用有名チームビュー
      *
+     * @param string|null $username ユーザー名
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException レコードがない場合
+     */
+    public function pv($username = null)
+    {
+        $this->viewBuilder()->setLayout('famous');
+        $user = $this->FamousTeams->Users->findByUsername($username)->first();
+
+        if ($user) {
+            $famousTeam = $this->FamousTeams->findByUserId($user->id)->first();
+            $famousTeam->user = $user;
+
+            // Youtube動画IDのみを取得
+            for ($i = 1; $i <= 3; $i++) {
+                $famousTeam['youtube' . $i] = $this->Common->getYoutubeId($famousTeam['youtube' . $i]);
+            }
+
+            // TeamMember取得
+            $team_members = $this->FamousTeams->Users->FamousTeamMembers
+                ->findByUserId($user->id)
+                ->order(['FamousTeamMembers.display_order' => 'ASC'])
+                ->all();
+
+            // Events取得 limit3
+            $team_events = $this->FamousTeams->Users->FamousEvents
+                ->findByUserId($user->id)
+                ->order(['FamousEvents.created' => 'DESC'])
+                ->limit(3)
+                ->all();
+
+            // Roots取得
+            $team_roots = $this->FamousTeams->Users->FamousRoots
+                ->findByUserId($user->id)
+                ->order(['FamousRoots.year' => 'ASC'])
+                ->toArray();
+            // RootsのYouTubeIDを取得
+            for ($i = 0; $i < count($team_roots); $i++) {
+                if ($team_roots[$i]['youtube']) {
+                    $team_roots[$i]['youtube'] = $this->Common->getYoutubeId($team_roots[$i]['youtube']);
+                }
+            }
+
+            // RespectArtist取得
+            $respect_artists = $this->FamousTeams->Users->FamousArtists->findByUserId($user->id)->all();
+
+            $this->set(compact('famousTeam', 'team_members', 'team_events', 'team_roots', 'respect_artists'));
+        } else {
+            throw new NotFoundException(__('404 ページが見つかりません。'));
+        }
+    }
+
+
+    /**
+     * 公開用有名チームビュー(サンプル)
+     *
      * @param string|null $id Legend Team id.
      * @return \Cake\Http\Response|void
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function pv()
+    public function sample()
     {
         $this->viewBuilder()->setLayout('famous');
 

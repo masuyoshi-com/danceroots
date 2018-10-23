@@ -214,7 +214,7 @@
                 <div class="row mb-5 wow fadeIn" data-wow-delay="0.2s">
                     <div class="col-lg-12 mb-2">
                         <p class="text-center">
-                            <?= h($famousTeam->style) ?>
+                            <?= nl2br(h($famousTeam->style)) ?>
                         </p>
                     </div>
                 </div>
