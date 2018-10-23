@@ -103,7 +103,7 @@
 </div><!-- /.container -->
 
 <div class="container-fluid mb-5 wow fadeIn elegant-color" data-wow-delay="0.2s">
-    <div class="container mb-3 pt-1">
+    <div class="container mb-3 pt-1 pb-3">
         <h2 class="section-heading text-center mt-5 mb-5 pt-4 font-weight-bold wow fadeIn white-text">ShowCase</h2>
         <div class="row">
 
@@ -214,12 +214,13 @@
                 </div>
             </div>
             <?php endif; ?>
-
+            <!--
             <div class="col-lg-12">
                 <p class="text-right m-0 pb-3">
                     <small><a class="white-text" href="javascript:void(0)">さらに見る<i class="fa fa-angle-right ml-2" aria-hidden="true"></i></a></small>
                 </p>
             </div>
+            -->
         </div><!-- /.row -->
     </div><!-- /.container -->
 </div><!-- /.container-fluid -->
