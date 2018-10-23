@@ -17,10 +17,7 @@ class FamousTeamsController extends AppController
 {
     public $search_keys = ['pref', 'genre', 'word'];
 
-    public $paginate = [
-        'limit' => 16,
-        'order' => ['Legends.created' => 'desc']
-    ];
+    public $paginate = ['limit' => 1, 'contain' => ['Users']]; // 24
 
 
      /**
@@ -82,7 +79,31 @@ class FamousTeamsController extends AppController
     public function public()
     {
         $this->viewBuilder()->setLayout('public_fluid');
-        $famousTeams = $this->paginate($this->FamousTeams);
+
+        if ($this->request->query) {
+
+            // 検索クエリがなければfindBySearchで警告でないように空白状態を作成
+            for ($i = 0; $i < count($this->search_keys); $i++) {
+                if (!isset($this->request->query[$this->search_keys[$i]])) {
+                    $this->request->query[$this->search_keys[$i]] = '';
+                }
+            }
+
+            $query       = $this->FamousTeams->findBySearch($this->request->query);
+            $famousTeams = $this->paginate($query);
+
+            // 検索項目状態をセッションに格納
+            $this->Session->write('public_famous_team_search', $this->request->query);
+
+        } else {
+            $collection  = new Collection($this->paginate($this->FamousTeams)->toArray());
+            $famousTeams = $collection->shuffle()->toList();
+        }
+
+        // 検索項目状態があればリード
+        if ($this->Session->check('public_famous_team_search')) {
+            $this->request->data = $this->Session->read('public_famous_team_search');
+        }
 
         $this->set('genres', $this->Common->valueToKey($this->genres));
         $this->set(compact('famousTeams'));
