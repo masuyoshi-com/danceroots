@@ -81,12 +81,19 @@
                 </a>
             </div>
             <div class="card-body elegant-color white-text rounded-bottom">
-                <?= $this->Html->link('<i class="fa fa-share-alt white-text"></i>',
-                    ['controller' => 'FamousTeams', 'action' => 'view', $team->user->username],
-                    ['class' => 'activator waves-effect mr-4 mt-4', 'escape' => false]
-                ) ?>
-                <h4 class="h4-responsive card-title"><?= h($team->name) ?></h4>
-                <hr class="hr-light">
+                <div class="d-flex">
+                    <div>
+                        <h4 class="h4-responsive card-title"><?= h($team->name) ?></h4>
+                    </div>
+                    <div class="ml-auto">
+                        <p class="activator waves-effect mr-4 mt-4 mb-0">
+                            <small>
+                                Genre: <?= h($team->genre) ?>
+                            </small>
+                        </p>
+                    </div>
+                </div>
+                <hr class="hr-light mt-0">
                 <p class="card-text white-text mb-4">
                     <?= tw(nl2br(h($team->style)), 70) ?>
                 </p>
