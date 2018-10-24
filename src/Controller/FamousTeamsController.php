@@ -325,6 +325,7 @@ class FamousTeamsController extends AppController
      */
     public function edit()
     {
+        $this->Common->referer();
         $famousTeam = $this->FamousTeams->findByUserId($this->Auth->user('id'))->contain(['Users'])->first();
 
         if ($this->request->is(['patch', 'post', 'put'])) {
