@@ -160,11 +160,11 @@ class FamousTeamsController extends AppController
                 ->order(['FamousTeamMembers.display_order' => 'ASC'])
                 ->all();
 
-            // Events取得 limit3
+            // Events取得 limit4
             $team_events = $this->FamousTeams->Users->FamousEvents
                 ->findByUserId($user->id)
                 ->order(['FamousEvents.created' => 'DESC'])
-                ->limit(3)
+                ->limit(4)
                 ->all();
 
             // Roots取得
@@ -220,11 +220,11 @@ class FamousTeamsController extends AppController
                 ->order(['FamousTeamMembers.display_order' => 'ASC'])
                 ->all();
 
-            // Events取得 limit3
+            // Events取得 limit4
             $team_events = $this->FamousTeams->Users->FamousEvents
                 ->findByUserId($user->id)
                 ->order(['FamousEvents.created' => 'DESC'])
-                ->limit(3)
+                ->limit(4)
                 ->all();
 
             // Roots取得

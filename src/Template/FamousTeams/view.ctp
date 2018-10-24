@@ -329,7 +329,7 @@
                             </div><!-- /.modal-dialog -->
                         </div><!-- /.modal -->
 
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3">
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-3">
                             <div class="card">
                                 <div class="view overlay">
                                     <?php
@@ -363,9 +363,9 @@
 
                                 <div class="rounded-bottom mdb-color lighten-3 text-center pt-3">
                                     <ul class="list-unstyled list-inline font-small">
-                                        <li class="list-inline-item pr-2 white-text"><i class="fa fa-clock-o pr-1"></i><?= h($event->event_date) ?></li>
-                                        <li class="list-inline-item pr-2 white-text">Start: <?= h($event->start) ?></li>
-                                        <li class="list-inline-item pr-2 white-text">End: <?= h($event->end) ?></li>
+                                        <li class="list-inline-item white-text"><?= h($event->event_date) ?></li>
+                                        <li class="list-inline-item white-text">Start: <?= h($event->start) ?></li>
+                                        <li class="list-inline-item white-text">End: <?= h($event->end) ?></li>
                                     </ul>
                                 </div>
                             </div><!-- /.card -->
