@@ -54,7 +54,8 @@ class FamousEventsController extends AppController
                 ->first();
         }
 
-        $famousEvents = $this->paginate($this->FamousEvents);
+        $query = $this->FamousEvents->findByUserId($this->Auth->user('id'));
+        $famousEvents = $this->paginate($query);
         $this->set(compact('famousEvents', 'famous'));
     }
 
@@ -110,7 +111,8 @@ class FamousEventsController extends AppController
                 $famous = $this->FamousEvents->Users->FamousTeams->findByUserId($user->id)->first();
             }
 
-            $famousEvents = $this->paginate($this->FamousEvents);
+            $query = $this->FamousEvents->findByUserId($user->id);
+            $famousEvents = $this->paginate($query);
             $this->set(compact('famousEvents', 'famous', 'user'));
 
         } else {
@@ -134,7 +136,6 @@ class FamousEventsController extends AppController
 
             if ($this->FamousEvents->save($famousEvent)) {
                 $this->Flash->success(__('プロフィール内のイベントを登録しました。'));
-
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('エラーがあります。入力項目を再確認してください。'));
