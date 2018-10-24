@@ -17,7 +17,7 @@ class FamousTeamsController extends AppController
 {
     public $search_keys = ['pref', 'genre', 'word'];
 
-    public $paginate = ['limit' => 20, 'contain' => ['Users']]; // 24
+    public $paginate = ['limit' => 20, 'contain' => ['Users']];
 
 
      /**
@@ -274,6 +274,7 @@ class FamousTeamsController extends AppController
      * 有名チームプロフィール登録 -初期登録は画面周りをaddに変更
      *
      * @return \Cake\Http\Response|null 登録成功の場合はviewへ
+     * @throws \Cake\Network\Exception\NotFoundException
      */
     public function add()
     {
