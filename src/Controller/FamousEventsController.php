@@ -80,7 +80,8 @@ class FamousEventsController extends AppController
                 $famous = $this->FamousEvents->Users->FamousTeams->findByUserId($user->id)->first();
             }
 
-            $famousEvents = $this->paginate($this->FamousEvents);
+            $query = $this->FamousEvents->findByUserId($user->id);
+            $famousEvents = $this->paginate($query);
             $this->set(compact('famousEvents', 'famous', 'user'));
 
         } else {
