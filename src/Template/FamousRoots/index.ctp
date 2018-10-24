@@ -28,6 +28,7 @@
     </div>
 </div>
 
+<?php if (count($famousRoots) !== 0) : ?>
 <div class="row mb-3">
     <div class="col-lg-12 mb-2">
         <ul class="stepper stepper-vertical timeline-simple pl-0">
@@ -123,3 +124,15 @@ $(function() {
     });
 });
 </script>
+
+<?php else : ?>
+    <div class="card card-body mb-3">
+        <div class="row">
+            <div class="col-lg-12">
+                <p class="text-center mb-0">
+                    登録している経歴はありません。
+                </p>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
