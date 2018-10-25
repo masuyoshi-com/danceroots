@@ -34,14 +34,6 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <?= $this->Flash->render() ?>
-    </div>
-</div>
-
-<?php if (count($danceMusics) !== 0) : ?>
-
-<div class="row">
-    <div class="col-lg-12">
         <div class="d-flex">
             <p class="mb-0">
                 <?= $this->Html->link('<i class="fa fa-plus"></i> ミュージック登録', ['controller' => 'DanceMusics', 'action' => 'add'],
@@ -57,6 +49,14 @@
         <hr class="mt-0">
     </div>
 </div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <?= $this->Flash->render() ?>
+    </div>
+</div>
+
+<?php if (count($danceMusics) !== 0) : ?>
 
 <div class="row">
 
@@ -213,16 +213,10 @@
     </div>
 </div>
 
-<?php elseif (count($danceMusics) === 0) : ?>
+<?php else : ?>
 <div class="card card-body">
     <div class="row">
         <div class="col-lg-12">
-            <p>
-                <?= $this->Html->link('<i class="fa fa-plus"></i> ミュージック登録', ['controller' => 'DanceMusics', 'action' => 'add'],
-                    ['class' => 'btn btn-sm btn-info block', 'escape' => false]
-                ) ?>
-            </p>
-            <hr>
             <p class="dark-grey-text text-center mt-3">
                 登録している音楽はありません。
             </p>
