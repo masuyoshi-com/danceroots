@@ -143,8 +143,8 @@ class CommonComponent extends Component
                 $this->FamousDancers = TableRegistry::get('FamousDancers');
                 return $this->FamousDancers->findByUserId($user_id)->first();
                 break;
-            case (4) :
-                $this->FamousTeams = TableRegistry::get('FamousDancers');
+            case (5) :
+                $this->FamousTeams = TableRegistry::get('FamousTeams');
                 return $this->FamousTeams->findByUserId($user_id)->first();
                 break;
             default :
