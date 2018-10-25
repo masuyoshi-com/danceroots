@@ -67,7 +67,7 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.1 controllers/FamousTeams/view',
             'bin/cake acl grant Groups.1 controllers/FamousDancers/index',
             'bin/cake acl grant Groups.1 controllers/FamousDancers/view',
-            'bin/cake acl grant Groups.1 controllers/FamousEvents/index',
+            'bin/cake acl grant Groups.1 controllers/FamousEvents/view',
 
             // Studios
             'bin/cake acl deny Groups.2 controllers',
@@ -98,7 +98,7 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.2 controllers/FamousTeams/view',
             'bin/cake acl grant Groups.2 controllers/FamousDancers/index',
             'bin/cake acl grant Groups.2 controllers/FamousDancers/view',
-            'bin/cake acl grant Groups.2 controllers/FamousEvents/index',
+            'bin/cake acl grant Groups.2 controllers/FamousEvents/view',
 
             // Organizers
             'bin/cake acl deny Groups.3 controllers',
@@ -130,7 +130,7 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.3 controllers/FamousTeams/view',
             'bin/cake acl grant Groups.3 controllers/FamousDancers/index',
             'bin/cake acl grant Groups.3 controllers/FamousDancers/view',
-            'bin/cake acl grant Groups.3 controllers/FamousEvents/index',
+            'bin/cake acl grant Groups.3 controllers/FamousEvents/view',
 
             // Generals
             'bin/cake acl deny Groups.4 controllers',
@@ -163,7 +163,7 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.4 controllers/FamousTeams/view',
             'bin/cake acl grant Groups.4 controllers/FamousDancers/index',
             'bin/cake acl grant Groups.4 controllers/FamousDancers/view',
-            'bin/cake acl grant Groups.4 controllers/FamousEvents/index',
+            'bin/cake acl grant Groups.4 controllers/FamousEvents/view',
 
             // FamousDancers
             'bin/cake acl deny Groups.5 controllers',

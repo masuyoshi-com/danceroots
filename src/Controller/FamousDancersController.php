@@ -2,6 +2,9 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
+use Cake\Network\Exception\NotFoundException;
+use Cake\Collection\Collection;
 
 /**
  * FamousDancers Controller
@@ -13,11 +16,7 @@ use App\Controller\AppController;
 class FamousDancersController extends AppController
 {
     public $search_keys = ['pref', 'genre', 'word'];
-
-    public $paginate = [
-        'limit' => 16,
-        'order' => ['FamousDancers.created' => 'desc']
-    ];
+    public $paginate = ['limit' => 20, 'contain' => ['Users']];
 
 
     /**
@@ -59,7 +58,7 @@ class FamousDancersController extends AppController
 
 
     /**
-     * Index method
+     * 有名ダンサー一覧
      *
      * @return \Cake\Http\Response|void
      */
@@ -67,6 +66,32 @@ class FamousDancersController extends AppController
     {
         $famousDancers = $this->paginate($this->FamousDancers);
 
+        if ($this->request->query) {
+
+            // 検索クエリがなければfindBySearchで警告でないように空白状態を作成
+            for ($i = 0; $i < count($this->search_keys); $i++) {
+                if (!isset($this->request->query[$this->search_keys[$i]])) {
+                    $this->request->query[$this->search_keys[$i]] = '';
+                }
+            }
+
+            $query = $this->FamousDancers->findBySearch($this->request->query);
+            $famousDancers = $this->paginate($query);
+
+            // 検索項目状態をセッションに格納
+            $this->Session->write('public_famous_dancer_search', $this->request->query);
+
+        } else {
+            $collection  = new Collection($this->paginate($this->FamousDancers)->toArray());
+            $famousDancers = $collection->shuffle()->toList();
+        }
+
+        // 検索項目状態があればリード
+        if ($this->Session->check('public_famous_dancer_search')) {
+            $this->request->data = $this->Session->read('public_famous_dancer_search');
+        }
+
+        $this->set('genres', $this->Common->valueToKey($this->genres));
         $this->set(compact('famousDancers'));
     }
 
@@ -79,7 +104,31 @@ class FamousDancersController extends AppController
     public function public()
     {
         $this->viewBuilder()->setLayout('public_fluid');
-        $famousDancers = $this->paginate($this->FamousDancers);
+
+        if ($this->request->query) {
+
+            // 検索クエリがなければfindBySearchで警告でないように空白状態を作成
+            for ($i = 0; $i < count($this->search_keys); $i++) {
+                if (!isset($this->request->query[$this->search_keys[$i]])) {
+                    $this->request->query[$this->search_keys[$i]] = '';
+                }
+            }
+
+            $query = $this->FamousDancers->findBySearch($this->request->query);
+            $famousDancers = $this->paginate($query);
+
+            // 検索項目状態をセッションに格納
+            $this->Session->write('public_famous_dancer_search', $this->request->query);
+
+        } else {
+            $collection  = new Collection($this->paginate($this->FamousDancers)->toArray());
+            $famousDancers = $collection->shuffle()->toList();
+        }
+
+        // 検索項目状態があればリード
+        if ($this->Session->check('public_famous_dancer_search')) {
+            $this->request->data = $this->Session->read('public_famous_dancer_search');
+        }
 
         $this->set('genres', $this->Common->valueToKey($this->genres));
         $this->set(compact('famousDancers'));
@@ -87,40 +136,126 @@ class FamousDancersController extends AppController
 
 
     /**
-     * View method
+     * 有名ダンサープロフィール詳細
      *
-     * @param string|null $id Famous Dancer id.
+     * @param string|null $username ユーザー名
      * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     * @throws \Cake\Network\Exception\NotFoundException レコードがない場合
      */
-    public function view($id = null)
+    public function view($username = null)
     {
-        $famousDancer = $this->FamousDancers->get($id, [
-            'contain' => []
-        ]);
+        $user = $this->FamousDancers->Users->findByUsername($username)->first();
 
-        $this->set('famousDancer', $famousDancer);
+        if ($user) {
+            $famousDancer = $this->FamousDancers->findByUserId($user->id)->first();
+            $famousDancer->user = $user;
+
+            // Youtube動画IDのみを取得
+            for ($i = 1; $i <= 3; $i++) {
+                $famousDancer['youtube' . $i] = $this->Common->getYoutubeId($famousDancer['youtube' . $i]);
+            }
+
+            // チーム名があればリンクセット
+            $team = $this->FamousDancers->Users->FamousTeams->findByName($famousDancer->team_name)->first();
+
+            if ($team) {
+                $team_user = $this->FamousDancers->Users->findById($team->user_id)->first();
+                $this->set(compact('team_user'));
+            }
+
+            // Events取得 limit4
+            $events = $this->FamousDancers->Users->FamousEvents
+                ->findByUserId($user->id)
+                ->order(['FamousEvents.created' => 'DESC'])
+                ->limit(4)
+                ->all();
+
+            // Roots取得
+            $roots = $this->FamousDancers->Users->FamousRoots
+                ->findByUserId($user->id)
+                ->order(['FamousRoots.year' => 'ASC'])
+                ->toArray();
+            // RootsのYouTubeIDを取得
+            for ($i = 0; $i < count($roots); $i++) {
+                if ($roots[$i]['youtube']) {
+                    $roots[$i]['youtube'] = $this->Common->getYoutubeId($roots[$i]['youtube']);
+                }
+            }
+
+            // RespectArtist取得
+            $respect_artists = $this->FamousDancers->Users->FamousArtists->findByUserId($user->id)->all();
+
+            // ミュージック登録があるか
+            // 動画登録があるか
+
+
+            // メッセージ用変数
+            $this->set('to_user_id',  $famousDancer->user_id);
+            $this->set('to_username', $famousDancer->user->username);
+            $this->set(compact('famousDancer', 'events', 'roots', 'respect_artists'));
+        } else {
+            throw new NotFoundException(__('404 ページが見つかりません。'));
+        }
     }
 
 
     /**
-     * 公開用有名ダンサービュー
+     * 公開用有名ダンサープロフィール詳細
      *
-     * @param string|null $id
+     * @param string|null $username ユーザー名
      * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException
+     * @throws \Cake\Network\Exception\NotFoundException
      */
-    public function pv()
+    public function pv($username = null)
     {
         $this->viewBuilder()->setLayout('famous');
 
-        /*
-        $famousDancer = $this->FamousDancers->get($id, [
-            'contain' => []
-        ]);
+        $user = $this->FamousDancers->Users->findByUsername($username)->first();
 
-        $this->set('famousDancer', $famousDancer);
-        */
+        if ($user) {
+            $famousDancer = $this->FamousDancers->findByUserId($user->id)->first();
+            $famousDancer->user = $user;
+
+            // Youtube動画IDのみを取得
+            for ($i = 1; $i <= 3; $i++) {
+                $famousDancer['youtube' . $i] = $this->Common->getYoutubeId($famousDancer['youtube' . $i]);
+            }
+
+            // チーム名があればリンクセット
+            $team = $this->FamousDancers->Users->FamousTeams->findByName($famousDancer->team_name)->first();
+
+            if ($team) {
+                $team_user = $this->FamousDancers->Users->findById($team->user_id)->first();
+                $this->set(compact('team_user'));
+            }
+
+            // Events取得 limit4
+            $events = $this->FamousDancers->Users->FamousEvents
+                ->findByUserId($user->id)
+                ->order(['FamousEvents.created' => 'DESC'])
+                ->limit(4)
+                ->all();
+
+            // Roots取得
+            $roots = $this->FamousDancers->Users->FamousRoots
+                ->findByUserId($user->id)
+                ->order(['FamousRoots.year' => 'ASC'])
+                ->toArray();
+            // RootsのYouTubeIDを取得
+            for ($i = 0; $i < count($roots); $i++) {
+                if ($roots[$i]['youtube']) {
+                    $roots[$i]['youtube'] = $this->Common->getYoutubeId($roots[$i]['youtube']);
+                }
+            }
+
+            // RespectArtist取得
+            $respect_artists = $this->FamousDancers->Users->FamousArtists->findByUserId($user->id)->all();
+
+            $this->set(compact('famousDancer', 'events', 'roots', 'respect_artists'));
+
+        } else {
+            throw new NotFoundException(__('404 ページが見つかりません。'));
+        }
     }
 
 
@@ -134,62 +269,80 @@ class FamousDancersController extends AppController
     public function sample()
     {
         $this->viewBuilder()->setLayout('famous');
-
-        /*
-        $famousDancer = $this->FamousDancers->get($id, [
-            'contain' => []
-        ]);
-
-        $this->set('famousDancer', $famousDancer);
-        */
     }
 
 
     /**
-     * Add method
+     * 有名ダンサー登録
      *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
+     * @return \Cake\Http\Response|null
+     * @throws \Cake\Network\Exception\NotFoundException
      */
     public function add()
     {
-        $famousDancer = $this->FamousDancers->newEntity();
-        if ($this->request->is('post')) {
-            $famousDancer = $this->FamousDancers->patchEntity($famousDancer, $this->request->getData());
-            if ($this->FamousDancers->save($famousDancer)) {
-                $this->Flash->success(__('The famous dancer has been saved.'));
+        $this->Common->referer();
 
-                return $this->redirect(['action' => 'index']);
+        $this->viewBuilder()->setLayout('add');
+
+        // 区分ユーザーが存在し、本登録済みか
+        $user = $this->FamousDancers->Users->findByIdAndRegisterFlagAndClassification($this->Auth->user('id'), 1, 4)->first();
+
+        if ($user) {
+
+            // そのユーザーは既に一度プロフィール登録しているか
+            $profile = $this->FamousDancers->findByUserId($user->id)->first();
+
+            if (!$profile) {
+                $famousDancer = $this->FamousDancers->newEntity();
+
+                if ($this->request->is('post')) {
+
+                    $famousDancer = $this->FamousDancers->patchEntity($famousDancer, $this->request->getData());
+
+                    if ($this->FamousDancers->save($famousDancer)) {
+                        $this->Flash->success(__('プロフィール作成しました。各メニューが使用できるようになりました。'));
+                        return $this->redirect(['action' => 'home']);
+                    }
+
+                    $this->Flash->error(__('エラーがあります。入力項目を確認してください。'));
+                }
+                $this->set('genres',  $this->Common->valueToKey($this->genres));
+                $this->set(compact('famousDancer'));
+
+            } else {
+                $this->Auth->logout();
+                throw new NotFoundException(__('404 不正なアクセスまたはコンテンツが見つかりません。'));
             }
-            $this->Flash->error(__('The famous dancer could not be saved. Please, try again.'));
+        } else {
+            $this->Auth->logout();
+            throw new NotFoundException(__('404 不正なアクセスまたはコンテンツが見つかりません。'));
         }
-        $users = $this->FamousDancers->Users->find('list', ['limit' => 200]);
-        $this->set(compact('famousDancer', 'users'));
     }
 
 
     /**
-     * Edit method
+     * 有名ダンサープロフィール編集
      *
-     * @param string|null $id Famous Dancer id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     * @return \Cake\Http\Response|null
+     * @throws \Cake\Network\Exception\NotFoundException レコードがない場合
      */
-    public function edit($id = null)
+    public function edit()
     {
-        $famousDancer = $this->FamousDancers->get($id, [
-            'contain' => []
-        ]);
+        $this->Common->referer();
+        $famousDancer = $this->FamousDancers->findByUserId($this->Auth->user('id'))->contain(['Users'])->first();
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $famousDancer = $this->FamousDancers->patchEntity($famousDancer, $this->request->getData());
             if ($this->FamousDancers->save($famousDancer)) {
-                $this->Flash->success(__('The famous dancer has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                $this->Flash->success(__('プロフィール編集しました。'));
+                return $this->redirect(['action' => 'home']);
             }
-            $this->Flash->error(__('The famous dancer could not be saved. Please, try again.'));
+            $this->Flash->error(__('エラーがあります。入力項目を確認してください。'));
         }
-        $users = $this->FamousDancers->Users->find('list', ['limit' => 200]);
-        $this->set(compact('famousDancer', 'users'));
+
+        $this->set('genres', $this->Common->valueToKey($this->genres));
+        $this->set(compact('famousDancer'));
     }
 
 }

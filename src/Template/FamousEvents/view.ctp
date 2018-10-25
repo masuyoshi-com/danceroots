@@ -2,7 +2,30 @@
 
 <!-- ユーザー区分でチームかダンサーかを変更 -->
 <?php if ($user->classification === 4) : ?>
-
+    <div class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('../<?= h($famous->image) ?>'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+        <div class="mask rgba-black-slight">
+            <div class="container h-100 d-flex justify-content-start align-items-center">
+                <div class="row smooth-scroll">
+                    <div class="col-lg-12">
+                        <div class="wow fadeInUp">
+                            <h1 class="display-3 font-weight-bold mb-3"><?= h($famous->name) ?></h1>
+                            <h4 class="dark-grey-text text-uppercase font-weight-bold">
+                                <small>Team:</small>
+                                <?php
+                                    print h($famous->team_name);
+                                ?>
+                            </h4>
+                            <h5 class="dark-grey-text text-uppercase font-weight-bold"><small>Genre:</small> <?= h($famous->genre) ?></h5>
+                            <p>
+                                <a href="#event" class="btn btn-outline-pink wow fadeIn" data-wow-delay="0.4s">Event</a>
+                                <?= $this->Html->link('BACK', ['controller' => 'FamousDancers', 'action' => 'view', '#' => 'event', $user->username], ['class' => 'btn btn-outline-warning wow fadeIn']) ?>
+                            </p>
+                        </div>
+                    </div><!-- /.col-lg-12-->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </div><!-- /.mask -->
+    </div><!-- /.view -->
 <?php else : ?>
     <div class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('../<?= h($famous->image) ?>'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
         <div class="mask rgba-black-strong">
@@ -14,7 +37,7 @@
                             <h4 class="text-uppercase wow fadeIn" data-wow-delay="0.2s"><small>Genre:</small> HipHop</h4>
                             <h5 class="text-uppercase wow fadeIn" data-wow-delay="0.2s"><small>Activity Period:</small> <?= h($famous->period) ?></h5>
                             <a href="#event" class="btn btn-outline-pink wow fadeIn" data-wow-delay="0.4s">Event</a>
-                            <?= $this->Html->link('Profile', ['controller' => 'FamousTeams', 'action' => 'view', $user->username], ['class' => 'btn btn-outline-white wow fadeIn']) ?>
+                            <?= $this->Html->link('BACK', ['controller' => 'FamousTeams', 'action' => 'view', '#' => 'event', $user->username], ['class' => 'btn btn-outline-white wow fadeIn']) ?>
                         </div>
                     </div><!-- /.col-lg-12 -->
                 </div><!-- /.row -->
@@ -23,7 +46,7 @@
     </div><!-- /.view -->
 <?php endif; ?>
 
-<div id="event" class="container-fluid pb-5 wow fadeIn grey lighten-4" data-wow-delay="0.2s">
+<div id="event" class="container-fluid pb-5 wow fadeIn" data-wow-delay="0.2s">
     <div class="container pt-4">
         <section>
             <h2 class="section-heading text-center mb-0 mt-4 pt-4 font-weight-bold wow fadeIn">Event / Workshop</h2>
@@ -108,7 +131,7 @@
                             </div><!-- /.modal-dialog -->
                         </div><!-- /.modal -->
 
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mb-3">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mb-3 mt-3">
                             <div class="card">
                                 <div class="view overlay">
                                     <?php

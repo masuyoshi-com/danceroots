@@ -243,7 +243,7 @@
 </div><!-- /.container -->
 
 <?php if (count($team_events) !== 0) : ?>
-    <div class="container-fluid mb-4 grey lighten-3">
+    <div id="event" class="container-fluid mb-4 grey lighten-3">
         <div class="container mb-3 pt-1">
             <section>
 
@@ -389,6 +389,7 @@
     </div><!-- /.container-fluid -->
 <?php endif; ?>
 
+<?php if (count($team_roots) !== 0) : ?>
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12">
@@ -462,8 +463,11 @@
             </section><!-- /.Section -->
         </div><!-- /.col-lg-12 -->
     </div><!-- /.row -->
+</div><!-- /.container-fluid -->
+<?php endif; ?>
 
-    <?php if (count($respect_artists) !== 0) : ?>
+<?php if (count($respect_artists) !== 0) : ?>
+<div class="container-fluid">
     <div class="card card-body grey lighten-3 mb-5">
         <div class="row">
             <div class="col-lg-12 pt-4">
@@ -479,8 +483,8 @@
             <?php endforeach; ?>
         </div>
     </div><!-- /.card -->
-    <?php endif; ?>
 </div><!-- /.container-fluid -->
+<?php endif; ?>
 
 <script>
 $(function() {

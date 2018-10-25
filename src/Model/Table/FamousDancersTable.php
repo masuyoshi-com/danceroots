@@ -68,6 +68,8 @@ class FamousDancersTable extends Table
      */
     public function validationDefault(Validator $validator)
     {
+        $validator->provider('custom', 'App\Model\Validation\CustomValidation');
+
         $validator
             ->allowEmpty('id', 'create');
 
@@ -75,7 +77,29 @@ class FamousDancersTable extends Table
             ->scalar('name')
             ->maxLength('name', 100)
             ->requirePresence('name', 'create')
-            ->notEmpty('name');
+            ->notEmpty('name')
+            ->add('name', 'custom', [
+                'rule'     => 'isSpace',
+                'provider' => 'custom',
+                'message'  => '空白のみは受け付けません。'
+            ]);
+
+        $validator
+            ->scalar('team_name')
+            ->maxLength('team_name', 100)
+            ->requirePresence('team_name', 'create')
+            ->allowEmpty('team_name')
+            ->add('team_name', 'custom', [
+                'rule'     => 'isSpace',
+                'provider' => 'custom',
+                'message'  => '空白のみは受け付けません。'
+            ]);
+
+        $validator
+            ->scalar('pref')
+            ->maxLength('pref', 50)
+            ->requirePresence('pref', 'create')
+            ->allowEmpty('pref');
 
         $validator
             ->scalar('icon')
@@ -263,7 +287,7 @@ class FamousDancersTable extends Table
 
 
     /**
-    * 有名チーム検索 - 都道府県・ジャンル・フリーワード
+    * 有名ダンサー検索 - 都道府県・ジャンル・フリーワード
     *
     * @param array $requests
     */
@@ -273,7 +297,7 @@ class FamousDancersTable extends Table
             ->where(['FamousDancers.pref LIKE'  => '%' . $requests['pref'] . '%'])
             ->where(['FamousDancers.genre LIKE' => '%' . $requests['genre'] . '%'])
             ->where(['OR' => [
-                ['Users.username LIKE'   => '%' . $requests['word'] . '%'],
+                ['Users.username LIKE'     => '%' . $requests['word'] . '%'],
                 ['FamousDancers.name LIKE' => '%' . $requests['word'] . '%']]])
             ;
     }

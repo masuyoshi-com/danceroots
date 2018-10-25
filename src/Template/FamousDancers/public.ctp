@@ -1,4 +1,4 @@
-<?php $this->assign('title', '有名ストリートダンサー一覧'); ?>
+<?php $this->assign('title', '有名ストリートダンサー検索・一覧'); ?>
 
 <div class="row mt-5">
 </div>
@@ -8,7 +8,7 @@
         <div class="d-flex">
             <h6 class="h6-responsive font-weight-bold mb-0">
                 <i class="fa fa-universal-access orange-text" aria-hidden="true"></i> FAMOUS STREET DANCER
-                <span class="ml-1 grey-text"><small>有名<span class="none">ストリート</span>ダンサー一覧</small></span>
+                <span class="ml-1 grey-text none"><small>有名<span class="none">ストリート</span>ダンサー</small></span>
             </h6>
             <?php if (!isset($logins)) : ?>
                 <p class="ml-auto mb-0">
@@ -71,21 +71,20 @@
     </div>
 </div>
 
-<?php if (count($dancers) !== 0) : ?>
+<?php if (count($famousDancers) !== 0) : ?>
 
 <div class="row text-center">
-    <?php foreach ($dancers as $dancer) : ?>
-    <div class="col-lg-3 col-md-6 mb-4">
+    <?php foreach ($famousDancers as $dancer) : ?>
+    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12 mb-4">
 
-        <div class="card card-body">
+        <div class="card card-body elegant-color white-text">
 
             <label class="mb-0">
-                <span class="badge purple darken-2"><?= h($dancer->pref) ?></span>
-                <span class="badge indigo"><?= h($dancer->genre) ?></span>
+                <small>Genre: </small><?= h($dancer->genre) ?>
             </label>
 
             <div class="avatar mx-auto my-3 mt-0">
-                <a href="<?= $this->Url->build(['action' => 'pv', $dancer->user->username]) ?>">
+                <a href="<?= $this->Url->build(['controller' => 'FamousDancers', 'action' => 'pv', $dancer->user->username]) ?>">
                     <?php
                         if ($dancer->icon) {
                             print $this->Html->image($dancer->icon, ['class' => 'rounded-circle img-fluid']);
@@ -98,71 +97,22 @@
 
             <h5 class="font-weight-bold">
                 <strong>
-                        <?= $this->Html->link($dancer->user->username, ['action' => 'publicView', $dancer->user->username], ['class' => 'dark-grey-text']) ?>
+                        <?= $this->Html->link($dancer->user->username, ['controller' => 'FamousDancers', 'action' => 'pv', $dancer->user->username], ['class' => 'white-text']) ?>
                 </strong>
             </h5>
 
             <?php if ($dancer->team_name) : ?>
-            <p><small><?= h($dancer->team_name) ?></small></p>
+            <p><small>Team:</small> <?= h($dancer->team_name) ?></p>
             <?php endif; ?>
 
-            <?php if ($dancer->facebook || $dancer->twitter || $dancer->instagram) : ?>
-            <ul class="list-unstyled personal-sm">
+            <hr class="white mt-0">
 
-                <?php
-                    if ($dancer->facebook) {
-                        print $this->Html->link('<i class="fa fa-facebook"> </i>',
-                            h($dancer->facebook),
-                            [
-                                'class'          => 'icons-sm fb-ic pr-2',
-                                'escape'         => false,
-                                'target'         => '_blank',
-                                'data-toggle'    => 'tooltip',
-                                'data-placement' => 'bottom',
-                                'title'          => 'Facebook'
-                            ]
-                        );
-                    }
-                ?>
+            <p class="text-right mb-0">
+                <?= $this->Html->link('PROFILE<i class="fa fa-arrow-circle-right ml-2 white-text" aria-hideen="true"></i>',
+                    ['controller' => 'FamousDancers', 'action' => 'pv', $dancer->user->username],
+                    ['class' => 'white-text', 'escape' => false]
+                ) ?>
 
-                <?php
-                    if ($dancer->twitter) {
-                        print $this->Html->link('<i class="fa fa-twitter"> </i>',
-                            h($dancer->twitter),
-                            [
-                                'class'          => 'icons-sm tw-ic pr-2',
-                                'escape'         => false,
-                                'target'         => '_blank',
-                                'data-toggle'    => 'tooltip',
-                                'data-placement' => 'bottom',
-                                'title'          => 'Twitter'
-                            ]
-                        );
-                    }
-                ?>
-
-                <?php
-                    if ($dancer->instagram) {
-                        print $this->Html->link('<i class="fa fa-instagram"> </i>',
-                            h($dancer->instagram),
-                            [
-                                'class'          => 'icons-sm ins-ic',
-                                'escape'         => false,
-                                'target'         => '_blank',
-                                'data-toggle'    => 'tooltip',
-                                'data-placement' => 'bottom',
-                                'title'          => 'Instagram'
-                            ]
-                        );
-                    }
-                ?>
-            </ul>
-            <?php endif; ?>
-            <hr class="mt-0">
-            <p class="dark-grey-text mb-0">
-                <small>
-                    <?= h($dancer->self_intro) ?>
-                </small>
             </p>
         </div>
     </div><!-- /.col-lg-3 -->

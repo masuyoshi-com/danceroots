@@ -10,6 +10,9 @@
                         <h4 class="text-uppercase wow fadeIn" data-wow-delay="0.2s"><small>Genre:</small> <?= h($famousTeam->genre) ?></h4>
                         <h5 class="text-uppercase wow fadeIn" data-wow-delay="0.2s"><small>Activity Period:</small> <?= h($famousTeam->period) ?></h5>
                         <a href="#profile" class="btn btn-outline-white wow fadeIn" data-wow-delay="0.4s">Profile</a>
+                        <?= $this->Html->link('BACK', ['controller' => 'FamousTeams', 'action' => 'public'],
+                            ['class' => 'btn btn-outline-warning wow fadeIn waves-effect waves-light animated', 'data-wow-delay' => '0.4s']
+                        ) ?>
                     </div>
                 </div><!-- /.col-lg-12 -->
             </div><!-- /.row -->
@@ -438,7 +441,7 @@
     </div><!-- /.container -->
 
     <?php if (count($respect_artists) !== 0) : ?>
-    <div class="container-fluid grey lighten-3 mb-3">
+    <div class="container-fluid grey lighten-3 pb-3">
 
         <div class="container pt-4 pb-5">
             <div class="row">

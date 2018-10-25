@@ -40,66 +40,11 @@
                 <p>
                     <span class="badge badge-success"><?= h($famousDancer->pref) ?></span>
                     <span class="badge indigo"><?= h($famousDancer->genre) ?></span>
-                    <spna class="badge purple"><?= h($famousDancer->user->classification) ?></span>
+                    <spna class="badge deep-orange"><?= h($famousDancer->user->classification) ?></span>
                 </p>
-                <h4 class="card-title dark-grey-text font-weight-bold"><?= h($famousDancer->user->username) ?></h4>
-
-                <?php if ($famousDancer->team_name) : ?>
-                <h5 class="dark-grey-text">Team: <strong><?= h($famousDancer->team_name) ?></strong></h5>
-                <?php endif; ?>
-
-                <?php
-                    if ($famousDancer->facebook) {
-                        print $this->Html->link('<i class="fa fa-facebook dark-grey-text"></i>', h($famousDancer->facebook),
-                            [
-                                'type'           => 'button',
-                                'class'          => 'btn-floating btn-small transparent',
-                                'target'         => '_blank',
-                                'escape'         => false,
-                                'data-toggle'    => 'tooltip',
-                                'data-placement' => 'bottom',
-                                'title'          => 'Facebook'
-                            ]
-                        );
-                    }
-                ?>
-
-                <?php
-                    if ($famousDancer->twitter) {
-                        print $this->Html->link('<i class="fa fa-twitter dark-grey-text"></i>', h($famousDancer->twitter),
-                            [
-                                'type'           => 'button',
-                                'class'          => 'btn-floating btn-small transparent',
-                                'target'         => '_blank',
-                                'escape'         => false,
-                                'data-toggle'    => 'tooltip',
-                                'data-placement' => 'bottom',
-                                'title'          => 'Twitter'
-                            ]
-                        );
-                    }
-                ?>
-
-                <?php
-                    if ($famousDancer->instagram) {
-                        print $this->Html->link('<i class="fa fa-instagram dark-grey-text"></i>', h($famousDancer->instagram),
-                            [
-                                'type'           => 'button',
-                                'class'          => 'btn-floating btn-small transparent',
-                                'target'         => '_blank',
-                                'escape'         => false,
-                                'data-toggle'    => 'tooltip',
-                                'data-placement' => 'bottom',
-                                'title'          => 'Instagram'
-                            ]
-                        );
-                    }
-                ?>
+                <h6 class="card-title dark-grey-text"><small>ユーザー名: <?= h($famousDancer->user->username) ?></small></h6>
+                <h4 class="card-title dark-grey-text font-weight-bold"><small>TEAM:</small> <?= h($famousDancer->name) ?></h4>
                 <hr>
-                <p class="card-text mt-3">
-                    <?= h($famousDancer->self_intro) ?>
-                </p>
-
                 <div class="dropdown">
                     <?= $this->Form->button('メインメニュー ',
                         [
@@ -111,14 +56,12 @@
                     ) ?>
                     <div class="dropdown-menu dropdown-primary">
                         <?= $this->Html->link('マイプロフィール', $views, ['class' => 'dropdown-item']) ?>
+                        <?= $this->Html->link('プロフィール編集', ['controller' => 'FamousDancers', 'action' => 'edit'], ['class' => 'dropdown-item']) ?>
                         <?= $this->Html->link('メッセージ',  ['controller' => 'Messages',    'action' => 'index'], ['class' => 'dropdown-item']) ?>
                         <?= $this->Html->link('サークル',    ['controller' => 'Circles',     'action' => 'list'], ['class' => 'dropdown-item']) ?>
                         <?= $this->Html->link('イベント',    ['controller' => 'Events',      'action' => 'list'], ['class' => 'dropdown-item']) ?>
                         <?= $this->Html->link('ダンス動画',   ['controller' => 'DanceVideos', 'action' => 'list'], ['class' => 'dropdown-item']) ?>
                         <?= $this->Html->link('ミュージック', ['controller' => 'DanceMusics', 'action' => 'list'], ['class' => 'dropdown-item']) ?>
-                        <!--
-                        <?= $this->Html->link('チーム',      ['controller' => 'Teams',       'action' => 'list'], ['class' => 'dropdown-item']) ?>
-                        -->
                     </div>
                 </div>
             </div><!-- /.card-body -->
@@ -223,6 +166,59 @@
 </div><!-- /. row -->
 
 <hr class="mb-3">
+
+<div class="card card-body mb-3">
+    <div class="row">
+        <div class="col-lg-12">
+            <h6 class="dark-grey-text font-weight-bold"><i class="fa fa-id-card mr-2" aria-hidden="true"></i>PROFILE MENU</h6>
+            <hr class="mt-1">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12 text-center">
+                    <a href="<?= $this->Url->build(['controller' => 'FamousDancers', 'action' => 'edit']) ?>">
+                        <h5 class="dark-grey-text"><strong>PROFILE EDIT</strong></h5>
+                        <p class="dark-grey-text">
+                            <small>
+                                基本プロフィールの編集を行います。
+                            </small>
+                        </p>
+                        <p class="text-right mb-0">
+                            <small class="text-muted">プロフィール編集へ <i class="fa fa-arrow-circle-right blue-text"></i></small>
+                        </p>
+                    </a>
+                    <hr class="xs-show">
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 text-center">
+                    <a href="<?= $this->Url->build(['controller' => 'FamousEvents', 'action' => 'index']) ?>">
+                        <h5 class="dark-grey-text"><strong>PROFILE EVENT</strong></h5>
+                        <p class="dark-grey-text">
+                            <small>
+                                プロフィール内でイベント告知が可能です。
+                            </small>
+                        </p>
+                        <p class="text-right mb-0">
+                            <small class="text-muted">プロフィールイベントへ <i class="fa fa-arrow-circle-right blue-text"></i></small>
+                        </p>
+                    </a>
+                    <hr class="xs-show">
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 text-center">
+                    <a href="<?= $this->Url->build(['controller' => 'FamousRoots', 'action' => 'index']) ?>">
+                        <h5 class="dark-grey-text"><strong>DANCER R<span class="font-blue">OO</span>TS</strong></h5>
+                        <p class="dark-grey-text">
+                            <small>
+                                個人のルーツを辿ります。
+                            </small>
+                        </p>
+                        <p class="text-right mb-0">
+                            <small class="text-muted">ダンサールーツへ <i class="fa fa-arrow-circle-right blue-text"></i></small>
+                        </p>
+                    </a>
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.col-lg-12 -->
+    </div><!-- /.row -->
+</div><!-- /.card -->
+
 
 <div class="row mb-3">
     <div class="col-lg-6 col-md-12 mb-3">

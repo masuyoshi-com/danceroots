@@ -2,17 +2,25 @@
 
 <!-- ユーザー区分でチームかダンサーかを変更 -->
 <?php if ($user->classification === 4) : ?>
-    <div class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/People/full%20page/img%20%2827%29.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+    <div class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('../<?= h($famous->image) ?>'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
         <div class="mask rgba-black-slight">
             <div class="container h-100 d-flex justify-content-start align-items-center">
                 <div class="row smooth-scroll">
                     <div class="col-lg-12">
                         <div class="wow fadeInUp">
-                            <h1 class="display-3 font-weight-bold mb-3">Dancer Name</h1>
-                            <h4 class="dark-grey-text text-uppercase font-weight-bold">Team: TeamName</h4>
-                            <h5 class="dark-grey-text text-uppercase font-weight-bold">Genre: HipHop</h5>
+                            <h1 class="display-3 font-weight-bold mb-3"><?= h($famous->name) ?></h1>
+                            <?php if ($famous->team_name) : ?>
+                                <h4 class="dark-grey-text text-uppercase font-weight-bold">
+                                    <small>Team:</small>
+                                    <?= h($famous->team_name) ?>
+                                </h4>
+                            <?php endif; ?>
+                            <h5 class="dark-grey-text text-uppercase font-weight-bold"><small>Genre:</small> <?= h($famous->genre) ?></h5>
                             <p>
                                 <a href="#event" class="btn btn-outline-black wow fadeIn waves-effect waves-light animated" data-wow-delay="0.4s">EVENT</a>
+                                <?= $this->Html->link('BACK', ['controller' => 'FamousDancers', 'action' => 'pv', '#' => 'event', $user->username],
+                                    ['class' => 'btn btn-outline-warning wow fadeIn waves-effect waves-light animated', 'data-wow-delay' => '0.4s']
+                                ) ?>
                             </p>
                         </div>
                     </div><!-- /.col-lg-12-->
@@ -20,6 +28,7 @@
             </div><!-- /.container -->
         </div><!-- /.mask -->
     </div><!-- /.view -->
+
 <?php else : ?>
     <div class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('../<?= h($famous->image) ?>'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
         <div class="mask rgba-black-strong">
