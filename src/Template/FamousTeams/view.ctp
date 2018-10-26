@@ -466,6 +466,42 @@
 </div><!-- /.container-fluid -->
 <?php endif; ?>
 
+<hr>
+
+<?php if ($musics !== 0 || $videos !== 0) : ?>
+<div id="share" class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <section>
+                <h2 class="section-heading text-center mb-5 my-5 mb-4 font-weight-bold wow fadeIn">Share</h2>
+                <div class="d-flex justify-content-around mb-5">
+
+                    <?php
+                        if ($musics !== 0) {
+                            print $this->Html->link('<i class="fa fa-music white-text mr-2" aria-hidden="true"></i>MUSIC',
+                                ['controller' => 'FamousTeams', 'action' => 'music', $famousTeam->user->username],
+                                ['class' => 'btn btn-block purple-gradient', 'escape' => false]
+                            );
+                        }
+                    ?>
+
+                    <?php
+                        if ($videos !== 0) {
+                            print $this->Html->link('<i class="fa fa-youtube-play mr-2" aria-hidden="true"></i><span class="none">Dance </span>Video',
+                                ['controller' => 'FamousTeams', 'action' => 'video', $famousTeam->user->username],
+                                ['class'  => 'btn btn-block peach-gradient', 'escape' => false]
+                            );
+                        }
+
+                    ?>
+
+                </div><!-- /.d-flex -->
+            </section>
+        </div><!-- /.col-lg-12 -->
+    </div><!-- /.row -->
+</div><!-- /.container-fluid -->
+<?php endif; ?>
+
 <?php if (count($respect_artists) !== 0) : ?>
 <div class="container-fluid">
     <div class="card card-body grey lighten-3 mb-5">

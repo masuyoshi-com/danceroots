@@ -182,14 +182,78 @@ class FamousTeamsController extends AppController
             // RespectArtist取得
             $respect_artists = $this->FamousTeams->Users->FamousArtists->findByUserId($user->id)->all();
 
+            // Musicが登録されているか
+            $musics = $this->FamousTeams->Users->DanceMusics->findByUserId($user->id)->count();
+
+            // Videoが登録されているか
+            $videos = $this->FamousTeams->Users->DanceVideos->findByUserId($user->id)->count();
+
             // メッセージ用変数
             $this->set('to_user_id',  $famousTeam->user_id);
             $this->set('to_username', $famousTeam->user->username);
-            $this->set(compact('famousTeam', 'team_members', 'team_events', 'team_roots', 'respect_artists'));
+            $this->set(compact('famousTeam', 'team_members', 'team_events', 'team_roots', 'respect_artists', 'musics', 'videos'));
         } else {
             throw new NotFoundException(__('404 ページが見つかりません。'));
         }
 
+    }
+
+
+    /**
+     * ミュージック
+     *
+     * @param string $username ユーザー名
+     * @throws \Cake\Network\Exception\NotFoundException
+     */
+    public function music($username = null)
+    {
+        $this->paginate = ['limit' => 25];
+
+        $user = $this->FamousTeams->Users->findByUsername($username)->first();
+
+        if ($user) {
+
+            $famousTeam = $this->FamousTeams->findByUserId($user->id)->first();
+            $famousTeam->user = $user;
+
+            $query  = $this->FamousTeams->Users->DanceMusics->findByUserId($user->id);
+            $musics = $this->paginate($query);
+
+            $this->set(compact('famousTeam', 'musics'));
+        } else {
+            throw new NotFoundException(__('404 ページが見つかりません。'));
+        }
+    }
+
+
+    /**
+     * ダンスビデオ
+     *
+     * @param string $username ユーザー名
+     * @throws \Cake\Network\Exception\NotFoundException
+     */
+    public function video($username = null)
+    {
+        $this->paginate = ['limit' => 10];
+
+        $user = $this->FamousTeams->Users->findByUsername($username)->first();
+
+        if ($user) {
+
+            $famousTeam = $this->FamousTeams->findByUserId($user->id)->first();
+            $famousTeam->user = $user;
+
+            $query  = $this->FamousTeams->Users->DanceVideos->findByUserId($user->id);
+            $videos = $this->paginate($query)->toArray();
+
+            for ($i = 0; $i < count($videos); $i++) {
+                $videos[$i]['youtube'] = $this->Common->getYoutubeId($videos[$i]['youtube']);
+            }
+
+            $this->set(compact('famousTeam', 'videos'));
+        } else {
+            throw new NotFoundException(__('404 ページが見つかりません。'));
+        }
     }
 
 
