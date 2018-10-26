@@ -43,7 +43,7 @@
                 </li>
             <?php endif; ?>
             <li class="list-inline-item mr-3">
-                <?= $this->Html->link('<i class="fa fa-user mr-1"></i> <small>プロフィール</small>', $user->link, ['escape' => false]) ?>
+                <?= $this->Html->link('<i class="fa fa-user mr-1"></i> <small>プロフィール</small>', $user->link, ['escape' => false, 'target' => '_blank']) ?>
             </li>
         </ul>
     </div>
@@ -57,7 +57,7 @@
         ?>
         <div class="media-body">
             <h5 class="font-weight-bold mt-0 blue-text">
-                <?= $this->Html->link($user->username, $user->link) ?>
+                <?= $this->Html->link($user->username, $user->link, ['target' => '_blank']) ?>
             </h5>
             <p>
                 <?= h($user->profile->self_intro) ?>
