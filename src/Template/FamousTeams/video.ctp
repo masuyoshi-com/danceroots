@@ -9,7 +9,7 @@
                         <h1 class="display-3 font-weight-bold wow fadeIn"><?= h($famousTeam->name) ?></h1>
                         <h4 class="text-uppercase wow fadeIn" data-wow-delay="0.2s"><small>Genre:</small> HipHop</h4>
                         <h5 class="text-uppercase wow fadeIn" data-wow-delay="0.2s"><small>Activity Period:</small> <?= h($famousTeam->period) ?></h5>
-                        <a href="#event" class="btn btn-outline-warning wow fadeIn" data-wow-delay="0.4s">VIDEO</a>
+                        <a href="#video" class="btn btn-outline-warning wow fadeIn" data-wow-delay="0.4s">VIDEO</a>
                         <?= $this->Html->link('BACK', ['controller' => 'FamousTeams', 'action' => 'view', '#' => 'share', $famousTeam->user->username], ['class' => 'btn btn-outline-white wow fadeIn']) ?>
                     </div>
                 </div><!-- /.col-lg-12 -->
@@ -18,7 +18,7 @@
     </div><!-- /.mask -->
 </div><!-- /.view -->
 
-<div id="event" class="container-fluid pb-5 wow fadeIn" data-wow-delay="0.2s">
+<div id="video" class="container-fluid pb-5 wow fadeIn" data-wow-delay="0.2s">
     <section class="pt-4">
         <h3 class="h3-responsive section-heading text-center mb-0 mt-4 pt-4 font-weight-bold wow fadeIn"><i class="fa fa-youtube-play yt-ic mr-2"></i>DANCE VIDEO</h3>
 
