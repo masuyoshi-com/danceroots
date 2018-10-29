@@ -72,6 +72,7 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.1 controllers/FamousDancers/music',
             'bin/cake acl grant Groups.1 controllers/FamousDancers/video',
             'bin/cake acl grant Groups.1 controllers/FamousEvents/view',
+            'bin/cake acl grant Groups.1 controllers/FamousRoots/view',
 
             // Studios
             'bin/cake acl deny Groups.2 controllers',
@@ -107,6 +108,7 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.2 controllers/FamousDancers/music',
             'bin/cake acl grant Groups.2 controllers/FamousDancers/video',
             'bin/cake acl grant Groups.2 controllers/FamousEvents/view',
+            'bin/cake acl grant Groups.2 controllers/FamousRoots/view',
 
             // Organizers
             'bin/cake acl deny Groups.3 controllers',
@@ -143,6 +145,7 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.3 controllers/FamousDancers/music',
             'bin/cake acl grant Groups.3 controllers/FamousDancers/video',
             'bin/cake acl grant Groups.3 controllers/FamousEvents/view',
+            'bin/cake acl grant Groups.3 controllers/FamousRoots/view',
 
             // Generals
             'bin/cake acl deny Groups.4 controllers',
@@ -180,6 +183,7 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.4 controllers/FamousDancers/music',
             'bin/cake acl grant Groups.4 controllers/FamousDancers/video',
             'bin/cake acl grant Groups.4 controllers/FamousEvents/view',
+            'bin/cake acl grant Groups.4 controllers/FamousRoots/view',
 
             // FamousDancers
             'bin/cake acl deny Groups.5 controllers',
