@@ -295,7 +295,9 @@ class FamousTeamsController extends AppController
             $team_roots = $this->FamousTeams->Users->FamousRoots
                 ->findByUserId($user->id)
                 ->order(['FamousRoots.year' => 'ASC'])
+                ->limit(5)
                 ->toArray();
+                
             // RootsのYouTubeIDを取得
             for ($i = 0; $i < count($team_roots); $i++) {
                 if ($team_roots[$i]['youtube']) {

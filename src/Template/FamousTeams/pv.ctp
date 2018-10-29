@@ -352,10 +352,19 @@
                         <div class="col-lg-12">
                             <p class="text-right m-0 mb-3">
                                 <small>
-                                    <?= $this->Html->link('さらに見る<i class="fa fa-angle-right ml-2" aria-hidden="true"></i>',
-                                            ['controller' => 'FamousEvents', 'action' => 'public', $famousTeam->user->username],
-                                            ['escape' => false]
-                                    ) ?>
+                                    <?php
+                                        if (isset($logins)) {
+                                            print $this->Html->link('さらに見る<i class="fa fa-angle-right ml-2" aria-hidden="true"></i>',
+                                                    ['controller' => 'FamousEvents', 'action' => 'public', $famousTeam->user->username],
+                                                    ['escape' => false]
+                                            );
+                                        } else {
+                                            print $this->Html->link('サインインして更に見る<i class="fa fa-angle-right ml-2" aria-hidden="true"></i>',
+                                                    ['controller' => 'Users', 'action' => 'login'],
+                                                    ['escape' => false]
+                                            );
+                                        }
+                                    ?>
                                 </small>
                             </p>
                         </div>
@@ -440,10 +449,19 @@
                         <div class="col-lg-12">
                             <p class="text-right m-0 mb-3">
                                 <small>
-                                    <?= $this->Html->link('さらに見る<i class="fa fa-angle-right ml-2" aria-hidden="true"></i>',
-                                            ['controller' => 'FamousRoots', 'action' => 'public', $famousTeam->user->username],
-                                            ['escape' => false]
-                                    ) ?>
+                                    <?php
+                                        if (isset($logins)) {
+                                            print $this->Html->link('さらに見る<i class="fa fa-angle-right ml-2" aria-hidden="true"></i>',
+                                                    ['controller' => 'FamousRoots', 'action' => 'public', $famousTeam->user->username],
+                                                    ['escape' => false]
+                                            );
+                                        } else {
+                                            print $this->Html->link('サインインして更に見る<i class="fa fa-angle-right ml-2" aria-hidden="true"></i>',
+                                                    ['controller' => 'Users', 'action' => 'login'],
+                                                    ['escape' => false]
+                                            );
+                                        }
+                                    ?>
                                 </small>
                             </p>
                         </div>

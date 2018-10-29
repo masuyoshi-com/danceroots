@@ -300,7 +300,9 @@ class FamousDancersController extends AppController
             $roots = $this->FamousDancers->Users->FamousRoots
                 ->findByUserId($user->id)
                 ->order(['FamousRoots.year' => 'ASC'])
+                ->limit(5)
                 ->toArray();
+
             // RootsのYouTubeIDを取得
             for ($i = 0; $i < count($roots); $i++) {
                 if ($roots[$i]['youtube']) {
