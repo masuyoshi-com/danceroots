@@ -1,4 +1,4 @@
-<?php $this->assign('title', h($famousTeam->name) . ' - プロフィール'); ?>
+<?php $this->assign('title', h($famousTeam->name) . ' - 有名ダンスチームプロフィール'); ?>
 
 <div class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('../<?= h($famousTeam->image) ?>'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
     <div class="mask rgba-black-strong">
@@ -365,14 +365,14 @@
         </div><!-- /.container-fluid -->
     <?php endif; ?>
 
-    <div class="container">
+    <div id="roots" class="container">
         <div class="row">
             <div class="col-lg-12">
                 <section>
 
                     <h2 class="section-heading text-center mb-5 my-5 mb-4 font-weight-bold wow fadeIn"><?= h($famousTeam->name) ?> R<span class="font-blue">oo</span>ts</h2>
 
-                    <div class="row mb-3">
+                    <div class="row">
                         <div class="col-lg-12 mb-2">
                             <ul class="stepper stepper-vertical timeline-simple pl-0">
                                 <?php $i = 0; foreach ($team_roots as $root) : ?>
@@ -435,6 +435,20 @@
                             </ul>
                         </div><!-- /.col-lg-12 -->
                     </div><!-- /.row -->
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <p class="text-right m-0 mb-3">
+                                <small>
+                                    <?= $this->Html->link('さらに見る<i class="fa fa-angle-right ml-2" aria-hidden="true"></i>',
+                                            ['controller' => 'FamousRoots', 'action' => 'public', $famousTeam->user->username],
+                                            ['escape' => false]
+                                    ) ?>
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+
                 </section><!-- /.Section -->
             </div><!-- /.col-lg-12 -->
         </div><!-- /.row -->

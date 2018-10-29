@@ -1,4 +1,4 @@
-<?php $this->assign('title', h($famousTeam->name) . ' - プロフィール'); ?>
+<?php $this->assign('title', h($famousTeam->name) . ' - 有名ダンスチームプロフィール'); ?>
 
 <div class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('../<?= h($famousTeam->image) ?>'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
     <div class="mask rgba-black-strong">
@@ -390,7 +390,7 @@
 <?php endif; ?>
 
 <?php if (count($team_roots) !== 0) : ?>
-<div class="container-fluid">
+<div id="roots" class="container-fluid">
     <div class="row">
         <div class="col-lg-12">
             <section>
@@ -460,15 +460,28 @@
                         </ul>
                     </div><!-- /.col-lg-12 -->
                 </div><!-- /.row -->
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="text-right m-0">
+                            <small>
+                                <?= $this->Html->link('さらに見る<i class="fa fa-angle-right ml-2" aria-hidden="true"></i>',
+                                        ['controller' => 'FamousRoots', 'action' => 'view', $famousTeam->user->username],
+                                        ['escape' => false]
+                                ) ?>
+                            </small>
+                        </p>
+                    </div>
+                </div>
+
             </section><!-- /.Section -->
         </div><!-- /.col-lg-12 -->
     </div><!-- /.row -->
 </div><!-- /.container-fluid -->
 <?php endif; ?>
 
-<hr>
-
 <?php if ($musics !== 0 || $videos !== 0) : ?>
+<hr>
 <div id="share" class="container">
     <div class="row">
         <div class="col-lg-12">

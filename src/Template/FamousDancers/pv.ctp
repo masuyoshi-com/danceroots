@@ -447,7 +447,7 @@
     <?php endif; ?>
 
     <?php if (count($roots) !== 0) : ?>
-    <div class="container">
+    <div id="roots" class="container">
         <div class="row">
             <div class="col-lg-12">
                 <section>
@@ -517,6 +517,20 @@
                             </ul>
                         </div><!-- /.col-lg-12 -->
                     </div><!-- /.row -->
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <p class="text-right m-0 mb-3">
+                                <small>
+                                    <?= $this->Html->link('さらに見る<i class="fa fa-angle-right ml-2" aria-hidden="true"></i>',
+                                            ['controller' => 'FamousRoots', 'action' => 'public', $famousDancer->user->username],
+                                            ['escape' => false]
+                                    ) ?>
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+
                 </section><!-- /.Section -->
             </div><!-- /.col-lg-12 -->
         </div><!-- /.row -->

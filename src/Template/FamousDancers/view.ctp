@@ -541,6 +541,20 @@
                         </ul>
                     </div><!-- /.col-lg-12 -->
                 </div><!-- /.row -->
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="text-right m-0">
+                            <small>
+                                <?= $this->Html->link('さらに見る<i class="fa fa-angle-right ml-2" aria-hidden="true"></i>',
+                                        ['controller' => 'FamousRoots', 'action' => 'view', $famousDancer->user->username],
+                                        ['escape' => false]
+                                ) ?>
+                            </small>
+                        </p>
+                    </div>
+                </div>
+
             </section><!-- /.Section -->
         </div><!-- /.col-lg-12 -->
     </div><!-- /.row -->
@@ -548,6 +562,7 @@
 <?php endif; ?>
 
 <?php if ($musics !== 0 || $videos !== 0) : ?>
+<hr>
 <div id="share" class="container">
     <div class="row">
         <div class="col-lg-12">

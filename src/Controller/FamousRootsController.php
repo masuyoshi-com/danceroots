@@ -14,6 +14,18 @@ class FamousRootsController extends AppController
 {
 
     /**
+    * 初期化メソッド
+    *
+    * @return void
+    */
+    public function initialize()
+    {
+        parent::initialize();
+        $this->Auth->allow(['public']);
+    }
+
+
+    /**
      * ダンスルーツ一覧 (管理)
      *
      * @return \Cake\Http\Response|void
@@ -49,19 +61,80 @@ class FamousRootsController extends AppController
 
 
     /**
-     * View method
+     * 公開用 有名チーム/ダンサー ルーツ詳細
      *
-     * @param string|null $id Famous Root id.
+     * @param string|null $username ユーザー名
      * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     * @throws \Cake\Network\Exception\NotFoundException
      */
-    public function view($id = null)
+    public function public($username = null)
     {
-        $famousRoot = $this->FamousRoots->get($id, [
-            'contain' => ['Users']
-        ]);
+        $this->viewBuilder()->setLayout('famous');
 
-        $this->set('famousRoot', $famousRoot);
+        // ユーザー名検索
+        $user = $this->FamousRoots->Users->findByUsername($username)->first();
+
+        if ($user) {
+            // ユーザー区分で判定
+            if ($user->classification === 4) {
+                $famous = $this->FamousRoots->Users->FamousDancers->findByUserId($user->id)->first();
+            } elseif ($user->classification === 5) {
+                $famous = $this->FamousRoots->Users->FamousTeams->findByUserId($user->id)->first();
+            }
+
+            $query = $this->FamousRoots->findByUserId($user->id);
+            $famousRoots = $this->paginate($query)->toArray();
+
+            // YouTubeIDのみを取得
+            for ($i = 0; $i < count($famousRoots); $i++) {
+                if ($famousRoots[$i]['youtube']) {
+                    $famousRoots[$i]['youtube'] = $this->Common->getYoutubeId($famousRoots[$i]['youtube']);
+                }
+            }
+
+            $this->set(compact('famousRoots', 'famous', 'user'));
+
+        } else {
+            throw new NotFoundException(__('404 ページが見つかりません。'));
+        }
+    }
+
+
+    /**
+     * 有名チーム/ダンサー ルーツ詳細
+     *
+     * @param string|null $username ユーザー名
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Network\Exception\NotFoundException
+     */
+    public function view($username = null)
+    {
+        // ユーザー名検索
+        $user = $this->FamousRoots->Users->findByUsername($username)->first();
+
+        if ($user) {
+            // ユーザー区分で判定
+            if ($user->classification === 4) {
+                $famous = $this->FamousRoots->Users->FamousDancers->findByUserId($user->id)->first();
+            } elseif ($user->classification === 5) {
+                $famous = $this->FamousRoots->Users->FamousTeams->findByUserId($user->id)->first();
+            }
+
+            $query = $this->FamousRoots->findByUserId($user->id);
+            $famousRoots = $this->paginate($query)->toArray();
+
+            // YouTubeIDのみを取得
+            for ($i = 0; $i < count($famousRoots); $i++) {
+                if ($famousRoots[$i]['youtube']) {
+                    $famousRoots[$i]['youtube'] = $this->Common->getYoutubeId($famousRoots[$i]['youtube']);
+                }
+            }
+
+            $this->set(compact('famousRoots', 'famous', 'user'));
+
+        } else {
+            throw new NotFoundException(__('404 ページが見つかりません。'));
+        }
     }
 
 
