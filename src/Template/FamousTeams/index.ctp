@@ -91,7 +91,7 @@
                 <p class="card-text white-text mb-4">
                     <?= tw(nl2br(h($team->style)), 70) ?>
                 </p>
-                <h5>
+                <h5 class="mb-0">
                     <?= $this->Html->link('PROFILE<i class="fa fa-angle-double-right ml-2"></i>',
                         ['controller' => 'FamousTeams', 'action' => 'view', $team->user->username],
                         ['class' => 'white-text d-flex justify-content-end', 'escape' => false]
