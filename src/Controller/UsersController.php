@@ -62,7 +62,6 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.1 controllers/StudioSchedules/index',
             'bin/cake acl grant Groups.1 controllers/Forums',
             'bin/cake acl grant Groups.1 controllers/ForumComments',
-
             'bin/cake acl grant Groups.1 controllers/FamousTeams/index',
             'bin/cake acl grant Groups.1 controllers/FamousTeams/view',
             'bin/cake acl grant Groups.1 controllers/FamousTeams/music',
@@ -98,7 +97,6 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.2 controllers/StudioSchedules',
             'bin/cake acl grant Groups.2 controllers/Forums',
             'bin/cake acl grant Groups.2 controllers/ForumComments',
-
             'bin/cake acl grant Groups.2 controllers/FamousTeams/index',
             'bin/cake acl grant Groups.2 controllers/FamousTeams/view',
             'bin/cake acl grant Groups.2 controllers/FamousTeams/music',
@@ -135,7 +133,6 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.3 controllers/StudioSchedules/index',
             'bin/cake acl grant Groups.3 controllers/Forums',
             'bin/cake acl grant Groups.3 controllers/ForumComments',
-
             'bin/cake acl grant Groups.3 controllers/FamousTeams/index',
             'bin/cake acl grant Groups.3 controllers/FamousTeams/view',
             'bin/cake acl grant Groups.3 controllers/FamousTeams/music',
@@ -173,7 +170,6 @@ class UsersController extends AppController
             'bin/cake acl grant Groups.4 controllers/StudioSchedules/index',
             'bin/cake acl grant Groups.4 controllers/Forums',
             'bin/cake acl grant Groups.4 controllers/ForumComments',
-
             'bin/cake acl grant Groups.4 controllers/FamousTeams/index',
             'bin/cake acl grant Groups.4 controllers/FamousTeams/view',
             'bin/cake acl grant Groups.4 controllers/FamousTeams/music',
