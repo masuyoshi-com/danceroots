@@ -93,18 +93,14 @@
                 </a>
             </div>
             <div class="card-body elegant-color white-text rounded-bottom">
-                <div class="d-flex">
-                    <div>
-                        <h4 class="h4-responsive card-title"><?= h($team->name) ?></h4>
-                    </div>
-                    <div class="ml-auto">
-                        <p class="activator waves-effect mr-4 mt-4 mb-0">
-                            <small>
-                                Genre: <?= h($team->genre) ?>
-                            </small>
-                        </p>
-                    </div>
-                </div>
+
+                <h4 class="h4-responsive card-title mb-0"><?= h($team->name) ?></h4>
+                <p class="waves-effect mb-1 text-right">
+                    <small>
+                        Genre: <?= h($team->genre) ?>
+                    </small>
+                </p>
+
                 <hr class="hr-light mt-0">
                 <p class="card-text white-text mb-4">
                     <?= tw(nl2br(h($team->style)), 70) ?>
