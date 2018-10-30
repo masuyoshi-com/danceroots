@@ -7,16 +7,20 @@
                 <div class="col-lg-12">
                     <div class="wow fadeInUp">
                         <h1 class="display-3 font-weight-bold mb-3"><?= h($famousDancer->name) ?></h1>
-                        <h4 class="dark-grey-text text-uppercase font-weight-bold">
-                            <small>Team:</small>
-                            <?php
-                                if ($team_user) {
-                                    print $this->Html->link(h($famousDancer->team_name), ['controller' => 'famousTeams', 'action' => 'view', $team_user->username], ['target' => '_blank']);
-                                } else {
-                                    print h($famousDancer->team_name);
-                                }
-                            ?>
-                        </h4>
+
+                        <?php if ($famousDancer->team_name) : ?>
+                            <h4 class="dark-grey-text text-uppercase font-weight-bold">
+                                <small>Team:</small>
+                                <?php
+                                    if ($team_user) {
+                                        print $this->Html->link(h($famousDancer->team_name), ['controller' => 'famousTeams', 'action' => 'view', $team_user->username], ['target' => '_blank']);
+                                    } else {
+                                        print h($famousDancer->team_name);
+                                    }
+                                ?>
+                            </h4>
+                        <?php endif; ?>
+
                         <h5 class="dark-grey-text text-uppercase font-weight-bold"><small>Genre:</small> <?= h($famousDancer->genre) ?></h5>
                         <p>
                             <a href="#profile" class="btn btn-outline-black wow fadeIn waves-effect waves-light animated" data-wow-delay="0.4s">PROFILE</a>
@@ -73,171 +77,191 @@
     </div><!-- /.container -->
 </div><!-- /.container-fluid -->
 
-<div class="container">
-    <section class="section team-section">
+<?php if ($famousDancer->iv_trigger || $famousDancer->iv_inspire || $famousDancer->iv_dancer || $famousDancer->iv_instructor || $famousDancer->iv_advice) : ?>
+    <div class="container">
+        <section class="section team-section">
 
-        <h2 class="text-center text-uppercase font-weight-bold mt-5 pt-4 mb-0 wow fadeIn" data-wow-delay="0.2s">Interview</h2>
-        <p class="text-center text-uppercase font-weight-bold mt-0 mb-5 wow fadeIn" data-wow-delay="0.2s"><small>インタビュー</small></p>
+            <h2 class="text-center text-uppercase font-weight-bold mt-5 pt-4 mb-0 wow fadeIn" data-wow-delay="0.2s">Interview</h2>
+            <p class="text-center text-uppercase font-weight-bold mt-0 mb-5 wow fadeIn" data-wow-delay="0.2s"><small>インタビュー</small></p>
 
-        <div class="row wow fadeIn mb-4" data-wow-delay="0.4s">
-            <div class="col-lg-12 col-md-12 text-center wow fadeIn" data-wow-delay="0.4s">
-                <h5 class="dark-grey-text font-weight-bold">ダンスを始めたキッカケ</h5>
-                <hr class="grey mb-4 pb-0 mt-0 d-inline-block mx-auto" style="width: 100px;">
-                <p class="text-center mb-5" align="justify">
-                    <?= nl2br(h($famousDancer->iv_trigger)) ?>
-                </p>
+            <div class="row wow fadeIn mb-4" data-wow-delay="0.4s">
+                <div class="col-lg-12 col-md-12 text-center wow fadeIn" data-wow-delay="0.4s">
 
-                <h5 class="dark-grey-text font-weight-bold">インスパイアを受けたもの</h5>
-                <hr class="grey mb-4 pb-0 mt-0 d-inline-block mx-auto" style="width: 100px;">
-                <p class="text-center mb-5" align="justify">
-                    <?= nl2br(h($famousDancer->iv_inspire)) ?>
-                </p>
+                    <?php if ($famousDancer->iv_trigger) : ?>
+                        <h5 class="dark-grey-text font-weight-bold">ダンスを始めたキッカケ</h5>
+                        <hr class="grey mb-4 pb-0 mt-0 d-inline-block mx-auto" style="width: 100px;">
+                        <p class="text-center mb-5" align="justify">
+                            <?= nl2br(h($famousDancer->iv_trigger)) ?>
+                        </p>
+                    <?php endif; ?>
 
-                <h5 class="dark-grey-text font-weight-bold">ダンサーとして大切にしていること</h5>
-                <hr class="grey mb-4 pb-0 mt-0 d-inline-block mx-auto" style="width: 100px;">
-                <p class="text-center mb-5" align="justify">
-                    <?= nl2br(h($famousDancer->iv_dancer)) ?>
-                </p>
+                    <?php if ($famousDancer->iv_inspire) : ?>
+                        <h5 class="dark-grey-text font-weight-bold">インスパイアを受けたもの</h5>
+                        <hr class="grey mb-4 pb-0 mt-0 d-inline-block mx-auto" style="width: 100px;">
+                        <p class="text-center mb-5" align="justify">
+                            <?= nl2br(h($famousDancer->iv_inspire)) ?>
+                        </p>
+                    <?php endif; ?>
 
-                <h5 class="dark-grey-text font-weight-bold">インストラクターとして心掛けていること</h5>
-                <hr class="grey mb-4 pb-0 mt-0 d-inline-block mx-auto" style="width: 100px;">
-                <p class="text-center mb-5" align="justify">
-                    <?= nl2br(h($famousDancer->iv_instructor)) ?>
-                </p>
+                    <?php if ($famousDancer->iv_dancer) : ?>
+                        <h5 class="dark-grey-text font-weight-bold">ダンサーとして大切にしていること</h5>
+                        <hr class="grey mb-4 pb-0 mt-0 d-inline-block mx-auto" style="width: 100px;">
+                        <p class="text-center mb-5" align="justify">
+                            <?= nl2br(h($famousDancer->iv_dancer)) ?>
+                        </p>
+                    <?php endif; ?>
 
-                <h5 class="dark-grey-text font-weight-bold">これからのダンサーへアドバイス</h5>
-                <hr class="grey mb-4 pb-0 mt-0 d-inline-block mx-auto" style="width: 100px;">
-                <p class="text-center mb-5" align="justify">
-                    <?= nl2br(h($famousDancer->iv_advice)) ?>
-                </p>
-            </div><!-- /.col-lg-12 -->
-        </div><!-- /.row -->
-    </section>
-</div><!-- /.container -->
+                    <?php if ($famousDancer->iv_instructor) : ?>
+                        <h5 class="dark-grey-text font-weight-bold">インストラクターとして心掛けていること</h5>
+                        <hr class="grey mb-4 pb-0 mt-0 d-inline-block mx-auto" style="width: 100px;">
+                        <p class="text-center mb-5" align="justify">
+                            <?= nl2br(h($famousDancer->iv_instructor)) ?>
+                        </p>
+                    <?php endif; ?>
 
-<div class="container-fluid mb-5 wow fadeIn elegant-color" data-wow-delay="0.2s">
-    <div class="container mb-3 pt-1 pb-3">
-        <h2 class="section-heading text-center mt-5 mb-5 pt-4 font-weight-bold wow fadeIn white-text">ShowCase</h2>
-        <div class="row">
+                    <?php if ($famousDancer->iv_advice) : ?>
+                        <h5 class="dark-grey-text font-weight-bold">これからのダンサーへアドバイス</h5>
+                        <hr class="grey mb-4 pb-0 mt-0 d-inline-block mx-auto" style="width: 100px;">
+                        <p class="text-center mb-5" align="justify">
+                            <?= nl2br(h($famousDancer->iv_advice)) ?>
+                        </p>
+                    <?php endif; ?>
 
-            <?php if ($famousDancer->youtube1) : ?>
-            <div class="modal fade m--youtube" id="m--youtube0" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body black pt-4 pb-4">
-                            <div class="d-flex">
-                                <div class="p-0">
-                                    <h6 class="white-text m-3"><i class="fa fa-youtube-play yt-ic"></i> YouTube</h6>
-                                </div>
-                                <div class="ml-auto pt-3 pr-2">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span class="white-text" aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($famousDancer->youtube1) ?>?rel=0" allowfullscreen></iframe>
-                            </div>
-                        </div><!-- /.modal-body -->
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
-
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3">
-                <div class="d-flex justify-content-center zoom" style="cursor: pointer;">
-                    <?= $this->Html->image('https://img.youtube.com/vi/' . h($famousDancer->youtube1) . '/mqdefault.jpg',
-                        [
-                            'class'       => 'img-fluid',
-                            'data-toggle' => 'modal',
-                            'data-target' => '#m--youtube0'
-                        ]
-                    ) ?>
-                </div>
-            </div>
-            <?php endif; ?>
-
-            <?php if ($famousDancer->youtube2) : ?>
-            <div class="modal fade m--youtube" id="m--youtube1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body black pt-4 pb-4">
-                            <div class="d-flex">
-                                <div class="p-0">
-                                        <h6 class="white-text m-3"><i class="fa fa-youtube-play yt-ic"></i> YouTube</h6>
-                                </div>
-                                <div class="ml-auto pt-3 pr-2">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span class="white-text" aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($famousDancer->youtube2) ?>?rel=0" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3">
-                <div class="d-flex justify-content-center zoom" style="cursor: pointer;">
-                    <?= $this->Html->image('https://img.youtube.com/vi/' . h($famousDancer->youtube2) . '/mqdefault.jpg',
-                        [
-                            'class'       => 'img-fluid',
-                            'data-toggle' => 'modal',
-                            'data-target' => '#m--youtube1'
-                        ]
-                    ) ?>
-                </div>
-            </div>
-            <?php endif; ?>
-
-            <?php if ($famousDancer->youtube3) : ?>
-            <div class="modal fade m--youtube" id="m--youtube2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body black pt-4 pb-4">
-                            <div class="d-flex">
-                                <div class="p-0">
-                                    <h6 class="white-text m-3"><i class="fa fa-youtube-play yt-ic"></i> YouTube</h6>
-                                </div>
-                                <div class="ml-auto pt-3 pr-2">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span class="white-text" aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($famousDancer->youtube3) ?>?rel=0" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mb-3">
-                <div class="d-flex justify-content-center zoom" style="cursor: pointer;">
-                    <?= $this->Html->image('https://img.youtube.com/vi/' . h($famousDancer->youtube3) . '/mqdefault.jpg',
-                        [
-                            'class'       => 'img-fluid',
-                            'data-toggle' => 'modal',
-                            'data-target' => '#m--youtube2'
-                        ]
-                    ) ?>
-                </div>
-            </div>
-            <?php endif; ?>
-            <!--
-            <div class="col-lg-12">
-                <p class="text-right m-0 pb-3">
-                    <small><a class="white-text" href="javascript:void(0)">さらに見る<i class="fa fa-angle-right ml-2" aria-hidden="true"></i></a></small>
-                </p>
-            </div>
-            -->
-        </div><!-- /.row -->
+                </div><!-- /.col-lg-12 -->
+            </div><!-- /.row -->
+        </section>
     </div><!-- /.container -->
-</div><!-- /.container-fluid -->
+<?php endif; ?>
 
+<?php if ($famousDancer->youtube1 || $famousDancer->youtube2 || $famousDancer->youtube3) : ?>
+    <div class="container-fluid mb-5 wow fadeIn elegant-color" data-wow-delay="0.2s">
+        <div class="container mb-3 pt-1 pb-3">
+            <h2 class="section-heading text-center mt-5 mb-5 pt-4 font-weight-bold wow fadeIn white-text">ShowCase</h2>
+            <div class="row">
+
+                <?php if ($famousDancer->youtube1) : ?>
+                <div class="modal fade m--youtube" id="m--youtube0" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body black pt-4 pb-4">
+                                <div class="d-flex">
+                                    <div class="p-0">
+                                        <h6 class="white-text m-3"><i class="fa fa-youtube-play yt-ic"></i> YouTube</h6>
+                                    </div>
+                                    <div class="ml-auto pt-3 pr-2">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span class="white-text" aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($famousDancer->youtube1) ?>?rel=0" allowfullscreen></iframe>
+                                </div>
+                            </div><!-- /.modal-body -->
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3">
+                    <div class="d-flex justify-content-center zoom" style="cursor: pointer;">
+                        <?= $this->Html->image('https://img.youtube.com/vi/' . h($famousDancer->youtube1) . '/mqdefault.jpg',
+                            [
+                                'class'       => 'img-fluid',
+                                'data-toggle' => 'modal',
+                                'data-target' => '#m--youtube0'
+                            ]
+                        ) ?>
+                    </div>
+                </div>
+                <?php endif; ?>
+
+                <?php if ($famousDancer->youtube2) : ?>
+                <div class="modal fade m--youtube" id="m--youtube1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body black pt-4 pb-4">
+                                <div class="d-flex">
+                                    <div class="p-0">
+                                            <h6 class="white-text m-3"><i class="fa fa-youtube-play yt-ic"></i> YouTube</h6>
+                                    </div>
+                                    <div class="ml-auto pt-3 pr-2">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span class="white-text" aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($famousDancer->youtube2) ?>?rel=0" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3">
+                    <div class="d-flex justify-content-center zoom" style="cursor: pointer;">
+                        <?= $this->Html->image('https://img.youtube.com/vi/' . h($famousDancer->youtube2) . '/mqdefault.jpg',
+                            [
+                                'class'       => 'img-fluid',
+                                'data-toggle' => 'modal',
+                                'data-target' => '#m--youtube1'
+                            ]
+                        ) ?>
+                    </div>
+                </div>
+                <?php endif; ?>
+
+                <?php if ($famousDancer->youtube3) : ?>
+                <div class="modal fade m--youtube" id="m--youtube2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body black pt-4 pb-4">
+                                <div class="d-flex">
+                                    <div class="p-0">
+                                        <h6 class="white-text m-3"><i class="fa fa-youtube-play yt-ic"></i> YouTube</h6>
+                                    </div>
+                                    <div class="ml-auto pt-3 pr-2">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span class="white-text" aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= h($famousDancer->youtube3) ?>?rel=0" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mb-3">
+                    <div class="d-flex justify-content-center zoom" style="cursor: pointer;">
+                        <?= $this->Html->image('https://img.youtube.com/vi/' . h($famousDancer->youtube3) . '/mqdefault.jpg',
+                            [
+                                'class'       => 'img-fluid',
+                                'data-toggle' => 'modal',
+                                'data-target' => '#m--youtube2'
+                            ]
+                        ) ?>
+                    </div>
+                </div>
+                <?php endif; ?>
+                <!--
+                <div class="col-lg-12">
+                    <p class="text-right m-0 pb-3">
+                        <small><a class="white-text" href="javascript:void(0)">さらに見る<i class="fa fa-angle-right ml-2" aria-hidden="true"></i></a></small>
+                    </p>
+                </div>
+                -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </div><!-- /.container-fluid -->
+<?php endif; ?>
+
+<?php if (
+    $famousDancer->sche_sun || $famousDancer->sche_mon || $famousDancer->sche_tue || $famousDancer->sche_wed ||
+    $famousDancer->sche_thu || $famousDancer->sche_fri || $famousDancer->sche_sat
+) : ?>
 <div class="container">
     <div class="row mb-5">
         <div class="col-lg-12">
@@ -321,6 +345,8 @@
         </div><!-- /.col-lg-12 -->
     </div><!-- /.row -->
 </div><!-- /.container -->
+<?php endif; ?>
+
 
 <?php if (count($events) !== 0) : ?>
     <div id="event" class="container-fluid mb-4 grey lighten-3">
