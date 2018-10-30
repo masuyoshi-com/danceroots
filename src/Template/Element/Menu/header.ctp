@@ -35,7 +35,7 @@
                     <?= $this->Html->link('Forum', ['controller' => 'Forums', 'action' => 'public'], ['class' => 'nav-link']) ?>
                 </li>
                 <li class="nav-item dropdown">
-                    <?= $this->Html->link('FamousDancer ', '#',
+                    <?= $this->Html->link('Famous', '#',
                         [
                             'class'         => 'nav-link dropdown-toggle',
                             'id'            => 'navbarDropdownMenuLink',
@@ -51,7 +51,7 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <?= $this->Html->link('機能紹介 ', '#',
+                    <?= $this->Html->link('機能紹介', '#',
                         [
                             'class'         => 'nav-link dropdown-toggle',
                             'id'            => 'navbarDropdownMenuLink',
