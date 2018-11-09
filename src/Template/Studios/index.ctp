@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-lg-12 col-md-12 mb-2">
         <h6 class="h6-responsive font-weight-bold mb-0">DANCE STUDIO / SCHOOL
-            <span class="ml-1 grey-text"><small>ダンススタジオ<span class="none">・スクール</span>検索</small></span>
+            <span class="ml-1 grey-text none"><small>ダンススタジオ<span class="none">・スクール</span>検索</small></span>
         </h6>
         <hr class="my-2">
     </div><!-- /.col-lg-12 -->

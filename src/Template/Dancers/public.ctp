@@ -8,7 +8,7 @@
         <div class="d-flex">
             <h6 class="h6-responsive font-weight-bold mb-0">
                 <i class="fa fa-universal-access indigo-text" aria-hidden="true"></i> STREET DANCER
-                <span class="ml-1 grey-text"><small>ストリートダンサー検索</small></span>
+                <span class="ml-1 grey-text none"><small>ストリートダンサー検索</small></span>
             </h6>
             <?php if (!isset($logins)) : ?>
                 <p class="ml-auto mb-0">
