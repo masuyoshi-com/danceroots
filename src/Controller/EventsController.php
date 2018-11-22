@@ -134,10 +134,6 @@ class EventsController extends AppController
             $query      = $this->Events->findByDeleteFlagAndPublicFlag(0, 0)->where(['Events.event_date >=' => new \DateTime()]);
             $collection = new Collection($this->paginate($query)->toArray());
             $events     = $collection->shuffle()->toList();
-            /*
-            debug($events);
-            exit;
-            */
         }
 
         // 検索項目状態があればリード
