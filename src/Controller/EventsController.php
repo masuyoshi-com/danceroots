@@ -5,6 +5,7 @@ use App\Controller\AppController;
 use Cake\Event\Event;
 use Cake\Network\Exception\NotFoundException;
 use Cake\Collection\Collection;
+use Cake\I18n\Time;
 
 /**
  * Events Controller
@@ -90,7 +91,7 @@ class EventsController extends AppController
             $this->Session->write('event_search_request', $this->request->query);
 
         } else {
-            $query      = $this->Events->findByDeleteFlag(0);
+            $query      = $this->Events->findByDeleteFlag(0)->where(['Events.event_date >=' => new \DateTime()]);
             $collection = new Collection($this->paginate($query)->toArray());
             $events     = $collection->shuffle()->toList();
         }
@@ -130,9 +131,13 @@ class EventsController extends AppController
             $this->Session->write('public_event_search_request', $this->request->query);
 
         } else {
-            $query      = $this->Events->findByDeleteFlagAndPublicFlag(0, 0);
+            $query      = $this->Events->findByDeleteFlagAndPublicFlag(0, 0)->where(['Events.event_date >=' => new \DateTime()]);
             $collection = new Collection($this->paginate($query)->toArray());
             $events     = $collection->shuffle()->toList();
+            /*
+            debug($events);
+            exit;
+            */
         }
 
         // 検索項目状態があればリード

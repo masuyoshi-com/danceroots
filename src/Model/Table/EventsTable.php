@@ -165,7 +165,7 @@ class EventsTable extends Table
                 'provider' => 'custom',
                 'message'  => '空白のみは受け付けません。'
             ]);
-                
+
         $validator
             ->scalar('address')
             ->maxLength('address', 255)
@@ -246,6 +246,7 @@ class EventsTable extends Table
                 ['Events.guest LIKE'        => '%' . $requests['word'] . '%'],
                 ['Events.event_detail LIKE' => '%' . $requests['word'] . '%']]])
             ->andWhere(['Events.delete_flag' => 0])
+            ->where(['Events.event_date >=' => new \DateTime()])
             ;
     }
 
@@ -269,6 +270,7 @@ class EventsTable extends Table
                 ['Events.event_detail LIKE' => '%' . $requests['word'] . '%']]])
             ->andWhere(['Events.delete_flag' => 0])
             ->andWhere(['Events.public_flag' => 0])
+            ->where(['Events.event_date >=' => new \DateTime()])
             ;
     }
 }
