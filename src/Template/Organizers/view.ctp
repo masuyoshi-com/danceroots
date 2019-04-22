@@ -164,9 +164,9 @@
 
             <?php
                 if ($organizer->icon) {
-                    print $this->Html->image($organizer->icon);
+                    print $this->Html->image($organizer->icon, ['class' => 'icon-160']);
                 } else {
-                    print $this->Html->image('/img/sample/no_icon.jpg');
+                    print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'icon-160']);
                 }
             ?>
 

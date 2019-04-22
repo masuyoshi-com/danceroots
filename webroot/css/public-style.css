@@ -4,6 +4,19 @@ select.form-control:not([size]):not([multiple]) {
     height: calc(2.25rem + 7px);
 }
 
+/* icon size */
+.icon-150 {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.icon-160 {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+}
+
 /* original */
 .font-blue {
     color: #4285f4;

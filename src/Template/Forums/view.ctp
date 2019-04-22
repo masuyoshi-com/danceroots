@@ -33,9 +33,9 @@
                 <div class="col-lg-3 col-md-3 col-xs-12 text-center mt-2 mb-3">
                     <?php
                         if ($forum->anonymous_flag === 0) {
-                            print $this->Html->image($forum->profile->icon, ['class' => 'avatar rounded-circle mr-2 ml-lg-3 z-depth-1']);
+                            print $this->Html->image($forum->profile->icon, ['class' => 'avatar rounded-circle mr-2 ml-lg-3 z-depth-1 icon-150']);
                         } else {
-                            print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'avatar rounded-circle mr-2 ml-lg-3 z-depth-1']);
+                            print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'avatar rounded-circle mr-2 ml-lg-3 z-depth-1 icon-150']);
                         }
                     ?>
                     <?php if ($forum->user_id === $logins['id']) : ?>

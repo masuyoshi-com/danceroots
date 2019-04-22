@@ -249,9 +249,9 @@
 
             <?php
                 if ($event->owner->icon) {
-                    print $this->Html->image($event->owner->icon);
+                    print $this->Html->image($event->owner->icon, ['class' => 'icon-160']);
                 } else {
-                    print $this->Html->image('/img/sample/no_icon.jpg');
+                    print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'icon-160']);
                 }
             ?>
 

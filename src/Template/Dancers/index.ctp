@@ -76,9 +76,9 @@
                 <a href="<?= $this->Url->build(['action' => 'view', $dancer->user->username]) ?>">
                     <?php
                         if ($dancer->icon) {
-                            print $this->Html->image($dancer->icon, ['class' => 'rounded-circle img-fluid']);
+                            print $this->Html->image($dancer->icon, ['class' => 'rounded-circle icon-150']);
                         } else {
-                            print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'rounded-circle img-fluid']);
+                            print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'rounded-circle icon-150']);
                         }
                     ?>
                 </a>

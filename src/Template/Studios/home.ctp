@@ -30,9 +30,9 @@
 
             <?php
                 if ($studio->icon) {
-                    print $this->Html->image($studio->icon);
+                    print $this->Html->image($studio->icon, ['class' => 'icon-160']);
                 } else {
-                    print $this->Html->image('/img/sample/noimage.png');
+                    print $this->Html->image('/img/sample/noimage.png', ['class' => 'icon-160']);
                 }
             ?>
 

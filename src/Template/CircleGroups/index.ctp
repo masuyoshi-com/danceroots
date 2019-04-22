@@ -43,9 +43,9 @@
                 <div class="avatar mx-auto">
                     <?php
                         if ($group->profile->icon) {
-                            print $this->Html->image($group->profile->icon, ['class' => 'rounded-circle z-depth-1', 'alt' => 'avater']);
+                            print $this->Html->image($group->profile->icon, ['class' => 'rounded-circle z-depth-1 icon-150', 'alt' => 'avater']);
                         } else {
-                            print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'rounded-circle z-depth-1', 'alt' => 'avater']);
+                            print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'rounded-circle z-depth-1 icon-150', 'alt' => 'avater']);
                         }
                     ?>
                 </div>

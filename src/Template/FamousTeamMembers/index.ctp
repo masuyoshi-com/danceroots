@@ -39,9 +39,9 @@
                     <div class="avatar mx-auto">
                         <?php
                             if ($member->image) {
-                                print $this->Html->image($member->image, ['class' => 'rounded-circle z-depth-1', 'alt' => $member->name . 'アバター']);
+                                print $this->Html->image($member->image, ['class' => 'rounded-circle z-depth-1 icon-150', 'alt' => $member->name . 'アバター']);
                             } else {
-                                print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'rounded-circle z-depth-1', 'alt' => 'サンプルアバター']);
+                                print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'rounded-circle z-depth-1 icon-150', 'alt' => 'サンプルアバター']);
                             }
                         ?>
                     </div>

@@ -50,9 +50,9 @@
     <div class="media mt-4 px-1">
         <?php
             if ($user->profile->icon) {
-                print $this->Html->image($user->profile->icon, ['class' => 'card-img-100 d-flex z-depth-1 mr-3', 'alt' => 'ユーザーアイコン']);
+                print $this->Html->image($user->profile->icon, ['class' => 'icon-100 d-flex z-depth-1 mr-3', 'alt' => 'ユーザーアイコン']);
             } else {
-                print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'card-img-100 d-flex z-depth-1 mr-3', 'alt' => 'ユーザーアイコン']);
+                print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'icon-100 d-flex z-depth-1 mr-3', 'alt' => 'ユーザーアイコン']);
             }
         ?>
         <div class="media-body">

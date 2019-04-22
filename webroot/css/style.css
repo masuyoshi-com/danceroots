@@ -77,10 +77,6 @@ body {
     border-radius: 50%;
 }
 
-.card-img-100 {
-    width: 100px;
-    height: 100px;
-}
 
 .table-wrapper {
     display: block;
@@ -107,10 +103,6 @@ input[type=radio] {
 /* CircleGroupList */
 section.team-section .avatar img.rounded-circle {
     max-width: 150px;
-}
-
-section.team-section .avatar img {
-    height: auto;
 }
 
 @media (min-width: 768px) {
@@ -173,7 +165,25 @@ section.team-section .avatar img {
 .card.chat-room .text-smaller {
     font-size: 0.75rem;
 }
- /****/
+
+/* icon size */
+.icon-100 {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.icon-150 {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.icon-160 {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+}
 
 /* mdb timeline plugin */
 @media (max-width: 1025px) {

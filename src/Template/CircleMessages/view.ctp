@@ -13,9 +13,9 @@
                 <div class="col-12 col-md-2 mb-md-0 mb-4">
                     <?php
                         if ($circle_message->owner->icon) {
-                            print $this->Html->image($circle_message->owner->icon, ['class' => 'img-fluid rounded-circle z-depth-2 avatar']);
+                            print $this->Html->image($circle_message->owner->icon, ['class' => 'img-fluid rounded-circle z-depth-2 avatar icon-150']);
                         } else {
-                            print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'img-fluid rounded-circle z-depth-2 avatar']);
+                            print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'img-fluid rounded-circle z-depth-2 avatar icon-150']);
                         }
                     ?>
                 </div>

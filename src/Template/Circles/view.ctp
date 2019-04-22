@@ -287,9 +287,9 @@
 
             <?php
                 if ($circle->owner->icon) {
-                    print $this->Html->image($circle->owner->icon);
+                    print $this->Html->image($circle->owner->icon, ['class' => 'icon-160']);
                 } else {
-                    print $this->Html->image('/img/sample/no_icon.jpg');
+                    print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'icon-160']);
                 }
             ?>
 
@@ -400,13 +400,13 @@
                                                 print $this->Html->image($member->profile->icon,
                                                     [
                                                         'class' => 'rounded-circle z-depth-1-half',
-                                                        'style' => 'width: 50px; heidht:50px;'
+                                                        'style' => 'width: 50px; heidht:50px; object-fit: cover;'
                                                     ]);
                                             } else {
                                                 print $this->Html->image('/img/sample/no_icon.jpg',
                                                     [
                                                         'class' => 'rounded-circle z-depth-1-half',
-                                                        'style' => 'width: 50px; heidht:50px;'
+                                                        'style' => 'width: 50px; heidht:50px; object-fit: cover;'
                                                     ]
                                                 );
                                             }

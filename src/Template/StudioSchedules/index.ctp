@@ -14,9 +14,9 @@
                 <div class="col-12 col-md-2 mb-md-0 mb-4">
                     <?php
                         if ($studio->icon) {
-                            print $this->Html->image($studio->icon, ['class' => 'img-fluid rounded-circle z-depth-2 avatar']);
+                            print $this->Html->image($studio->icon, ['class' => 'icon-150 rounded-circle z-depth-2 avatar']);
                         } else {
-                            print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'img-fluid rounded-circle z-depth-2 avatar']);
+                            print $this->Html->image('/img/sample/no_icon.jpg', ['class' => 'icon-150 rounded-circle z-depth-2 avatar']);
                         }
                     ?>
                 </div>
