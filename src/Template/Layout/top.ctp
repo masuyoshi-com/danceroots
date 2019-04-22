@@ -19,8 +19,8 @@
     <?= $this->Html->script('gtag') ?>
     <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') ?>
     <?= $this->Html->css('bootstrap.min') ?>
-    <?= $this->Html->css('top-mdb.min') ?>
-    <?= $this->Html->css('top-style') ?>
+    <?= $this->Html->css('public-mdb.min') ?>
+    <?= $this->Html->css('public-style') ?>
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>

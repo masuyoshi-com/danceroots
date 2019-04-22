@@ -19,7 +19,7 @@
     <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') ?>
     <?= $this->Html->css('bootstrap.min') ?>
     <?= $this->Html->css('mdb.min') ?>
-    <?= $this->Html->css('top-style') ?>
+    <?= $this->Html->css('public-style') ?>
     <?= $this->Html->script('jquery-3.2.1.min') ?>
 
     <?php if (strstr($url, 'studios/public-view') || strstr($url, 'events/public-view')) : ?>
